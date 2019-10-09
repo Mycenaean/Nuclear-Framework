@@ -171,7 +171,7 @@ IChannelHost service will start the hosting of the channels. In Web apps just ap
  Nikola Milinkovic - *initial work and maintainer* - [Mycenaean](https://github.com/Mycenaean)
 
 # License
- Nuclear.Channels are MIT Licensed. Check [License](https://github.com/Mycenaean/Nuclear-Framework/LICENSE).
+ Nuclear.Channels are MIT Licensed. Check [License](https://github.com/Mycenaean/Nuclear-Framework/blob/master/LICENSE.txt).
 
 # Known Issues
 Sending JSON instead of XML does not work for now.
