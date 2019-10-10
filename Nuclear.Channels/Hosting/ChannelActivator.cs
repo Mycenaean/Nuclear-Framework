@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Nuclear.Channels.Auth;
 using Nuclear.Channels.Contracts;
 using Nuclear.Channels.Decorators;
 using Nuclear.Channels.Enums;
@@ -73,6 +74,11 @@ namespace Nuclear.Channels.Hosting
         public Type AuthMethodClass { get; set; }
 
         /// <summary>
+        /// Authentication Method Delegate
+        /// </summary>
+        private Func<string, string, bool> _authenticationMethod;
+
+        /// <summary>
         /// CTOR
         /// </summary>
         public ChannelActivator()
@@ -86,10 +92,23 @@ namespace Nuclear.Channels.Hosting
         /// </summary>
         /// <param name="authMethodClass">Class in which Authentication Method is defined , method must take username and password as a parameters and must be of boolean return type</param>
         /// <param name="authMethod">User defined Authentication Method Info</param>
+        [Obsolete("Please use second overload version of AuthenticationOptions method")]
         public void AuthenticationOptions(Type authMethodClass, MethodInfo authMethod)
         {
-            AuthMethod = authMethod;
-            AuthMethodClass = authMethodClass;
+            AuthMethod = authMethod ?? throw new ArgumentNullException("Authentication method can not be null"); ;
+            AuthMethodClass = authMethodClass ?? throw new ArgumentNullException("Class in which Authentication method is defined can not be null");
+
+            if (authMethod.ReturnType != typeof(bool))
+                throw new ChannelAuthException("Return type of authentication function must be of type bool");
+        }
+
+        /// <summary>
+        /// Set authentication options
+        /// </summary>
+        /// <param name="authMethod">Delegate for the authentication method</param>
+        public void AuthenticationOptions(Func<string, string, bool> authMethod)
+        {
+            _authenticationMethod = authMethod ?? throw new ArgumentNullException("Authentication function must not be null");
         }
 
         /// <summary>
@@ -291,9 +310,10 @@ namespace Nuclear.Channels.Hosting
                     try
                     {
                         HttpListenerBasicIdentity basicIdentity = context.User.Identity as HttpListenerBasicIdentity;
-                        string[] credentials = new string[] { basicIdentity.Name, basicIdentity.Password };
-                        object authMethodResponse = AuthMethod.Invoke(Activator.CreateInstance(AuthMethodClass), credentials); // Call method
-                        bool success = Convert.ToBoolean(authMethodResponse);
+                        //string[] credentials = new string[] { basicIdentity.Name, basicIdentity.Password };
+                        //object authMethodResponse = AuthMethod.Invoke(Activator.CreateInstance(AuthMethodClass), credentials); // Call method
+                        //bool success = Convert.ToBoolean(authMethodResponse);
+                        bool success = _authenticationMethod.Invoke(basicIdentity.Name, basicIdentity.Password);
                         if (!success)
                         {
                             _msgService.FailedAuthenticationResponse(ChannelSchema, response);
