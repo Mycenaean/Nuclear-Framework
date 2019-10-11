@@ -1,4 +1,4 @@
-﻿﻿# Nuclear Channels
+# Nuclear Channels
 
 Channels Library is part of the Nuclear Framework set of .NET Standard class libraries used to build lightweight API Endpoints using HttpListener class. 
 
