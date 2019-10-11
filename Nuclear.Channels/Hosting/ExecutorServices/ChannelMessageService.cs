@@ -20,10 +20,9 @@ namespace Nuclear.Channels.Hosting.ExecutorServices
         /// <summary>
         /// Method that will write response to the client
         /// </summary>
+        /// <param name="chResponse">Response object from ChannelMethod</param>
         /// <param name="response">HttpListenerResponse instance</param>
-        /// <param name="channel">Channel</param>
-        /// <param name="method">ChannelMethod</param>
-        public void WriteHttpResponse(HttpListenerResponse response, Type channel, MethodInfo method, object chResponse = null)
+        public void WriteHttpResponse(object chResponse, HttpListenerResponse response)
         {
             response.ContentType = "application/json";
             Stream stream = response.OutputStream;
@@ -31,22 +30,14 @@ namespace Nuclear.Channels.Hosting.ExecutorServices
             {
                 try
                 {
-                    //ChannelMessage to be sent back to the client
                     IChannelMessage respChMessage;
-                    object channelmethodResponse;
                     if (chResponse == null)
-                        channelmethodResponse = method.Invoke(Activator.CreateInstance(channel), null);
-                    else
-                        channelmethodResponse = chResponse;
-
-                    Debug.Assert(channelmethodResponse != null);
-
-                    //Response type checking
-                    if (channelmethodResponse.GetType() != typeof(IChannelMessage) && channelmethodResponse.GetType() != typeof(ChannelMessage))
+                        respChMessage = new ChannelMessage() { Message = "ChannelMethod executed" };
+                    else if (chResponse.GetType() != typeof(IChannelMessage) && chResponse.GetType() != typeof(ChannelMessage))
                     {
                         respChMessage = new ChannelMessage();
                         respChMessage.Success = true;
-                        respChMessage.Output = channelmethodResponse;
+                        respChMessage.Output = chResponse;
                     }
                     else
                         respChMessage = null;
@@ -56,12 +47,11 @@ namespace Nuclear.Channels.Hosting.ExecutorServices
                     JsonSerializerSettings jsonSettings = new JsonSerializerSettings();
                     jsonSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                     if (respChMessage == null)
-                        outputMsg = JsonConvert.SerializeObject(channelmethodResponse, Formatting.Indented, jsonSettings);
+                        outputMsg = JsonConvert.SerializeObject(chResponse, Formatting.Indented, jsonSettings);
                     else
                         outputMsg = JsonConvert.SerializeObject(respChMessage, Formatting.Indented, jsonSettings);
 
                     writer.WriteLine(outputMsg);
-                    //return;
                 }
                 catch (Exception ex)
                 {
@@ -88,7 +78,6 @@ namespace Nuclear.Channels.Hosting.ExecutorServices
             response.ContentType = "application/json";
             string outputMsg = JsonConvert.SerializeObject(errorChMessage, Formatting.Indented);
             writer.Write(outputMsg);
-            //return;
         }
 
         /// <summary>

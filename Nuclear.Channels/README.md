@@ -1,4 +1,4 @@
-﻿# Nuclear Channels
+﻿﻿# Nuclear Channels
 
 Channels Library is part of the Nuclear Framework set of .NET Standard class libraries used to build lightweight API Endpoints using HttpListener class. 
 
@@ -173,5 +173,3 @@ IChannelHost service will start the hosting of the channels. In Web apps just ap
 # License
  Nuclear.Channels are MIT Licensed. Check [License](https://github.com/Mycenaean/Nuclear-Framework/blob/master/LICENSE.txt).
 
-# Known Issues
-Sending JSON instead of XML does not work for now.

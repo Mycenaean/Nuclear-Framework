@@ -7,7 +7,7 @@ namespace Nuclear.Channels.Decorators
     /// <summary>
     /// Attribute that will targeted method initialize as an Http Endpoint
     /// </summary>
-    [AttributeUsage(AttributeTargets.Method)]
+    [AttributeUsage(AttributeTargets.Method, Inherited = false)]
     public sealed class ChannelMethodAttribute : Attribute
     {
         /// <summary>

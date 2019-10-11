@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Nuclear.Channels.Remoting.Services;
 using Nuclear.ExportLocator.Decorators;
+using Nuclear.ExportLocator.Enumerations;
 using System;
 using System.IO;
 using System.Net;
@@ -8,7 +9,7 @@ using System.Text;
 
 namespace Nuclear.Channels.Remoting
 {
-    [Export(typeof(IChannelRemotingService))]
+    [Export(typeof(IChannelRemotingService), ExportLifetime.Transient)]
     public class ChannelRemotingService : IChannelRemotingService
     {
         public IChannelCredentials Credentials => new ChannelCredentials();

@@ -1,4 +1,6 @@
 ﻿using Nuclear.Channels.Hosting.Contracts;
+using Nuclear.Channels.Hosting.Deserializers;
+using Nuclear.Channels.Hosting.Exceptions;
 using Nuclear.Data.Logging.Enums;
 using Nuclear.Data.Logging.Services;
 using Nuclear.Data.Xml;
@@ -102,7 +104,6 @@ namespace Nuclear.Channels.Hosting.ExecutorServices
                         response.Close();
                     }
                 }
-                //Invoke ChannelMethod
                 _channelMethodInvoker.InvokeChannelMethod(channel, method, response, channelRequestBody);
             }
             catch (Exception ex)
@@ -134,65 +135,26 @@ namespace Nuclear.Channels.Hosting.ExecutorServices
             LogChannel.Write(LogSeverity.Info, $"Request body: ");
             LogChannel.Write(LogSeverity.Info, inputRequest);
 
-            XmlDocument requestXml = new XmlDocument();
-            requestXml.LoadXml(inputRequest);
-
-            Debug.Assert(requestXml.HasChildNodes);
-
-            if (methodDescription.Values.Count != 0)
-            {
-                channelRequestBody = new List<object>();
-
-                //Parameter initialization logic
-                foreach (var description in methodDescription)
-                {
-                    Type paramType = description.Value; // Parameter type
-                    string paramTypeFull = paramType.FullName; // Name of the class
-                    string paramTypeASM = paramType.Assembly.FullName; // Name of the assembly
-
-                    if (paramType == typeof(string))
-                        channelRequestBody.Add(XmlTools.DeserializeString(requestXml, description.Key));
-                    else if (paramType == typeof(int))
-                        channelRequestBody.Add(XmlTools.DeserializeInt(requestXml, description.Key));
-                    else if (paramType == typeof(double))
-                        channelRequestBody.Add(XmlTools.DeserializeDouble(requestXml, description.Key));
-                    else if (paramType == typeof(decimal))
-                        channelRequestBody.Add(XmlTools.DeserializeDecimal(requestXml, description.Key));
-                    else if (paramType == typeof(float))
-                        channelRequestBody.Add(XmlTools.DeserializeFloat(requestXml, description.Key));
-                    else if (paramType == typeof(bool))
-                        channelRequestBody.Add(XmlTools.DeserializeBool(requestXml, description.Key));
-                    else
-                        channelRequestBody.Add(XmlTools.DeserializeComplex(inputRequest, paramTypeASM, paramTypeFull));
-                }
-            }
+            if (request.ContentType == "application/xml")
+                channelRequestBody = Services.Get<IXmlRequestService>().Deserialize(inputRequest, methodDescription);
+            else if (request.ContentType == "application/json")
+                channelRequestBody = Services.Get<IJsonRequestService>().Deserialize(inputRequest, methodDescription);
             else
-                channelRequestBody = null;
+                throw new ChannelMethodContentTypeException("Content-type must be application/json or application/xml");
 
-            //Most probably something went wrong , prepare for Exception strike
             if (channelRequestBody == null)
+                throw new ChannelMethodParameterException("Parameters do not match");
+
+            try
             {
-                if (method.IsStatic)
-                    _channelMethodInvoker.InvokeChannelMethod(channel, method, response);
-                else
-                {
-                    _channelMethodInvoker.InvokeChannelMethod(channel, method, response);
-                }
+                _channelMethodInvoker.InvokeChannelMethod(channel, method, response, channelRequestBody);
             }
-            else
+            catch (Exception ex)
             {
-                try
-                {
-                    //Invoke ChannelMethod
-                    _channelMethodInvoker.InvokeChannelMethod(channel, method, response, channelRequestBody);
-                }
-                catch (Exception ex)
-                {
-                    StreamWriter writer = new StreamWriter(response.OutputStream);
-                    _channelMessageService.ExceptionHandler(writer, ex, response);
-                    writer.Flush();
-                    writer.Close();
-                }
+                StreamWriter writer = new StreamWriter(response.OutputStream);
+                _channelMessageService.ExceptionHandler(writer, ex, response);
+                writer.Flush();
+                writer.Close();
             }
         }
     }

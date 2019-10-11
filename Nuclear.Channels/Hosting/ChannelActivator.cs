@@ -119,7 +119,6 @@ namespace Nuclear.Channels.Hosting
         public void Execute(AppDomain domain, IServiceLocator _Services, string baseURL = null)
         {
             Services = _Services;
-            //Checking the HttpListener support
             Debug.Assert(HttpListener.IsSupported);
             Debug.Assert(_Services != null);
 
@@ -133,7 +132,6 @@ namespace Nuclear.Channels.Hosting
             if (baseURL != null)
                 BaseURL = baseURL;
 
-            //Initialize services
             _channelLocator = Services.Get<IChannelLocator>();
             _channelMethodDescriptor = Services.Get<IChannelMethodDescriptor>();
             _requestActivator = Services.Get<IChannelMethodRequestActivator>();
@@ -145,14 +143,12 @@ namespace Nuclear.Channels.Hosting
             Debug.Assert(_msgService != null);
 
             List<Type> Channels = new List<Type>();
-            //Get all Channels
+            
             Channels = _channelLocator.RegisteredChannels(domain);
-
 
             //Initialization part
             foreach (var channel in Channels)
             {
-                //Call Method that will get all ChannelMethods
                 CancellationTokenSource cts = new CancellationTokenSource();
                 CancellationToken token = cts.Token;
                 Task task = new Task(() => MethodExecute(channel, token), token);
@@ -166,12 +162,10 @@ namespace Nuclear.Channels.Hosting
         /// <param name="channel">Inspected Channel</param>
         public void MethodExecute(Type channel, CancellationToken cancellationToken)
         {
-            //Get ChannelMethods
             MethodInfo[] methods = channel.GetMethods().Where(x => x.GetCustomAttribute(typeof(ChannelMethodAttribute)) != null).ToArray();
             foreach (var method in methods)
             {
                 cancellationToken.ThrowIfCancellationRequested();
-                //Call method to initialize Http Endpoints for a ChannelMethods
                 CancellationTokenSource cts = new CancellationTokenSource();
                 CancellationToken token = cts.Token;
                 Task task = new Task(() => StartListening(method, channel, token), token);
@@ -186,7 +180,6 @@ namespace Nuclear.Channels.Hosting
         /// <param name="channel">Web Channel</param>
         public void StartListening(MethodInfo method, Type channel, CancellationToken cancellationToken)
         {
-            //Create custom ChannelEndpoint
             cancellationToken.ThrowIfCancellationRequested();
             ChannelEndpoint endpoint = new ChannelEndpoint();
             ChannelAttribute channelAttr = channel.GetCustomAttribute(typeof(ChannelAttribute)) as ChannelAttribute;
@@ -196,8 +189,7 @@ namespace Nuclear.Channels.Hosting
                 endpoint.URL = "/channels/" + channel.Name + "/" + method.Name + "/";
 
             endpoint.Name = channel.Name + "." + method.Name;
-
-            //Get Auth Schema
+            
             ChannelMethodAttribute ChannelMethod = method.GetCustomAttribute(typeof(ChannelMethodAttribute)) as ChannelMethodAttribute;
             AuthenticationSchemes ChannelSchema = ChannelMethod.Schema;
             ChannelHttpMethod HttpMethod = ChannelMethod.HttpMethod;
@@ -220,7 +212,7 @@ namespace Nuclear.Channels.Hosting
                 httpAuthRequired = true;
             }
 
-            //Keep the Channel Open (InfiniteLoop)
+            //Keep the ChannelMethod open for new requests
             while (true)
             {
                 httpChannel.Start();
@@ -229,7 +221,7 @@ namespace Nuclear.Channels.Hosting
 
                 HttpListenerContext context = httpChannel.GetContext();
                 HttpListenerRequest request = context.Request;
-                //Log request info
+
                 LogChannel.Write(LogSeverity.Info, $"Request coming to {endpoint.Name}");
                 LogChannel.Write(LogSeverity.Info, $"HttpMethod:{request.HttpMethod}");
                 LogChannel.Write(LogSeverity.Info, $"IsAuthenticated:{request.IsAuthenticated}");
@@ -253,8 +245,7 @@ namespace Nuclear.Channels.Hosting
                     response.Close();
                 }
 
-                //Authentication Layer
-                //Channel Auth Checking
+
                 AuthorizeChannelAttribute authAttr = channel.GetCustomAttribute(typeof(AuthorizeChannelAttribute)) as AuthorizeChannelAttribute;
                 bool authenticated = false;
                 if (authAttr != null)
@@ -266,8 +257,7 @@ namespace Nuclear.Channels.Hosting
                     AuthenticateRequest(context, response, ChannelSchema, out authenticated);
                 }
 
-                //Get ChannelMethod description
-                //var methodDescription = Services.Get<IChannelMethodDescriptor>().GetMethodDescription(method);
+
                 Dictionary<string, Type> methodDescription = _channelMethodDescriptor.GetMethodDescription(method);
                 List<object> channelRequestBody = null;
 
@@ -278,9 +268,7 @@ namespace Nuclear.Channels.Hosting
 
                 //Enter only if Request Body is supplied with POST Method
                 if (request.HasEntityBody == true && request.HttpMethod == "POST")
-                {
                     _requestActivator.PostActivate(channel, method, channelRequestBody, methodDescription, request, response);
-                }
 
                 LogChannel.Write(LogSeverity.Debug, "Request finished...");
                 LogChannel.Write(LogSeverity.Debug, "Closing the response");
@@ -310,13 +298,14 @@ namespace Nuclear.Channels.Hosting
                     try
                     {
                         HttpListenerBasicIdentity basicIdentity = context.User.Identity as HttpListenerBasicIdentity;
-                        //string[] credentials = new string[] { basicIdentity.Name, basicIdentity.Password };
-                        //object authMethodResponse = AuthMethod.Invoke(Activator.CreateInstance(AuthMethodClass), credentials); // Call method
-                        //bool success = Convert.ToBoolean(authMethodResponse);
+                        LogChannel.Write(LogSeverity.Info, $"{basicIdentity.Name} trying to reach channel");
                         bool success = _authenticationMethod.Invoke(basicIdentity.Name, basicIdentity.Password);
+                        if (success)
+                            LogChannel.Write(LogSeverity.Info, $" Authentication for {basicIdentity.Name} succeded");
                         if (!success)
                         {
                             _msgService.FailedAuthenticationResponse(ChannelSchema, response);
+                            LogChannel.Write(LogSeverity.Info, $" Authentication for {basicIdentity.Name} failed");
                             authenticated = false;
                         }
                         else

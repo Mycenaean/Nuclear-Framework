@@ -13,6 +13,9 @@ using System.Threading.Tasks;
 
 namespace Nuclear.Channels.Hosting.ExecutorServices
 {
+    /// <summary>
+    /// IChannelMethodInvoker Implementation
+    /// </summary>
     [Export(typeof(IChannelMethodInvoker), Lifetime = ExportLifetime.Transient)]
     public class ChannelMethodInvoker : IChannelMethodInvoker
     {
@@ -55,7 +58,10 @@ namespace Nuclear.Channels.Hosting.ExecutorServices
             if (method.GetCustomAttribute(typeof(AsyncStateMachineAttribute)) != null)
                 InvokeChannelMethodAsync(channel, method, response, null);
             else
-                _channelMessageService.WriteHttpResponse(response, channel, method);
+            {
+                object chResponse = method.Invoke(Activator.CreateInstance(channel), null);
+                _channelMessageService.WriteHttpResponse(chResponse, response);
+            }
         }
 
         /// <summary>
@@ -68,7 +74,7 @@ namespace Nuclear.Channels.Hosting.ExecutorServices
         public void InvokeChannelMethodSync(Type channel, MethodInfo method, HttpListenerResponse response, List<object> channelRequestBody)
         {
             object chResponse = method.Invoke(Activator.CreateInstance(channel), channelRequestBody.ToArray());
-            _channelMessageService.WriteHttpResponse(response, channel, method, chResponse);
+            _channelMessageService.WriteHttpResponse(chResponse,response);
         }
 
         /// <summary>
@@ -101,7 +107,7 @@ namespace Nuclear.Channels.Hosting.ExecutorServices
             var result = properties.FirstOrDefault(x => x.Name.Equals("result", StringComparison.OrdinalIgnoreCase));
             object resultValue = result.GetValue(chResponse);
             Debug.Assert(resultValue != null);
-            _channelMessageService.WriteHttpResponse(response, channel, method, resultValue);
+            _channelMessageService.WriteHttpResponse(resultValue, response);
         }
     }
 }

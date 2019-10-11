@@ -9,7 +9,7 @@ using System.Reflection;
 
 namespace Nuclear.Channels
 {
-    /// <summary>
+    /// <summary>`
     /// Service that contains all Channels
     /// </summary>
     [Export(typeof(IChannelLocator), ExportLifetime.Transient)]

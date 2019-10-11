@@ -14,9 +14,8 @@ namespace Nuclear.Channels.Hosting.Contracts
         /// Method that will write response to the client
         /// </summary>
         /// <param name="response">HttpListenerResponse instance</param>
-        /// <param name="channel">Channel</param>
-        /// <param name="method">ChannelMethod</param>
-        void WriteHttpResponse(HttpListenerResponse response, Type channel, MethodInfo method, object channelResponse = null);
+        /// <param name="chResponse">ChannelMethod response object</param>
+        void WriteHttpResponse(object chResponse, HttpListenerResponse response);
 
         /// <summary>
         /// Method that will proccess the Exception
