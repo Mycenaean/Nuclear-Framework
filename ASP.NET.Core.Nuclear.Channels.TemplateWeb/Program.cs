@@ -15,6 +15,16 @@ namespace ASP.NET.Core.Nuclear.Channels.TemplateWeb
     {
         public static void Main(string[] args)
         {
+            //----------------------------------------------------------------------------------------
+            //Hosting configuration goes in here
+            //If you have your channels in different DLL add that DLL in an array
+            //string[] channelAssemblies = new string[] { "Your DLL " };
+            //host.LoadAssemblies(AppDomain.CurrentDomain, channelAssemblies);
+            //If you dont specify your base address channels will always be located
+            //on http://localhost:4200/channels/ ....
+            //To change base address add your base address in host.StartHosting("your base address");
+            //----------------------------------------------------------------------------------------
+
             IChannelHost host = ChannelHost.GetHost;
             host.LoadAssemblies(AppDomain.CurrentDomain, null);
             host.StartHosting(null);

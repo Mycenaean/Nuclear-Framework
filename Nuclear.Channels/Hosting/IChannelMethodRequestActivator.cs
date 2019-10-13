@@ -20,6 +20,8 @@ namespace Nuclear.Channels.Hosting
         /// <param name="methodDescription">List of parameter names with their types</param>
         /// <param name="request">Incoming HttpListenerRequest</param>
         /// <param name="response">HttpListenerResponse to be written to the client</param>
+        /// <exception cref="Exceptions.ChannelMethodParameterException">Parameters dont match</exception>
+        /// <exception cref="Exceptions.ChannelMethodContentTypeException">Unsupported content type</exception>
         void PostActivate(Type channel, MethodInfo method, List<object> channelRequestBody, Dictionary<string, Type> methodDescription, HttpListenerRequest request, HttpListenerResponse response);
 
         /// <summary>

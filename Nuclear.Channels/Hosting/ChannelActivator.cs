@@ -4,6 +4,7 @@ using Nuclear.Channels.Contracts;
 using Nuclear.Channels.Decorators;
 using Nuclear.Channels.Enums;
 using Nuclear.Channels.Hosting.Contracts;
+using Nuclear.Channels.Hosting.Exceptions;
 using Nuclear.Channels.Interfaces;
 using Nuclear.Channels.Messaging;
 using Nuclear.Channels.Messaging.Services.ChannelMessage;
@@ -81,6 +82,7 @@ namespace Nuclear.Channels.Hosting
         /// <summary>
         /// CTOR
         /// </summary>
+        [DebuggerStepThrough]
         public ChannelActivator()
         {
             LogChannel.Write(LogSeverity.Info, "ChannelActivator Initialized");
@@ -143,7 +145,7 @@ namespace Nuclear.Channels.Hosting
             Debug.Assert(_msgService != null);
 
             List<Type> Channels = new List<Type>();
-            
+
             Channels = _channelLocator.RegisteredChannels(domain);
 
             //Initialization part
@@ -189,7 +191,7 @@ namespace Nuclear.Channels.Hosting
                 endpoint.URL = "/channels/" + channel.Name + "/" + method.Name + "/";
 
             endpoint.Name = channel.Name + "." + method.Name;
-            
+
             ChannelMethodAttribute ChannelMethod = method.GetCustomAttribute(typeof(ChannelMethodAttribute)) as ChannelMethodAttribute;
             AuthenticationSchemes ChannelSchema = ChannelMethod.Schema;
             ChannelHttpMethod HttpMethod = ChannelMethod.HttpMethod;
@@ -268,7 +270,33 @@ namespace Nuclear.Channels.Hosting
 
                 //Enter only if Request Body is supplied with POST Method
                 if (request.HasEntityBody == true && request.HttpMethod == "POST")
-                    _requestActivator.PostActivate(channel, method, channelRequestBody, methodDescription, request, response);
+                {
+                    try
+                    {
+                        _requestActivator.PostActivate(channel, method, channelRequestBody, methodDescription, request, response);
+                    }
+                    catch(ChannelMethodParameterException pEx)
+                    {
+                        StreamWriter writer = new StreamWriter(response.OutputStream);
+                        _msgService.ExceptionHandler(writer, pEx, response);
+                        writer.Flush();
+                        writer.Close();
+                    }
+                    catch (ChannelMethodContentTypeException cEx)
+                    {
+                        StreamWriter writer = new StreamWriter(response.OutputStream);
+                        _msgService.ExceptionHandler(writer, cEx, response);
+                        writer.Flush();
+                        writer.Close();
+                    }
+                    catch(ArgumentException aEx)
+                    {
+                        StreamWriter writer = new StreamWriter(response.OutputStream);
+                        _msgService.ExceptionHandler(writer, aEx, response);
+                        writer.Flush();
+                        writer.Close();
+                    }
+                }
 
                 LogChannel.Write(LogSeverity.Debug, "Request finished...");
                 LogChannel.Write(LogSeverity.Debug, "Closing the response");

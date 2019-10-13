@@ -15,6 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{C1A23912-8
 	ProjectSection(SolutionItems) = preProject
 		LICENSE.txt = LICENSE.txt
 		README.md = README.md
+		TODOS.txt = TODOS.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{F676966B-1281-418E-9F0E-1F3DE01BC9AF}"
@@ -25,7 +26,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nuclear.Channels.Remoting",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "asp.net core template", "asp.net core template", "{55F2B3AC-4F71-4893-AFD3-A8BAFABA3F9C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASP.NET.Core.Nuclear.Channels.TemplateWeb", "ASP.NET.Core.Nuclear.Channels.TemplateWeb\ASP.NET.Core.Nuclear.Channels.TemplateWeb.csproj", "{F99BA24F-EB07-4F50-954B-88E0CA517FC2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASP.NET.Core.Nuclear.Channels.TemplateWeb", "ASP.NET.Core.Nuclear.Channels.TemplateWeb\ASP.NET.Core.Nuclear.Channels.TemplateWeb.csproj", "{F99BA24F-EB07-4F50-954B-88E0CA517FC2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{CD44DE92-AED5-4E64-B2D9-65C356147EF9}"
 EndProject

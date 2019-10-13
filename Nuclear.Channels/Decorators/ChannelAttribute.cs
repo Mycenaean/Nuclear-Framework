@@ -3,7 +3,7 @@
 namespace Nuclear.Channels.Decorators
 {
     /// <summary>
-    /// Attribute that will register specified class as an Channel
+    /// Attribute that will register specified class as an Channel, 
     /// If Name property is not set , targeted class name will be used as a base route
     /// </summary>    
     [AttributeUsage(AttributeTargets.Class, Inherited = false)]

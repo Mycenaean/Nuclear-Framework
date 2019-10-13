@@ -4,6 +4,9 @@ using System.Text;
 
 namespace Nuclear.Channels.Hosting.Exceptions
 {
+    /// <summary>
+    /// Exception thrown when parameters dont match
+    /// </summary>
     public class ChannelMethodParameterException : Exception
     {
         public ChannelMethodParameterException() { }

@@ -1,5 +1,6 @@
 ﻿using Nuclear.Data.Logging.Enums;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Threading;
@@ -25,6 +26,7 @@ namespace Nuclear.Data.Logging.Services
         /// <param name="severity">Severity Level</param>
         /// <param name="message">Message to write</param>
         /// <param name="method">Method in which logging occured AUTO-GENERATED</param>
+        [DebuggerStepThrough]
         public static void Write(LogSeverity severity, string message, [CallerMemberName]string method = "")
         {
             string path = $"{RootPath}\\Logs\\{DateString}_LogChannel.txt";
@@ -52,6 +54,7 @@ namespace Nuclear.Data.Logging.Services
         /// <param name="severity">Severity Level</param>
         /// <param name="message">Message to write</param>
         /// <param name="method">Method in which logging occured AUTO-GENERATED</param>
+        [DebuggerStepThrough]
         public static void Interface(LogSeverity severity, string message, [CallerMemberName]string method = "")
         {
             string path = $"{(new FileInfo(AppDomain.CurrentDomain.BaseDirectory)).Directory.Parent.Parent.FullName}\\Logs\\{DateString}_ChInterfaceLog.txt";
@@ -77,6 +80,7 @@ namespace Nuclear.Data.Logging.Services
         /// </summary>
         /// <param name="message">Message to write</param>
         /// <param name="method">Method in which logging occured AUTO-GENERATED</param>
+        [DebuggerStepThrough]
         public static void BenchmarkWrite(string message, [CallerMemberName]string method = "")
         {
             string path = $"{RootPath}\\Logs\\{DateString}_BenchmarkLogChannel.txt";

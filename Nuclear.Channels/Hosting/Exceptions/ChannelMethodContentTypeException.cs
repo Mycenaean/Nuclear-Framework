@@ -4,6 +4,9 @@ using System.Text;
 
 namespace Nuclear.Channels.Hosting.Exceptions
 {
+    /// <summary>
+    /// Exception thrown when Content-Type is neither application/json nor application/xml
+    /// </summary>
     public class ChannelMethodContentTypeException : Exception
     {
         public ChannelMethodContentTypeException() { }
