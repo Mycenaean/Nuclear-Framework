@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Nuclear.Channels.Hosting.Deserializers
 {
-    public interface IRequestDeserializer
+    internal interface IRequestDeserializer
     {
         List<object> Deserialize(string inputBody, Dictionary<string, Type> methodDescription);
     }

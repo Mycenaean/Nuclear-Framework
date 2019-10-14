@@ -13,7 +13,7 @@ namespace Nuclear.Channels
     /// Service that contains all Channels
     /// </summary>
     [Export(typeof(IChannelLocator), ExportLifetime.Transient)]
-    public class ChannelLocator : IChannelLocator
+    internal class ChannelLocator : IChannelLocator
     {
         private List<Type> Channels = new List<Type>();
 

@@ -5,7 +5,7 @@ namespace Nuclear.Channels.Auth
     /// <summary>
     /// Contract for Channel and ChannelMethods Auth 
     /// </summary>
-    public interface IChannelAuthentication
+    internal interface IChannelAuthentication
     {
         /// <summary>
         /// Authenticating Request based on AuthType

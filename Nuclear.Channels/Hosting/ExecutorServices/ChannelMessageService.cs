@@ -15,7 +15,7 @@ using System.Reflection;
 namespace Nuclear.Channels.Hosting.ExecutorServices
 {
     [Export(typeof(IChannelMessageService), Lifetime = ExportLifetime.Transient)]
-    public class ChannelMessageService : IChannelMessageService
+    internal class ChannelMessageService : IChannelMessageService
     {
         /// <summary>
         /// Method that will write response to the client

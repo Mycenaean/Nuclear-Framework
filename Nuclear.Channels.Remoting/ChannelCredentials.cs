@@ -5,8 +5,9 @@ namespace Nuclear.Channels.Remoting
 {
     public class ChannelCredentials : IChannelCredentials
     {
-        public AuthenticationSchemes AuthenticationType { get; set; }
+        public AuthenticationSchemes AuthSchema { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
     }
 }
+

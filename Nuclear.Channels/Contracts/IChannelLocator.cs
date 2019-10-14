@@ -6,7 +6,7 @@ namespace Nuclear.Channels.Contracts
     /// <summary>
     /// Service that contains all Channels
     /// </summary>
-    public interface IChannelLocator
+    internal interface IChannelLocator
     {
 
         /// <summary>

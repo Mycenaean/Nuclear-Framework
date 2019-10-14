@@ -17,7 +17,7 @@ namespace Nuclear.Channels.Hosting.ExecutorServices
     /// IChannelMethodInvoker Implementation
     /// </summary>
     [Export(typeof(IChannelMethodInvoker), Lifetime = ExportLifetime.Transient)]
-    public class ChannelMethodInvoker : IChannelMethodInvoker
+    internal class ChannelMethodInvoker : IChannelMethodInvoker
     {
         private IServiceLocator Services;
         private IChannelMessageService _channelMessageService;

@@ -108,6 +108,7 @@ namespace Nuclear.Channels.Hosting
         /// Set authentication options
         /// </summary>
         /// <param name="authMethod">Delegate for the authentication method</param>
+        /// <exception cref="ArgumentNullException"></exception>
         public void AuthenticationOptions(Func<string, string, bool> authMethod)
         {
             _authenticationMethod = authMethod ?? throw new ArgumentNullException("Authentication function must not be null");
@@ -118,6 +119,7 @@ namespace Nuclear.Channels.Hosting
         /// </summary>
         /// <param name="domain">AppDomain with all assemblies</param>
         /// <param name="Services">IServiceLocator</param>
+        /// <exception cref="HttpListenerNotSupportedException"></exception>
         public void Execute(AppDomain domain, IServiceLocator _Services, string baseURL = null)
         {
             Services = _Services;
@@ -128,8 +130,7 @@ namespace Nuclear.Channels.Hosting
             {
                 LogChannel.Write(LogSeverity.Fatal, "HttpListener not supported");
                 LogChannel.Write(LogSeverity.Fatal, "Exiting ChannelActivator...");
-                Console.WriteLine("HttpListener is not support on this platform");
-                return;
+                throw new HttpListenerNotSupportedException("HttpListener is not supported");
             }
             if (baseURL != null)
                 BaseURL = baseURL;
@@ -179,7 +180,7 @@ namespace Nuclear.Channels.Hosting
         /// Method that is doing all the heavy lifting, Http endpoint initialization for specified ChannelMethod
         /// </summary>
         /// <param name="method">ChannelMethod to be initialized as Http Endpoint</param>
-        /// <param name="channel">Web Channel</param>
+        /// <param name="channel">Channel</param>
         public void StartListening(MethodInfo method, Type channel, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
@@ -218,9 +219,7 @@ namespace Nuclear.Channels.Hosting
             while (true)
             {
                 httpChannel.Start();
-
-                Console.WriteLine($"Listening on {methodURL}");
-
+                
                 HttpListenerContext context = httpChannel.GetContext();
                 HttpListenerRequest request = context.Request;
 
@@ -289,10 +288,10 @@ namespace Nuclear.Channels.Hosting
                         writer.Flush();
                         writer.Close();
                     }
-                    catch(ArgumentException aEx)
+                    catch(TargetParameterCountException tEx)
                     {
                         StreamWriter writer = new StreamWriter(response.OutputStream);
-                        _msgService.ExceptionHandler(writer, aEx, response);
+                        _msgService.ExceptionHandler(writer, tEx, response);
                         writer.Flush();
                         writer.Close();
                     }

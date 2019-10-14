@@ -20,7 +20,7 @@ using System.Xml;
 namespace Nuclear.Channels.Hosting.ExecutorServices
 {
     [Export(typeof(IChannelMethodRequestActivator), Lifetime = ExportLifetime.Scoped)]
-    public class ChannelMethodRequestActivator : IChannelMethodRequestActivator
+    internal class ChannelMethodRequestActivator : IChannelMethodRequestActivator
     {
         private IServiceLocator Services;
         private IChannelMethodInvoker _channelMethodInvoker;
@@ -135,9 +135,9 @@ namespace Nuclear.Channels.Hosting.ExecutorServices
             LogChannel.Write(LogSeverity.Info, $"Request body: ");
             LogChannel.Write(LogSeverity.Info, inputRequest);
 
-            if (request.ContentType == "application/xml")
+            if (request.ContentType == "application/xml" || request.ContentType == "text/xml; charset=utf-8")
                 channelRequestBody = Services.Get<IXmlRequestService>().Deserialize(inputRequest, methodDescription);
-            else if (request.ContentType == "application/json")
+            else if (request.ContentType == "application/json" || request.ContentType == "application/json; charset=utf-8")
                 channelRequestBody = Services.Get<IJsonRequestService>().Deserialize(inputRequest, methodDescription);
             else
                 throw new ChannelMethodContentTypeException("Content-type must be application/json or application/xml");

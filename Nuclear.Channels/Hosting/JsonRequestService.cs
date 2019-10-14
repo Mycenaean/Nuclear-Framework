@@ -13,7 +13,7 @@ namespace Nuclear.Channels.Hosting
     /// JSON Deserialization Implementation
     /// </summary>
     [Export(typeof(IJsonRequestService), ExportLifetime.Transient)]
-    public class JsonRequestService : IJsonRequestService
+    internal class JsonRequestService : IJsonRequestService
     {
         public List<object> Deserialize(string inputBody, Dictionary<string, Type> methodDescription)
         {

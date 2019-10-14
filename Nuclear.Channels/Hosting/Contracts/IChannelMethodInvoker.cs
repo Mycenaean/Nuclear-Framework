@@ -8,7 +8,7 @@ namespace Nuclear.Channels.Hosting.Contracts
     /// <summary>
     /// Service that will invoke targeted ChannelMethod 
     /// </summary>
-    public interface IChannelMethodInvoker
+    internal interface IChannelMethodInvoker
     {
         /// <summary>
         /// Method that will Invoke targeted ChannelMethod without parameters

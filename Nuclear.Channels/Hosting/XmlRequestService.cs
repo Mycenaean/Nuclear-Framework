@@ -14,7 +14,7 @@ namespace Nuclear.Channels.Hosting
     /// XML Deserialization Implementation
     /// </summary>
     [Export(typeof(IXmlRequestService),ExportLifetime.Transient)]
-    public class XmlRequestService : IXmlRequestService
+    internal class XmlRequestService : IXmlRequestService
     {
         public List<object> Deserialize(string inputBody, Dictionary<string, Type> methodDescription)
         {

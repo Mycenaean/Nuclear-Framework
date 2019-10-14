@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Nuclear.Channels.Hosting.Exceptions;
+using System;
 
 namespace Nuclear.Channels
 {
@@ -17,6 +18,7 @@ namespace Nuclear.Channels
         /// <summary>
         /// Starts hosting
         /// </summary>
+        /// <exception cref="HttpListenerNotSupportedException"></exception>
         void StartHosting(string baseURL);
     }
 }

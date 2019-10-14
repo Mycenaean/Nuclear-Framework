@@ -43,7 +43,7 @@ namespace Nuclear.Channels.DocumentationTool
             {
                 ChannelDocument channelDoc = new ChannelDocument();
                 ChannelAttribute channelAttr = channel.GetCustomAttribute(typeof(ChannelAttribute)) as ChannelAttribute;
-                string channelDescription = channelAttr.Description.ToString();
+                string channelDescription = channelAttr.Description == null ? string.Empty : channelAttr.Description.ToString();
                 string channelName = String.IsNullOrEmpty(channelAttr.Name) ? channel.Name : channelAttr.Name;
                 string channelRoute = $"~/channels/{channelName}";
                 MethodInfo[] methods = channel.GetMethods().Where(x => x.GetCustomAttribute(typeof(ChannelMethodAttribute)) != null).ToArray();
