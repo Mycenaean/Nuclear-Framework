@@ -16,7 +16,7 @@ Nuclear framework provides alternative way to build lightweight API endpoints us
 ## [ASP.NET.Core.Nuclear.Channels.TemplateWeb](https://github.com/Mycenaean/Nuclear-Framework/tree/master/ASP.NET.Core.Nuclear.Channels.TemplateWeb)
  ASP.NET Core Razor Pages project that can serve as a template for Channels.
 
-## Nuclear.Channels.Remoting (Not finished)
+## [Nuclear.Channels.Remoting](https://github.com/Mycenaean/Nuclear-Framework/tree/master/ASP.NET.Core.Nuclear.Channels.TemplateWeb)
  Class Library for easy calls to the Channels
 
 # Authors
