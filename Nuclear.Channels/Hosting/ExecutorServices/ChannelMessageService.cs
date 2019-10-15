@@ -1,4 +1,6 @@
 ﻿using Newtonsoft.Json;
+using Nuclear.Channels.Auth;
+using Nuclear.Channels.Enums;
 using Nuclear.Channels.Hosting.Contracts;
 using Nuclear.Channels.Messaging;
 using Nuclear.Channels.Messaging.Services.ChannelMessage;
@@ -85,7 +87,7 @@ namespace Nuclear.Channels.Hosting.ExecutorServices
         /// </summary>
         /// <param name="ChannelSchema">AuthenticationSchemes schema</param>
         /// <param name="response">Response for the client</param>
-        public void FailedAuthenticationResponse(AuthenticationSchemes ChannelSchema, HttpListenerResponse response)
+        public void FailedAuthenticationResponse(ChannelAuthenticationSchemes ChannelSchema, HttpListenerResponse response)
         {
             LogChannel.Write(LogSeverity.Info, "Authentication failed...Exiting");
             IChannelMessage msg = new ChannelMessage()
@@ -98,6 +100,29 @@ namespace Nuclear.Channels.Hosting.ExecutorServices
             {
                 writer.WriteLine(outputString);
             }
+        }
+
+
+        /// <summary>
+        /// Wrong HttpMethod Used
+        /// </summary>
+        /// <param name="response">Response for the client</param>
+        /// <param name="HttpMethod">Required HttpMethod</param>
+        public void WrongHttpMethod(HttpListenerResponse response, ChannelHttpMethod HttpMethod)
+        {
+
+            IChannelMessage msg = new ChannelMessage()
+            {
+                Message = $"Wrong HTTP Method used. In order to call this endpoint u need to send {HttpMethod.ToString()} request"
+            };
+            response.StatusCode = (int)HttpStatusCode.BadRequest;
+            LogChannel.Write(LogSeverity.Error, "Wrong HTTP Method used");
+            string outputString = JsonConvert.SerializeObject(msg, Formatting.Indented);
+            using (StreamWriter writer = new StreamWriter(response.OutputStream))
+            {
+                writer.WriteLine(outputString);
+            }
+            response.Close();
         }
     }
 }

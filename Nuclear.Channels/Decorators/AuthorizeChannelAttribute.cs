@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Nuclear.Channels.Auth;
+using System;
 using System.Net;
 
 namespace Nuclear.Channels.Decorators
@@ -12,13 +13,13 @@ namespace Nuclear.Channels.Decorators
         /// <summary>
         /// Auth Schema
         /// </summary>
-        public AuthenticationSchemes Schema { get; set; }
+        public ChannelAuthenticationSchemes Schema { get; set; }
 
         /// <summary>
         /// Get the Auth type for the channel
         /// </summary>
         /// <param name="schemes">Specified Auth Schemes</param>
-        public AuthorizeChannelAttribute(AuthenticationSchemes schemes)
+        public AuthorizeChannelAttribute(ChannelAuthenticationSchemes schemes)
         {
             Schema = schemes;
         }

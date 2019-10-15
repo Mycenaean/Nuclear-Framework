@@ -1,4 +1,5 @@
-﻿using Nuclear.Channels.Enums;
+﻿using Nuclear.Channels.Auth;
+using Nuclear.Channels.Enums;
 using System;
 using System.Net;
 
@@ -16,7 +17,7 @@ namespace Nuclear.Channels.DocumentationTool
         public ChannelHttpMethod HttpMethod { get; set; }
         public string ReturnTypeName { get; set; }
         public Type ReturnType { get; set; }
-        public AuthenticationSchemes AuthSchema { get; set; }
+        public ChannelAuthenticationSchemes AuthSchema { get; set; }
 
     }
 }

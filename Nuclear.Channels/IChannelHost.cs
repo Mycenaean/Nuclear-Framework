@@ -16,6 +16,18 @@ namespace Nuclear.Channels
         void LoadAssemblies(AppDomain domain, string[] assemblies);
 
         /// <summary>
+        /// AuthenticationOptions for Token Authentication
+        /// </summary>
+        /// <param name="tokenAuthenticationMethod">Delegate for basic authentication</param>
+        void AuthenticationOptions(Func<string, bool> tokenAuthenticationMethod);
+
+        /// <summary>
+        /// AuthenticationOptions for Basic Authentication
+        /// </summary>
+        /// <param name="tokenAuthenticationMethod">Delegate for token authentication</param>
+        void AuthenticationOptions(Func<string, string, bool> basicAuthenticationMethod);
+
+        /// <summary>
         /// Starts hosting
         /// </summary>
         /// <exception cref="HttpListenerNotSupportedException"></exception>

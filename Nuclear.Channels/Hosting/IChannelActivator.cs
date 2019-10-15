@@ -21,15 +21,13 @@ namespace Nuclear.Channels.Hosting
         /// <summary>
         /// Set authentication options
         /// </summary>
-        /// <param name="authMethodClass">Class in which Authentication Method is defined , method must take IPrincipal as a parameter and must be of boolean return type</param>
-        /// <param name="authMethod">User defined Authentication Method Info</param>
-        [Obsolete("Use second overloaded version")]
-        void AuthenticationOptions(Type authMethodClass, MethodInfo authMethod);
+        /// <param name="basicAuthenticationMethod">Function delegate to be used for basic authentication</param>
+        void AuthenticationOptions(Func<string, string, bool> basicAuthenticationMethod);
 
         /// <summary>
         /// Set authentication options
         /// </summary>
-        /// <param name="authMethod">Function delegate to be used for authentication</param>
-        void AuthenticationOptions(Func<string, string, bool> authMethod);
+        /// <param name="tokenAuthenticationMethod">Function delegate to be used for token authentication</param>
+        void AuthenticationOptions(Func<string, bool> tokenAuthenticationMethod);
     }
 }

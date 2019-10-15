@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Nuclear.Channels.Auth;
+using Nuclear.Channels.Enums;
+using System;
 using System.IO;
 using System.Net;
 using System.Reflection;
@@ -31,6 +33,13 @@ namespace Nuclear.Channels.Hosting.Contracts
         /// </summary>
         /// <param name="ChannelSchema">AuthenticationSchemes schema</param>
         /// <param name="response">Response for the client</param>
-        void FailedAuthenticationResponse(AuthenticationSchemes ChannelSchema, HttpListenerResponse response);
+        void FailedAuthenticationResponse(ChannelAuthenticationSchemes ChannelSchema, HttpListenerResponse response);
+
+        /// <summary>
+        /// Wrong HttpMethod Used
+        /// </summary>
+        /// <param name="response">Response for the client</param>
+        /// <param name="HttpMethod">Required HttpMethod</param>
+        void WrongHttpMethod(HttpListenerResponse response, ChannelHttpMethod HttpMethod);
     }
 }

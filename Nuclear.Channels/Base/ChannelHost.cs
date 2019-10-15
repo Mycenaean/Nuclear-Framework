@@ -12,6 +12,7 @@ namespace Nuclear.Channels.Base
     {
         private AppDomain _domain;
         private IServiceLocator Services;
+        private IChannelActivator _activator;
         private static ChannelHost _host;
 
         /// <summary>
@@ -35,6 +36,7 @@ namespace Nuclear.Channels.Base
         private ChannelHost()
         {
             Services = ServiceLocator.GetInstance;
+            _activator = Services.Get<IChannelActivator>();
         }
 
         /// <summary>
@@ -59,8 +61,18 @@ namespace Nuclear.Channels.Base
         /// </summary>
         public void StartHosting(string baseURL)
         {
-            Services.Get<IChannelActivator>().Execute(_domain, Services, baseURL);
+            _activator.Execute(_domain, Services, baseURL);
             Task.WaitAll();
+        }
+
+        public void AuthenticationOptions(Func<string, bool> tokenAuthenticationMethod)
+        {
+            _activator.AuthenticationOptions(tokenAuthenticationMethod);
+        }
+
+        public void AuthenticationOptions(Func<string, string, bool> basicAuthenticationMethod)
+        {
+            _activator.AuthenticationOptions(basicAuthenticationMethod);
         }
     }
 }

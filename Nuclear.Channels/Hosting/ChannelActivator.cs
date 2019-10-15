@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Nuclear.Channels.Auth;
+using Nuclear.Channels.Auth.Identity;
 using Nuclear.Channels.Contracts;
 using Nuclear.Channels.Decorators;
 using Nuclear.Channels.Enums;
@@ -65,19 +66,14 @@ namespace Nuclear.Channels.Hosting
         private string BaseURL = null;
 
         /// <summary>
-        /// User defined Authentication Method Info
+        /// Authentication Method Delegate for Basic authentication
         /// </summary>
-        public MethodInfo AuthMethod { get; set; }
+        private Func<string, string, bool> _basicAuthenticationMethod;
 
         /// <summary>
-        /// Class in which Authentication Method is defined
+        /// Authentication Method Delegate for Token authentication
         /// </summary>
-        public Type AuthMethodClass { get; set; }
-
-        /// <summary>
-        /// Authentication Method Delegate
-        /// </summary>
-        private Func<string, string, bool> _authenticationMethod;
+        private Func<string, bool> _tokenAuthenticationMethod;
 
         /// <summary>
         /// CTOR
@@ -89,19 +85,15 @@ namespace Nuclear.Channels.Hosting
             watcher = new Stopwatch();
         }
 
+        
         /// <summary>
         /// Set authentication options
         /// </summary>
-        /// <param name="authMethodClass">Class in which Authentication Method is defined , method must take username and password as a parameters and must be of boolean return type</param>
-        /// <param name="authMethod">User defined Authentication Method Info</param>
-        [Obsolete("Please use second overload version of AuthenticationOptions method")]
-        public void AuthenticationOptions(Type authMethodClass, MethodInfo authMethod)
+        /// <param name="authMethod">Delegate for the authentication method</param>
+        /// <exception cref="ArgumentNullException"></exception>
+        public void AuthenticationOptions(Func<string, string, bool> basicAuthMethod)
         {
-            AuthMethod = authMethod ?? throw new ArgumentNullException("Authentication method can not be null"); ;
-            AuthMethodClass = authMethodClass ?? throw new ArgumentNullException("Class in which Authentication method is defined can not be null");
-
-            if (authMethod.ReturnType != typeof(bool))
-                throw new ChannelAuthException("Return type of authentication function must be of type bool");
+            _basicAuthenticationMethod = basicAuthMethod ?? throw new ArgumentNullException("Authentication function must not be null");
         }
 
         /// <summary>
@@ -109,9 +101,9 @@ namespace Nuclear.Channels.Hosting
         /// </summary>
         /// <param name="authMethod">Delegate for the authentication method</param>
         /// <exception cref="ArgumentNullException"></exception>
-        public void AuthenticationOptions(Func<string, string, bool> authMethod)
+        public void AuthenticationOptions(Func<string, bool> tokenAuthMethod)
         {
-            _authenticationMethod = authMethod ?? throw new ArgumentNullException("Authentication function must not be null");
+            _tokenAuthenticationMethod = tokenAuthMethod ?? throw new ArgumentNullException("Authentication function must not be null");
         }
 
         /// <summary>
@@ -194,7 +186,8 @@ namespace Nuclear.Channels.Hosting
             endpoint.Name = channel.Name + "." + method.Name;
 
             ChannelMethodAttribute ChannelMethod = method.GetCustomAttribute(typeof(ChannelMethodAttribute)) as ChannelMethodAttribute;
-            AuthenticationSchemes ChannelSchema = ChannelMethod.Schema;
+            AuthorizeChannelAttribute authAttr = channel.GetCustomAttribute(typeof(AuthorizeChannelAttribute)) as AuthorizeChannelAttribute;
+            ChannelAuthenticationSchemes ChannelSchema = ChannelMethod.Schema;
             ChannelHttpMethod HttpMethod = ChannelMethod.HttpMethod;
             HttpListener httpChannel = new HttpListener();
 
@@ -209,9 +202,8 @@ namespace Nuclear.Channels.Hosting
 
             //Start hosting
             httpChannel.Prefixes.Add(methodURL);
-            if (ChannelSchema != AuthenticationSchemes.Anonymous)
+            if (ChannelSchema != ChannelAuthenticationSchemes.Anonymous)
             {
-                httpChannel.AuthenticationSchemes = ChannelSchema;
                 httpAuthRequired = true;
             }
 
@@ -219,7 +211,7 @@ namespace Nuclear.Channels.Hosting
             while (true)
             {
                 httpChannel.Start();
-                
+                Console.WriteLine($"Initialized {methodURL}");
                 HttpListenerContext context = httpChannel.GetContext();
                 HttpListenerRequest request = context.Request;
 
@@ -229,33 +221,35 @@ namespace Nuclear.Channels.Hosting
 
                 HttpListenerResponse response = context.Response;
 
+                if(httpAuthRequired)
+                {
+                    HttpListenerIdentityService identityService = new HttpListenerIdentityService(_basicAuthenticationMethod, _tokenAuthenticationMethod);
+                    StreamWriter writer = new StreamWriter(response.OutputStream);
+                    try
+                    {
+                        bool knownUser = identityService.AuthenticatedAndAuthorized(context, ChannelSchema);
+                        if (!knownUser)
+                            _msgService.FailedAuthenticationResponse(ChannelSchema, response);
+                    }
+                    catch(ChannelCredentialsException cEx)
+                    {
+                        _msgService.ExceptionHandler(writer, cEx, response);
+                    }
+                    catch(HttpListenerException hEx)
+                    {
+                        _msgService.ExceptionHandler(writer, hEx, response);
+                    }
+                    finally
+                    {
+                        writer.Flush();
+                        writer.Close();
+                    }                    
+                }
+
                 //Check if the Http Method is correct
                 if (HttpMethod.ToString() != request.HttpMethod && HttpMethod != ChannelHttpMethod.Unknown)
                 {
-                    IChannelMessage msg = new ChannelMessage()
-                    {
-                        Message = $"Wrong HTTP Method used. In order to call this endpoint u need to send {HttpMethod.ToString()} request"
-                    };
-                    response.StatusCode = (int)HttpStatusCode.BadRequest;
-                    LogChannel.Write(LogSeverity.Error, "Wrong HTTP Method used");
-                    string outputString = JsonConvert.SerializeObject(msg, Formatting.Indented);
-                    using (StreamWriter writer = new StreamWriter(response.OutputStream))
-                    {
-                        writer.WriteLine(outputString);
-                    }
-                    response.Close();
-                }
-
-
-                AuthorizeChannelAttribute authAttr = channel.GetCustomAttribute(typeof(AuthorizeChannelAttribute)) as AuthorizeChannelAttribute;
-                bool authenticated = false;
-                if (authAttr != null)
-                {
-                    AuthenticateRequest(context, response, ChannelSchema, out authenticated);
-                }
-                if (httpAuthRequired)
-                {
-                    AuthenticateRequest(context, response, ChannelSchema, out authenticated);
+                    _msgService.WrongHttpMethod(response, HttpMethod);
                 }
 
 
@@ -270,28 +264,25 @@ namespace Nuclear.Channels.Hosting
                 //Enter only if Request Body is supplied with POST Method
                 if (request.HasEntityBody == true && request.HttpMethod == "POST")
                 {
+                    StreamWriter writer = new StreamWriter(response.OutputStream);
                     try
                     {
                         _requestActivator.PostActivate(channel, method, channelRequestBody, methodDescription, request, response);
                     }
-                    catch(ChannelMethodParameterException pEx)
-                    {
-                        StreamWriter writer = new StreamWriter(response.OutputStream);
-                        _msgService.ExceptionHandler(writer, pEx, response);
-                        writer.Flush();
-                        writer.Close();
-                    }
                     catch (ChannelMethodContentTypeException cEx)
                     {
-                        StreamWriter writer = new StreamWriter(response.OutputStream);
                         _msgService.ExceptionHandler(writer, cEx, response);
-                        writer.Flush();
-                        writer.Close();
                     }
-                    catch(TargetParameterCountException tEx)
+                    catch (ChannelMethodParameterException pEx)
                     {
-                        StreamWriter writer = new StreamWriter(response.OutputStream);
+                        _msgService.ExceptionHandler(writer, pEx, response);
+                    }
+                    catch (TargetParameterCountException tEx)
+                    {
                         _msgService.ExceptionHandler(writer, tEx, response);
+                    }
+                    finally
+                    {
                         writer.Flush();
                         writer.Close();
                     }
@@ -302,54 +293,6 @@ namespace Nuclear.Channels.Hosting
                 response.Close();
             }
 
-        }
-
-        /// <summary>
-        /// Authenticating Request based on AuthType
-        /// </summary>
-        /// <param name="context">HttpListenerContext</param>
-        /// <param name="response">HttpListenerResponse for the client</param>
-        /// <param name="ChannelSchema">AuthenticationSchemes for the Channel</param>
-        public void AuthenticateRequest(HttpListenerContext context, HttpListenerResponse response, AuthenticationSchemes ChannelSchema, out bool authenticated)
-        {
-            if (!context.Request.IsAuthenticated || context.User == null)
-            {
-                _msgService.FailedAuthenticationResponse(ChannelSchema, response);
-                authenticated = false;
-            }
-            else
-            {
-                authenticated = true;
-                if (context.User.Identity is HttpListenerBasicIdentity)
-                {
-                    try
-                    {
-                        HttpListenerBasicIdentity basicIdentity = context.User.Identity as HttpListenerBasicIdentity;
-                        LogChannel.Write(LogSeverity.Info, $"{basicIdentity.Name} trying to reach channel");
-                        bool success = _authenticationMethod.Invoke(basicIdentity.Name, basicIdentity.Password);
-                        if (success)
-                            LogChannel.Write(LogSeverity.Info, $" Authentication for {basicIdentity.Name} succeded");
-                        if (!success)
-                        {
-                            _msgService.FailedAuthenticationResponse(ChannelSchema, response);
-                            LogChannel.Write(LogSeverity.Info, $" Authentication for {basicIdentity.Name} failed");
-                            authenticated = false;
-                        }
-                        else
-                            authenticated = true;
-                    }
-                    catch (Exception ex)
-                    {
-                        StreamWriter writer = new StreamWriter(response.OutputStream);
-                        _msgService.ExceptionHandler(writer, ex, response);
-                        writer.Flush();
-                        writer.Close();
-                    }
-
-                }
-                else
-                    _msgService.FailedAuthenticationResponse(ChannelSchema, response);
-            }
         }
     }
 

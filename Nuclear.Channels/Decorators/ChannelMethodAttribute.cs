@@ -1,4 +1,5 @@
-﻿using Nuclear.Channels.Enums;
+﻿using Nuclear.Channels.Auth;
+using Nuclear.Channels.Enums;
 using System;
 using System.Net;
 
@@ -13,7 +14,7 @@ namespace Nuclear.Channels.Decorators
         /// <summary>
         /// Auth Schema
         /// </summary>
-        public AuthenticationSchemes Schema { get; set; }
+        public ChannelAuthenticationSchemes Schema { get; set; }
 
         /// <summary>
         /// Http Method to be used
@@ -31,7 +32,7 @@ namespace Nuclear.Channels.Decorators
 
         public ChannelMethodAttribute()
         {
-            Schema = AuthenticationSchemes.Anonymous;
+            Schema = ChannelAuthenticationSchemes.Anonymous;
             HttpMethod = ChannelHttpMethod.Unknown;
         }
 
@@ -47,14 +48,14 @@ namespace Nuclear.Channels.Decorators
         public ChannelMethodAttribute(ChannelHttpMethod HttpMethod, string Description = null)
         {
             this.HttpMethod = HttpMethod;
-            Schema = AuthenticationSchemes.Anonymous;
+            Schema = ChannelAuthenticationSchemes.Anonymous;
         }
 
         /// <summary>
         /// Auth Type
         /// </summary>
         /// <param name="Schemes">Specified Auth Type for ChannelMethod</param>        
-        public ChannelMethodAttribute(AuthenticationSchemes Schemes, string Description = null)
+        public ChannelMethodAttribute(ChannelAuthenticationSchemes Schemes, string Description = null)
         {
             Schema = Schemes;
             HttpMethod = ChannelHttpMethod.Unknown;
@@ -66,7 +67,7 @@ namespace Nuclear.Channels.Decorators
         /// </summary>
         /// <param name="Schemes">Specified Auth Type for ChannelMethod</param>
         /// <param name="HttpMethod">Http Method</param>        
-        public ChannelMethodAttribute(AuthenticationSchemes Schemes, ChannelHttpMethod HttpMethod, string Description = null)
+        public ChannelMethodAttribute(ChannelAuthenticationSchemes Schemes, ChannelHttpMethod HttpMethod, string Description = null)
         {
             Schema = Schemes;
             this.HttpMethod = HttpMethod;
