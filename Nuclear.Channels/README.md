@@ -32,7 +32,7 @@ If you want to make global authorization for targeted channel you can provide Au
 
 ```c#
 [Channel]
-[AuthorizeChannel(Schema = AuthenticationSchemes.Basic)]
+[AuthorizeChannel(Schema = ChannelAuthenticationSchemes.Basic)]
 public class TestChannel
 {
 	...
@@ -106,7 +106,7 @@ public SomeEntity EntityMethod(SomeEntity entity)
 	</SomeEntity>
 </channels>
 ```
-Other properties are Description and Schema. Both are the same as for ChannelAttribute , Description if provided will autogenerate description for builtin tool for documentation. AuthenticationSchema will enforce desired authentication.
+Other properties are Description and Schema. Both are the same as for ChannelAttribute , Description if provided will autogenerate description for builtin tool for documentation. ChannelAuthenticationSchemes will enforce desired authentication.
 
 ```c#
 [ChannelMethod(HttpMethod = ChannelHttpMethod.POST,Schema = AuthenticationSchemes.Basic,Description = "EntityMethod Description")]
