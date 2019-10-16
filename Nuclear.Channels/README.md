@@ -81,14 +81,14 @@ public string HelloWorld(string name)
 	return $"Hello World {name} from ChannelMethod";
 }
 ```
-For this route will be the same ~/channels/{Name of you channel}/HelloWorld/ but the input body must be in xml format.
+For this route will be the same ~/channels/{Name of you channel}/HelloWorld/ input body in xml format would look like this.
 
 ```xml
 <channels>
 	<name>nikola</name>
 </channels>
 ```
-For complex entities is the same.
+For complex entities is the same. For JSON input body is like for every other API.
 ```c#
 [ChannelMethod(HttpMethod = ChannelHttpMethod.POST)]
 public SomeEntity EntityMethod(SomeEntity entity)
