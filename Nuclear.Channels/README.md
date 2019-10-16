@@ -8,7 +8,7 @@ Decorate class in which you have methods you want to expose as endpoints with Ch
 
 ## ChannelAttribute
 
-```
+``` c#
 [Channel]
 public class TestChannel
 {
