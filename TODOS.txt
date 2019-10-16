@@ -2,4 +2,4 @@
 
 2. Add Channels to IApplicationBuilder extensions in order to remove configuration and hosting from Program.cs
 
-3.Optimization 
+3. Optimization 
