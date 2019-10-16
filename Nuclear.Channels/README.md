@@ -109,7 +109,7 @@ public SomeEntity EntityMethod(SomeEntity entity)
 Other properties are Description and Schema. Both are the same as for ChannelAttribute , Description if provided will autogenerate description for builtin tool for documentation. ChannelAuthenticationSchemes will enforce desired authentication.
 
 ```c#
-[ChannelMethod(HttpMethod = ChannelHttpMethod.POST,Schema = AuthenticationSchemes.Basic,Description = "EntityMethod Description")]
+[ChannelMethod(HttpMethod = ChannelHttpMethod.POST,Schema = ChannelAuthenticationSchemes.Basic,Description = "EntityMethod Description")]
 public SomeEntity EntityMethod(SomeEntity entity)
 {
 	return entity;
