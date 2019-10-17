@@ -3,7 +3,6 @@
     /// <summary>
     /// Base return type of HttpListenerResponse
     /// </summary>
-    /// 
     public interface IChannelMessage
     {
         bool Success { get; set; }

@@ -1,6 +1,5 @@
 ﻿using Nuclear.Channels.Hosting.Contracts;
 using Nuclear.Channels.Messaging;
-using Nuclear.Channels.Messaging.Services.Output;
 using Nuclear.ExportLocator.Decorators;
 using Nuclear.ExportLocator.Enumerations;
 using Nuclear.ExportLocator.Services;
@@ -23,28 +22,17 @@ namespace Nuclear.Channels.Hosting.ExecutorServices
     {
         private IServiceLocator Services;
         private IChannelMessageService _channelMessageService;
-        private IChannelMessageWriter _channelMessageWriter;
         private HttpListenerResponse _response;
 
         public ChannelMethodInvoker()
         {
             Services = ServiceLocator.GetInstance;
             _channelMessageService = Services.Get<IChannelMessageService>();
-            _channelMessageWriter = new ChannelMessageWriter();
 
             Debug.Assert(Services != null);
             Debug.Assert(_channelMessageService != null);
-            Debug.Assert(_channelMessageWriter != null);
-
-            _channelMessageWriter.SendChannelMessage += _channelMessageWriter_SendChannelMessage;
         }
 
-        private void _channelMessageWriter_SendChannelMessage(object sender, Messaging.ChannelMethodEventArgs e)
-        {
-            Debug.Assert(_response!=null);
-            _channelMessageService.WriteHttpResponse(e.ChannelMessage, _response);
-            _response = null;
-        }
 
 
         public void InvokeChannelMethod(Type channel, MethodInfo method, HttpListenerResponse response, List<object> channelRequestBody)
