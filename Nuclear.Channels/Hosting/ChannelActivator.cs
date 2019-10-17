@@ -30,62 +30,23 @@ namespace Nuclear.Channels.Hosting
     [Export(typeof(IChannelActivator), Lifetime = ExportLifetime.Singleton)]
     public class ChannelActivator : IChannelActivator, IExecutor
     {
-        /// <summary>
-        /// Service Locator
-        /// </summary>
         private IServiceLocator Services;
-
-        /// <summary>
-        /// Services that will get all classes with ChannelAttribute
-        /// </summary>
         private IChannelLocator _channelLocator;
-
-        /// <summary>
-        /// Services that will give all info about the inspected ChannelMethod
-        /// </summary>
         private IChannelMethodDescriptor _channelMethodDescriptor;
-
-        /// <summary>
-        /// Activates the ChannelMethod based on HttpMethod
-        /// </summary>
         private IChannelMethodRequestActivator _requestActivator;
-
-        /// <summary>
-        /// Services responsible for writing output to the client
-        /// </summary>
         private IChannelMessageService _msgService;
-
-        /// <summary>
-        /// Stopwatch for the benchmarks
-        /// </summary>
         private Stopwatch watcher;
-
-        /// <summary>
-        /// Base URL for the Web Channels
-        /// </summary>
         private string BaseURL = null;
-
-        /// <summary>
-        /// Authentication Method Delegate for Basic authentication
-        /// </summary>
         private Func<string, string, bool> _basicAuthenticationMethod;
-
-        /// <summary>
-        /// Authentication Method Delegate for Token authentication
-        /// </summary>
         private Func<string, bool> _tokenAuthenticationMethod;
 
-        /// <summary>
-        /// CTOR
-        /// </summary>
         [DebuggerStepThrough]
         public ChannelActivator()
         {
             LogChannel.Write(LogSeverity.Info, "ChannelActivator Initialized");
             watcher = new Stopwatch();
         }
-
-
+        
         public void AuthenticationOptions(Func<string, string, bool> basicAuthMethod)
         {
             _basicAuthenticationMethod = basicAuthMethod ?? throw new ArgumentNullException("Authentication function must not be null");
