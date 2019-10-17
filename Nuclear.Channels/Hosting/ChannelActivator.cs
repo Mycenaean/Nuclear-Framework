@@ -85,33 +85,17 @@ namespace Nuclear.Channels.Hosting
             watcher = new Stopwatch();
         }
 
-        
-        /// <summary>
-        /// Set authentication options
-        /// </summary>
-        /// <param name="authMethod">Delegate for the authentication method</param>
-        /// <exception cref="ArgumentNullException"></exception>
+
         public void AuthenticationOptions(Func<string, string, bool> basicAuthMethod)
         {
             _basicAuthenticationMethod = basicAuthMethod ?? throw new ArgumentNullException("Authentication function must not be null");
         }
 
-        /// <summary>
-        /// Set authentication options
-        /// </summary>
-        /// <param name="authMethod">Delegate for the authentication method</param>
-        /// <exception cref="ArgumentNullException"></exception>
         public void AuthenticationOptions(Func<string, bool> tokenAuthMethod)
         {
             _tokenAuthenticationMethod = tokenAuthMethod ?? throw new ArgumentNullException("Authentication function must not be null");
         }
 
-        /// <summary>
-        /// Method that will do the initialization of Https
-        /// </summary>
-        /// <param name="domain">AppDomain with all assemblies</param>
-        /// <param name="Services">IServiceLocator</param>
-        /// <exception cref="HttpListenerNotSupportedException"></exception>
         public void Execute(AppDomain domain, IServiceLocator _Services, string baseURL = null)
         {
             Services = _Services;
@@ -151,13 +135,10 @@ namespace Nuclear.Channels.Hosting
             }
         }
 
-        /// <summary>
-        /// Method that will get all ChannelMethods from inspected Channel
-        /// </summary>
-        /// <param name="channel">Inspected Channel</param>
         public void MethodExecute(Type channel, CancellationToken cancellationToken)
         {
             MethodInfo[] methods = channel.GetMethods().Where(x => x.GetCustomAttribute(typeof(ChannelMethodAttribute)) != null).ToArray();
+
             foreach (var method in methods)
             {
                 cancellationToken.ThrowIfCancellationRequested();
@@ -168,11 +149,6 @@ namespace Nuclear.Channels.Hosting
             }
         }
 
-        /// <summary>
-        /// Method that is doing all the heavy lifting, Http endpoint initialization for specified ChannelMethod
-        /// </summary>
-        /// <param name="method">ChannelMethod to be initialized as Http Endpoint</param>
-        /// <param name="channel">Channel</param>
         public void StartListening(MethodInfo method, Type channel, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
@@ -221,7 +197,7 @@ namespace Nuclear.Channels.Hosting
 
                 HttpListenerResponse response = context.Response;
 
-                if(httpAuthRequired)
+                if (httpAuthRequired)
                 {
                     HttpListenerIdentityService identityService = new HttpListenerIdentityService(_basicAuthenticationMethod, _tokenAuthenticationMethod);
                     StreamWriter writer = new StreamWriter(response.OutputStream);
@@ -231,11 +207,11 @@ namespace Nuclear.Channels.Hosting
                         if (!knownUser)
                             _msgService.FailedAuthenticationResponse(ChannelSchema, response);
                     }
-                    catch(ChannelCredentialsException cEx)
+                    catch (ChannelCredentialsException cEx)
                     {
                         _msgService.ExceptionHandler(writer, cEx, response);
                     }
-                    catch(HttpListenerException hEx)
+                    catch (HttpListenerException hEx)
                     {
                         _msgService.ExceptionHandler(writer, hEx, response);
                     }
@@ -243,7 +219,7 @@ namespace Nuclear.Channels.Hosting
                     {
                         writer.Flush();
                         writer.Close();
-                    }                    
+                    }
                 }
 
                 //Check if the Http Method is correct
@@ -295,6 +271,4 @@ namespace Nuclear.Channels.Hosting
 
         }
     }
-
-
 }

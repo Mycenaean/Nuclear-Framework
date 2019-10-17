@@ -3,9 +3,9 @@ using System;
 
 namespace Nuclear.Channels.Messaging.Services.Output
 {
-    public interface IChannelMethodOutput
+    public interface IChannelMessageWriter
     {
-        event EventHandler<ChannelMethodEventArgs> WriteEventHandler;
+        event EventHandler<ChannelMethodEventArgs> SendChannelMessage;
         void Send(IChannelMessage message);
     }
 }

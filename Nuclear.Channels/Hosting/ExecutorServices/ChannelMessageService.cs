@@ -19,11 +19,6 @@ namespace Nuclear.Channels.Hosting.ExecutorServices
     [Export(typeof(IChannelMessageService), Lifetime = ExportLifetime.Transient)]
     internal class ChannelMessageService : IChannelMessageService
     {
-        /// <summary>
-        /// Method that will write response to the client
-        /// </summary>
-        /// <param name="chResponse">Response object from ChannelMethod</param>
-        /// <param name="response">HttpListenerResponse instance</param>
         public void WriteHttpResponse(object chResponse, HttpListenerResponse response)
         {
             response.ContentType = "application/json";
@@ -62,12 +57,6 @@ namespace Nuclear.Channels.Hosting.ExecutorServices
             }
         }
 
-        /// <summary>
-        /// Method that will proccess the Exception
-        /// </summary>
-        /// <param name="writer">StreamWriter instance</param>
-        /// <param name="ex">Thrown Exception</param>
-        /// <param name="response">HttpListenerResponse instance that will be sent to the client</param>
         public void ExceptionHandler(StreamWriter writer, Exception ex, HttpListenerResponse response)
         {
             LogChannel.Write(LogSeverity.Error, "Exception handler called..");
@@ -82,11 +71,6 @@ namespace Nuclear.Channels.Hosting.ExecutorServices
             writer.Write(outputMsg);
         }
 
-        /// <summary>
-        /// Failed Auth ChannelMessage
-        /// </summary>
-        /// <param name="ChannelSchema">AuthenticationSchemes schema</param>
-        /// <param name="response">Response for the client</param>
         public void FailedAuthenticationResponse(ChannelAuthenticationSchemes ChannelSchema, HttpListenerResponse response)
         {
             LogChannel.Write(LogSeverity.Info, "Authentication failed...Exiting");
@@ -103,11 +87,6 @@ namespace Nuclear.Channels.Hosting.ExecutorServices
         }
 
 
-        /// <summary>
-        /// Wrong HttpMethod Used
-        /// </summary>
-        /// <param name="response">Response for the client</param>
-        /// <param name="HttpMethod">Required HttpMethod</param>
         public void WrongHttpMethod(HttpListenerResponse response, ChannelHttpMethod HttpMethod)
         {
 

@@ -37,26 +37,11 @@ namespace Nuclear.Channels.Hosting.ExecutorServices
             Debug.Assert(_channelMessageService != null);
         }
 
-        /// <summary>
-        /// Activate the ChannelMethod which takes no input parameters
-        /// </summary>
-        /// <param name="channel">Targeted Channel</param>
-        /// <param name="method">Targeted ChannelMethod</param>
-        /// <param name="response">HttpListenerResponse to be written to the client</param>
         public void GetActivateWithoutParameters(Type channel, MethodInfo method, HttpListenerResponse response)
         {
             _channelMethodInvoker.InvokeChannelMethod(channel, method, response);
         }
 
-        /// <summary>
-        ///  Activate the ChannelMethod which takes input parameters based on query string 
-        /// </summary>
-        /// <param name="channel">Targeted Channel</param>
-        /// <param name="method">Targeted ChannelMethod</param>
-        /// <param name="channelRequestBody">List of parameters to be initialized</param>
-        /// <param name="methodDescription">List of parameter names with their types</param>
-        /// <param name="request">Incoming HttpListenerRequest</param>
-        /// <param name="response">HttpListenerResponse to be written to the client</param>
         public void GetActivateWithParameters(Type channel, MethodInfo method, List<object> channelRequestBody, Dictionary<string, Type> methodDescription, HttpListenerRequest request, HttpListenerResponse response)
         {
             try
@@ -115,15 +100,6 @@ namespace Nuclear.Channels.Hosting.ExecutorServices
             }
         }
 
-        /// <summary>
-        /// Activate the ChannelMethod which takes input parameters based on post input body
-        /// </summary>
-        /// <param name="channel">Targeted Channel</param>
-        /// <param name="method">Targeted ChannelMethod</param>
-        /// <param name="channelRequestBody">List of parameters to be initialized</param>
-        /// <param name="methodDescription">List of parameter names with their types</param>
-        /// <param name="request">Incoming HttpListenerRequest</param>
-        /// <param name="response">HttpListenerResponse to be written to the client</param>
         public void PostActivate(Type channel, MethodInfo method, List<object> channelRequestBody, Dictionary<string, Type> methodDescription, HttpListenerRequest request, HttpListenerResponse response)
         {
             string inputRequest = string.Empty;

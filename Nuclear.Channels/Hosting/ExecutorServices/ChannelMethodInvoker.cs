@@ -1,4 +1,6 @@
 ﻿using Nuclear.Channels.Hosting.Contracts;
+using Nuclear.Channels.Messaging;
+using Nuclear.Channels.Messaging.Services.Output;
 using Nuclear.ExportLocator.Decorators;
 using Nuclear.ExportLocator.Enumerations;
 using Nuclear.ExportLocator.Services;
@@ -21,40 +23,44 @@ namespace Nuclear.Channels.Hosting.ExecutorServices
     {
         private IServiceLocator Services;
         private IChannelMessageService _channelMessageService;
+        private IChannelMessageWriter _channelMessageWriter;
+        private HttpListenerResponse _response;
 
         public ChannelMethodInvoker()
         {
             Services = ServiceLocator.GetInstance;
             _channelMessageService = Services.Get<IChannelMessageService>();
+            _channelMessageWriter = new ChannelMessageWriter();
 
             Debug.Assert(Services != null);
             Debug.Assert(_channelMessageService != null);
+            Debug.Assert(_channelMessageWriter != null);
+
+            _channelMessageWriter.SendChannelMessage += _channelMessageWriter_SendChannelMessage;
+        }
+
+        private void _channelMessageWriter_SendChannelMessage(object sender, Messaging.ChannelMethodEventArgs e)
+        {
+            Debug.Assert(_response!=null);
+            _channelMessageService.WriteHttpResponse(e.ChannelMessage, _response);
+            _response = null;
         }
 
 
-        /// <summary>
-        /// Method that will Invoke targeted ChannelMethod
-        /// </summary>
-        /// <param name="channel">Channel instance</param>
-        /// <param name="method">Targeted ChannelMethod</param>
-        /// <param name="response">Response for the client</param>
-        /// <param name="channelRequestBody">Parameters</param>
         public void InvokeChannelMethod(Type channel, MethodInfo method, HttpListenerResponse response, List<object> channelRequestBody)
         {
+            _response = response;
             if (method.GetCustomAttribute(typeof(AsyncStateMachineAttribute)) != null)
                 InvokeChannelMethodAsync(channel, method, response, channelRequestBody);
             else
                 InvokeChannelMethodSync(channel, method, response, channelRequestBody);
+
+            _response = null;
         }
 
-        /// <summary>
-        /// Method that will Invoke targeted ChannelMethod without parameters
-        /// </summary>
-        /// <param name="channel">Channel instance</param>
-        /// <param name="method">Targeted ChannelMethod</param>
-        /// <param name="response">Response for the client</param>
         public void InvokeChannelMethod(Type channel, MethodInfo method, HttpListenerResponse response)
         {
+            _response = response;
             if (method.GetCustomAttribute(typeof(AsyncStateMachineAttribute)) != null)
                 InvokeChannelMethodAsync(channel, method, response, null);
             else
@@ -62,28 +68,15 @@ namespace Nuclear.Channels.Hosting.ExecutorServices
                 object chResponse = method.Invoke(Activator.CreateInstance(channel), null);
                 _channelMessageService.WriteHttpResponse(chResponse, response);
             }
+            _response = null;
         }
 
-        /// <summary>
-        /// Method that will invoke Sync ChannelMethods
-        /// </summary>
-        /// <param name="channel">Channel instance</param>
-        /// <param name="method">Targeted ChannelMethod</param>
-        /// <param name="response">Response for the client</param>
-        /// <param name="channelRequestBody">Parameters</param>
         public void InvokeChannelMethodSync(Type channel, MethodInfo method, HttpListenerResponse response, List<object> channelRequestBody)
         {
             object chResponse = method.Invoke(Activator.CreateInstance(channel), channelRequestBody.ToArray());
             _channelMessageService.WriteHttpResponse(chResponse,response);
         }
 
-        /// <summary>
-        /// Method that will invoke Async ChannelMethods
-        /// </summary>
-        /// <param name="channel">Channel instance</param>
-        /// <param name="method">Targeted ChannelMethod</param>
-        /// <param name="response">Response for the client</param>
-        /// <param name="channelRequestBody">Parameters</param>
         public void InvokeChannelMethodAsync(Type channel, MethodInfo method, HttpListenerResponse response, List<object> channelRequestBody)
         {
             //checking for the input body

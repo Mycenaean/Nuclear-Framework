@@ -1,5 +1,6 @@
 ﻿using Nuclear.Channels.Base;
 using Nuclear.Channels.Decorators;
+using Nuclear.Channels.Messaging;
 
 namespace Nuclear.Channels.Test
 {
@@ -17,5 +18,6 @@ namespace Nuclear.Channels.Test
         {
             return $"Hello {name} from Hello ChannelMethod";
         }
+
     }
 }
