@@ -13,7 +13,6 @@ namespace Nuclear.Channels.Base
         /// ServiceLocator
         /// </summary>
         public IServiceLocator Services => ServiceLocator.GetInstance;
-
-
+        
     }
 }
