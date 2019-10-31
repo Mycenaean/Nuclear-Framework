@@ -6,11 +6,11 @@ Channels Library is part of the Nuclear Framework set of .NET Standard class lib
 
 To install it with Package Manager
  ```
- Install-Package Nuclear.Channels -Version 1.0.0
+ Install-Package Nuclear.Channels -Version 1.0.1
  ```
  To install it with .NET CLI
  ```
- dotnet add package Nuclear.Channels --version 1.0.0
+ dotnet add package Nuclear.Channels --version 1.0.1
  ```
 
 # How to use
