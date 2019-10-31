@@ -2,6 +2,17 @@
 
 Channels Library is part of the Nuclear Framework set of .NET Standard class libraries used to build lightweight API Endpoints using HttpListener class. 
 
+# Get started
+
+To install it with Package Manager
+ ```
+ Install-Package Nuclear.Channels -Version 1.0.0
+ ```
+ To install it with .NET CLI
+ ```
+ dotnet add package Nuclear.Channels --version 1.0.0
+ ```
+
 # How to use
 
 Decorate class in which you have methods you want to expose as endpoints with ChannelAttribute and methods you want to expose as API endpoints with ChannelMethodAttribute. Channels Library is using ExportLocator for dependency injection. Every service from this Library can be injected from IServiceLocator.
