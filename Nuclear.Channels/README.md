@@ -168,7 +168,7 @@ You can test and initialize Channels in both Console Apps and Web Apps. To initi
     {
         static void Main(string[] args)
         {
-            IChannelHost host = ChannelHost.GetHost;
+            IChannelHost host = ChannelHostBuilder.CreateHost();
             host.LoadAssemblies(AppDomain.CurrentDomain, null);
             host.StartHosting(null);
 
