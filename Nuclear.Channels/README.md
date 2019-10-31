@@ -2,7 +2,7 @@
 
 Channels Library is part of the Nuclear Framework set of .NET Standard class libraries used to build lightweight API Endpoints using HttpListener class. 
 
-# Get started
+# Installation
 
 To install it with Package Manager
  ```
