@@ -7,7 +7,7 @@ ExportLocator Library is part of the Nuclear Framework set of .NET Standard help
 ## Register IServiceLocator
 This class library will register dependencies in IServiceLocator with the ExportAttribute without the need to register services in Startup.cs.
 ```c#
-IServiceLocator Services = ServiceLocator.GetInstance; 
+IServiceLocator Services = ServiceLocatorBuilder.CreateServiceLocator(); 
 ```
 
 
