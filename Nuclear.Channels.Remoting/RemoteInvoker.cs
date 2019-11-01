@@ -62,7 +62,7 @@ namespace Nuclear.Channels.Remoting
         private HttpWebRequest InserCredentials(HttpWebRequest webRequest, IChannelCredentials credentials)
         {
             string encodedAuthorization = Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes($"{credentials.Username}:{credentials.Password}"));
-            webRequest.Headers.Add("Authorization", $"{credentials.AuthSchema.ToString()} {encodedAuthorization}");
+            webRequest.Headers.Add("Authorization", $"{credentials.AuthenticationOptions.ToString()} {encodedAuthorization}");
             return webRequest;
         }
 

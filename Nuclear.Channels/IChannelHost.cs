@@ -24,7 +24,7 @@ namespace Nuclear.Channels
         /// <summary>
         /// AuthenticationOptions for Basic Authentication
         /// </summary>
-        /// <param name="tokenAuthenticationMethod">Delegate for token authentication</param>
+        /// <param name="basicAuthenticationMethod">Delegate for token authentication</param>
         void AuthenticationOptions(Func<string, string, bool> basicAuthenticationMethod);
 
         /// <summary>

@@ -11,6 +11,12 @@ namespace Nuclear.Channels.Auth.Identity
         internal static bool IsTokenHeader(HttpListenerRequest request, out string token)
         {
             string tokenHeader = request.Headers["Authorization"];
+            if (string.IsNullOrEmpty(tokenHeader))
+            {
+                token = string.Empty;
+                return false;
+            }
+
             string[] tokenBearer = tokenHeader.Split(' ');
             if (tokenBearer[0].Equals("bearer", StringComparison.OrdinalIgnoreCase))
             {

@@ -12,7 +12,7 @@ namespace Nuclear.Data.Logging.Services
     /// </summary>
     public class LogChannel
     {
-        //Base path for .NET Core application since KernelHost is running on core
+        //Base path for .NET Core application 
         private static string RootPath = (new FileInfo(AppDomain.CurrentDomain.BaseDirectory)).Directory.Parent.Parent.Parent.FullName;
 
         //Undependant on DateTime formatter on choosen PC

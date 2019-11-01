@@ -10,7 +10,7 @@ namespace Nuclear.ExportLocator.Services
     /// <summary>
     /// Service Locator Container
     /// </summary>
-    public sealed class ServiceLocator : IServiceLocator
+    internal sealed class ServiceLocator : IServiceLocator
     {
         private IServiceProvider provider;
         private IServiceCollection services;

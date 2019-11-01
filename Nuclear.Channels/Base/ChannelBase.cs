@@ -1,5 +1,6 @@
 ﻿using Nuclear.Channels.Contracts;
 using Nuclear.Channels.Messaging;
+using Nuclear.ExportLocator;
 using Nuclear.ExportLocator.Services;
 
 namespace Nuclear.Channels.Base
@@ -12,7 +13,7 @@ namespace Nuclear.Channels.Base
         /// <summary>
         /// ServiceLocator
         /// </summary>
-        public IServiceLocator Services => ServiceLocator.GetInstance;
+        public IServiceLocator Services => ServiceLocatorBuilder.CreateServiceLocator();
         
     }
 }

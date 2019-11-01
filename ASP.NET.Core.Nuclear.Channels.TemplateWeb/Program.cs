@@ -25,7 +25,7 @@ namespace ASP.NET.Core.Nuclear.Channels.TemplateWeb
             //To change base address add your base address in host.StartHosting("your base address");
             //----------------------------------------------------------------------------------------
 
-            IChannelHost host = ChannelHost.GetHost;
+            IChannelHost host = ChannelHostBuilder.CreateHost();
             host.LoadAssemblies(AppDomain.CurrentDomain, null);
             host.StartHosting(null);
             CreateHostBuilder(args).Build().Run();

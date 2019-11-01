@@ -47,7 +47,7 @@ namespace Nuclear.Channels.Auth.Identity
                     return AuthenticateRequest(tokenIdentity.Identity, Schemes);
                 }
                 else
-                    throw new ChannelCredentialsException("Malformed header for the token authentication");
+                    throw new ChannelCredentialsException("Malformed or missing header for the token authentication");
             }
             else
             {

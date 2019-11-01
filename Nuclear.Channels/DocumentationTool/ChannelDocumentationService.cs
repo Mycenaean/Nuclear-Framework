@@ -2,6 +2,7 @@
 using Nuclear.Channels.Decorators;
 using Nuclear.Channels.Enums;
 using Nuclear.Channels.Interfaces;
+using Nuclear.ExportLocator;
 using Nuclear.ExportLocator.Decorators;
 using Nuclear.ExportLocator.Enumerations;
 using Nuclear.ExportLocator.Services;
@@ -28,7 +29,7 @@ namespace Nuclear.Channels.DocumentationTool
 
         public ChannelDocumentationService()
         {
-            Services = ServiceLocator.GetInstance;
+            Services = ServiceLocatorBuilder.CreateServiceLocator();
             ChannelDocs = new List<ChannelDocument>();
 
             Debug.Assert(Services != null);

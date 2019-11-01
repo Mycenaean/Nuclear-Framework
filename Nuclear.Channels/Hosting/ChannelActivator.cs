@@ -43,10 +43,8 @@ namespace Nuclear.Channels.Hosting
         [DebuggerStepThrough]
         public ChannelActivator()
         {
-            LogChannel.Write(LogSeverity.Info, "ChannelActivator Initialized");
-            watcher = new Stopwatch();
         }
-        
+
         public void AuthenticationOptions(Func<string, string, bool> basicAuthMethod)
         {
             _basicAuthenticationMethod = basicAuthMethod ?? throw new ArgumentNullException("Authentication function must not be null");
@@ -160,6 +158,7 @@ namespace Nuclear.Channels.Hosting
 
                 if (httpAuthRequired)
                 {
+                    bool authenticated = false;
                     HttpListenerIdentityService identityService = new HttpListenerIdentityService(_basicAuthenticationMethod, _tokenAuthenticationMethod);
                     StreamWriter writer = new StreamWriter(response.OutputStream);
                     try
@@ -167,9 +166,12 @@ namespace Nuclear.Channels.Hosting
                         bool knownUser = identityService.AuthenticatedAndAuthorized(context, ChannelSchema);
                         if (!knownUser)
                             _msgService.FailedAuthenticationResponse(ChannelSchema, response);
+                        else
+                            authenticated = true;
                     }
                     catch (ChannelCredentialsException cEx)
                     {
+                        response.StatusCode = 401;
                         _msgService.ExceptionHandler(writer, cEx, response);
                     }
                     catch (HttpListenerException hEx)
@@ -181,7 +183,11 @@ namespace Nuclear.Channels.Hosting
                         writer.Flush();
                         writer.Close();
                     }
+
+                    if(!authenticated)
+                        goto AuthenticationFailed;
                 }
+
 
                 //Check if the Http Method is correct
                 if (HttpMethod.ToString() != request.HttpMethod && HttpMethod != ChannelHttpMethod.Unknown)
@@ -208,14 +214,17 @@ namespace Nuclear.Channels.Hosting
                     }
                     catch (ChannelMethodContentTypeException cEx)
                     {
+                        response.StatusCode = 400;
                         _msgService.ExceptionHandler(writer, cEx, response);
                     }
                     catch (ChannelMethodParameterException pEx)
                     {
+                        response.StatusCode = 400;
                         _msgService.ExceptionHandler(writer, pEx, response);
                     }
                     catch (TargetParameterCountException tEx)
                     {
+                        response.StatusCode = 400;
                         _msgService.ExceptionHandler(writer, tEx, response);
                     }
                     finally
@@ -225,6 +234,7 @@ namespace Nuclear.Channels.Hosting
                     }
                 }
 
+            AuthenticationFailed:
                 LogChannel.Write(LogSeverity.Debug, "Request finished...");
                 LogChannel.Write(LogSeverity.Debug, "Closing the response");
                 response.Close();

@@ -8,7 +8,7 @@ namespace Nuclear.Channels.Test
         static void Main(string[] args)
         {
             AuthMethods authMethods = new AuthMethods();
-            IChannelHost host = ChannelHost.GetHost;
+            IChannelHost host = ChannelHostBuilder.CreateHost();
             host.LoadAssemblies(AppDomain.CurrentDomain, null);
             host.AuthenticationOptions(authMethods.AuthenticateBasic);
             host.AuthenticationOptions(authMethods.AuthenticateToken);

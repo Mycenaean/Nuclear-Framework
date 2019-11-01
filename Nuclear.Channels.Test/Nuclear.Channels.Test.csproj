@@ -6,13 +6,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Nuclear.Channels\Nuclear.Channels.csproj" />
-    <ProjectReference Include="..\Nuclear.Data\Nuclear.Data.csproj" />
-    <ProjectReference Include="..\Nuclear.ExportLocator\Nuclear.ExportLocator.csproj" />
+    <Compile Remove="Logs\**" />
+    <EmbeddedResource Remove="Logs\**" />
+    <None Remove="Logs\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Logs\" />
+    <ProjectReference Include="..\Nuclear.Channels\Nuclear.Channels.csproj" />
+    <ProjectReference Include="..\Nuclear.Data\Nuclear.Data.csproj" />
+    <ProjectReference Include="..\Nuclear.ExportLocator\Nuclear.ExportLocator.csproj" />
   </ItemGroup>
 
 </Project>

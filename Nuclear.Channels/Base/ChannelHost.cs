@@ -1,4 +1,5 @@
 ﻿using Nuclear.Channels.Hosting;
+using Nuclear.ExportLocator;
 using Nuclear.ExportLocator.Services;
 using System;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ namespace Nuclear.Channels.Base
     /// <summary>
     /// Implementation of ChannelHosting
     /// </summary>
-    public class ChannelHost : IChannelHost
+    internal class ChannelHost : IChannelHost
     {
         private AppDomain _domain;
         private IServiceLocator Services;
@@ -35,7 +36,7 @@ namespace Nuclear.Channels.Base
         /// </summary>
         private ChannelHost()
         {
-            Services = ServiceLocator.GetInstance;
+            Services = ServiceLocatorBuilder.CreateServiceLocator();
             _activator = Services.Get<IChannelActivator>();
         }
 

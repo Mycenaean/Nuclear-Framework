@@ -1,0 +1,497 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Nuclear.Channels</name>
+    </assembly>
+    <members>
+        <member name="T:Nuclear.Channels.Auth.IChannelAuthentication">
+            <summary>
+            Contract for Channel and ChannelMethods Auth 
+            </summary>
+        </member>
+        <member name="M:Nuclear.Channels.Auth.IChannelAuthentication.AuthenticateRequest(System.Net.HttpListenerContext,System.Net.HttpListenerResponse,System.Net.AuthenticationSchemes,System.Boolean@)">
+            <summary>
+            Authenticating Request based on AuthType
+            </summary>
+            <param name="context">HttpListenerContext</param>
+            <param name="response">HttpListenerResponse for the client</param>
+            <param name="ChannelSchema">AuthenticationSchemes for the Channel</param>
+        </member>
+        <member name="T:Nuclear.Channels.Auth.Identity.HttpListenerIdentityService">
+            <summary>
+            Service for HttpListenerRequest identity authentication and authorization
+            </summary>
+        </member>
+        <member name="M:Nuclear.Channels.Auth.Identity.HttpListenerIdentityService.#ctor(System.Func{System.String,System.String,System.Boolean},System.Func{System.String,System.Boolean})">
+            <summary>
+            Constructor taking delegates that will be used to authenticate and authorize user
+            </summary>
+            <param name="BasicAuthenticationMethod">Delegate for basic authentication</param>
+            <param name="TokenAuthenticationMethod">Delegate for token authentication</param>
+        </member>
+        <member name="M:Nuclear.Channels.Auth.Identity.HttpListenerIdentityService.AuthenticatedAndAuthorized(System.Net.HttpListenerContext,Nuclear.Channels.Auth.ChannelAuthenticationSchemes)">
+            <summary>
+            Function that will do authentication and authorization
+            </summary>
+            <param name="context">Current HttpListenerContext </param>
+            <param name="Schemes">AuthenticationSchemes</param>
+            <exception cref="T:Nuclear.Channels.Auth.ChannelCredentialsException"></exception>
+            <returns>True if user is authenticated and authorized , False if not</returns>
+        </member>
+        <member name="T:Nuclear.Channels.Base.ChannelBase">
+            <summary>
+            Base abstract WebChannel Helper class
+            </summary>
+        </member>
+        <member name="P:Nuclear.Channels.Base.ChannelBase.Services">
+            <summary>
+            ServiceLocator
+            </summary>
+        </member>
+        <member name="T:Nuclear.Channels.Base.ChannelHost">
+            <summary>
+            Implementation of ChannelHosting
+            </summary>
+        </member>
+        <member name="P:Nuclear.Channels.Base.ChannelHost.GetHost">
+            <summary>
+            Get the Singleton Instance
+            </summary>
+        </member>
+        <member name="M:Nuclear.Channels.Base.ChannelHost.#ctor">
+            <summary>
+            Singleton Design pattern private constructor
+            </summary>
+        </member>
+        <member name="M:Nuclear.Channels.Base.ChannelHost.LoadAssemblies(System.AppDomain,System.String[])">
+            <summary>
+            Method to load all assemblies containing channels
+            </summary>
+            <param name="domain">Current AppComain</param>
+            <param name="assemblies">Assembly names of your projects</param>
+        </member>
+        <member name="M:Nuclear.Channels.Base.ChannelHost.StartHosting(System.String)">
+            <summary>
+            Starts hosting
+            </summary>
+        </member>
+        <member name="T:Nuclear.Channels.ChannelHostBuilder">
+            <summary>
+            Class that contains method for building channel host
+            </summary>
+        </member>
+        <member name="M:Nuclear.Channels.ChannelHostBuilder.CreateHost">
+            <summary>
+            Method that creates IChannelHost instance
+            </summary>
+        </member>
+        <member name="T:Nuclear.Channels.ChannelLocator">
+            <summary>`
+            Service that contains all Channels
+            </summary>
+        </member>
+        <member name="M:Nuclear.Channels.ChannelLocator.RegisteredChannels(System.AppDomain)">
+            <summary>
+            Method that get all Channels
+            </summary>
+            <param name="domain">Domain with all assemblies</param>
+            <returns>List of classes that are decorated with ChannelAttribute</returns>
+        </member>
+        <member name="T:Nuclear.Channels.ChannelMethodDescriptor">
+            <summary>
+            Service for ChannelMethod informations
+            </summary>
+        </member>
+        <member name="T:Nuclear.Channels.Contracts.ChannelEndpoint">
+            <summary>
+            Http Endpoint to be initialized
+            </summary>
+        </member>
+        <member name="T:Nuclear.Channels.Contracts.IChannel">
+            <summary>
+            Base contract for abstract ChannelBase class
+            </summary>
+        </member>
+        <member name="T:Nuclear.Channels.Contracts.IChannelEndpoint">
+            <summary>
+            Http Endpoint to be initialized
+            </summary>
+        </member>
+        <member name="T:Nuclear.Channels.Contracts.IChannelLocator">
+            <summary>
+            Service that contains all Channels
+            </summary>
+        </member>
+        <member name="M:Nuclear.Channels.Contracts.IChannelLocator.RegisteredChannels(System.AppDomain)">
+            <summary>
+            Method that get all Channels
+            </summary>
+            <param name="domain">Domain with all assemblies</param>
+            <returns>List of classes that are decorated with ChannelAttribute</returns>
+        </member>
+        <member name="T:Nuclear.Channels.Decorators.AuthorizeChannelAttribute">
+            <summary>
+            Attribute that will require Authorization for specified Channel
+            </summary>
+        </member>
+        <member name="P:Nuclear.Channels.Decorators.AuthorizeChannelAttribute.Schema">
+            <summary>
+            Auth Schema
+            </summary>
+        </member>
+        <member name="M:Nuclear.Channels.Decorators.AuthorizeChannelAttribute.#ctor(Nuclear.Channels.Auth.ChannelAuthenticationSchemes)">
+            <summary>
+            Get the Auth type for the channel
+            </summary>
+            <param name="schemes">Specified Auth Schemes</param>
+        </member>
+        <member name="T:Nuclear.Channels.Decorators.ChannelAttribute">
+            <summary>
+            Attribute that will register specified class as an Channel, 
+            If Name property is not set , targeted class name will be used as a base route
+            </summary>    
+        </member>
+        <member name="P:Nuclear.Channels.Decorators.ChannelAttribute.Name">
+            <summary>
+            Name that will be used as a base route endpoint if specified
+            </summary>
+        </member>
+        <member name="P:Nuclear.Channels.Decorators.ChannelAttribute.Description">
+            <summary>
+            Description provided for documentation
+            </summary>
+        </member>
+        <member name="M:Nuclear.Channels.Decorators.ChannelAttribute.#ctor">
+            <summary>
+            CTOR
+            </summary>
+        </member>
+        <member name="M:Nuclear.Channels.Decorators.ChannelAttribute.#ctor(System.String)">
+            <summary>
+            CTOR with wanted name for the base route
+            </summary>
+            <param name="Name">Name of the base route</param>
+        </member>
+        <member name="M:Nuclear.Channels.Decorators.ChannelAttribute.#ctor(System.Object)">
+            <summary>
+            Channel Description
+            </summary>
+            <param name="Description">Description string</param>
+        </member>
+        <member name="M:Nuclear.Channels.Decorators.ChannelAttribute.#ctor(System.String,System.Object)">
+            <summary>
+            Channel Name with Description
+            </summary>
+            <param name="Name">Name of the base route</param>
+            <param name="Description">Description string</param>
+        </member>
+        <member name="T:Nuclear.Channels.Decorators.ChannelMethodAttribute">
+            <summary>
+            Attribute that will targeted method initialize as an Http Endpoint
+            </summary>
+        </member>
+        <member name="P:Nuclear.Channels.Decorators.ChannelMethodAttribute.Schema">
+            <summary>
+            Auth Schema
+            </summary>
+        </member>
+        <member name="P:Nuclear.Channels.Decorators.ChannelMethodAttribute.HttpMethod">
+            <summary>
+            Http Method to be used
+            </summary>
+        </member>
+        <member name="P:Nuclear.Channels.Decorators.ChannelMethodAttribute.Description">
+            <summary>
+            Description of the method
+            </summary>
+        </member>
+        <member name="M:Nuclear.Channels.Decorators.ChannelMethodAttribute.#ctor">
+            <summary>
+            No Auth CTOR
+            </summary>
+        </member>
+        <member name="M:Nuclear.Channels.Decorators.ChannelMethodAttribute.#ctor(Nuclear.Channels.Enums.ChannelHttpMethod,System.String)">
+            <summary>
+            Http Method to be used
+            </summary>
+            <param name="HttpMethod">Http Method</param>        
+        </member>
+        <member name="M:Nuclear.Channels.Decorators.ChannelMethodAttribute.#ctor(Nuclear.Channels.Auth.ChannelAuthenticationSchemes,System.String)">
+            <summary>
+            Auth Type
+            </summary>
+            <param name="Schemes">Specified Auth Type for ChannelMethod</param>        
+        </member>
+        <member name="M:Nuclear.Channels.Decorators.ChannelMethodAttribute.#ctor(Nuclear.Channels.Auth.ChannelAuthenticationSchemes,Nuclear.Channels.Enums.ChannelHttpMethod,System.String)">
+            <summary>
+            Method to be used and Auth Type
+            </summary>
+            <param name="Schemes">Specified Auth Type for ChannelMethod</param>
+            <param name="HttpMethod">Http Method</param>        
+        </member>
+        <member name="T:Nuclear.Channels.DocumentationTool.ChannelDocument">
+            <summary>
+            Object containing all information about Channel
+            </summary>
+        </member>
+        <member name="T:Nuclear.Channels.DocumentationTool.ChannelDocumentationService">
+            <summary>
+            Implementation for IChannelDocumentationService
+            </summary>
+            <export>
+            ExportLifetime is Transient because channels can be imported as a plugins without the need for restart of the application
+            </export>
+        </member>
+        <member name="T:Nuclear.Channels.DocumentationTool.ChannelMethodDocument">
+            <summary>
+            Object containing all information about ChannelMethod
+            </summary>
+        </member>
+        <member name="T:Nuclear.Channels.DocumentationTool.IChannelDocumentationService">
+            <summary>
+            Service that autogenerates documentation for all created channels
+            </summary>
+        </member>
+        <member name="T:Nuclear.Channels.Enums.ChannelHttpMethod">
+            <summary>
+            ChannelMethod Http Method to be used
+            </summary>
+        </member>
+        <member name="T:Nuclear.Channels.Hosting.Contracts.IChannelMessageService">
+            <summary>
+            Service responsible for the writing ChannelMessage output to the client
+            </summary>
+        </member>
+        <member name="M:Nuclear.Channels.Hosting.Contracts.IChannelMessageService.WriteHttpResponse(System.Object,System.Net.HttpListenerResponse)">
+            <summary>
+            Method that will write response to the client
+            </summary>
+            <param name="response">HttpListenerResponse instance</param>
+            <param name="chResponse">ChannelMethod response object</param>
+        </member>
+        <member name="M:Nuclear.Channels.Hosting.Contracts.IChannelMessageService.ExceptionHandler(System.IO.StreamWriter,System.Exception,System.Net.HttpListenerResponse)">
+            <summary>
+            Method that will proccess the Exception
+            </summary>
+            <param name="writer">StreamWriter instance</param>
+            <param name="ex">Thrown Exception</param>
+            <param name="response">HttpListenerResponse instance that will be sent to the client</param>
+        </member>
+        <member name="M:Nuclear.Channels.Hosting.Contracts.IChannelMessageService.FailedAuthenticationResponse(Nuclear.Channels.Auth.ChannelAuthenticationSchemes,System.Net.HttpListenerResponse)">
+            <summary>
+            Failed Auth ChannelMessage
+            </summary>
+            <param name="ChannelSchema">AuthenticationSchemes schema</param>
+            <param name="response">Response for the client</param>
+        </member>
+        <member name="M:Nuclear.Channels.Hosting.Contracts.IChannelMessageService.WrongHttpMethod(System.Net.HttpListenerResponse,Nuclear.Channels.Enums.ChannelHttpMethod)">
+            <summary>
+            Wrong HttpMethod Used
+            </summary>
+            <param name="response">Response for the client</param>
+            <param name="HttpMethod">Required HttpMethod</param>
+        </member>
+        <member name="T:Nuclear.Channels.Hosting.Contracts.IChannelMethodInvoker">
+            <summary>
+            Service that will invoke targeted ChannelMethod 
+            </summary>
+        </member>
+        <member name="M:Nuclear.Channels.Hosting.Contracts.IChannelMethodInvoker.InvokeChannelMethod(System.Type,System.Reflection.MethodInfo,System.Net.HttpListenerResponse)">
+            <summary>
+            Method that will Invoke targeted ChannelMethod without parameters
+            </summary>
+            <param name="channel">Channel instance</param>
+            <param name="method">Targeted ChannelMethod</param>
+            <param name="response">Response for the client</param>
+        </member>
+        <member name="M:Nuclear.Channels.Hosting.Contracts.IChannelMethodInvoker.InvokeChannelMethod(System.Type,System.Reflection.MethodInfo,System.Net.HttpListenerResponse,System.Collections.Generic.List{System.Object})">
+            <summary>
+            Method that will Invoke targeted ChannelMethod
+            </summary>
+            <param name="channel">Channel instance</param>
+            <param name="method">Targeted ChannelMethod</param>
+            <param name="response">Response for the client</param>
+            <param name="channelRequestBody">Parameters</param>
+        </member>
+        <member name="M:Nuclear.Channels.Hosting.Contracts.IChannelMethodInvoker.InvokeChannelMethodSync(System.Type,System.Reflection.MethodInfo,System.Net.HttpListenerResponse,System.Collections.Generic.List{System.Object})">
+            <summary>
+            Method that will Invoke targeted Sync ChannelMethod
+            </summary>
+            <param name="channel">Channel instance</param>
+            <param name="method">Targeted ChannelMethod</param>
+            <param name="response">Response for the client</param>
+            <param name="channelRequestBody">Parameters</param>
+        </member>
+        <member name="M:Nuclear.Channels.Hosting.Contracts.IChannelMethodInvoker.InvokeChannelMethodAsync(System.Type,System.Reflection.MethodInfo,System.Net.HttpListenerResponse,System.Collections.Generic.List{System.Object})">
+            <summary>
+            Method that will Invoke targeted Async ChannelMethod
+            </summary>
+            <param name="channel">Channel instance</param>
+            <param name="method">Targeted ChannelMethod</param>
+            <param name="response">Response for the client</param>
+            <param name="channelRequestBody">Parameters</param>
+        </member>
+        <member name="T:Nuclear.Channels.Hosting.Contracts.IExecutor">
+            <summary>
+            Service Contract for ChannelActivator to initialize HttpEndpoints
+            </summary>
+        </member>
+        <member name="M:Nuclear.Channels.Hosting.Contracts.IExecutor.MethodExecute(System.Type,System.Threading.CancellationToken)">
+            <summary>
+            Method that will get all ChannelMethods from inspected Channel
+            </summary>
+            <param name="channel">Inspected Channel</param>
+        </member>
+        <member name="M:Nuclear.Channels.Hosting.Contracts.IExecutor.StartListening(System.Reflection.MethodInfo,System.Type,System.Threading.CancellationToken)">
+            <summary>
+            Method that is doing all the heavy lifting, Http endpoint initialization for specified ChannelMethod
+            </summary>
+            <param name="method">ChannelMethod to be initialized as Http Endpoint</param>
+            <param name="channel">Web Channel</param>
+        </member>
+        <member name="T:Nuclear.Channels.Hosting.Exceptions.ChannelMethodContentTypeException">
+            <summary>
+            Exception thrown when Content-Type is neither application/json nor application/xml
+            </summary>
+        </member>
+        <member name="T:Nuclear.Channels.Hosting.Exceptions.ChannelMethodParameterException">
+            <summary>
+            Exception thrown when parameters dont match
+            </summary>
+        </member>
+        <member name="T:Nuclear.Channels.Hosting.Exceptions.HttpListenerNotSupportedException">
+            <summary>
+            Exception that is thrown when HttpListener is not supported
+            </summary>
+        </member>
+        <member name="T:Nuclear.Channels.Hosting.ExecutorServices.ChannelMethodInvoker">
+            <summary>
+            IChannelMethodInvoker Implementation
+            </summary>
+        </member>
+        <member name="T:Nuclear.Channels.Hosting.IChannelActivator">
+            <summary>
+            Service that will initialize all ChannelMethods as HTTP Endopints
+            </summary>
+        </member>
+        <member name="M:Nuclear.Channels.Hosting.IChannelActivator.Execute(System.AppDomain,Nuclear.ExportLocator.Services.IServiceLocator,System.String)">
+            <summary>
+            Method that will do the initialization of Channels
+            </summary>
+            <param name="domain">AppDomain with all assemblies</param>
+            <param name="Services">IServiceLocator</param>
+            <exception cref="T:Nuclear.Channels.Hosting.Exceptions.HttpListenerNotSupportedException"></exception>
+        </member>
+        <member name="M:Nuclear.Channels.Hosting.IChannelActivator.AuthenticationOptions(System.Func{System.String,System.String,System.Boolean})">
+            <summary>
+            Set authentication options
+            </summary>
+            <param name="basicAuthenticationMethod">Function delegate to be used for basic authentication</param>
+        </member>
+        <member name="M:Nuclear.Channels.Hosting.IChannelActivator.AuthenticationOptions(System.Func{System.String,System.Boolean})">
+            <summary>
+            Set authentication options
+            </summary>
+            <param name="tokenAuthenticationMethod">Function delegate to be used for token authentication</param>
+        </member>
+        <member name="T:Nuclear.Channels.Hosting.IChannelMethodRequestActivator">
+            <summary>
+            Service which will activate ChannelMethod
+            </summary>
+        </member>
+        <member name="M:Nuclear.Channels.Hosting.IChannelMethodRequestActivator.PostActivate(System.Type,System.Reflection.MethodInfo,System.Collections.Generic.List{System.Object},System.Collections.Generic.Dictionary{System.String,System.Type},System.Net.HttpListenerRequest,System.Net.HttpListenerResponse)">
+            <summary>
+            Activate the ChannelMethod which takes input parameters based on post input body
+            </summary>
+            <param name="channel">Targeted Channel</param>
+            <param name="method">Targeted ChannelMethod</param>
+            <param name="channelRequestBody">List of parameters to be initialized</param>
+            <param name="methodDescription">List of parameter names with their types</param>
+            <param name="request">Incoming HttpListenerRequest</param>
+            <param name="response">HttpListenerResponse to be written to the client</param>
+            <exception cref="T:Nuclear.Channels.Hosting.Exceptions.ChannelMethodParameterException">Parameters dont match</exception>
+            <exception cref="T:Nuclear.Channels.Hosting.Exceptions.ChannelMethodContentTypeException">Unsupported content type</exception>
+        </member>
+        <member name="M:Nuclear.Channels.Hosting.IChannelMethodRequestActivator.GetActivateWithParameters(System.Type,System.Reflection.MethodInfo,System.Collections.Generic.List{System.Object},System.Collections.Generic.Dictionary{System.String,System.Type},System.Net.HttpListenerRequest,System.Net.HttpListenerResponse)">
+            <summary>
+             Activate the ChannelMethod which takes input parameters based on query string 
+            </summary>
+            <param name="channel">Targeted Channel</param>
+            <param name="method">Targeted ChannelMethod</param>
+            <param name="channelRequestBody">List of parameters to be initialized</param>
+            <param name="methodDescription">List of parameter names with their types</param>
+            <param name="request">Incoming HttpListenerRequest</param>
+            <param name="response">HttpListenerResponse to be written to the client</param>
+        </member>
+        <member name="M:Nuclear.Channels.Hosting.IChannelMethodRequestActivator.GetActivateWithoutParameters(System.Type,System.Reflection.MethodInfo,System.Net.HttpListenerResponse)">
+            <summary>
+            Activate the ChannelMethod which takes no input parameters
+            </summary>
+            <param name="channel">Targeted Channel</param>
+            <param name="method">Targeted ChannelMethod</param>
+            <param name="response">HttpListenerResponse to be written to the client</param>
+        </member>
+        <member name="T:Nuclear.Channels.Hosting.JsonRequestService">
+            <summary>
+            JSON Deserialization Implementation
+            </summary>
+        </member>
+        <member name="T:Nuclear.Channels.Hosting.XmlRequestService">
+            <summary>
+            XML Deserialization Implementation
+            </summary>
+        </member>
+        <member name="T:Nuclear.Channels.IChannelHost">
+            <summary>
+            Service that will host the Channels
+            </summary>
+        </member>
+        <member name="M:Nuclear.Channels.IChannelHost.LoadAssemblies(System.AppDomain,System.String[])">
+            <summary>
+            Method to load all assemblies containing channels
+            </summary>
+            <param name="domain">Current AppComain</param>
+            <param name="assemblies">Assembly names of your projects</param>
+        </member>
+        <member name="M:Nuclear.Channels.IChannelHost.AuthenticationOptions(System.Func{System.String,System.Boolean})">
+            <summary>
+            AuthenticationOptions for Token Authentication
+            </summary>
+            <param name="tokenAuthenticationMethod">Delegate for basic authentication</param>
+        </member>
+        <member name="M:Nuclear.Channels.IChannelHost.AuthenticationOptions(System.Func{System.String,System.String,System.Boolean})">
+            <summary>
+            AuthenticationOptions for Basic Authentication
+            </summary>
+            <param name="basicAuthenticationMethod">Delegate for token authentication</param>
+        </member>
+        <member name="M:Nuclear.Channels.IChannelHost.StartHosting(System.String)">
+            <summary>
+            Starts hosting
+            </summary>
+            <exception cref="T:Nuclear.Channels.Hosting.Exceptions.HttpListenerNotSupportedException"></exception>
+        </member>
+        <member name="T:Nuclear.Channels.Interfaces.IChannelMethodDescriptor">
+            <summary>
+            ChannelMethodDescriptor Contract
+            </summary>
+        </member>
+        <member name="M:Nuclear.Channels.Interfaces.IChannelMethodDescriptor.GetMethodDescription(System.Reflection.MethodInfo)">
+            <summary>
+            Get Input parameters of targeted method
+            </summary>
+            <param name="method">Targeted ChannelMethod</param>
+            <returns>Dictionary with the name and type of the input parameters</returns>
+        </member>
+        <member name="T:Nuclear.Channels.Messaging.ChannelMessage">
+            <summary>
+            Base return type of HttpListenerResponse
+            </summary>
+        </member>
+        <member name="T:Nuclear.Channels.Messaging.Services.ChannelMessage.IChannelMessage">
+            <summary>
+            Base return type of HttpListenerResponse
+            </summary>
+        </member>
+    </members>
+</doc>

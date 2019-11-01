@@ -24,9 +24,10 @@ namespace Nuclear.Channels
         /// <returns>List of classes that are decorated with ChannelAttribute</returns>
         public List<Type> RegisteredChannels(AppDomain domain)
         {
-            Debug.Assert(domain != null);
+            if (domain == null)
+                throw new ArgumentNullException(nameof(AppDomain));
 
-            Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
+            Assembly[] assemblies = domain.GetAssemblies();
             foreach (var asm in assemblies)
             {
                 foreach (var type in asm.GetTypes())

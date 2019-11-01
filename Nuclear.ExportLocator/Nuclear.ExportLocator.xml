@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Nuclear.ExportLocator</name>
+    </assembly>
+    <members>
+        <member name="T:Nuclear.ExportLocator.Decorators.ExportAttribute">
+            <summary>
+            Attribute that will register service in IServiceLocator
+            </summary>
+        </member>
+        <member name="P:Nuclear.ExportLocator.Decorators.ExportAttribute.ServiceType">
+            <summary>
+            Service type
+            </summary>
+        </member>
+        <member name="P:Nuclear.ExportLocator.Decorators.ExportAttribute.Lifetime">
+            <summary>
+            Service Lifetime
+            </summary>
+        </member>
+        <member name="M:Nuclear.ExportLocator.Decorators.ExportAttribute.#ctor(System.Type)">
+            <summary>
+            Registering Service with Transient Lifetime
+            </summary>
+            <param name="service">Type of Service</param>
+        </member>
+        <member name="M:Nuclear.ExportLocator.Decorators.ExportAttribute.#ctor(System.Type,Nuclear.ExportLocator.Enumerations.ExportLifetime)">
+            <summary>
+            Registering Service with specified Lifetime
+            </summary>
+            <param name="service">Type of Service</param>
+            <param name="Lifetime">Lifetime of the Service</param>
+        </member>
+        <member name="T:Nuclear.ExportLocator.Enumerations.ExportLifetime">
+            <summary>
+            Service Lifetime
+            </summary>
+        </member>
+        <member name="T:Nuclear.ExportLocator.Global.ExportFactory">
+            <summary>
+            Class that will get all services decorated with the ExportAttribute
+            </summary>
+        </member>
+        <member name="M:Nuclear.ExportLocator.Global.ExportFactory.GetExports">
+            <summary>
+            Method that gets all exported Services
+            </summary>
+            <returns>List of exported services enclosed in ExportInformation</returns>
+        </member>
+        <member name="T:Nuclear.ExportLocator.Global.ExportInformation">
+            <summary>
+            Exported Service Description
+            </summary>
+        </member>
+        <member name="P:Nuclear.ExportLocator.Global.ExportInformation.ServiceType">
+            <summary>
+            Decorated Class
+            </summary>
+        </member>
+        <member name="P:Nuclear.ExportLocator.Global.ExportInformation.Implementation">
+            <summary>
+            Service Interface
+            </summary>
+        </member>
+        <member name="P:Nuclear.ExportLocator.Global.ExportInformation.ExportLifetime">
+            <summary>
+            Service Lifetime
+            </summary>
+        </member>
+        <member name="T:Nuclear.ExportLocator.ServiceLocatorBuilder">
+            <summary>
+            ServiceLocator builder
+            </summary>
+        </member>
+        <member name="M:Nuclear.ExportLocator.ServiceLocatorBuilder.CreateServiceLocator">
+            <summary>
+            Method that will create IServiceLocator instance
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Nuclear.ExportLocator.Services.IServiceLocator">
+            <summary>
+            Service Locator Container
+            </summary>
+        </member>
+        <member name="M:Nuclear.ExportLocator.Services.IServiceLocator.Get``1">
+            <summary>
+            Get the service from IServiceLocator
+            </summary>
+            <typeparam name="T">Requested Interface</typeparam>
+            <returns>Specified service</returns>
+        </member>
+        <member name="T:Nuclear.ExportLocator.Services.ServiceLocator">
+            <summary>
+            Service Locator Container
+            </summary>
+        </member>
+        <member name="P:Nuclear.ExportLocator.Services.ServiceLocator.GetInstance">
+            <summary>
+            Get ServiceLocator singleton instance
+            </summary>
+        </member>
+        <member name="M:Nuclear.ExportLocator.Services.ServiceLocator.#ctor">
+            <summary>
+            Private constructor for Singletone Design Pattern
+            </summary>
+        </member>
+        <member name="M:Nuclear.ExportLocator.Services.ServiceLocator.InitializeServices">
+            <summary>
+            Get all services with Export attribute
+            </summary>
+            <returns>IServiceProvider Instance</returns>
+        </member>
+        <member name="M:Nuclear.ExportLocator.Services.ServiceLocator.Get``1">
+            <summary>
+            Get the service from IServiceLocator
+            </summary>
+            <typeparam name="T">Requested Interface</typeparam>
+            <returns>Specified service</returns>
+        </member>
+    </members>
+</doc>

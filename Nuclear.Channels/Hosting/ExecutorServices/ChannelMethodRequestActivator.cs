@@ -4,6 +4,7 @@ using Nuclear.Channels.Hosting.Exceptions;
 using Nuclear.Data.Logging.Enums;
 using Nuclear.Data.Logging.Services;
 using Nuclear.Data.Xml;
+using Nuclear.ExportLocator;
 using Nuclear.ExportLocator.Decorators;
 using Nuclear.ExportLocator.Enumerations;
 using Nuclear.ExportLocator.Services;
@@ -28,7 +29,7 @@ namespace Nuclear.Channels.Hosting.ExecutorServices
 
         public ChannelMethodRequestActivator()
         {
-            Services = ServiceLocator.GetInstance;
+            Services = ServiceLocatorBuilder.CreateServiceLocator();
             _channelMethodInvoker = Services.Get<IChannelMethodInvoker>();
             _channelMessageService = Services.Get<IChannelMessageService>();
 

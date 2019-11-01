@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 using Nuclear.Channels.Remoting.Enums;
 using Nuclear.Channels.Remoting.Exceptions;
 using Nuclear.Channels.Remoting.Services;
+using Nuclear.ExportLocator;
 using Nuclear.ExportLocator.Decorators;
 using Nuclear.ExportLocator.Enumerations;
 using Nuclear.ExportLocator.Services;
@@ -23,7 +24,7 @@ namespace Nuclear.Channels.Remoting
         [DebuggerStepThrough]
         public ChannelRemotingClient()
         {
-            Services = ServiceLocator.GetInstance;
+            Services = ServiceLocatorBuilder.CreateServiceLocator();
             _remoteInvoker = Services.Get<IRemoteInvoker>();
         }
 

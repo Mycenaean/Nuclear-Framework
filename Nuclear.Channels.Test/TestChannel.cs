@@ -7,7 +7,7 @@ namespace Nuclear.Channels.Test
     [Channel]
     public class TestChannel : ChannelBase
     {
-        [ChannelMethod(Schema = Auth.ChannelAuthenticationSchemes.Token)]
+        [ChannelMethod(Auth.ChannelAuthenticationSchemes.Token)]
         public string HelloWorld()
         {
             return "Hello World from ChannelMethod";

@@ -1,4 +1,5 @@
-﻿using Nuclear.ExportLocator.Services;
+﻿using Nuclear.ExportLocator;
+using Nuclear.ExportLocator.Services;
 
 namespace Nuclear.Data.Services
 {
@@ -8,7 +9,7 @@ namespace Nuclear.Data.Services
 
         protected ServiceBase()
         {
-            _services = ServiceLocator.GetInstance;
+            _services = ServiceLocatorBuilder.CreateServiceLocator();
         }
     }
 }

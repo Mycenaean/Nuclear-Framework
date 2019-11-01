@@ -1,5 +1,6 @@
 ﻿using Nuclear.Channels.Hosting.Contracts;
 using Nuclear.Channels.Messaging;
+using Nuclear.ExportLocator;
 using Nuclear.ExportLocator.Decorators;
 using Nuclear.ExportLocator.Enumerations;
 using Nuclear.ExportLocator.Services;
@@ -26,7 +27,7 @@ namespace Nuclear.Channels.Hosting.ExecutorServices
 
         public ChannelMethodInvoker()
         {
-            Services = ServiceLocator.GetInstance;
+            Services = ServiceLocatorBuilder.CreateServiceLocator();
             _channelMessageService = Services.Get<IChannelMessageService>();
 
             Debug.Assert(Services != null);
