@@ -16,8 +16,10 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Xml;
 
+[assembly: InternalsVisibleTo("Nuclear.Channels.UnitTests")]
 namespace Nuclear.Channels.Hosting.ExecutorServices
 {
     [Export(typeof(IChannelMethodRequestActivator), Lifetime = ExportLifetime.Scoped)]

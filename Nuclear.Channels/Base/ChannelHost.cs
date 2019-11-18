@@ -2,8 +2,10 @@
 using Nuclear.ExportLocator;
 using Nuclear.ExportLocator.Services;
 using System;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
+[assembly: InternalsVisibleTo("Nuclear.Channels.UnitTests")]
 namespace Nuclear.Channels.Base
 {
     /// <summary>
@@ -55,6 +57,15 @@ namespace Nuclear.Channels.Base
                     _domain.Load(assembly);
                 }
             }
+        }
+
+        /// <summary>
+        /// Load App Domain
+        /// </summary>
+        /// <param name="domain">Current AppDomain</param>
+        public void LoadAssemblies(AppDomain domain)
+        {
+            _domain = domain;
         }
 
         /// <summary>

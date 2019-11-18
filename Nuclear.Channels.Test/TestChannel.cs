@@ -1,23 +1,37 @@
 ﻿using Nuclear.Channels.Base;
 using Nuclear.Channels.Decorators;
-using Nuclear.Channels.Messaging;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace Nuclear.Channels.Test
+namespace ConsoleApp1
 {
     [Channel]
     public class TestChannel : ChannelBase
     {
-        [ChannelMethod(Auth.ChannelAuthenticationSchemes.Token)]
+        [ChannelMethod]
         public string HelloWorld()
         {
-            return "Hello World from ChannelMethod";
+            return "HELLO WORLD FROM CHANNEL METHOD";
         }
 
         [ChannelMethod]
-        public string Hello(string name)
+        public string PostParams(string name)
         {
-            return $"Hello {name} from Hello ChannelMethod";
+            return $"Hello {name} from ChannelMethod";
         }
 
+        [ChannelMethod]
+        public TestClass CreateTestClass(string id, string name)
+        {
+            return new TestClass { Id = id, Name = name };
+        }
+    }
+
+
+    public class TestClass
+    {
+        public string Id { get; set; }
+        public string Name { get; set; }
     }
 }

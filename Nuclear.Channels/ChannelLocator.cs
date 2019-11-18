@@ -6,7 +6,9 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("Nuclear.Channels.UnitTests")]
 namespace Nuclear.Channels
 {
     /// <summary>`

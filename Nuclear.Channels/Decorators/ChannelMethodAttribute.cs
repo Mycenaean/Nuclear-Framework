@@ -44,7 +44,8 @@ namespace Nuclear.Channels.Decorators
         /// <summary>
         /// Http Method to be used
         /// </summary>
-        /// <param name="HttpMethod">Http Method</param>        
+        /// <param name="HttpMethod">Http Method</param>
+        /// <param name="Description">Description to be used in documentation tool</param>        
         public ChannelMethodAttribute(ChannelHttpMethod HttpMethod, string Description = null)
         {
             this.HttpMethod = HttpMethod;
@@ -54,7 +55,8 @@ namespace Nuclear.Channels.Decorators
         /// <summary>
         /// Auth Type
         /// </summary>
-        /// <param name="Schemes">Specified Auth Type for ChannelMethod</param>        
+        /// <param name="Schemes">Specified Auth Type for ChannelMethod</param>
+        /// <param name="Description">Description to be used in documentation tool</param>        
         public ChannelMethodAttribute(ChannelAuthenticationSchemes Schemes, string Description = null)
         {
             Schema = Schemes;
@@ -66,7 +68,8 @@ namespace Nuclear.Channels.Decorators
         /// Method to be used and Auth Type
         /// </summary>
         /// <param name="Schemes">Specified Auth Type for ChannelMethod</param>
-        /// <param name="HttpMethod">Http Method</param>        
+        /// <param name="HttpMethod">Http Method</param>
+        /// <param name="Description">Description to be used in documentation tool</param>        
         public ChannelMethodAttribute(ChannelAuthenticationSchemes Schemes, ChannelHttpMethod HttpMethod, string Description = null)
         {
             Schema = Schemes;

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Runtime.CompilerServices;
 using System.Security.Principal;
 using System.Text;
 
+[assembly : InternalsVisibleTo("Nuclear.Channels.UnitTestss")]
 namespace Nuclear.Channels.Auth.Identity
 {
     internal static class HttpListenerIdentityMiddleware

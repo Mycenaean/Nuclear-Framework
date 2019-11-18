@@ -32,6 +32,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{CD44DE92
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nuclear.Channels.Invoker", "Nuclear.Channels.Invoker\Nuclear.Channels.Invoker.csproj", "{0F0798F7-1C87-47D6-99DE-732475A5F809}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nuclear.Channels.UnitTests", "Nuclear.Channels.UnitTests\Nuclear.Channels.UnitTests.csproj", "{9E21D19D-3653-460D-B017-0FDCF6D5354F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -66,6 +68,10 @@ Global
 		{0F0798F7-1C87-47D6-99DE-732475A5F809}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F0798F7-1C87-47D6-99DE-732475A5F809}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F0798F7-1C87-47D6-99DE-732475A5F809}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E21D19D-3653-460D-B017-0FDCF6D5354F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E21D19D-3653-460D-B017-0FDCF6D5354F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E21D19D-3653-460D-B017-0FDCF6D5354F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E21D19D-3653-460D-B017-0FDCF6D5354F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -78,6 +84,7 @@ Global
 		{3AE88CAD-2ED1-4BFD-A241-BB0676D9891C} = {9AA01687-2C6F-4F10-8172-DCB8D6355687}
 		{F99BA24F-EB07-4F50-954B-88E0CA517FC2} = {55F2B3AC-4F71-4893-AFD3-A8BAFABA3F9C}
 		{0F0798F7-1C87-47D6-99DE-732475A5F809} = {CD44DE92-AED5-4E64-B2D9-65C356147EF9}
+		{9E21D19D-3653-460D-B017-0FDCF6D5354F} = {F676966B-1281-418E-9F0E-1F3DE01BC9AF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EBCA10CE-333B-4FAA-82AA-4379B0FCFF4A}

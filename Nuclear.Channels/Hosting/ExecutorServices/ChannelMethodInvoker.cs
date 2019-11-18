@@ -13,6 +13,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
+[assembly: InternalsVisibleTo("Nuclear.Channels.UnitTests")]
 namespace Nuclear.Channels.Hosting.ExecutorServices
 {
     /// <summary>
@@ -33,8 +34,6 @@ namespace Nuclear.Channels.Hosting.ExecutorServices
             Debug.Assert(Services != null);
             Debug.Assert(_channelMessageService != null);
         }
-
-
 
         public void InvokeChannelMethod(Type channel, MethodInfo method, HttpListenerResponse response, List<object> channelRequestBody)
         {

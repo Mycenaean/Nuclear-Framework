@@ -13,8 +13,9 @@ namespace Nuclear.Channels.Hosting
         /// <summary>
         /// Method that will do the initialization of Channels
         /// </summary>
-        /// <param name="domain">AppDomain with all assemblies</param>
+        /// <param name="currentDomain">AppDomain with all assemblies</param>
         /// <param name="Services">IServiceLocator</param>
+        /// <param name="baseURL">Base URL to be exposed for channels</param>
         /// <exception cref="HttpListenerNotSupportedException"></exception>
         void Execute(AppDomain currentDomain, IServiceLocator Services, string baseURL = null);
 

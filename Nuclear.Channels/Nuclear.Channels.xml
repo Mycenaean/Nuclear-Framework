@@ -16,6 +16,7 @@
             <param name="context">HttpListenerContext</param>
             <param name="response">HttpListenerResponse for the client</param>
             <param name="ChannelSchema">AuthenticationSchemes for the Channel</param>
+            <param name="authenticated">True to be returned if user is authenticated and authorized</param>
         </member>
         <member name="T:Nuclear.Channels.Auth.Identity.HttpListenerIdentityService">
             <summary>
@@ -37,6 +38,11 @@
             <param name="Schemes">AuthenticationSchemes</param>
             <exception cref="T:Nuclear.Channels.Auth.ChannelCredentialsException"></exception>
             <returns>True if user is authenticated and authorized , False if not</returns>
+        </member>
+        <member name="T:Nuclear.Channels.Auth.Identity.HttpListenerTokenIdentity">
+            <summary>
+            Token Identity provided to the Channel
+            </summary>
         </member>
         <member name="T:Nuclear.Channels.Base.ChannelBase">
             <summary>
@@ -69,6 +75,12 @@
             </summary>
             <param name="domain">Current AppComain</param>
             <param name="assemblies">Assembly names of your projects</param>
+        </member>
+        <member name="M:Nuclear.Channels.Base.ChannelHost.LoadAssemblies(System.AppDomain)">
+            <summary>
+            Load App Domain
+            </summary>
+            <param name="domain">Current AppDomain</param>
         </member>
         <member name="M:Nuclear.Channels.Base.ChannelHost.StartHosting(System.String)">
             <summary>
@@ -214,20 +226,23 @@
             <summary>
             Http Method to be used
             </summary>
-            <param name="HttpMethod">Http Method</param>        
+            <param name="HttpMethod">Http Method</param>
+            <param name="Description">Description to be used in documentation tool</param>        
         </member>
         <member name="M:Nuclear.Channels.Decorators.ChannelMethodAttribute.#ctor(Nuclear.Channels.Auth.ChannelAuthenticationSchemes,System.String)">
             <summary>
             Auth Type
             </summary>
-            <param name="Schemes">Specified Auth Type for ChannelMethod</param>        
+            <param name="Schemes">Specified Auth Type for ChannelMethod</param>
+            <param name="Description">Description to be used in documentation tool</param>        
         </member>
         <member name="M:Nuclear.Channels.Decorators.ChannelMethodAttribute.#ctor(Nuclear.Channels.Auth.ChannelAuthenticationSchemes,Nuclear.Channels.Enums.ChannelHttpMethod,System.String)">
             <summary>
             Method to be used and Auth Type
             </summary>
             <param name="Schemes">Specified Auth Type for ChannelMethod</param>
-            <param name="HttpMethod">Http Method</param>        
+            <param name="HttpMethod">Http Method</param>
+            <param name="Description">Description to be used in documentation tool</param>        
         </member>
         <member name="T:Nuclear.Channels.DocumentationTool.ChannelDocument">
             <summary>
@@ -378,8 +393,9 @@
             <summary>
             Method that will do the initialization of Channels
             </summary>
-            <param name="domain">AppDomain with all assemblies</param>
+            <param name="currentDomain">AppDomain with all assemblies</param>
             <param name="Services">IServiceLocator</param>
+            <param name="baseURL">Base URL to be exposed for channels</param>
             <exception cref="T:Nuclear.Channels.Hosting.Exceptions.HttpListenerNotSupportedException"></exception>
         </member>
         <member name="M:Nuclear.Channels.Hosting.IChannelActivator.AuthenticationOptions(System.Func{System.String,System.String,System.Boolean})">
@@ -450,25 +466,32 @@
             <summary>
             Method to load all assemblies containing channels
             </summary>
-            <param name="domain">Current AppComain</param>
+            <param name="domain">Current AppDomain</param>
             <param name="assemblies">Assembly names of your projects</param>
+        </member>
+        <member name="M:Nuclear.Channels.IChannelHost.LoadAssemblies(System.AppDomain)">
+            <summary>
+            Load Application Domain
+            </summary>
+            <param name="domain">Current AppDomain</param>
         </member>
         <member name="M:Nuclear.Channels.IChannelHost.AuthenticationOptions(System.Func{System.String,System.Boolean})">
             <summary>
             AuthenticationOptions for Token Authentication
             </summary>
-            <param name="tokenAuthenticationMethod">Delegate for basic authentication</param>
+            <param name="tokenAuthenticationMethod">Delegate for token authentication</param>
         </member>
         <member name="M:Nuclear.Channels.IChannelHost.AuthenticationOptions(System.Func{System.String,System.String,System.Boolean})">
             <summary>
             AuthenticationOptions for Basic Authentication
             </summary>
-            <param name="basicAuthenticationMethod">Delegate for token authentication</param>
+            <param name="basicAuthenticationMethod">Delegate for basic authentication</param>
         </member>
         <member name="M:Nuclear.Channels.IChannelHost.StartHosting(System.String)">
             <summary>
             Starts hosting
             </summary>
+            <param name="baseURL">Base url to be provided , if not base url will be http://localhost:4200 </param>
             <exception cref="T:Nuclear.Channels.Hosting.Exceptions.HttpListenerNotSupportedException"></exception>
         </member>
         <member name="T:Nuclear.Channels.Interfaces.IChannelMethodDescriptor">

@@ -21,10 +21,12 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using Formatting = Newtonsoft.Json.Formatting;
 
+[assembly: InternalsVisibleTo("Nuclear.Channels.UnitTests")]
 namespace Nuclear.Channels.Hosting
 {
     [Export(typeof(IChannelActivator), Lifetime = ExportLifetime.Singleton)]

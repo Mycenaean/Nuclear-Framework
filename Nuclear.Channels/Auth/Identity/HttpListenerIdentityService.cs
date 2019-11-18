@@ -3,9 +3,11 @@ using Nuclear.ExportLocator.Enumerations;
 using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Runtime.CompilerServices;
 using System.Security.Principal;
 using System.Text;
 
+[assembly: InternalsVisibleTo("Nuclear.Channels.UnitTests")]
 namespace Nuclear.Channels.Auth.Identity
 {
     /// <summary>
@@ -24,9 +26,8 @@ namespace Nuclear.Channels.Auth.Identity
             this.TokenAuthenticationMethod = TokenAuthenticationMethod;
         }
 
-        private Func<string, string, bool> BasicAuthenticationMethod { get; set; }
-
-        private Func<string, bool> TokenAuthenticationMethod { get; set; }
+        internal Func<string, string, bool> BasicAuthenticationMethod { get; set; }
+        internal Func<string, bool> TokenAuthenticationMethod { get; set; }
 
         /// <summary>
         /// Function that will do authentication and authorization
@@ -55,7 +56,7 @@ namespace Nuclear.Channels.Auth.Identity
             }            
         }
 
-        private bool AuthenticateRequest(IIdentity identity, ChannelAuthenticationSchemes AuthSchema)
+        internal bool AuthenticateRequest(IIdentity identity, ChannelAuthenticationSchemes AuthSchema)
         {
             if (identity == null)
             {
@@ -76,7 +77,7 @@ namespace Nuclear.Channels.Auth.Identity
             }
         }
 
-        private KeyValuePair<string, string> GetCredentialsForBasicAuthentication(IIdentity identity)
+        internal KeyValuePair<string, string> GetCredentialsForBasicAuthentication(IIdentity identity)
         {
             if (identity is HttpListenerBasicIdentity)
             {
@@ -87,7 +88,7 @@ namespace Nuclear.Channels.Auth.Identity
                 throw new ChannelCredentialsException("Authentication required is Basic ");
         }
 
-        private string GetCredentialsForTokenAuthentication(IIdentity identity)
+        internal string GetCredentialsForTokenAuthentication(IIdentity identity)
         {
             if (identity is HttpListenerTokenIdentity)
             {

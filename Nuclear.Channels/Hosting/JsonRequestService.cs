@@ -5,8 +5,10 @@ using Nuclear.ExportLocator.Enumerations;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using System.Text;
 
+[assembly: InternalsVisibleTo("Nuclear.Channels.UnitTests")]
 namespace Nuclear.Channels.Hosting
 {
     /// <summary>

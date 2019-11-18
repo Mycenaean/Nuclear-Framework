@@ -13,7 +13,9 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("Nuclear.Channels.UnitTests")]
 namespace Nuclear.Channels.Hosting.ExecutorServices
 {
     [Export(typeof(IChannelMessageService), Lifetime = ExportLifetime.Transient)]
@@ -85,7 +87,6 @@ namespace Nuclear.Channels.Hosting.ExecutorServices
                 writer.WriteLine(outputString);
             }
         }
-
 
         public void WrongHttpMethod(HttpListenerResponse response, ChannelHttpMethod HttpMethod)
         {
