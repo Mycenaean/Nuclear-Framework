@@ -173,6 +173,12 @@
             Description provided for documentation
             </summary>
         </member>
+        <member name="P:Nuclear.Channels.Decorators.ChannelAttribute.EnableSessions">
+            <summary>
+            Enable Sessions 
+            </summary>
+            <remarks>Default is false</remarks>
+        </member>
         <member name="M:Nuclear.Channels.Decorators.ChannelAttribute.#ctor">
             <summary>
             CTOR
@@ -190,12 +196,40 @@
             </summary>
             <param name="Description">Description string</param>
         </member>
+        <member name="M:Nuclear.Channels.Decorators.ChannelAttribute.#ctor(System.Boolean)">
+            <summary>
+            Channel Sessions
+            </summary>
+            <param name="EnableSessions">Enable session storing</param>
+        </member>
         <member name="M:Nuclear.Channels.Decorators.ChannelAttribute.#ctor(System.String,System.Object)">
             <summary>
             Channel Name with Description
             </summary>
             <param name="Name">Name of the base route</param>
             <param name="Description">Description string</param>
+        </member>
+        <member name="M:Nuclear.Channels.Decorators.ChannelAttribute.#ctor(System.String,System.Boolean)">
+            <summary>
+            Channel Name with Sessions
+            </summary>
+            <param name="Name">Name of the base route</param>
+            <param name="EnableSessions">Enable session storing</param>
+        </member>
+        <member name="M:Nuclear.Channels.Decorators.ChannelAttribute.#ctor(System.Object,System.Boolean)">
+            <summary>
+            Channel Description with Sessions
+            </summary>
+            <param name="Description">Description string</param>
+            <param name="EnableSessions">Enable session storing</param>
+        </member>
+        <member name="M:Nuclear.Channels.Decorators.ChannelAttribute.#ctor(System.String,System.Object,System.Boolean)">
+            <summary>
+            Channel Name with Description and Session storing
+            </summary>
+            <param name="Name">Name of the base route</param>
+            <param name="Description">Description string</param>
+            <param name="EnableSessions">Enable session storing</param>
         </member>
         <member name="T:Nuclear.Channels.Decorators.ChannelMethodAttribute">
             <summary>

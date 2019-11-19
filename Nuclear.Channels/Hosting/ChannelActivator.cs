@@ -37,7 +37,6 @@ namespace Nuclear.Channels.Hosting
         private IChannelMethodDescriptor _channelMethodDescriptor;
         private IChannelMethodRequestActivator _requestActivator;
         private IChannelMessageService _msgService;
-        private Stopwatch watcher;
         private string BaseURL = null;
         private Func<string, string, bool> _basicAuthenticationMethod;
         private Func<string, bool> _tokenAuthenticationMethod;
@@ -98,7 +97,7 @@ namespace Nuclear.Channels.Hosting
 
         public void MethodExecute(Type channel, CancellationToken cancellationToken)
         {
-            MethodInfo[] methods = channel.GetMethods().Where(x => x.GetCustomAttribute(typeof(ChannelMethodAttribute)) != null).ToArray();
+            MethodInfo[] methods = channel.GetMethods().Where(x => x.GetCustomAttribute<ChannelMethodAttribute>() != null).ToArray();
 
             foreach (var method in methods)
             {
@@ -114,7 +113,7 @@ namespace Nuclear.Channels.Hosting
         {
             cancellationToken.ThrowIfCancellationRequested();
             ChannelEndpoint endpoint = new ChannelEndpoint();
-            ChannelAttribute channelAttr = channel.GetCustomAttribute(typeof(ChannelAttribute)) as ChannelAttribute;
+            ChannelAttribute channelAttr = channel.GetCustomAttribute<ChannelAttribute>();
             if (!String.IsNullOrEmpty(channelAttr.Name))
                 endpoint.URL = "/channels/" + channelAttr.Name + "/" + method.Name + "/";
             else
@@ -122,8 +121,8 @@ namespace Nuclear.Channels.Hosting
 
             endpoint.Name = channel.Name + "." + method.Name;
 
-            ChannelMethodAttribute ChannelMethod = method.GetCustomAttribute(typeof(ChannelMethodAttribute)) as ChannelMethodAttribute;
-            AuthorizeChannelAttribute authAttr = channel.GetCustomAttribute(typeof(AuthorizeChannelAttribute)) as AuthorizeChannelAttribute;
+            ChannelMethodAttribute ChannelMethod = method.GetCustomAttribute<ChannelMethodAttribute>();
+            AuthorizeChannelAttribute authAttr = channel.GetCustomAttribute<AuthorizeChannelAttribute>();
             ChannelAuthenticationSchemes ChannelSchema = ChannelMethod.Schema;
             ChannelHttpMethod HttpMethod = ChannelMethod.HttpMethod;
             HttpListener httpChannel = new HttpListener();

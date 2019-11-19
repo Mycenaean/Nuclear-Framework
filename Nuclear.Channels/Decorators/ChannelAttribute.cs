@@ -20,11 +20,17 @@ namespace Nuclear.Channels.Decorators
         public object Description { get; set; }
 
         /// <summary>
+        /// Enable Sessions 
+        /// </summary>
+        /// <remarks>Default is false</remarks>
+        public bool EnableSessions { get; set; }
+
+        /// <summary>
         /// CTOR
         /// </summary>
         public ChannelAttribute()
         {
-
+            EnableSessions = false;
         }
 
         /// <summary>
@@ -34,6 +40,7 @@ namespace Nuclear.Channels.Decorators
         public ChannelAttribute(string Name)
         {
             this.Name = Name;
+            EnableSessions = false;
         }
 
         /// <summary>
@@ -43,6 +50,17 @@ namespace Nuclear.Channels.Decorators
         public ChannelAttribute(object Description)
         {
             this.Description = Description;
+            EnableSessions = false;
+        }
+
+
+        /// <summary>
+        /// Channel Sessions
+        /// </summary>
+        /// <param name="EnableSessions">Enable session storing</param>
+        public ChannelAttribute(bool EnableSessions)
+        {
+            this.EnableSessions = EnableSessions;
         }
 
         /// <summary>
@@ -54,7 +72,43 @@ namespace Nuclear.Channels.Decorators
         {
             this.Name = Name;
             this.Description = Description;
+            EnableSessions = false;
         }
 
+        /// <summary>
+        /// Channel Name with Sessions
+        /// </summary>
+        /// <param name="Name">Name of the base route</param>
+        /// <param name="EnableSessions">Enable session storing</param>
+        public ChannelAttribute(string Name, bool EnableSessions)
+        {
+            this.Name = Name;
+            this.EnableSessions = EnableSessions;
+        }
+
+        /// <summary>
+        /// Channel Description with Sessions
+        /// </summary>
+        /// <param name="Description">Description string</param>
+        /// <param name="EnableSessions">Enable session storing</param>
+        public ChannelAttribute(object Description, bool EnableSessions)
+        {
+            this.Description = Description;
+            this.EnableSessions = EnableSessions;
+        }
+
+
+        /// <summary>
+        /// Channel Name with Description and Session storing
+        /// </summary>
+        /// <param name="Name">Name of the base route</param>
+        /// <param name="Description">Description string</param>
+        /// <param name="EnableSessions">Enable session storing</param>
+        public ChannelAttribute(string Name, object Description, bool EnableSessions)
+        {
+            this.Name = Name;
+            this.Description = Description;
+            this.EnableSessions = this.EnableSessions;
+        }
     }
 }

@@ -43,18 +43,18 @@ namespace Nuclear.Channels.DocumentationTool
             foreach (var channel in channels)
             {
                 ChannelDocument channelDoc = new ChannelDocument();
-                ChannelAttribute channelAttr = channel.GetCustomAttribute(typeof(ChannelAttribute)) as ChannelAttribute;
+                ChannelAttribute channelAttr = channel.GetCustomAttribute<ChannelAttribute>();
                 string channelDescription = channelAttr.Description == null ? string.Empty : channelAttr.Description.ToString();
                 string channelName = String.IsNullOrEmpty(channelAttr.Name) ? channel.Name : channelAttr.Name;
                 string channelRoute = $"~/channels/{channelName}";
-                MethodInfo[] methods = channel.GetMethods().Where(x => x.GetCustomAttribute(typeof(ChannelMethodAttribute)) != null).ToArray();
+                MethodInfo[] methods = channel.GetMethods().Where(x => x.GetCustomAttribute<ChannelMethodAttribute>() != null).ToArray();
                 ChannelMethodDocs = new List<ChannelMethodDocument>();
                 foreach (var method in methods)
                 {
 
                     ChannelMethodDocument methodDocument = new ChannelMethodDocument();
                     Dictionary<string, Type> description = Services.Get<IChannelMethodDescriptor>().GetMethodDescription(method);
-                    ChannelMethodAttribute ChannelMethodAttribute = method.GetCustomAttribute(typeof(ChannelMethodAttribute)) as ChannelMethodAttribute;
+                    ChannelMethodAttribute ChannelMethodAttribute = method.GetCustomAttribute<ChannelMethodAttribute>();
                     ChannelHttpMethod HttpMethod = ChannelMethodAttribute.HttpMethod;
                     Dictionary<string, Type>.KeyCollection keys = description.Keys;
                     Dictionary<string, Type>.ValueCollection values = description.Values;
