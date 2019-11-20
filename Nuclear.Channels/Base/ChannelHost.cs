@@ -17,6 +17,7 @@ namespace Nuclear.Channels.Base
         private IServiceLocator Services;
         private IChannelActivator _activator;
         private static ChannelHost _host;
+        private static object _lock = new object();
 
         /// <summary>
         /// Get the Singleton Instance
@@ -25,11 +26,14 @@ namespace Nuclear.Channels.Base
         {
             get
             {
-                if (_host == null)
+                lock(_lock)
                 {
-                    _host = new ChannelHost();
+                    if (_host == null)
+                    {
+                        _host = new ChannelHost();
+                    }
+                    return _host;
                 }
-                return _host;
             }
         }
 

@@ -43,6 +43,7 @@ namespace Nuclear.Channels.Invoker
             label5.Text = "Authentication Type";
             label6.Text = "Username";
             label7.Text = "Password";
+            label8.Text = "Token";
 
             textBox3.ReadOnly = true; //ChannelMethod response (not editable)
             textBox6.PasswordChar = '*'; //Encode Password
@@ -92,9 +93,15 @@ namespace Nuclear.Channels.Invoker
             if (!String.IsNullOrEmpty(textBox4.Text))
             {
                 request.AuthType = textBox4.Text;
-                request.Username = textBox5.Text;
-                request.Password = textBox6.Text;
+                if (request.AuthType.Equals("Basic", StringComparison.OrdinalIgnoreCase))
+                {
+                    request.Username = textBox5.Text;
+                    request.Password = textBox6.Text;
+                }
+                else if (request.AuthType.Equals("Bearer", StringComparison.OrdinalIgnoreCase))
+                    request.Token = textBox7.Text;
             }
+
 
             HttpWebRequest httpRequest = (HttpWebRequest)WebRequest.Create(request.Url);
             httpRequest.Method = request.Method;
@@ -129,9 +136,14 @@ namespace Nuclear.Channels.Invoker
                 requestStream.Close();
             }
 
-            if (request.AuthType != null)
+            if (request.AuthType != null && request.AuthType.Equals("basic", StringComparison.OrdinalIgnoreCase))
             {
                 string encodedAuthorization = Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes($"{request.Username}:{request.Password}"));
+                httpRequest.Headers.Add("Authorization", $"{request.AuthType} {encodedAuthorization}");
+            }
+            else if (request.AuthType.Equals("bearer", StringComparison.OrdinalIgnoreCase))
+            {
+                string encodedAuthorization = Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes($"{request.Token}"));
                 httpRequest.Headers.Add("Authorization", $"{request.AuthType} {encodedAuthorization}");
             }
 

@@ -47,5 +47,10 @@ namespace Nuclear.Channels.Invoker.Entities
         /// </summary>
         public string Password { get; set; }
 
+        /// <summary>
+        /// Bearer token
+        /// </summary>
+        public string Token { get; set; }
+
     }
 }

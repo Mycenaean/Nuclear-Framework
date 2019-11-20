@@ -17,6 +17,7 @@ namespace Nuclear.ExportLocator.Services
         private ExportFactory factory;
         private IList<ExportInformation> exports;
         private static ServiceLocator Locator = null;
+        private static object _lock = new object();
 
         /// <summary>
         /// Get ServiceLocator singleton instance
@@ -25,13 +26,16 @@ namespace Nuclear.ExportLocator.Services
         {
             get
             {
-                if (Locator == null)
+                lock(_lock)
                 {
-                    Locator = new ServiceLocator();
-                    return new ServiceLocator();
+                    if (Locator == null)
+                    {
+                        Locator = new ServiceLocator();
+                        return new ServiceLocator();
+                    }
+                    else
+                        return Locator;
                 }
-                else
-                    return Locator;
             }
         }
 
