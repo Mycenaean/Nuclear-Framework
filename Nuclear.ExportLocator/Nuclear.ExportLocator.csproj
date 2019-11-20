@@ -12,6 +12,9 @@
     <RepositoryUrl>https://github.com/Mycenaean/Nuclear-Framework/tree/master/Nuclear.ExportLocator</RepositoryUrl>
     <Description>ServiceLocator that is registering services accross apis using ExportAttribute</Description>
     <Version>1.0.2</Version>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
+    <FileVersion>3.0.0.0</FileVersion>
+    <PackageReleaseNotes>Versioning will follow .NET Core versioning from now on. IServiceLocator protection when multiple threads try to CreateServiceLocator from ServiceLocatorBuilder</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

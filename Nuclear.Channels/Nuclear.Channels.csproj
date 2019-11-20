@@ -9,10 +9,10 @@
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>1.0.2</Version>
-    <PackageReleaseNotes>Added documentation</PackageReleaseNotes>
+    <PackageReleaseNotes>Versioning will follow .NET Core versioning from now on. IChannelHost protection when multiple threads try to get IChannelHost from ChannelHostBuilder. Documentation fix , small enhancements on internals.</PackageReleaseNotes>
     <Description>Lightweight API Framework for building Http Endpoints</Description>
-    <AssemblyVersion>1.0.2.0</AssemblyVersion>
-    <FileVersion>1.0.2.0</FileVersion>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
+    <FileVersion>3.0.0.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
