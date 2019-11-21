@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using Nuclear.Channels.Auth;
+﻿using Nuclear.Channels.Auth;
 using Nuclear.Channels.Auth.Identity;
 using Nuclear.Channels.Contracts;
 using Nuclear.Channels.Decorators;
@@ -7,8 +6,6 @@ using Nuclear.Channels.Enums;
 using Nuclear.Channels.Hosting.Contracts;
 using Nuclear.Channels.Hosting.Exceptions;
 using Nuclear.Channels.Interfaces;
-using Nuclear.Channels.Messaging;
-using Nuclear.Channels.Messaging.Services.ChannelMessage;
 using Nuclear.Data.Logging.Enums;
 using Nuclear.Data.Logging.Services;
 using Nuclear.ExportLocator.Decorators;
@@ -24,7 +21,6 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
-using Formatting = Newtonsoft.Json.Formatting;
 
 [assembly: InternalsVisibleTo("Nuclear.Channels.UnitTests")]
 namespace Nuclear.Channels.Hosting
@@ -40,10 +36,12 @@ namespace Nuclear.Channels.Hosting
         private string BaseURL = null;
         private Func<string, string, bool> _basicAuthenticationMethod;
         private Func<string, bool> _tokenAuthenticationMethod;
+        private static List<Cookie> _sessionKeys;
 
         [DebuggerStepThrough]
         public ChannelActivator()
         {
+            _sessionKeys = new List<Cookie>();
         }
 
         public void AuthenticationOptions(Func<string, string, bool> basicAuthMethod)
@@ -135,9 +133,16 @@ namespace Nuclear.Channels.Hosting
 
             bool httpAuthRequired = false;
 
-
             //Start hosting
             httpChannel.Prefixes.Add(methodURL);
+            if(authAttr != null)
+            {
+                if (authAttr.Schema != ChannelAuthenticationSchemes.Anonymous)
+                {
+                    httpAuthRequired = true;
+                }
+            }
+            //ChannelMethod can override ChannelAttribute Authentication Schemes
             if (ChannelSchema != ChannelAuthenticationSchemes.Anonymous)
             {
                 httpAuthRequired = true;
@@ -147,7 +152,6 @@ namespace Nuclear.Channels.Hosting
             while (true)
             {
                 httpChannel.Start();
-                Console.WriteLine($"Initialized {methodURL}");
                 HttpListenerContext context = httpChannel.GetContext();
                 HttpListenerRequest request = context.Request;
 
@@ -156,39 +160,31 @@ namespace Nuclear.Channels.Hosting
                 LogChannel.Write(LogSeverity.Info, $"IsAuthenticated:{request.IsAuthenticated}");
 
                 HttpListenerResponse response = context.Response;
-
-                if (httpAuthRequired)
+                bool validCookie = false;
+                if (channelAttr.EnableSessions)
+                    validCookie = ValidSession(request);
+                if (httpAuthRequired && !validCookie)
                 {
-                    bool authenticated = false;
-                    HttpListenerIdentityService identityService = new HttpListenerIdentityService(_basicAuthenticationMethod, _tokenAuthenticationMethod);
-                    StreamWriter writer = new StreamWriter(response.OutputStream);
-                    try
-                    {
-                        bool knownUser = identityService.AuthenticatedAndAuthorized(context, ChannelSchema);
-                        if (!knownUser)
-                            _msgService.FailedAuthenticationResponse(ChannelSchema, response);
-                        else
-                            authenticated = true;
-                    }
-                    catch (ChannelCredentialsException cEx)
-                    {
-                        response.StatusCode = 401;
-                        _msgService.ExceptionHandler(writer, cEx, response);
-                    }
-                    catch (HttpListenerException hEx)
-                    {
-                        _msgService.ExceptionHandler(writer, hEx, response);
-                    }
-                    finally
-                    {
-                        writer.Flush();
-                        writer.Close();
-                    }
-
+                    bool authenticated = CheckAuthentication(context, ChannelSchema, response);
                     if(!authenticated)
                         goto AuthenticationFailed;
+                    else
+                    {
+                        if (channelAttr.EnableSessions)
+                        {
+                            string sessionKey = Guid.NewGuid().ToString();
+                            Cookie sessionCookie = new Cookie()
+                            {
+                                Expires = DateTime.Now.AddMinutes(30),
+                                Name = "channelAuthCookie",
+                                Secure = true,
+                                Value = sessionKey
+                            };
+                            response.SetCookie(sessionCookie);
+                            _sessionKeys.Add(sessionCookie);
+                        }
+                    }
                 }
-
 
                 //Check if the Http Method is correct
                 if (HttpMethod.ToString() != request.HttpMethod && HttpMethod != ChannelHttpMethod.Unknown)
@@ -241,6 +237,55 @@ namespace Nuclear.Channels.Hosting
                 response.Close();
             }
 
+        }
+
+        private bool ValidSession(HttpListenerRequest request)
+        {
+            Cookie sessionCookie = request.Cookies["channelAuthCookie"];
+            if (sessionCookie == null)
+                return false;
+            bool validSessionKey = _sessionKeys.Any(x => x.Equals(sessionCookie));
+            if (validSessionKey && !sessionCookie.Expired)
+                return true;
+            else if (validSessionKey && sessionCookie.Expired)
+            {
+                _sessionKeys.Remove(sessionCookie);
+                return false;
+            }
+            else
+                return false;
+
+        }
+
+        private bool CheckAuthentication(HttpListenerContext context , ChannelAuthenticationSchemes ChannelSchema , HttpListenerResponse response)
+        {
+            bool authenticated = false;
+            HttpListenerIdentityService identityService = new HttpListenerIdentityService(_basicAuthenticationMethod, _tokenAuthenticationMethod);
+            StreamWriter writer = new StreamWriter(response.OutputStream);
+            try
+            {
+                bool knownUser = identityService.AuthenticatedAndAuthorized(context, ChannelSchema);
+                if (!knownUser)
+                    _msgService.FailedAuthenticationResponse(ChannelSchema, response);
+                else
+                    authenticated = true;
+            }
+            catch (ChannelCredentialsException cEx)
+            {
+                response.StatusCode = 401;
+                _msgService.ExceptionHandler(writer, cEx, response);
+            }
+            catch (HttpListenerException hEx)
+            {
+                _msgService.ExceptionHandler(writer, hEx, response);
+            }
+            finally
+            {
+                writer.Flush();
+                writer.Close();
+            }
+
+            return authenticated;
         }
     }
 }

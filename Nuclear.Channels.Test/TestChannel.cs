@@ -1,4 +1,5 @@
-﻿using Nuclear.Channels.Base;
+﻿using Nuclear.Channels.Auth;
+using Nuclear.Channels.Base;
 using Nuclear.Channels.Decorators;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,8 @@ using System.Text;
 
 namespace ConsoleApp1
 {
-    [Channel]
+    [Channel(EnableSessions = true)]
+    [AuthorizeChannel(ChannelAuthenticationSchemes.Basic)]
     public class TestChannel : ChannelBase
     {
         [ChannelMethod]

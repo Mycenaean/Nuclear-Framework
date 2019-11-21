@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Security.Principal;
 using System.Text;
 
-[assembly : InternalsVisibleTo("Nuclear.Channels.UnitTestss")]
+[assembly: InternalsVisibleTo("Nuclear.Channels.UnitTestss")]
 namespace Nuclear.Channels.Auth.Identity
 {
     internal static class HttpListenerIdentityMiddleware
@@ -30,6 +30,29 @@ namespace Nuclear.Channels.Auth.Identity
                 token = string.Empty;
                 return false;
             }
+        }
+
+        internal static bool IsBasicHeader(HttpListenerRequest request, out string username, out string password)
+        {
+            string basicIdentity = request.Headers["Authorization"];
+            if (!String.IsNullOrEmpty(basicIdentity))
+            {
+                string[] authHeader = basicIdentity.Split(' ');
+                string usernamePasswordDecoded = Encoding.UTF8.GetString(Convert.FromBase64String(authHeader[1]));
+                string[] usernamePassword = usernamePasswordDecoded.Split(':');
+                username = usernamePassword[0];
+                password = usernamePassword[1];
+                return true;
+            }
+            username = string.Empty;
+            password = string.Empty;
+            return false;
+        }
+
+        internal static IPrincipal ParseBasicAuthentication(string username, string password)
+        {
+            HttpListenerBasicIdentity identity = new HttpListenerBasicIdentity(username, password);
+            return new GenericPrincipal(identity, Array.Empty<string>());
         }
 
         internal static IPrincipal ParseTokenAuthentication(string token)

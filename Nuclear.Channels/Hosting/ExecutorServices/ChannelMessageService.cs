@@ -90,7 +90,6 @@ namespace Nuclear.Channels.Hosting.ExecutorServices
 
         public void WrongHttpMethod(HttpListenerResponse response, ChannelHttpMethod HttpMethod)
         {
-
             IChannelMessage msg = new ChannelMessage()
             {
                 Message = $"Wrong HTTP Method used. In order to call this endpoint u need to send {HttpMethod.ToString()} request"
@@ -102,7 +101,6 @@ namespace Nuclear.Channels.Hosting.ExecutorServices
             {
                 writer.WriteLine(outputString);
             }
-            response.Close();
         }
     }
 }

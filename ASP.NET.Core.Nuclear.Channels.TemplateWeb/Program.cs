@@ -25,8 +25,10 @@ namespace ASP.NET.Core.Nuclear.Channels.TemplateWeb
             //To change base address add your base address in host.StartHosting("your base address");
             //----------------------------------------------------------------------------------------
 
+            AuthMethods methods = new AuthMethods();
             IChannelHost host = ChannelHostBuilder.CreateHost();
             host.LoadAssemblies(AppDomain.CurrentDomain, null);
+            host.AuthenticationOptions(methods.AuthenticateBasic);
             host.StartHosting(null);
             CreateHostBuilder(args).Build().Run();
         }
@@ -37,5 +39,18 @@ namespace ASP.NET.Core.Nuclear.Channels.TemplateWeb
                 {
                     webBuilder.UseStartup<Startup>();
                 });
+    }
+
+    public class AuthMethods
+    {
+        public bool AuthenticateBasic(string username, string password)
+        {
+            return true;
+        }
+
+        public bool AuthenticateToken(string token)
+        {
+            return true;
+        }
     }
 }

@@ -24,7 +24,6 @@ namespace Nuclear.Channels.Hosting.ExecutorServices
     {
         private IServiceLocator Services;
         private IChannelMessageService _channelMessageService;
-        private HttpListenerResponse _response;
 
         public ChannelMethodInvoker()
         {
@@ -37,18 +36,14 @@ namespace Nuclear.Channels.Hosting.ExecutorServices
 
         public void InvokeChannelMethod(Type channel, MethodInfo method, HttpListenerResponse response, List<object> channelRequestBody)
         {
-            _response = response;
             if (method.GetCustomAttribute(typeof(AsyncStateMachineAttribute)) != null)
                 InvokeChannelMethodAsync(channel, method, response, channelRequestBody);
             else
                 InvokeChannelMethodSync(channel, method, response, channelRequestBody);
-
-            _response = null;
         }
 
         public void InvokeChannelMethod(Type channel, MethodInfo method, HttpListenerResponse response)
         {
-            _response = response;
             if (method.GetCustomAttribute(typeof(AsyncStateMachineAttribute)) != null)
                 InvokeChannelMethodAsync(channel, method, response, null);
             else
@@ -56,7 +51,6 @@ namespace Nuclear.Channels.Hosting.ExecutorServices
                 object chResponse = method.Invoke(Activator.CreateInstance(channel), null);
                 _channelMessageService.WriteHttpResponse(chResponse, response);
             }
-            _response = null;
         }
 
         public void InvokeChannelMethodSync(Type channel, MethodInfo method, HttpListenerResponse response, List<object> channelRequestBody)

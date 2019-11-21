@@ -36,9 +36,9 @@ namespace Nuclear.Channels.Auth.Identity
         /// <param name="Schemes">AuthenticationSchemes</param>
         /// <exception cref="ChannelCredentialsException"></exception>
         /// <returns>True if user is authenticated and authorized , False if not</returns>
-        public bool AuthenticatedAndAuthorized(HttpListenerContext context,ChannelAuthenticationSchemes Schemes)
+        public bool AuthenticatedAndAuthorized(HttpListenerContext context, ChannelAuthenticationSchemes Schemes)
         {
-            if(Schemes == ChannelAuthenticationSchemes.Token)
+            if (Schemes == ChannelAuthenticationSchemes.Token)
             {
                 string token = string.Empty;
                 bool isToken = HttpListenerIdentityMiddleware.IsTokenHeader(context.Request, out token);
@@ -52,8 +52,17 @@ namespace Nuclear.Channels.Auth.Identity
             }
             else
             {
-                return AuthenticateRequest(context.User.Identity, Schemes);
-            }            
+                string username = string.Empty;
+                string password = string.Empty;
+                bool isBasic = HttpListenerIdentityMiddleware.IsBasicHeader(context.Request, out username, out password);
+
+                if(isBasic)
+                {
+                    IPrincipal basicIdentity = HttpListenerIdentityMiddleware.ParseBasicAuthentication(username, password);
+                    return AuthenticateRequest(basicIdentity.Identity, ChannelAuthenticationSchemes.Basic);
+                }
+                throw new ChannelCredentialsException("Malformed or missing header for the basic authentication");
+            }
         }
 
         internal bool AuthenticateRequest(IIdentity identity, ChannelAuthenticationSchemes AuthSchema)
