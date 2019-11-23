@@ -31,7 +31,7 @@ namespace Nuclear.ExportLocator.Services
                     if (Locator == null)
                     {
                         Locator = new ServiceLocator();
-                        return new ServiceLocator();
+                        return Locator;
                     }
                     else
                         return Locator;

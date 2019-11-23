@@ -8,8 +8,8 @@
     <RepositoryUrl>https://github.com/Mycenaean/Nuclear-Framework/tree/master/Nuclear.Channels</RepositoryUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>3.0.0</Version>
-    <PackageReleaseNotes>Versioning will follow .NET Core versioning from now on. IChannelHost protection when multiple threads try to get IChannelHost from ChannelHostBuilder. Documentation fix , small enhancements on internals.</PackageReleaseNotes>
+    <Version>3.0.1</Version>
+    <PackageReleaseNotes>Fixed Basic Identity , Added session</PackageReleaseNotes>
     <Description>Lightweight API Framework for building Http Endpoints</Description>
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <FileVersion>3.0.0.0</FileVersion>
