@@ -8,13 +8,13 @@ Nuclear framework provides alternative way to build lightweight API endpoints us
  ```
  To install it with .NET CLI
  ```
- dotnet add package Nuclear.Channels --version 3.0.0
+ dotnet add package Nuclear.Channels --version 3.0.1
  ```
   
 ## [Nuclear.ExportLocator](https://github.com/Mycenaean/Nuclear-Framework/tree/master/Nuclear.ExportLocator)
  Class Library that`s been used as an Dependency Injection tool. To install it with Package Manager
  ```
- Install-Package Nuclear.ExportLocator -Version 3.0.1
+ Install-Package Nuclear.ExportLocator -Version 3.0.0
  ```
  To install it with .NET CLI
  ```
