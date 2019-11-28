@@ -156,11 +156,11 @@ Response of the ChannelMethods is always in the form of IChannelMessage containi
 
 ```c#
 public interface IChannelMessage
-    {
+{
         bool Success { get; set; }
         object Output { get; set; }
         string Message { get; set; }
-    }
+}
 ```
 
 Response in browser:
