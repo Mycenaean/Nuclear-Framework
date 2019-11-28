@@ -26,12 +26,15 @@ Nuclear framework provides alternative way to build lightweight API endpoints us
 
 ## [Nuclear.Channels.Invoker](https://github.com/Mycenaean/Nuclear-Framework/tree/master/Nuclear.Channels.Invoker)
  Application for easy invoking of channels. It can be used as a regular Web Service Invoker not specific to channels.
+### Currently work in progress
 
 ## [ASP.NET.Core.Nuclear.Channels.TemplateWeb](https://github.com/Mycenaean/Nuclear-Framework/tree/master/ASP.NET.Core.Nuclear.Channels.TemplateWeb)
  ASP.NET Core Razor Pages project that can serve as a template for Channels.
+ ### Currently work in progress
 
 ## [Nuclear.Channels.Remoting](https://github.com/Mycenaean/Nuclear-Framework/tree/master/ASP.NET.Core.Nuclear.Channels.TemplateWeb)
- Class Library for easy calls to the Channels
+ Class Library for easy calls to the Channels.
+ ### Currently work in progress
 
 # Authors
  Nikola Milinkovic - *initial work and maintainer* - [Mycenaean](https://github.com/Mycenaean)
