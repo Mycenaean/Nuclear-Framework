@@ -151,6 +151,26 @@ public class TestChannel
 	}
 }
 ```
+## Response Object
+Response of the ChannelMethods is always in the form of IChannelMessage containing properties , Success , Message and Output. Methods return type is always in the Output field.
+
+```c#
+public interface IChannelMessage
+    {
+        bool Success { get; set; }
+        object Output { get; set; }
+        string Message { get; set; }
+    }
+```
+
+Response in browser:
+```json
+{
+  "Success": true,
+  "Output": "Hello World",
+  "Message": null
+}
+```
 
 # Documentation tool
 
