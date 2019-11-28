@@ -157,17 +157,17 @@ Response of the ChannelMethods is always in the form of IChannelMessage containi
 ```c#
 public interface IChannelMessage
 {
-        bool Success { get; set; }
-        object Output { get; set; }
-        string Message { get; set; }
+     bool Success { get; set; }
+     object Output { get; set; }
+     string Message { get; set; }
 }
 ```
 
-Response in browser:
+Example response in browser:
 ```json
 {
   "Success": true,
-  "Output": "Hello World",
+  "Output": "Hello World from ChannelMethod",
   "Message": null
 }
 ```
