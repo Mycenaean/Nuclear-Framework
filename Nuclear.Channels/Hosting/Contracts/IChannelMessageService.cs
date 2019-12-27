@@ -1,4 +1,8 @@
-﻿using Nuclear.Channels.Auth;
+﻿// Copyright © Nikola Milinkovic 
+// Licensed under the MIT License (MIT).
+// See License.md in the repository root for more information.
+
+using Nuclear.Channels.Auth;
 using Nuclear.Channels.Enums;
 using System;
 using System.IO;

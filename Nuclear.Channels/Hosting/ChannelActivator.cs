@@ -1,4 +1,8 @@
-﻿using Nuclear.Channels.Auth;
+﻿// Copyright © Nikola Milinkovic 
+// Licensed under the MIT License (MIT).
+// See License.md in the repository root for more information.
+
+using Nuclear.Channels.Auth;
 using Nuclear.Channels.Auth.Identity;
 using Nuclear.Channels.Contracts;
 using Nuclear.Channels.Decorators;
@@ -37,11 +41,12 @@ namespace Nuclear.Channels.Hosting
         private Func<string, string, bool> _basicAuthenticationMethod;
         private Func<string, bool> _tokenAuthenticationMethod;
         private static List<Cookie> _sessionKeys;
+        private string _rootPath;
 
         [DebuggerStepThrough]
         public ChannelActivator()
         {
-            _sessionKeys = new List<Cookie>();
+
         }
 
         public void AuthenticationOptions(Func<string, string, bool> basicAuthMethod)
@@ -53,12 +58,14 @@ namespace Nuclear.Channels.Hosting
         {
             _tokenAuthenticationMethod = tokenAuthMethod ?? throw new ArgumentNullException("Authentication function must not be null");
         }
-
+        
         public void Execute(AppDomain domain, IServiceLocator _Services, string baseURL = null)
         {
             Services = _Services;
             Debug.Assert(HttpListener.IsSupported);
             Debug.Assert(_Services != null);
+
+            OneTimeSetup();
 
             if (!HttpListener.IsSupported)
             {
@@ -79,12 +86,12 @@ namespace Nuclear.Channels.Hosting
             Debug.Assert(_requestActivator != null);
             Debug.Assert(_msgService != null);
 
-            List<Type> Channels = new List<Type>();
+            List<Type> channels = new List<Type>();
 
-            Channels = _channelLocator.RegisteredChannels(domain);
+            channels = _channelLocator.RegisteredChannels(domain);
 
             //Initialization part
-            foreach (var channel in Channels)
+            foreach (var channel in channels)
             {
                 CancellationTokenSource cts = new CancellationTokenSource();
                 CancellationToken token = cts.Token;
@@ -135,7 +142,7 @@ namespace Nuclear.Channels.Hosting
 
             //Start hosting
             httpChannel.Prefixes.Add(methodURL);
-            if(authAttr != null)
+            if (authAttr != null)
             {
                 if (authAttr.Schema != ChannelAuthenticationSchemes.Anonymous)
                 {
@@ -152,6 +159,7 @@ namespace Nuclear.Channels.Hosting
             while (true)
             {
                 httpChannel.Start();
+                Console.WriteLine($"Listening on {methodURL}");
                 HttpListenerContext context = httpChannel.GetContext();
                 HttpListenerRequest request = context.Request;
 
@@ -166,7 +174,7 @@ namespace Nuclear.Channels.Hosting
                 if (httpAuthRequired && !validCookie)
                 {
                     bool authenticated = CheckAuthentication(context, ChannelSchema, response);
-                    if(!authenticated)
+                    if (!authenticated)
                         goto AuthenticationFailed;
                     else
                     {
@@ -190,6 +198,7 @@ namespace Nuclear.Channels.Hosting
                 if (HttpMethod.ToString() != request.HttpMethod && HttpMethod != ChannelHttpMethod.Unknown)
                 {
                     _msgService.WrongHttpMethod(response, HttpMethod);
+                    LogChannel.Write(LogSeverity.Error, "Wrong HttpMethod... Closing request");
                 }
 
 
@@ -213,16 +222,19 @@ namespace Nuclear.Channels.Hosting
                     {
                         response.StatusCode = 400;
                         _msgService.ExceptionHandler(writer, cEx, response);
+                        LogChannel.Write(LogSeverity.Error, cEx.Message);
                     }
                     catch (ChannelMethodParameterException pEx)
                     {
                         response.StatusCode = 400;
                         _msgService.ExceptionHandler(writer, pEx, response);
+                        LogChannel.Write(LogSeverity.Error, pEx.Message);
                     }
                     catch (TargetParameterCountException tEx)
                     {
                         response.StatusCode = 400;
                         _msgService.ExceptionHandler(writer, tEx, response);
+                        LogChannel.Write(LogSeverity.Error, tEx.Message);
                     }
                     finally
                     {
@@ -237,6 +249,16 @@ namespace Nuclear.Channels.Hosting
                 response.Close();
             }
 
+        }
+
+        private void OneTimeSetup()
+        {
+            _rootPath = (new FileInfo(AppDomain.CurrentDomain.BaseDirectory)).Directory.Parent.Parent.Parent.FullName;
+            DirectoryInfo logsDirectory = new DirectoryInfo(Path.Combine(_rootPath, "Logs"));
+            if (!Directory.Exists(logsDirectory.FullName))
+                logsDirectory.Create();
+
+            _sessionKeys = new List<Cookie>();
         }
 
         private bool ValidSession(HttpListenerRequest request)
@@ -257,7 +279,7 @@ namespace Nuclear.Channels.Hosting
 
         }
 
-        private bool CheckAuthentication(HttpListenerContext context , ChannelAuthenticationSchemes ChannelSchema , HttpListenerResponse response)
+        private bool CheckAuthentication(HttpListenerContext context, ChannelAuthenticationSchemes ChannelSchema, HttpListenerResponse response)
         {
             bool authenticated = false;
             HttpListenerIdentityService identityService = new HttpListenerIdentityService(_basicAuthenticationMethod, _tokenAuthenticationMethod);
@@ -274,10 +296,12 @@ namespace Nuclear.Channels.Hosting
             {
                 response.StatusCode = 401;
                 _msgService.ExceptionHandler(writer, cEx, response);
+                LogChannel.Write(LogSeverity.Error, cEx.Message);
             }
             catch (HttpListenerException hEx)
             {
                 _msgService.ExceptionHandler(writer, hEx, response);
+                LogChannel.Write(LogSeverity.Error, hEx.Message);
             }
             finally
             {

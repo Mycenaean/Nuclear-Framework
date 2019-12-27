@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Copyright © Nikola Milinkovic 
+// Licensed under the MIT License (MIT).
+// See License.md in the repository root for more information.
+
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 
@@ -7,7 +11,7 @@ namespace Nuclear.Channels.Interfaces
     /// <summary>
     /// ChannelMethodDescriptor Contract
     /// </summary>
-    public interface IChannelMethodDescriptor
+    internal interface IChannelMethodDescriptor
     {
         /// <summary>
         /// Get Input parameters of targeted method

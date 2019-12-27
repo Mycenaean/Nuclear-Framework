@@ -1,4 +1,8 @@
-﻿using Nuclear.Channels.Hosting;
+﻿// Copyright © Nikola Milinkovic 
+// Licensed under the MIT License (MIT).
+// See License.md in the repository root for more information.
+
+using Nuclear.Channels.Hosting;
 using Nuclear.ExportLocator;
 using Nuclear.ExportLocator.Services;
 using System;
@@ -11,7 +15,7 @@ namespace Nuclear.Channels.Base
     /// <summary>
     /// Implementation of ChannelHosting
     /// </summary>
-    internal class ChannelHost : IChannelHost
+    internal class ChannelHost : IChannelServer
     {
         private AppDomain _domain;
         private IServiceLocator Services;

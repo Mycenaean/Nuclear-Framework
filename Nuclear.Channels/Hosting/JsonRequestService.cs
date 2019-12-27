@@ -1,4 +1,8 @@
-﻿using Newtonsoft.Json.Linq;
+﻿// Copyright © Nikola Milinkovic 
+// Licensed under the MIT License (MIT).
+// See License.md in the repository root for more information.
+
+using Newtonsoft.Json.Linq;
 using Nuclear.Channels.Hosting.Deserializers;
 using Nuclear.ExportLocator.Decorators;
 using Nuclear.ExportLocator.Enumerations;

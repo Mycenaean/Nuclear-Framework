@@ -26,7 +26,7 @@ namespace ASP.NET.Core.Nuclear.Channels.TemplateWeb
             //----------------------------------------------------------------------------------------
 
             AuthMethods methods = new AuthMethods();
-            IChannelHost host = ChannelHostBuilder.CreateHost();
+            IChannelServer host = ChannelServerBuilder.CreateServer();
             host.LoadAssemblies(AppDomain.CurrentDomain, null);
             host.AuthenticationOptions(methods.AuthenticateBasic);
             host.StartHosting(null);

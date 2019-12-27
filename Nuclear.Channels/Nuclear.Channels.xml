@@ -87,16 +87,6 @@
             Starts hosting
             </summary>
         </member>
-        <member name="T:Nuclear.Channels.ChannelHostBuilder">
-            <summary>
-            Class that contains method for building channel host
-            </summary>
-        </member>
-        <member name="M:Nuclear.Channels.ChannelHostBuilder.CreateHost">
-            <summary>
-            Method that creates IChannelHost instance
-            </summary>
-        </member>
         <member name="T:Nuclear.Channels.ChannelLocator">
             <summary>`
             Service that contains all Channels
@@ -112,6 +102,16 @@
         <member name="T:Nuclear.Channels.ChannelMethodDescriptor">
             <summary>
             Service for ChannelMethod informations
+            </summary>
+        </member>
+        <member name="T:Nuclear.Channels.ChannelServerBuilder">
+            <summary>
+            Class that contains method for building channel host
+            </summary>
+        </member>
+        <member name="M:Nuclear.Channels.ChannelServerBuilder.CreateServer">
+            <summary>
+            Method that creates IChannelHost instance
             </summary>
         </member>
         <member name="T:Nuclear.Channels.Contracts.ChannelEndpoint">
@@ -491,37 +491,37 @@
             XML Deserialization Implementation
             </summary>
         </member>
-        <member name="T:Nuclear.Channels.IChannelHost">
+        <member name="T:Nuclear.Channels.IChannelServer">
             <summary>
             Service that will host the Channels
             </summary>
         </member>
-        <member name="M:Nuclear.Channels.IChannelHost.LoadAssemblies(System.AppDomain,System.String[])">
+        <member name="M:Nuclear.Channels.IChannelServer.LoadAssemblies(System.AppDomain,System.String[])">
             <summary>
             Method to load all assemblies containing channels
             </summary>
             <param name="domain">Current AppDomain</param>
             <param name="assemblies">Assembly names of your projects</param>
         </member>
-        <member name="M:Nuclear.Channels.IChannelHost.LoadAssemblies(System.AppDomain)">
+        <member name="M:Nuclear.Channels.IChannelServer.LoadAssemblies(System.AppDomain)">
             <summary>
             Load Application Domain
             </summary>
             <param name="domain">Current AppDomain</param>
         </member>
-        <member name="M:Nuclear.Channels.IChannelHost.AuthenticationOptions(System.Func{System.String,System.Boolean})">
+        <member name="M:Nuclear.Channels.IChannelServer.AuthenticationOptions(System.Func{System.String,System.Boolean})">
             <summary>
             AuthenticationOptions for Token Authentication
             </summary>
             <param name="tokenAuthenticationMethod">Delegate for token authentication</param>
         </member>
-        <member name="M:Nuclear.Channels.IChannelHost.AuthenticationOptions(System.Func{System.String,System.String,System.Boolean})">
+        <member name="M:Nuclear.Channels.IChannelServer.AuthenticationOptions(System.Func{System.String,System.String,System.Boolean})">
             <summary>
             AuthenticationOptions for Basic Authentication
             </summary>
             <param name="basicAuthenticationMethod">Delegate for basic authentication</param>
         </member>
-        <member name="M:Nuclear.Channels.IChannelHost.StartHosting(System.String)">
+        <member name="M:Nuclear.Channels.IChannelServer.StartHosting(System.String)">
             <summary>
             Starts hosting
             </summary>

@@ -1,4 +1,8 @@
-﻿using Nuclear.Channels.Hosting.Exceptions;
+﻿// Copyright © Nikola Milinkovic 
+// Licensed under the MIT License (MIT).
+// See License.md in the repository root for more information.
+
+using Nuclear.Channels.Hosting.Exceptions;
 using System;
 
 namespace Nuclear.Channels
@@ -6,7 +10,7 @@ namespace Nuclear.Channels
     /// <summary>
     /// Service that will host the Channels
     /// </summary>
-    public interface IChannelHost
+    public interface IChannelServer
     {
         /// <summary>
         /// Method to load all assemblies containing channels

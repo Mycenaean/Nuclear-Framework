@@ -1,4 +1,8 @@
-﻿using Nuclear.Channels.Interfaces;
+﻿// Copyright © Nikola Milinkovic 
+// Licensed under the MIT License (MIT).
+// See License.md in the repository root for more information.
+
+using Nuclear.Channels.Interfaces;
 using Nuclear.ExportLocator.Decorators;
 using Nuclear.ExportLocator.Enumerations;
 using System;
@@ -11,7 +15,7 @@ namespace Nuclear.Channels
     /// Service for ChannelMethod informations
     /// </summary>
     [Export(typeof(IChannelMethodDescriptor), Lifetime = ExportLifetime.Transient)]
-    public class ChannelMethodDescriptor : IChannelMethodDescriptor
+    internal class ChannelMethodDescriptor : IChannelMethodDescriptor
     {
         public Dictionary<string, Type> GetMethodDescription(MethodInfo method)
         {
