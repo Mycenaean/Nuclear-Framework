@@ -26,15 +26,15 @@ namespace Nuclear.Channels.Hosting.ExecutorServices
     [Export(typeof(IChannelMethodInvoker), Lifetime = ExportLifetime.Transient)]
     internal class ChannelMethodInvoker : IChannelMethodInvoker
     {
-        private IServiceLocator Services;
+        private IServiceLocator _services;
         private IChannelMessageService _channelMessageService;
 
         public ChannelMethodInvoker()
         {
-            Services = ServiceLocatorBuilder.CreateServiceLocator();
-            _channelMessageService = Services.Get<IChannelMessageService>();
+            _services = ServiceLocatorBuilder.CreateServiceLocator();
+            _channelMessageService = _services.Get<IChannelMessageService>();
 
-            Debug.Assert(Services != null);
+            Debug.Assert(_services != null);
             Debug.Assert(_channelMessageService != null);
         }
 

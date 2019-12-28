@@ -32,7 +32,7 @@ namespace Nuclear.Channels.Hosting
     [Export(typeof(IChannelActivator), Lifetime = ExportLifetime.Singleton)]
     public class ChannelActivator : IChannelActivator, IExecutor
     {
-        private IServiceLocator Services;
+        private IServiceLocator _services;
         private IChannelLocator _channelLocator;
         private IChannelMethodDescriptor _channelMethodDescriptor;
         private IChannelMethodRequestActivator _requestActivator;
@@ -61,7 +61,7 @@ namespace Nuclear.Channels.Hosting
         
         public void Execute(AppDomain domain, IServiceLocator _Services, string baseURL = null)
         {
-            Services = _Services;
+            _services = _Services;
             Debug.Assert(HttpListener.IsSupported);
             Debug.Assert(_Services != null);
 
@@ -76,10 +76,10 @@ namespace Nuclear.Channels.Hosting
             if (baseURL != null)
                 BaseURL = baseURL;
 
-            _channelLocator = Services.Get<IChannelLocator>();
-            _channelMethodDescriptor = Services.Get<IChannelMethodDescriptor>();
-            _requestActivator = Services.Get<IChannelMethodRequestActivator>();
-            _msgService = Services.Get<IChannelMessageService>();
+            _channelLocator = _services.Get<IChannelLocator>();
+            _channelMethodDescriptor = _services.Get<IChannelMethodDescriptor>();
+            _requestActivator = _services.Get<IChannelMethodRequestActivator>();
+            _msgService = _services.Get<IChannelMessageService>();
 
             Debug.Assert(_channelLocator != null);
             Debug.Assert(_channelMethodDescriptor != null);

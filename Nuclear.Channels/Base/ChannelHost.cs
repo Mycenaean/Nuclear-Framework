@@ -18,7 +18,7 @@ namespace Nuclear.Channels.Base
     internal class ChannelHost : IChannelServer
     {
         private AppDomain _domain;
-        private IServiceLocator Services;
+        private IServiceLocator _services;
         private IChannelActivator _activator;
         private static ChannelHost _host;
         private static object _lock = new object();
@@ -46,8 +46,8 @@ namespace Nuclear.Channels.Base
         /// </summary>
         private ChannelHost()
         {
-            Services = ServiceLocatorBuilder.CreateServiceLocator();
-            _activator = Services.Get<IChannelActivator>();
+            _services = ServiceLocatorBuilder.CreateServiceLocator();
+            _activator = _services.Get<IChannelActivator>();
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace Nuclear.Channels.Base
         /// </summary>
         public void StartHosting(string baseURL)
         {
-            _activator.Execute(_domain, Services, baseURL);
+            _activator.Execute(_domain, _services, baseURL);
             Task.WaitAll();
         }
 

@@ -29,17 +29,17 @@ namespace Nuclear.Channels.Hosting.ExecutorServices
     [Export(typeof(IChannelMethodRequestActivator), Lifetime = ExportLifetime.Scoped)]
     internal class ChannelMethodRequestActivator : IChannelMethodRequestActivator
     {
-        private IServiceLocator Services;
+        private IServiceLocator _services;
         private IChannelMethodInvoker _channelMethodInvoker;
         private IChannelMessageService _channelMessageService;
 
         public ChannelMethodRequestActivator()
         {
-            Services = ServiceLocatorBuilder.CreateServiceLocator();
-            _channelMethodInvoker = Services.Get<IChannelMethodInvoker>();
-            _channelMessageService = Services.Get<IChannelMessageService>();
+            _services = ServiceLocatorBuilder.CreateServiceLocator();
+            _channelMethodInvoker = _services.Get<IChannelMethodInvoker>();
+            _channelMessageService = _services.Get<IChannelMessageService>();
 
-            Debug.Assert(Services != null);
+            Debug.Assert(_services != null);
             Debug.Assert(_channelMethodInvoker != null);
             Debug.Assert(_channelMessageService != null);
         }
@@ -119,9 +119,9 @@ namespace Nuclear.Channels.Hosting.ExecutorServices
             LogChannel.Write(LogSeverity.Info, inputRequest);
 
             if (request.ContentType == "application/xml" || request.ContentType == "text/xml; charset=utf-8")
-                channelRequestBody = Services.Get<IXmlRequestService>().Deserialize(inputRequest, methodDescription);
+                channelRequestBody = _services.Get<IXmlRequestService>().Deserialize(inputRequest, methodDescription);
             else if (request.ContentType == "application/json" || request.ContentType == "application/json; charset=utf-8")
-                channelRequestBody = Services.Get<IJsonRequestService>().Deserialize(inputRequest, methodDescription);
+                channelRequestBody = _services.Get<IJsonRequestService>().Deserialize(inputRequest, methodDescription);
             else
                 throw new ChannelMethodContentTypeException("Content-type must be application/json or application/xml");
 

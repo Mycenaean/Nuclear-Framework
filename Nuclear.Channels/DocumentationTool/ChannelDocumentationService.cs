@@ -27,23 +27,23 @@ namespace Nuclear.Channels.DocumentationTool
     [Export(typeof(IChannelDocumentationService), Lifetime = ExportLifetime.Transient)]
     public class ChannelDocumentationService : IChannelDocumentationService
     {
-        private readonly IServiceLocator Services;
+        private readonly IServiceLocator _services;
         public List<ChannelDocument> ChannelDocs;
         public List<ChannelMethodDocument> ChannelMethodDocs;
 
         public ChannelDocumentationService()
         {
-            Services = ServiceLocatorBuilder.CreateServiceLocator();
+            _services = ServiceLocatorBuilder.CreateServiceLocator();
             ChannelDocs = new List<ChannelDocument>();
 
-            Debug.Assert(Services != null);
+            Debug.Assert(_services != null);
         }
 
         public List<ChannelDocument> GetDocumentation(AppDomain domain)
         {
-            Debug.Assert(Services.Get<IChannelLocator>() != null);
+            Debug.Assert(_services.Get<IChannelLocator>() != null);
 
-            List<Type> channels = Services.Get<IChannelLocator>().RegisteredChannels(domain);
+            List<Type> channels = _services.Get<IChannelLocator>().RegisteredChannels(domain);
             foreach (var channel in channels)
             {
                 ChannelDocument channelDoc = new ChannelDocument();
@@ -57,7 +57,7 @@ namespace Nuclear.Channels.DocumentationTool
                 {
 
                     ChannelMethodDocument methodDocument = new ChannelMethodDocument();
-                    Dictionary<string, Type> description = Services.Get<IChannelMethodDescriptor>().GetMethodDescription(method);
+                    Dictionary<string, Type> description = _services.Get<IChannelMethodDescriptor>().GetMethodDescription(method);
                     ChannelMethodAttribute ChannelMethodAttribute = method.GetCustomAttribute<ChannelMethodAttribute>();
                     ChannelHttpMethod HttpMethod = ChannelMethodAttribute.HttpMethod;
                     Dictionary<string, Type>.KeyCollection keys = description.Keys;
