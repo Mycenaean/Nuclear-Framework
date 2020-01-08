@@ -18,6 +18,7 @@ using Nuclear.ExportLocator.Services;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -114,6 +115,8 @@ namespace Nuclear.Channels.Hosting
             }
         }
 
+        [SuppressMessage("Style", "IDE0059:Unnecessary assignment of a value", Justification = "Used")]
+        [SuppressMessage("Style", "IDE0049:Name can be simplified", Justification = "String is a class")]
         public void StartListening(MethodInfo method, Type channel, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
