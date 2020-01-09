@@ -294,25 +294,32 @@ namespace Nuclear.Channels.Hosting
                     _msgService.FailedAuthenticationResponse(ChannelSchema, response);
                 else
                     authenticated = true;
+
+                return authenticated;
             }
             catch (ChannelCredentialsException cEx)
             {
                 response.StatusCode = 401;
                 _msgService.ExceptionHandler(writer, cEx, response);
                 LogChannel.Write(LogSeverity.Error, cEx.Message);
+                writer.Flush();
+                writer.Close();
+                return false;
             }
             catch (HttpListenerException hEx)
             {
                 _msgService.ExceptionHandler(writer, hEx, response);
                 LogChannel.Write(LogSeverity.Error, hEx.Message);
-            }
-            finally
-            {
                 writer.Flush();
                 writer.Close();
+                return false;
             }
-
-            return authenticated;
+            //This will close the stream on POST methods causing it to fail and if writer is only flushed then there is possibility of memory leaks (need inspection)
+            //finally
+            //{
+            //    writer.Flush();
+            //    writer.Close();
+            //}
         }
     }
 }

@@ -1,0 +1,36 @@
+1/9/2020 11:01:12 PM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+1/9/2020 11:01:12 PM::::Info::::Method StartListening::::HttpMethod:POST
+1/9/2020 11:01:12 PM::::Info::::Method StartListening::::IsAuthenticated:False
+1/9/2020 11:03:55 PM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+1/9/2020 11:03:55 PM::::Info::::Method StartListening::::HttpMethod:POST
+1/9/2020 11:03:55 PM::::Info::::Method StartListening::::IsAuthenticated:False
+1/9/2020 11:04:40 PM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+1/9/2020 11:04:40 PM::::Info::::Method StartListening::::HttpMethod:POST
+1/9/2020 11:04:40 PM::::Info::::Method StartListening::::IsAuthenticated:False
+1/9/2020 11:07:11 PM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+1/9/2020 11:07:11 PM::::Info::::Method StartListening::::HttpMethod:POST
+1/9/2020 11:07:11 PM::::Info::::Method StartListening::::IsAuthenticated:False
+1/9/2020 11:07:28 PM::::Info::::Method PostActivate::::Request body: 
+1/9/2020 11:07:28 PM::::Info::::Method PostActivate::::{
+   "name":"nuclear framework"
+}
+1/9/2020 11:07:34 PM::::Debug::::Method StartListening::::Request finished...
+1/9/2020 11:07:34 PM::::Debug::::Method StartListening::::Closing the response
+1/9/2020 11:16:37 PM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+1/9/2020 11:16:37 PM::::Info::::Method StartListening::::HttpMethod:POST
+1/9/2020 11:16:37 PM::::Info::::Method StartListening::::IsAuthenticated:False
+1/9/2020 11:16:55 PM::::Info::::Method PostActivate::::Request body: 
+1/9/2020 11:16:55 PM::::Info::::Method PostActivate::::{
+   "name":"nuclear framework"
+}
+1/9/2020 11:16:58 PM::::Debug::::Method StartListening::::Request finished...
+1/9/2020 11:16:58 PM::::Debug::::Method StartListening::::Closing the response
+1/9/2020 11:17:41 PM::::Info::::Method StartListening::::Request coming to TestChannel.HelloWorld
+1/9/2020 11:17:41 PM::::Info::::Method StartListening::::HttpMethod:GET
+1/9/2020 11:17:41 PM::::Info::::Method StartListening::::IsAuthenticated:False
+1/9/2020 11:17:41 PM::::Error::::Method ExceptionHandler::::Exception handler called..
+1/9/2020 11:17:41 PM::::Error::::Method ExceptionHandler::::Malformed or missing header for the basic authentication
+1/9/2020 11:17:41 PM::::Error::::Method ExceptionHandler::::No Inner Exception
+1/9/2020 11:17:41 PM::::Error::::Method CheckAuthentication::::Malformed or missing header for the basic authentication
+1/9/2020 11:17:41 PM::::Debug::::Method StartListening::::Request finished...
+1/9/2020 11:17:41 PM::::Debug::::Method StartListening::::Closing the response

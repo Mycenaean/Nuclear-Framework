@@ -7,7 +7,7 @@ using System.Text;
 
 namespace ConsoleApp1
 {
-    [Channel(EnableSessions = true)]
+    [Channel]
     [AuthorizeChannel(ChannelAuthenticationSchemes.Basic)]
     public class TestChannel : ChannelBase
     {
@@ -17,7 +17,7 @@ namespace ConsoleApp1
             return "HELLO WORLD FROM CHANNEL METHOD";
         }
 
-        [ChannelMethod]
+        [ChannelMethod(HttpMethod = Nuclear.Channels.Enums.ChannelHttpMethod.POST)]
         public string PostParams(string name)
         {
             return $"Hello {name} from ChannelMethod";

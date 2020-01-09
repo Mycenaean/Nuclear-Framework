@@ -1,0 +1,23 @@
+1/8/2020 6:00:30 PM::::Info::::Method StartListening::::Request coming to TestChannel.HelloWorld
+1/8/2020 6:00:30 PM::::Info::::Method StartListening::::HttpMethod:GET
+1/8/2020 6:00:30 PM::::Info::::Method StartListening::::IsAuthenticated:False
+1/8/2020 6:00:30 PM::::Error::::Method ExceptionHandler::::Exception handler called..
+1/8/2020 6:00:30 PM::::Error::::Method ExceptionHandler::::Malformed or missing header for the basic authentication
+1/8/2020 6:00:30 PM::::Error::::Method ExceptionHandler::::No Inner Exception
+1/8/2020 6:00:32 PM::::Error::::Method CheckAuthentication::::Malformed or missing header for the basic authentication
+1/8/2020 6:00:32 PM::::Debug::::Method StartListening::::Request finished...
+1/8/2020 6:00:32 PM::::Debug::::Method StartListening::::Closing the response
+1/8/2020 6:01:12 PM::::Info::::Method StartListening::::Request coming to TestChannel.HelloWorld
+1/8/2020 6:01:12 PM::::Info::::Method StartListening::::HttpMethod:GET
+1/8/2020 6:01:12 PM::::Info::::Method StartListening::::IsAuthenticated:False
+1/8/2020 6:01:21 PM::::Debug::::Method StartListening::::Request finished...
+1/8/2020 6:01:21 PM::::Debug::::Method StartListening::::Closing the response
+1/8/2020 6:02:11 PM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+1/8/2020 6:02:11 PM::::Info::::Method StartListening::::HttpMethod:POST
+1/8/2020 6:02:11 PM::::Info::::Method StartListening::::IsAuthenticated:False
+1/8/2020 6:03:33 PM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+1/8/2020 6:03:33 PM::::Info::::Method StartListening::::HttpMethod:POST
+1/8/2020 6:03:33 PM::::Info::::Method StartListening::::IsAuthenticated:False
+1/8/2020 6:05:44 PM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+1/8/2020 6:05:44 PM::::Info::::Method StartListening::::HttpMethod:POST
+1/8/2020 6:05:44 PM::::Info::::Method StartListening::::IsAuthenticated:False

@@ -9,7 +9,7 @@
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>3.0.2</Version>
-    <PackageReleaseNotes>Improved logging , IChannelHost renamed to IChannelServer ,</PackageReleaseNotes>
+    <PackageReleaseNotes>Improved logging , IChannelHost renamed to IChannelServer , Fixed bug where when authentication is required POST methods break the channel</PackageReleaseNotes>
     <Description>Lightweight API Framework for building Http Endpoints</Description>
     <AssemblyVersion>3.0.2.0</AssemblyVersion>
     <FileVersion>3.0.2.0</FileVersion>
