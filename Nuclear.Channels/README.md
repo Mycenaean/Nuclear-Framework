@@ -6,11 +6,11 @@ Channels Library is part of the Nuclear Framework set of .NET Standard class lib
 
 To install it with Package Manager
  ```
- Install-Package Nuclear.Channels -Version 3.0.1
+ Install-Package Nuclear.Channels -Version 3.0.2
  ```
  To install it with .NET CLI
  ```
- dotnet add package Nuclear.Channels --version 3.0.1
+ dotnet add package Nuclear.Channels --version 3.0.2
  ```
 
 # How to use
@@ -188,15 +188,15 @@ You can test and initialize Channels in both Console Apps and Web Apps. To initi
     {
         static void Main(string[] args)
         {
-            IChannelHost host = ChannelHostBuilder.CreateHost();
-            host.LoadAssemblies(AppDomain.CurrentDomain, null);
-            host.StartHosting(null);
+            IChannelServer server = ChannelServerBuilder.CreateServer();
+            server.LoadAssemblies(AppDomain.CurrentDomain, null);
+            server.StartHosting(null);
 
             Console.ReadLine();
         }
     }
 ```
-IChannelHost service will start the hosting of the channels. In Web apps just apply same 3 lines of code in Program.cs.
+IChannelServer service will start the hosting of the channels. In Web apps just apply same 3 lines of code in Program.cs.
 
 # Authors
  Nikola Milinkovic - *initial work and maintainer* - [Mycenaean](https://github.com/Mycenaean)
