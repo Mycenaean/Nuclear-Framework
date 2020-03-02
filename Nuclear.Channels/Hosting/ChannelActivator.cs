@@ -92,7 +92,7 @@ namespace Nuclear.Channels.Hosting
             channels = _channelLocator.RegisteredChannels(domain);
 
             //Initialization part
-            foreach (var channel in channels)
+            foreach (Type channel in channels)
             {
                 CancellationTokenSource cts = new CancellationTokenSource();
                 CancellationToken token = cts.Token;
@@ -105,7 +105,7 @@ namespace Nuclear.Channels.Hosting
         {
             MethodInfo[] methods = channel.GetMethods().Where(x => x.GetCustomAttribute<ChannelMethodAttribute>() != null).ToArray();
 
-            foreach (var method in methods)
+            foreach (MethodInfo method in methods)
             {
                 cancellationToken.ThrowIfCancellationRequested();
                 CancellationTokenSource cts = new CancellationTokenSource();
@@ -161,7 +161,16 @@ namespace Nuclear.Channels.Hosting
             //Keep the ChannelMethod open for new requests
             while (true)
             {
-                httpChannel.Start();
+                try
+                {
+                    httpChannel.Start();
+                }
+                catch(HttpListenerException hle)
+                {
+                    Console.WriteLine($"System.Net.HttpListenerException encountered on {methodURL} with reason :{hle.Message}");
+                    return;
+                }
+                
                 Console.WriteLine($"Listening on {methodURL}");
                 HttpListenerContext context = httpChannel.GetContext();
                 HttpListenerRequest request = context.Request;

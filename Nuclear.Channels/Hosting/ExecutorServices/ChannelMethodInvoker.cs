@@ -48,7 +48,7 @@ namespace Nuclear.Channels.Hosting.ExecutorServices
 
         public void InvokeChannelMethod(Type channel, MethodInfo method, HttpListenerResponse response)
         {
-            if (method.GetCustomAttribute(typeof(AsyncStateMachineAttribute)) != null)
+            if (method.GetCustomAttribute<AsyncStateMachineAttribute>() != null)
                 InvokeChannelMethodAsync(channel, method, response, null);
             else
             {

@@ -15,7 +15,7 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("Nuclear.Channels.UnitTests")]
 namespace Nuclear.Channels
 {
-    /// <summary>`
+    /// <summary>
     /// Service that contains all Channels
     /// </summary>
     [Export(typeof(IChannelLocator), ExportLifetime.Transient)]
@@ -34,11 +34,11 @@ namespace Nuclear.Channels
                 throw new ArgumentNullException(nameof(AppDomain));
 
             Assembly[] assemblies = domain.GetAssemblies();
-            foreach (var asm in assemblies)
+            foreach (Assembly asm in assemblies)
             {
-                foreach (var type in asm.GetTypes())
+                foreach (Type type in asm.GetTypes())
                 {
-                    Attribute channel = type.GetCustomAttribute(typeof(ChannelAttribute));
+                    Attribute channel = type.GetCustomAttribute<ChannelAttribute>();
                     if (channel != null)
                         Channels.Add(type);
                 }

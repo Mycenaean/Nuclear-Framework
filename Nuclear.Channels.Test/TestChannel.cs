@@ -1,17 +1,18 @@
 ﻿using Nuclear.Channels.Auth;
 using Nuclear.Channels.Base;
 using Nuclear.Channels.Decorators;
+using Nuclear.Channels.Enums;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace ConsoleApp1
 {
-    [Channel]
-    [AuthorizeChannel(ChannelAuthenticationSchemes.Basic)]
+    [Channel(Name = "MarkoChannel",Description = "Swagger demo za marka")]
+    
     public class TestChannel : ChannelBase
     {
-        [ChannelMethod]
+        [ChannelMethod(Description = "Method that will return Hello World string",HttpMethod = ChannelHttpMethod.GET)]
         public string HelloWorld()
         {
             return "HELLO WORLD FROM CHANNEL METHOD";
