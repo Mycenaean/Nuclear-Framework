@@ -8,11 +8,11 @@ using System.Text;
 
 namespace ConsoleApp1
 {
-    [Channel(Name = "MarkoChannel",Description = "Swagger demo za marka")]
-    
+    [Channel]
+
     public class TestChannel : ChannelBase
     {
-        [ChannelMethod(Description = "Method that will return Hello World string",HttpMethod = ChannelHttpMethod.GET)]
+        [ChannelMethod(Description = "Method that will return Hello World string", HttpMethod = ChannelHttpMethod.GET)]
         public string HelloWorld()
         {
             return "HELLO WORLD FROM CHANNEL METHOD";

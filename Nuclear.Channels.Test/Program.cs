@@ -12,7 +12,7 @@ namespace Nuclear.Channels.Test
             host.LoadAssemblies(AppDomain.CurrentDomain, null);
             host.AuthenticationOptions(authMethods.AuthenticateBasic);
             host.AuthenticationOptions(authMethods.AuthenticateToken);
-            host.StartHosting("http://nmilinkovic:4200");
+            host.StartHosting(null);
 
             Console.ReadLine();
         }
