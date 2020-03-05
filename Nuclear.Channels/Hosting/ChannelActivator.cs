@@ -157,6 +157,8 @@ namespace Nuclear.Channels.Hosting
             {
                 httpAuthRequired = true;
             }
+            else
+                ChannelSchema = authAttr.Schema;
 
             //Keep the ChannelMethod open for new requests
             while (true)

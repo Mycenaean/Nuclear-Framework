@@ -9,16 +9,17 @@ using System.Text;
 namespace ConsoleApp1
 {
     [Channel]
+    [AuthorizeChannel(ChannelAuthenticationSchemes.Token)]
 
     public class TestChannel : ChannelBase
     {
-        [ChannelMethod(Description = "Method that will return Hello World string", HttpMethod = ChannelHttpMethod.GET)]
+        [ChannelMethod(HttpMethod = ChannelHttpMethod.GET)]
         public string HelloWorld()
         {
             return "HELLO WORLD FROM CHANNEL METHOD";
         }
 
-        [ChannelMethod(HttpMethod = Nuclear.Channels.Enums.ChannelHttpMethod.POST)]
+        [ChannelMethod(HttpMethod = ChannelHttpMethod.POST)]
         public string PostParams(string name)
         {
             return $"Hello {name} from ChannelMethod";
