@@ -59,7 +59,7 @@ namespace Nuclear.Channels.Hosting
         {
             _tokenAuthenticationMethod = tokenAuthMethod ?? throw new ArgumentNullException("Authentication function must not be null");
         }
-        
+
         public void Execute(AppDomain domain, IServiceLocator _Services, string baseURL = null)
         {
             _services = _Services;
@@ -158,7 +158,10 @@ namespace Nuclear.Channels.Hosting
                 httpAuthRequired = true;
             }
             else
-                ChannelSchema = authAttr.Schema;
+            {
+                if (authAttr != null)
+                    ChannelSchema = authAttr.Schema;
+            }
 
             //Keep the ChannelMethod open for new requests
             while (true)
@@ -167,12 +170,12 @@ namespace Nuclear.Channels.Hosting
                 {
                     httpChannel.Start();
                 }
-                catch(HttpListenerException hle)
+                catch (HttpListenerException hle)
                 {
                     Console.WriteLine($"System.Net.HttpListenerException encountered on {methodURL} with reason :{hle.Message}");
                     return;
                 }
-                
+
                 Console.WriteLine($"Listening on {methodURL}");
                 HttpListenerContext context = httpChannel.GetContext();
                 HttpListenerRequest request = context.Request;
