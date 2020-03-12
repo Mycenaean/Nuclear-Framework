@@ -1,0 +1,89 @@
+3/12/2020 10:45:54 AM::::Info::::Method StartListening::::Request coming to TestChannel.HelloWorld
+3/12/2020 10:45:54 AM::::Info::::Method StartListening::::HttpMethod:GET
+3/12/2020 10:45:54 AM::::Info::::Method StartListening::::IsAuthenticated:False
+3/12/2020 10:45:54 AM::::Error::::Method ExceptionHandler::::Exception handler called..
+3/12/2020 10:45:54 AM::::Error::::Method ExceptionHandler::::Malformed or missing header for the token authentication
+3/12/2020 10:45:54 AM::::Error::::Method ExceptionHandler::::No Inner Exception
+3/12/2020 10:45:54 AM::::Error::::Method CheckAuthentication::::Malformed or missing header for the token authentication
+3/12/2020 10:45:54 AM::::Debug::::Method StartListening::::Request finished...
+3/12/2020 10:45:54 AM::::Debug::::Method StartListening::::Closing the response
+3/12/2020 10:46:27 AM::::Info::::Method StartListening::::Request coming to TestChannel.HelloWorld
+3/12/2020 10:46:27 AM::::Info::::Method StartListening::::HttpMethod:GET
+3/12/2020 10:46:27 AM::::Info::::Method StartListening::::IsAuthenticated:False
+3/12/2020 10:47:05 AM::::Debug::::Method StartListening::::Request finished...
+3/12/2020 10:47:05 AM::::Debug::::Method StartListening::::Closing the response
+3/12/2020 10:47:24 AM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+3/12/2020 10:47:24 AM::::Info::::Method StartListening::::HttpMethod:POST
+3/12/2020 10:47:24 AM::::Info::::Method StartListening::::IsAuthenticated:False
+3/12/2020 10:47:24 AM::::Info::::Method DeserializeFromBody::::Request body: 
+3/12/2020 10:47:24 AM::::Info::::Method DeserializeFromBody::::{
+   "name":"nuclear framework"
+}
+3/12/2020 10:47:34 AM::::Debug::::Method StartListening::::Request finished...
+3/12/2020 10:47:34 AM::::Debug::::Method StartListening::::Closing the response
+3/12/2020 11:48:29 AM::::Info::::Method StartListening::::Request coming to TestChannel.CreateTestClass
+3/12/2020 11:48:29 AM::::Info::::Method StartListening::::HttpMethod:POST
+3/12/2020 11:48:29 AM::::Info::::Method StartListening::::IsAuthenticated:False
+3/12/2020 11:48:29 AM::::Info::::Method DeserializeFromBody::::Request body: 
+3/12/2020 11:48:29 AM::::Info::::Method DeserializeFromBody::::{
+	"id":"12345",
+    "name":"nuclear framework"
+}
+3/12/2020 11:49:36 AM::::Info::::Method StartListening::::Request coming to TestChannel.CreateTestClass
+3/12/2020 11:49:36 AM::::Info::::Method StartListening::::HttpMethod:POST
+3/12/2020 11:49:36 AM::::Info::::Method StartListening::::IsAuthenticated:False
+3/12/2020 11:49:36 AM::::Info::::Method DeserializeFromBody::::Request body: 
+3/12/2020 11:49:36 AM::::Info::::Method DeserializeFromBody::::{
+	"id":"12345",
+    "name":"nuclear framework"
+}
+3/12/2020 11:49:59 AM::::Info::::Method StartListening::::Request coming to TestChannel.CreateTestClass
+3/12/2020 11:49:59 AM::::Info::::Method StartListening::::HttpMethod:POST
+3/12/2020 11:49:59 AM::::Info::::Method StartListening::::IsAuthenticated:False
+3/12/2020 11:49:59 AM::::Info::::Method DeserializeFromBody::::Request body: 
+3/12/2020 11:49:59 AM::::Info::::Method DeserializeFromBody::::{
+	"id":"12345",
+    "name":"nuclear framework"
+}
+3/12/2020 11:50:25 AM::::Debug::::Method StartListening::::Request finished...
+3/12/2020 11:50:25 AM::::Debug::::Method StartListening::::Closing the response
+3/12/2020 11:53:56 AM::::Info::::Method StartListening::::Request coming to TestChannel.CreateTestClass
+3/12/2020 11:53:56 AM::::Info::::Method StartListening::::HttpMethod:POST
+3/12/2020 11:53:56 AM::::Info::::Method StartListening::::IsAuthenticated:False
+3/12/2020 11:53:56 AM::::Info::::Method DeserializeFromBody::::Request body: 
+3/12/2020 11:53:56 AM::::Info::::Method DeserializeFromBody::::{
+	"id":"12345",
+    "name":"nuclear framework"
+}
+3/12/2020 11:54:33 AM::::Debug::::Method StartListening::::Request finished...
+3/12/2020 11:54:33 AM::::Debug::::Method StartListening::::Closing the response
+3/12/2020 12:04:16 PM::::Info::::Method StartListening::::Request coming to TestChannel.CreateTestClass
+3/12/2020 12:04:16 PM::::Info::::Method StartListening::::HttpMethod:POST
+3/12/2020 12:04:16 PM::::Info::::Method StartListening::::IsAuthenticated:False
+3/12/2020 12:04:16 PM::::Info::::Method DeserializeFromBody::::Request body: 
+3/12/2020 12:04:16 PM::::Info::::Method DeserializeFromBody::::{
+	"id":"12345",
+    "name":"nuclear framework"
+}
+3/12/2020 12:04:40 PM::::Debug::::Method StartListening::::Request finished...
+3/12/2020 12:04:40 PM::::Debug::::Method StartListening::::Closing the response
+3/12/2020 12:06:28 PM::::Info::::Method StartListening::::Request coming to TestChannel.CreateTestClass
+3/12/2020 12:06:28 PM::::Info::::Method StartListening::::HttpMethod:POST
+3/12/2020 12:06:28 PM::::Info::::Method StartListening::::IsAuthenticated:False
+3/12/2020 12:06:28 PM::::Info::::Method DeserializeFromBody::::Request body: 
+3/12/2020 12:06:28 PM::::Info::::Method DeserializeFromBody::::{
+	"id":"123465",
+    "name":"nuclear framework"
+}
+3/12/2020 12:06:29 PM::::Debug::::Method StartListening::::Request finished...
+3/12/2020 12:06:29 PM::::Debug::::Method StartListening::::Closing the response
+3/12/2020 12:07:17 PM::::Info::::Method StartListening::::Request coming to TestChannel.CreateTestClass
+3/12/2020 12:07:17 PM::::Info::::Method StartListening::::HttpMethod:POST
+3/12/2020 12:07:17 PM::::Info::::Method StartListening::::IsAuthenticated:False
+3/12/2020 12:07:17 PM::::Info::::Method DeserializeFromBody::::Request body: 
+3/12/2020 12:07:17 PM::::Info::::Method DeserializeFromBody::::{
+	"id":"1234645",
+    "name":"nuclear framework"
+}
+3/12/2020 12:07:18 PM::::Debug::::Method StartListening::::Request finished...
+3/12/2020 12:07:18 PM::::Debug::::Method StartListening::::Closing the response

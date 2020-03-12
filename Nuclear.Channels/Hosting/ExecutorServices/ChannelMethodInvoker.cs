@@ -4,6 +4,7 @@
 
 using Nuclear.Channels.Hosting.Contracts;
 using Nuclear.Channels.Messaging;
+using Nuclear.Channels.Messaging.Services.ChannelMessage;
 using Nuclear.ExportLocator;
 using Nuclear.ExportLocator.Decorators;
 using Nuclear.ExportLocator.Enumerations;
@@ -28,14 +29,24 @@ namespace Nuclear.Channels.Hosting.ExecutorServices
     {
         private IServiceLocator _services;
         private IChannelMessageService _channelMessageService;
+        private IChannelMessageOutputWriter _channelMessageWriter;
+        private static bool alreadyInvokedFlag = false;
 
         public ChannelMethodInvoker()
         {
             _services = ServiceLocatorBuilder.CreateServiceLocator();
             _channelMessageService = _services.Get<IChannelMessageService>();
-
+            _channelMessageWriter = _services.Get<IChannelMessageOutputWriter>();
             Debug.Assert(_services != null);
             Debug.Assert(_channelMessageService != null);
+            Debug.Assert(_channelMessageWriter != null);
+
+            _channelMessageWriter.OnPostMessageServiceInvoked += _channelMessageWriter_OnPostMessageServiceInvoked;
+        }
+
+        private void _channelMessageWriter_OnPostMessageServiceInvoked(object sender, EventArgs e)
+        {
+            alreadyInvokedFlag = true;
         }
 
         public void InvokeChannelMethod(Type channel, MethodInfo method, HttpListenerResponse response, List<object> channelRequestBody)
@@ -53,14 +64,14 @@ namespace Nuclear.Channels.Hosting.ExecutorServices
             else
             {
                 object chResponse = method.Invoke(Activator.CreateInstance(channel), null);
-                _channelMessageService.WriteHttpResponse(chResponse, response);
+                WriteResponse(chResponse, response);
             }
         }
 
         public void InvokeChannelMethodSync(Type channel, MethodInfo method, HttpListenerResponse response, List<object> channelRequestBody)
         {
             object chResponse = method.Invoke(Activator.CreateInstance(channel), channelRequestBody.ToArray());
-            _channelMessageService.WriteHttpResponse(chResponse,response);
+            WriteResponse(chResponse, response);
         }
 
         public void InvokeChannelMethodAsync(Type channel, MethodInfo method, HttpListenerResponse response, List<object> channelRequestBody)
@@ -86,7 +97,18 @@ namespace Nuclear.Channels.Hosting.ExecutorServices
             var result = properties.FirstOrDefault(x => x.Name.Equals("result", StringComparison.OrdinalIgnoreCase));
             object resultValue = result.GetValue(chResponse);
             Debug.Assert(resultValue != null);
-            _channelMessageService.WriteHttpResponse(resultValue, response);
+            WriteResponse(resultValue, response);
+        }
+
+        private void WriteResponse(object channelMethodReturnValue, HttpListenerResponse response)
+        {
+            if (alreadyInvokedFlag)
+            {
+                alreadyInvokedFlag = false;
+                return;
+            }
+
+            _channelMessageService.WriteHttpResponse(channelMethodReturnValue, response);
         }
     }
 }
