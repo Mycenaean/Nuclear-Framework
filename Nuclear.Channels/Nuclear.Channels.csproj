@@ -8,11 +8,11 @@
     <RepositoryUrl>https://github.com/Mycenaean/Nuclear-Framework/tree/master/Nuclear.Channels</RepositoryUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>3.0.3</Version>
-    <PackageReleaseNotes>Fixed Token Authentication</PackageReleaseNotes>
+    <Version>3.0.4</Version>
+    <PackageReleaseNotes>Extending ChannelBase class</PackageReleaseNotes>
     <Description>Lightweight API Framework for building Http Endpoints</Description>
-    <AssemblyVersion>3.0.3.0</AssemblyVersion>
-    <FileVersion>3.0.3.0</FileVersion>
+    <AssemblyVersion>3.0.4.0</AssemblyVersion>
+    <FileVersion>3.0.4.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
