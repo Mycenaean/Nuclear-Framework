@@ -9,9 +9,8 @@ using System.Text;
 
 namespace ConsoleApp1
 {
-    [Channel]
+    [Channel(EnableSessions = true)]
     [AuthorizeChannel(ChannelAuthenticationSchemes.Token)]
-
     public class TestChannel : ChannelBase
     {
         [ChannelMethod]
