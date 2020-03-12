@@ -6,11 +6,11 @@ Channels Library is part of the Nuclear Framework set of .NET Standard class lib
 
 To install it with Package Manager
  ```
- Install-Package Nuclear.Channels -Version 3.0.2
+ Install-Package Nuclear.Channels -Version 3.0.3
  ```
  To install it with .NET CLI
  ```
- dotnet add package Nuclear.Channels --version 3.0.2
+ dotnet add package Nuclear.Channels --version 3.0.3
  ```
 
 # How to use
@@ -49,6 +49,17 @@ public class TestChannel
 	...
 }
 ```
+
+If you want to enable sessions and get cookies use EnableSessions property and set it to true
+
+```c#
+[Channel(EnableSessions = true)]
+public class TestChannel
+{
+	...
+}
+```
+
 
 ## ChannelMethodAttribute
 
@@ -127,22 +138,56 @@ public SomeEntity EntityMethod(SomeEntity entity)
 }
 ```
 
+## ChannelBase class
+
+If you want to have access to all global services , request context and messaging service your channel class can inherit from ChannelBase abstract class
+
+```c#
+public abstract class ChannelBase
+{
+    IServiceLocator Services { get; }
+    IChannelMethodContext Context { get; }
+    IChannelMessageOutputWriter ChannelMessageWriter { get; }
+}
+```
+
+### IChannelMessageOutputWriter service
+
+You can use IChannelMessageOutputWriter service to return response from your method
+
+```c#
+[ChannelMethod]
+public void HelloWorld(string name)
+{
+    ChannelMessage msg = new ChannelMessage()
+    {
+        Message = string.Empty,
+        Output = $"Hello World {name} from ChannelMethod",
+        Success = true
+    };
+
+    ChannelMessageWriter.Write(msg, Context.ChannelMethodResponse);
+}
+```
+
+
+
 ## Full Example
 ```c#
 [Channel]
 public class TestChannel
 {
-        [ChannelMethod]
-        public string HelloWorld()
-        {
-            return "Hello World from ChannelMethod";
-        }
+    [ChannelMethod]
+    public string HelloWorld()
+    {
+        return "Hello World from ChannelMethod";
+    }
 
-        [ChannelMethod(ChannelHttpMethod.GET)]
-        public string Hello(string name)
-        {
-            return $"Hello {name} from Hello ChannelMethod";
-        }
+    [ChannelMethod(ChannelHttpMethod.GET)]
+    public string Hello(string name)
+    {
+        return $"Hello {name} from Hello ChannelMethod";
+    }
 
 	[ChannelMethod(HttpMethod = ChannelHttpMethod.POST)]
 	public SomeEntity EntityMethod(SomeEntity entity)
