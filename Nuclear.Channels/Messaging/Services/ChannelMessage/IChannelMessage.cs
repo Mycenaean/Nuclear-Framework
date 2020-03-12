@@ -12,6 +12,5 @@ namespace Nuclear.Channels.Messaging.Services.ChannelMessage
         bool Success { get; set; }
         object Output { get; set; }
         string Message { get; set; }
-
     }
 }

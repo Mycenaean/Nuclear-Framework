@@ -1,8 +1,13 @@
-﻿using Nuclear.Channels.Contracts;
+﻿// Copyright © Nikola Milinkovic 
+// Licensed under the MIT License (MIT).
+// See License.md in the repository root for more information.
+
+using Nuclear.Channels.Contracts;
 using Nuclear.ExportLocator.Decorators;
 using Nuclear.ExportLocator.Enumerations;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Nuclear.Channels.Base
@@ -17,19 +22,24 @@ namespace Nuclear.Channels.Base
             _contexts = new Dictionary<IChannelEndpoint, IChannelMethodContext>();
         }
 
-        internal void SetChannelMethodContext(IChannelEndpoint endpoint , IChannelMethodContext context)
+        public void SetChannelMethodContext(IChannelEndpoint endpoint , IChannelMethodContext context)
         {
             _contexts.Add(endpoint, context);
         }
 
-        internal void DestroyChannelMethodContext(IChannelEndpoint endpoint)
+        public void DestroyChannelMethodContext(IChannelEndpoint endpoint)
         {
             _contexts.Remove(endpoint);
         }
 
-        internal IChannelMethodContext GetChannelMethodContext(IChannelEndpoint endpoint)
+        public IChannelMethodContext GetChannelMethodContext(IChannelEndpoint endpoint)
         {
             return _contexts.GetValueOrDefault(endpoint);
+        }
+
+        public IChannelMethodContext GetDefaultContext()
+        {
+            return _contexts.Values.FirstOrDefault();
         }
     }
 }

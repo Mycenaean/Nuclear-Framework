@@ -16,7 +16,7 @@ using System.Text;
 namespace Nuclear.Channels.Hosting.Deserializers
 {
 
-    internal class ChannelMethodDeserializerFactory
+    internal class ChannelMethodDeserializerFactory : IChannelMethodDeserializerFactory
     {
         private readonly IServiceLocator _services;
         private readonly Stream _requestStream;

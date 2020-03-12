@@ -191,11 +191,12 @@ namespace Nuclear.Channels.Hosting
 
                 HttpListenerResponse response = context.Response;
                 bool validCookie = false;
+                bool authenticated = false;
                 if (channelAttr.EnableSessions)
                     validCookie = ValidSession(request);
                 if (httpAuthRequired && !validCookie)
                 {
-                    bool authenticated = CheckAuthentication(context, ChannelSchema, response);
+                    authenticated = CheckAuthentication(context, ChannelSchema, response);
                     if (!authenticated)
                         goto AuthenticationFailed;
                     else
@@ -227,17 +228,21 @@ namespace Nuclear.Channels.Hosting
                 Dictionary<string, Type> methodDescription = _channelMethodDescriptor.GetMethodDescription(method);
                 List<object> channelRequestBody = null;
                 ChannelMethodDeserializerFactory dsrFactory = null;
-                ChannelMethodContext methodContext = null;
 
                 if (request.HttpMethod == "GET" && request.QueryString.AllKeys.Length > 0)
                 {
                     dsrFactory = new ChannelMethodDeserializerFactory(request.QueryString);
                     channelRequestBody = dsrFactory.DeserializeFromQueryParameters(methodDescription);
-                    
+                    InitChannelMethodContext(endpoint, request, response, authenticated, HttpMethod, channelRequestBody);
                     _requestActivator.GetActivateWithParameters(channel, method, channelRequestBody, response);
+                    _contextProvider.DestroyChannelMethodContext(endpoint);
                 }
                 else if (request.HttpMethod == "GET" && request.QueryString.AllKeys.Length == 0)
+                {
+                    InitChannelMethodContext(endpoint, request, response, authenticated, HttpMethod, channelRequestBody);
                     _requestActivator.GetActivateWithoutParameters(channel, method, response);
+                    _contextProvider.DestroyChannelMethodContext(endpoint);
+                }
 
                 //Enter only if Request Body is supplied with POST Method
                 if (request.HasEntityBody == true && request.HttpMethod == "POST")
@@ -247,6 +252,7 @@ namespace Nuclear.Channels.Hosting
                     {
                         dsrFactory = new ChannelMethodDeserializerFactory(request.InputStream);
                         channelRequestBody = dsrFactory.DeserializeFromBody(methodDescription, request.ContentType);
+                        InitChannelMethodContext(endpoint, request, response, authenticated, HttpMethod, channelRequestBody);
                         _requestActivator.PostActivate(channel, method, channelRequestBody, response);
                     }
                     catch (ChannelMethodContentTypeException cEx)
@@ -269,6 +275,7 @@ namespace Nuclear.Channels.Hosting
                     }
                     finally
                     {
+                        _contextProvider.DestroyChannelMethodContext(endpoint);
                         writer.Flush();
                         writer.Close();
                     }
@@ -308,6 +315,12 @@ namespace Nuclear.Channels.Hosting
             else
                 return false;
 
+        }
+
+        private void InitChannelMethodContext(IChannelEndpoint endpoint, HttpListenerRequest request, HttpListenerResponse response, bool isAuthenticated, ChannelHttpMethod method, List<object> channelRequestBody)
+        {
+            ChannelMethodContext methodContext = new ChannelMethodContext(request, response, method, channelRequestBody, isAuthenticated);
+            _contextProvider.SetChannelMethodContext(endpoint, methodContext);
         }
 
         private bool CheckAuthentication(HttpListenerContext context, ChannelAuthenticationSchemes ChannelSchema, HttpListenerResponse response)

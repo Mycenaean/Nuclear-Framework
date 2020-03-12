@@ -2,6 +2,7 @@
 using Nuclear.Channels.Base;
 using Nuclear.Channels.Decorators;
 using Nuclear.Channels.Enums;
+using Nuclear.Channels.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,7 +14,7 @@ namespace ConsoleApp1
 
     public class TestChannel : ChannelBase
     {
-        [ChannelMethod(HttpMethod = ChannelHttpMethod.GET)]
+        [ChannelMethod]
         public string HelloWorld()
         {
             return "HELLO WORLD FROM CHANNEL METHOD";
@@ -25,10 +26,17 @@ namespace ConsoleApp1
             return $"Hello {name} from ChannelMethod";
         }
 
-        [ChannelMethod]
-        public TestClass CreateTestClass(string id, string name)
+        [ChannelMethod(ChannelHttpMethod.POST)]
+        public void CreateTestClass(string id, string name)
         {
-            return new TestClass { Id = id, Name = name };
+            ChannelMessage msg = new ChannelMessage()
+            {
+                Message = string.Empty,
+                Output = new TestClass() { Id = id, Name = name },
+                Success = true
+            };
+
+            ChannelMessageWriter.Write(msg, Context.ChannelMethodResponse);
         }
     }
 
