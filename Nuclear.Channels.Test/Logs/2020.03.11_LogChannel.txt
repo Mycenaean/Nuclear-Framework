@@ -1,0 +1,51 @@
+3/11/2020 11:16:23 PM::::Info::::Method StartListening::::Request coming to TestChannel.HelloWorld
+3/11/2020 11:16:23 PM::::Info::::Method StartListening::::HttpMethod:GET
+3/11/2020 11:16:23 PM::::Info::::Method StartListening::::IsAuthenticated:False
+3/11/2020 11:16:24 PM::::Error::::Method ExceptionHandler::::Exception handler called..
+3/11/2020 11:16:24 PM::::Error::::Method ExceptionHandler::::Malformed or missing header for the token authentication
+3/11/2020 11:16:24 PM::::Error::::Method ExceptionHandler::::No Inner Exception
+3/11/2020 11:16:25 PM::::Error::::Method CheckAuthentication::::Malformed or missing header for the token authentication
+3/11/2020 11:16:25 PM::::Debug::::Method StartListening::::Request finished...
+3/11/2020 11:16:25 PM::::Debug::::Method StartListening::::Closing the response
+3/11/2020 11:17:23 PM::::Info::::Method StartListening::::Request coming to TestChannel.HelloWorld
+3/11/2020 11:17:23 PM::::Info::::Method StartListening::::HttpMethod:GET
+3/11/2020 11:17:23 PM::::Info::::Method StartListening::::IsAuthenticated:False
+3/11/2020 11:17:24 PM::::Error::::Method ExceptionHandler::::Exception handler called..
+3/11/2020 11:17:24 PM::::Error::::Method ExceptionHandler::::Malformed or missing header for the token authentication
+3/11/2020 11:17:24 PM::::Error::::Method ExceptionHandler::::No Inner Exception
+3/11/2020 11:17:24 PM::::Error::::Method CheckAuthentication::::Malformed or missing header for the token authentication
+3/11/2020 11:17:24 PM::::Debug::::Method StartListening::::Request finished...
+3/11/2020 11:17:24 PM::::Debug::::Method StartListening::::Closing the response
+3/11/2020 11:17:35 PM::::Info::::Method StartListening::::Request coming to TestChannel.HelloWorld
+3/11/2020 11:17:35 PM::::Info::::Method StartListening::::HttpMethod:GET
+3/11/2020 11:17:36 PM::::Info::::Method StartListening::::IsAuthenticated:False
+3/11/2020 11:17:36 PM::::Debug::::Method StartListening::::Request finished...
+3/11/2020 11:17:36 PM::::Debug::::Method StartListening::::Closing the response
+3/11/2020 11:17:51 PM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+3/11/2020 11:17:51 PM::::Info::::Method StartListening::::HttpMethod:POST
+3/11/2020 11:17:51 PM::::Info::::Method StartListening::::IsAuthenticated:False
+3/11/2020 11:20:35 PM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+3/11/2020 11:20:35 PM::::Info::::Method StartListening::::HttpMethod:POST
+3/11/2020 11:20:35 PM::::Info::::Method StartListening::::IsAuthenticated:False
+3/11/2020 11:20:35 PM::::Info::::Method DeserializeFromBody::::Request body: 
+3/11/2020 11:20:35 PM::::Info::::Method DeserializeFromBody::::
+3/11/2020 11:21:25 PM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+3/11/2020 11:21:25 PM::::Info::::Method StartListening::::HttpMethod:POST
+3/11/2020 11:21:25 PM::::Info::::Method StartListening::::IsAuthenticated:False
+3/11/2020 11:22:42 PM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+3/11/2020 11:22:42 PM::::Info::::Method StartListening::::HttpMethod:POST
+3/11/2020 11:22:42 PM::::Info::::Method StartListening::::IsAuthenticated:False
+3/11/2020 11:22:58 PM::::Info::::Method DeserializeFromBody::::Request body: 
+3/11/2020 11:22:59 PM::::Info::::Method DeserializeFromBody::::{
+   "name":"nuclear framework"
+}
+3/11/2020 11:22:59 PM::::Debug::::Method StartListening::::Request finished...
+3/11/2020 11:22:59 PM::::Debug::::Method StartListening::::Closing the response
+3/11/2020 11:23:09 PM::::Info::::Method StartListening::::Request coming to TestChannel.HelloWorld
+3/11/2020 11:23:09 PM::::Info::::Method StartListening::::HttpMethod:GET
+3/11/2020 11:23:09 PM::::Info::::Method StartListening::::IsAuthenticated:False
+3/11/2020 11:23:09 PM::::Debug::::Method StartListening::::Request finished...
+3/11/2020 11:23:09 PM::::Debug::::Method StartListening::::Closing the response
+3/11/2020 11:23:13 PM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+3/11/2020 11:23:13 PM::::Info::::Method StartListening::::HttpMethod:POST
+3/11/2020 11:23:13 PM::::Info::::Method StartListening::::IsAuthenticated:False

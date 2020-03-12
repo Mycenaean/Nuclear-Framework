@@ -4,10 +4,12 @@
 
 using Nuclear.Channels.Auth;
 using Nuclear.Channels.Auth.Identity;
+using Nuclear.Channels.Base;
 using Nuclear.Channels.Contracts;
 using Nuclear.Channels.Decorators;
 using Nuclear.Channels.Enums;
 using Nuclear.Channels.Hosting.Contracts;
+using Nuclear.Channels.Hosting.Deserializers;
 using Nuclear.Channels.Hosting.Exceptions;
 using Nuclear.Channels.Interfaces;
 using Nuclear.Data.Logging.Enums;
@@ -38,6 +40,7 @@ namespace Nuclear.Channels.Hosting
         private IChannelMethodDescriptor _channelMethodDescriptor;
         private IChannelMethodRequestActivator _requestActivator;
         private IChannelMessageService _msgService;
+        private IChannelMethodContextProvider _contextProvider;
         private string BaseURL = null;
         private Func<string, string, bool> _basicAuthenticationMethod;
         private Func<string, bool> _tokenAuthenticationMethod;
@@ -81,11 +84,13 @@ namespace Nuclear.Channels.Hosting
             _channelMethodDescriptor = _services.Get<IChannelMethodDescriptor>();
             _requestActivator = _services.Get<IChannelMethodRequestActivator>();
             _msgService = _services.Get<IChannelMessageService>();
+            _contextProvider = _services.Get<IChannelMethodContextProvider>();
 
             Debug.Assert(_channelLocator != null);
             Debug.Assert(_channelMethodDescriptor != null);
             Debug.Assert(_requestActivator != null);
             Debug.Assert(_msgService != null);
+            Debug.Assert(_contextProvider != null);
 
             List<Type> channels = new List<Type>();
 
@@ -221,9 +226,16 @@ namespace Nuclear.Channels.Hosting
 
                 Dictionary<string, Type> methodDescription = _channelMethodDescriptor.GetMethodDescription(method);
                 List<object> channelRequestBody = null;
+                ChannelMethodDeserializerFactory dsrFactory = null;
+                ChannelMethodContext methodContext = null;
 
                 if (request.HttpMethod == "GET" && request.QueryString.AllKeys.Length > 0)
-                    _requestActivator.GetActivateWithParameters(channel, method, channelRequestBody, methodDescription, request, response);
+                {
+                    dsrFactory = new ChannelMethodDeserializerFactory(request.QueryString);
+                    channelRequestBody = dsrFactory.DeserializeFromQueryParameters(methodDescription);
+                    
+                    _requestActivator.GetActivateWithParameters(channel, method, channelRequestBody, response);
+                }
                 else if (request.HttpMethod == "GET" && request.QueryString.AllKeys.Length == 0)
                     _requestActivator.GetActivateWithoutParameters(channel, method, response);
 
@@ -233,7 +245,9 @@ namespace Nuclear.Channels.Hosting
                     StreamWriter writer = new StreamWriter(response.OutputStream);
                     try
                     {
-                        _requestActivator.PostActivate(channel, method, channelRequestBody, methodDescription, request, response);
+                        dsrFactory = new ChannelMethodDeserializerFactory(request.InputStream);
+                        channelRequestBody = dsrFactory.DeserializeFromBody(methodDescription, request.ContentType);
+                        _requestActivator.PostActivate(channel, method, channelRequestBody, response);
                     }
                     catch (ChannelMethodContentTypeException cEx)
                     {

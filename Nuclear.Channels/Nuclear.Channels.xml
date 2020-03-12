@@ -88,7 +88,7 @@
             </summary>
         </member>
         <member name="T:Nuclear.Channels.ChannelLocator">
-            <summary>`
+            <summary>
             Service that contains all Channels
             </summary>
         </member>
@@ -449,28 +449,24 @@
             Service which will activate ChannelMethod
             </summary>
         </member>
-        <member name="M:Nuclear.Channels.Hosting.IChannelMethodRequestActivator.PostActivate(System.Type,System.Reflection.MethodInfo,System.Collections.Generic.List{System.Object},System.Collections.Generic.Dictionary{System.String,System.Type},System.Net.HttpListenerRequest,System.Net.HttpListenerResponse)">
+        <member name="M:Nuclear.Channels.Hosting.IChannelMethodRequestActivator.PostActivate(System.Type,System.Reflection.MethodInfo,System.Collections.Generic.List{System.Object},System.Net.HttpListenerResponse)">
             <summary>
             Activate the ChannelMethod which takes input parameters based on post input body
             </summary>
             <param name="channel">Targeted Channel</param>
             <param name="method">Targeted ChannelMethod</param>
             <param name="channelRequestBody">List of parameters to be initialized</param>
-            <param name="methodDescription">List of parameter names with their types</param>
-            <param name="request">Incoming HttpListenerRequest</param>
             <param name="response">HttpListenerResponse to be written to the client</param>
             <exception cref="T:Nuclear.Channels.Hosting.Exceptions.ChannelMethodParameterException">Parameters dont match</exception>
             <exception cref="T:Nuclear.Channels.Hosting.Exceptions.ChannelMethodContentTypeException">Unsupported content type</exception>
         </member>
-        <member name="M:Nuclear.Channels.Hosting.IChannelMethodRequestActivator.GetActivateWithParameters(System.Type,System.Reflection.MethodInfo,System.Collections.Generic.List{System.Object},System.Collections.Generic.Dictionary{System.String,System.Type},System.Net.HttpListenerRequest,System.Net.HttpListenerResponse)">
+        <member name="M:Nuclear.Channels.Hosting.IChannelMethodRequestActivator.GetActivateWithParameters(System.Type,System.Reflection.MethodInfo,System.Collections.Generic.List{System.Object},System.Net.HttpListenerResponse)">
             <summary>
              Activate the ChannelMethod which takes input parameters based on query string 
             </summary>
             <param name="channel">Targeted Channel</param>
             <param name="method">Targeted ChannelMethod</param>
             <param name="channelRequestBody">List of parameters to be initialized</param>
-            <param name="methodDescription">List of parameter names with their types</param>
-            <param name="request">Incoming HttpListenerRequest</param>
             <param name="response">HttpListenerResponse to be written to the client</param>
         </member>
         <member name="M:Nuclear.Channels.Hosting.IChannelMethodRequestActivator.GetActivateWithoutParameters(System.Type,System.Reflection.MethodInfo,System.Net.HttpListenerResponse)">
