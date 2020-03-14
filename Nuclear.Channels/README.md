@@ -140,7 +140,7 @@ public SomeEntity EntityMethod(SomeEntity entity)
 
 ## ChannelBase class
 
-If you want to have access to all global services , request context and messaging service your channel class can inherit from ChannelBase abstract class
+If you want to have access to all global services , request context and messaging service your channel class can inherit from ChannelBase class
 
 ```c#
 public abstract class ChannelBase
