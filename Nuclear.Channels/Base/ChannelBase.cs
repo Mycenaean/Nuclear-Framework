@@ -13,21 +13,40 @@ namespace Nuclear.Channels.Base
     /// <summary>
     /// Base abstract Channel Helper class
     /// </summary>
-    public class ChannelBase : IChannel
+    public abstract class ChannelBase : IChannel
     {
+        private readonly IChannelRedirectionEvents _events;
+
         /// <summary>
         /// ServiceLocator
         /// </summary>
-        public IServiceLocator Services => ServiceLocatorBuilder.CreateServiceLocator();
+        public IServiceLocator Services { get; }
 
         /// <summary>
         /// Request context
         /// </summary>
-        public IChannelMethodContext Context => Services.Get<IChannelMethodContextProvider>().GetDefaultContext();
+        public IChannelMethodContext Context { get; }
 
         /// <summary>
         /// Service that will write IChannelMessage as an output. This is the fastest way to get response from ChannelMethod.
         /// </summary>
-        public IChannelMessageOutputWriter ChannelMessageWriter => Services.Get<IChannelMessageOutputWriter>();
+        public IChannelMessageOutputWriter ChannelMessageWriter { get; }
+
+        public ChannelBase()
+        {
+            Services = ServiceLocatorBuilder.CreateServiceLocator();
+            Context = Services.Get<IChannelMethodContextProvider>().GetDefaultContext();
+            ChannelMessageWriter = Services.Get<IChannelMessageOutputWriter>();
+            _events = Services.Get<IChannelRedirectionEvents>();
+        }
+
+        /// <summary>
+        /// Redirect to a specified url
+        /// </summary>
+        /// <param name="url">Specified url to redirect the response</param>
+        public void RedirectToUrl(string url)
+        {
+            _events.ExecuteRedirection(url, Context.ChannelMethodResponse);
+        }
     }
 }

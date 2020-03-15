@@ -239,6 +239,14 @@ namespace Nuclear.Channels.Hosting
                 }
                 else if (request.HttpMethod == "GET" && request.QueryString.AllKeys.Length == 0)
                 {
+                    if (methodDescription.Count > 0)
+                    {
+                        StreamWriter writer = new StreamWriter(response.OutputStream);
+                        _msgService.ExceptionHandler(writer, new TargetParameterCountException(), response);
+                        writer.Close();
+                        goto AuthenticationFailed;
+                    }
+
                     InitChannelMethodContext(endpoint, request, response, authenticated, HttpMethod, channelRequestBody);
                     _requestActivator.GetActivateWithoutParameters(channel, method, response);
                     _contextProvider.DestroyChannelMethodContext(endpoint);

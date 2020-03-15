@@ -2,6 +2,7 @@
 // Licensed under the MIT License (MIT).
 // See License.md in the repository root for more information.
 
+using Nuclear.Channels.Base;
 using Nuclear.Channels.Hosting.Contracts;
 using Nuclear.Channels.Messaging;
 using Nuclear.Channels.Messaging.Services.ChannelMessage;
@@ -30,6 +31,7 @@ namespace Nuclear.Channels.Hosting.ExecutorServices
         private IServiceLocator _services;
         private IChannelMessageService _channelMessageService;
         private IChannelMessageOutputWriter _channelMessageWriter;
+        private IChannelRedirectionEvents _eventService;
         private static bool alreadyInvokedFlag = false;
 
         public ChannelMethodInvoker()
@@ -37,11 +39,22 @@ namespace Nuclear.Channels.Hosting.ExecutorServices
             _services = ServiceLocatorBuilder.CreateServiceLocator();
             _channelMessageService = _services.Get<IChannelMessageService>();
             _channelMessageWriter = _services.Get<IChannelMessageOutputWriter>();
+            _eventService = _services.Get<IChannelRedirectionEvents>();
+
             Debug.Assert(_services != null);
             Debug.Assert(_channelMessageService != null);
             Debug.Assert(_channelMessageWriter != null);
+            Debug.Assert(_eventService != null);
 
             _channelMessageWriter.OnPostMessageServiceInvoked += _channelMessageWriter_OnPostMessageServiceInvoked;
+            _eventService.OnRedirectionInvoked += _eventService_OnRedirectionInvoked;
+        }
+
+
+        private void _eventService_OnRedirectionInvoked(object sender, ChannelRedirectionEventArgs e)
+        {
+            e.Response.Redirect(e.Url);
+            alreadyInvokedFlag = true;
         }
 
         private void _channelMessageWriter_OnPostMessageServiceInvoked(object sender, EventArgs e)

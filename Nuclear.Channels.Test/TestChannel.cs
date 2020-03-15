@@ -9,8 +9,7 @@ using System.Text;
 
 namespace ConsoleApp1
 {
-    [Channel(EnableSessions = true)]
-    [AuthorizeChannel(ChannelAuthenticationSchemes.Token)]
+    [Channel]
     public class TestChannel : ChannelBase
     {
         [ChannelMethod]
@@ -36,6 +35,12 @@ namespace ConsoleApp1
             };
 
             ChannelMessageWriter.Write(msg, Context.ChannelMethodResponse);
+        }
+
+        [ChannelMethod]
+        public void RedirectionTest(string url)
+        {
+            RedirectToUrl(url);
         }
     }
 

@@ -1,0 +1,89 @@
+3/15/2020 1:40:35 PM::::Info::::Method StartListening::::Request coming to TestChannel.RedirectionTest
+3/15/2020 1:40:35 PM::::Info::::Method StartListening::::HttpMethod:GET
+3/15/2020 1:40:35 PM::::Info::::Method StartListening::::IsAuthenticated:False
+3/15/2020 1:40:36 PM::::Error::::Method ExceptionHandler::::Exception handler called..
+3/15/2020 1:40:36 PM::::Error::::Method ExceptionHandler::::Malformed or missing header for the token authentication
+3/15/2020 1:40:36 PM::::Error::::Method ExceptionHandler::::No Inner Exception
+3/15/2020 1:40:36 PM::::Error::::Method CheckAuthentication::::Malformed or missing header for the token authentication
+3/15/2020 1:40:36 PM::::Debug::::Method StartListening::::Request finished...
+3/15/2020 1:40:36 PM::::Debug::::Method StartListening::::Closing the response
+3/15/2020 1:41:18 PM::::Info::::Method StartListening::::Request coming to TestChannel.RedirectionTest
+3/15/2020 1:41:18 PM::::Info::::Method StartListening::::HttpMethod:GET
+3/15/2020 1:41:18 PM::::Info::::Method StartListening::::IsAuthenticated:False
+3/15/2020 1:41:28 PM::::Info::::Method StartListening::::Request coming to TestChannel.RedirectionTest
+3/15/2020 1:41:28 PM::::Info::::Method StartListening::::HttpMethod:GET
+3/15/2020 1:41:28 PM::::Info::::Method StartListening::::IsAuthenticated:False
+3/15/2020 1:42:11 PM::::Info::::Method StartListening::::Request coming to TestChannel.RedirectionTest
+3/15/2020 1:42:11 PM::::Info::::Method StartListening::::HttpMethod:GET
+3/15/2020 1:42:11 PM::::Info::::Method StartListening::::IsAuthenticated:False
+3/15/2020 1:43:22 PM::::Info::::Method StartListening::::Request coming to TestChannel.RedirectionTest
+3/15/2020 1:43:22 PM::::Info::::Method StartListening::::HttpMethod:GET
+3/15/2020 1:43:22 PM::::Info::::Method StartListening::::IsAuthenticated:False
+3/15/2020 1:44:03 PM::::Info::::Method StartListening::::Request coming to TestChannel.RedirectionTest
+3/15/2020 1:44:03 PM::::Info::::Method StartListening::::HttpMethod:GET
+3/15/2020 1:44:03 PM::::Info::::Method StartListening::::IsAuthenticated:False
+3/15/2020 1:44:22 PM::::Debug::::Method StartListening::::Request finished...
+3/15/2020 1:44:22 PM::::Debug::::Method StartListening::::Closing the response
+3/15/2020 1:44:22 PM::::Info::::Method StartListening::::Request coming to TestChannel.RedirectionTest
+3/15/2020 1:44:22 PM::::Info::::Method StartListening::::HttpMethod:GET
+3/15/2020 1:44:22 PM::::Info::::Method StartListening::::IsAuthenticated:False
+3/15/2020 1:49:34 PM::::Info::::Method StartListening::::Request coming to TestChannel.RedirectionTest
+3/15/2020 1:49:34 PM::::Info::::Method StartListening::::HttpMethod:GET
+3/15/2020 1:49:34 PM::::Info::::Method StartListening::::IsAuthenticated:False
+3/15/2020 1:49:34 PM::::Error::::Method ExceptionHandler::::Exception handler called..
+3/15/2020 1:49:34 PM::::Error::::Method ExceptionHandler::::Number of parameters specified does not match the expected number.
+3/15/2020 1:49:34 PM::::Error::::Method ExceptionHandler::::No Inner Exception
+3/15/2020 1:49:34 PM::::Debug::::Method StartListening::::Request finished...
+3/15/2020 1:49:34 PM::::Debug::::Method StartListening::::Closing the response
+3/15/2020 1:49:46 PM::::Info::::Method StartListening::::Request coming to TestChannel.RedirectionTest
+3/15/2020 1:49:46 PM::::Info::::Method StartListening::::HttpMethod:GET
+3/15/2020 1:49:46 PM::::Info::::Method StartListening::::IsAuthenticated:False
+3/15/2020 1:49:49 PM::::Debug::::Method StartListening::::Request finished...
+3/15/2020 1:49:49 PM::::Debug::::Method StartListening::::Closing the response
+3/15/2020 1:56:21 PM::::Info::::Method StartListening::::Request coming to TestChannel.RedirectionTest
+3/15/2020 1:56:21 PM::::Info::::Method StartListening::::HttpMethod:POST
+3/15/2020 1:56:21 PM::::Info::::Method StartListening::::IsAuthenticated:False
+3/15/2020 1:56:21 PM::::Info::::Method DeserializeFromBody::::Request body: 
+3/15/2020 1:56:21 PM::::Info::::Method DeserializeFromBody::::{
+	"url":"www.google.com"
+}
+3/15/2020 1:56:28 PM::::Debug::::Method StartListening::::Request finished...
+3/15/2020 1:56:28 PM::::Debug::::Method StartListening::::Closing the response
+3/15/2020 1:56:28 PM::::Info::::Method StartListening::::Request coming to TestChannel.RedirectionTest
+3/15/2020 1:56:28 PM::::Info::::Method StartListening::::HttpMethod:GET
+3/15/2020 1:56:28 PM::::Info::::Method StartListening::::IsAuthenticated:False
+3/15/2020 1:56:28 PM::::Error::::Method ExceptionHandler::::Exception handler called..
+3/15/2020 1:56:28 PM::::Error::::Method ExceptionHandler::::Number of parameters specified does not match the expected number.
+3/15/2020 1:56:28 PM::::Error::::Method ExceptionHandler::::No Inner Exception
+3/15/2020 1:56:29 PM::::Debug::::Method StartListening::::Request finished...
+3/15/2020 1:56:29 PM::::Debug::::Method StartListening::::Closing the response
+3/15/2020 1:56:45 PM::::Info::::Method StartListening::::Request coming to TestChannel.RedirectionTest
+3/15/2020 1:56:45 PM::::Info::::Method StartListening::::HttpMethod:POST
+3/15/2020 1:56:45 PM::::Info::::Method StartListening::::IsAuthenticated:False
+3/15/2020 1:56:45 PM::::Info::::Method DeserializeFromBody::::Request body: 
+3/15/2020 1:56:45 PM::::Info::::Method DeserializeFromBody::::{
+	"url":"www.google.com"
+}
+3/15/2020 1:57:19 PM::::Debug::::Method StartListening::::Request finished...
+3/15/2020 1:57:20 PM::::Debug::::Method StartListening::::Closing the response
+3/15/2020 1:57:24 PM::::Info::::Method StartListening::::Request coming to TestChannel.RedirectionTest
+3/15/2020 1:57:25 PM::::Info::::Method StartListening::::HttpMethod:GET
+3/15/2020 1:57:25 PM::::Info::::Method StartListening::::IsAuthenticated:False
+3/15/2020 4:46:56 PM::::Info::::Method StartListening::::Request coming to TestChannel.RedirectionTest
+3/15/2020 4:46:56 PM::::Info::::Method StartListening::::HttpMethod:GET
+3/15/2020 4:46:56 PM::::Info::::Method StartListening::::IsAuthenticated:False
+3/15/2020 4:47:00 PM::::Debug::::Method StartListening::::Request finished...
+3/15/2020 4:47:00 PM::::Debug::::Method StartListening::::Closing the response
+3/15/2020 4:47:11 PM::::Info::::Method StartListening::::Request coming to TestChannel.RedirectionTest
+3/15/2020 4:47:11 PM::::Info::::Method StartListening::::HttpMethod:GET
+3/15/2020 4:47:11 PM::::Info::::Method StartListening::::IsAuthenticated:False
+3/15/2020 4:47:36 PM::::Debug::::Method StartListening::::Request finished...
+3/15/2020 4:47:36 PM::::Debug::::Method StartListening::::Closing the response
+3/15/2020 4:47:39 PM::::Info::::Method StartListening::::Request coming to TestChannel.RedirectionTest
+3/15/2020 4:47:39 PM::::Info::::Method StartListening::::HttpMethod:GET
+3/15/2020 4:47:39 PM::::Info::::Method StartListening::::IsAuthenticated:False
+3/15/2020 4:48:19 PM::::Info::::Method StartListening::::Request coming to TestChannel.RedirectionTest
+3/15/2020 4:48:19 PM::::Info::::Method StartListening::::HttpMethod:GET
+3/15/2020 4:48:19 PM::::Info::::Method StartListening::::IsAuthenticated:False
+3/15/2020 4:48:36 PM::::Debug::::Method StartListening::::Request finished...
+3/15/2020 4:48:37 PM::::Debug::::Method StartListening::::Closing the response
