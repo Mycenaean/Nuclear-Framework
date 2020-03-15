@@ -41,12 +41,33 @@ namespace Nuclear.Channels.Base
         }
 
         /// <summary>
-        /// Redirect to a specified url
+        /// Redirect to a specified url, https prefix is the default if not provided otherwise
         /// </summary>
         /// <param name="url">Specified url to redirect the response</param>
-        public void RedirectToUrl(string url)
+        /// <param name="isHttps">Url Schema, default is https</param>
+        public void RedirectToUrl(string url , bool isHttps = true)
         {
-            _events.ExecuteRedirection(url, Context.ChannelMethodResponse);
+            if (!isHttps)
+                RedirectToHttpUrl(url);
+
+            if (CheckForHttpPrefix(url))
+                _events.ExecuteRedirection(url, Context.ChannelMethodResponse);
+            else
+                _events.ExecuteRedirection($"https://{url}", Context.ChannelMethodResponse);
+        }
+
+        private void RedirectToHttpUrl(string url)
+        {
+            if (CheckForHttpPrefix(url))
+                _events.ExecuteRedirection(url, Context.ChannelMethodResponse);
+            else
+                _events.ExecuteRedirection($"http://{url}", Context.ChannelMethodResponse);
+        }
+
+        private bool CheckForHttpPrefix(string url)
+        {
+            string prefix = $"{url[0]}{url[1]}{url[2]}{url[3]}";
+            return prefix == "http";
         }
     }
 }
