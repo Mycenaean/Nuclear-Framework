@@ -21,16 +21,6 @@ Nuclear framework provides alternative way to build lightweight API endpoints us
  dotnet add package Nuclear.ExportLocator --version 3.0.0
  ```
 
-## [Nuclear.Data](https://github.com/Mycenaean/Nuclear-Framework/tree/master/Nuclear.Data)
- Class Library containing helper classes for working with channels.
-
-## [Nuclear.Channels.Invoker](https://github.com/Mycenaean/Nuclear-Framework/tree/master/Nuclear.Channels.Invoker)
- Application for easy invoking of channels. It can be used as a regular Web Service Invoker not specific to channels.
-### Currently work in progress
-
-## [ASP.NET.Core.Nuclear.Channels.TemplateWeb](https://github.com/Mycenaean/Nuclear-Framework/tree/master/ASP.NET.Core.Nuclear.Channels.TemplateWeb)
- ASP.NET Core Razor Pages project that can serve as a template for Channels.
- ### Currently work in progress
 
 ## [Nuclear.Channels.Remoting](https://github.com/Mycenaean/Nuclear-Framework/tree/master/Nuclear.Channels.Remoting)
  Class Library for easy calls to the Channels.
