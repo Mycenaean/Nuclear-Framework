@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Authors>Nikola Milinkovic</Authors>
+    <Copyright>Nikola Milinkovic</Copyright>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Nuclear.Channels.Authentication\Nuclear.Channels.Authentication.csproj" />
+    <ProjectReference Include="..\Nuclear.Channels.Base\Nuclear.Channels.Base.csproj" />
+    <ProjectReference Include="..\Nuclear.Channels.Data\Nuclear.Channels.Data.csproj" />
+    <ProjectReference Include="..\Nuclear.Channels.Messaging\Nuclear.Channels.Messaging.csproj" />
+    <ProjectReference Include="..\Nuclear.ExportLocator\Nuclear.ExportLocator.csproj" />
+  </ItemGroup>
+
+</Project>

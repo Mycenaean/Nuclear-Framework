@@ -2,10 +2,10 @@
 // Licensed under the MIT License (MIT).
 // See License.md in the repository root for more information.
 
-using Nuclear.Channels.Contracts;
+using Nuclear.Channels.InvokerServices.Contracts;
+using Nuclear.Channels.Base.Enums;
+using Nuclear.Channels.Base.Contracts;
 using Nuclear.Channels.Decorators;
-using Nuclear.Channels.Enums;
-using Nuclear.Channels.Interfaces;
 using Nuclear.ExportLocator;
 using Nuclear.ExportLocator.Decorators;
 using Nuclear.ExportLocator.Enumerations;

@@ -1,0 +1,24 @@
+3/22/2020 11:41:25 PM::::Info::::Method StartListening::::Request coming to TestChannel.HelloWorld
+3/22/2020 11:41:25 PM::::Info::::Method StartListening::::HttpMethod:GET
+3/22/2020 11:41:25 PM::::Info::::Method StartListening::::IsAuthenticated:False
+3/22/2020 11:43:10 PM::::Info::::Method StartListening::::Request coming to TestChannel.HelloWorld
+3/22/2020 11:43:10 PM::::Info::::Method StartListening::::HttpMethod:GET
+3/22/2020 11:43:10 PM::::Info::::Method StartListening::::IsAuthenticated:False
+3/22/2020 11:47:06 PM::::Info::::Method StartListening::::Request coming to TestChannel.HelloWorld
+3/22/2020 11:47:06 PM::::Info::::Method StartListening::::HttpMethod:GET
+3/22/2020 11:47:06 PM::::Info::::Method StartListening::::IsAuthenticated:False
+3/22/2020 11:47:07 PM::::Debug::::Method StartListening::::Request finished...
+3/22/2020 11:47:07 PM::::Debug::::Method StartListening::::Closing the response
+3/22/2020 11:47:43 PM::::Info::::Method StartListening::::Request coming to TestChannel.RedirectionTest
+3/22/2020 11:47:43 PM::::Info::::Method StartListening::::HttpMethod:GET
+3/22/2020 11:47:43 PM::::Info::::Method StartListening::::IsAuthenticated:False
+3/22/2020 11:47:43 PM::::Error::::Method ExceptionHandler::::Exception handler called..
+3/22/2020 11:47:43 PM::::Error::::Method ExceptionHandler::::Number of parameters specified does not match the expected number.
+3/22/2020 11:47:43 PM::::Error::::Method ExceptionHandler::::No Inner Exception
+3/22/2020 11:47:43 PM::::Debug::::Method StartListening::::Request finished...
+3/22/2020 11:47:43 PM::::Debug::::Method StartListening::::Closing the response
+3/22/2020 11:47:55 PM::::Info::::Method StartListening::::Request coming to TestChannel.RedirectionTest
+3/22/2020 11:47:55 PM::::Info::::Method StartListening::::HttpMethod:GET
+3/22/2020 11:47:55 PM::::Info::::Method StartListening::::IsAuthenticated:False
+3/22/2020 11:47:55 PM::::Debug::::Method StartListening::::Request finished...
+3/22/2020 11:47:55 PM::::Debug::::Method StartListening::::Closing the response

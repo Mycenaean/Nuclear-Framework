@@ -1,11 +1,7 @@
-﻿using Nuclear.Channels.Auth;
-using Nuclear.Channels.Base;
+﻿using Nuclear.Channels;
+using Nuclear.Channels.Base.Enums;
 using Nuclear.Channels.Decorators;
-using Nuclear.Channels.Enums;
 using Nuclear.Channels.Messaging;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ConsoleApp1
 {

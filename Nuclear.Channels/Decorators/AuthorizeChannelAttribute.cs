@@ -2,9 +2,8 @@
 // Licensed under the MIT License (MIT).
 // See License.md in the repository root for more information.
 
-using Nuclear.Channels.Auth;
+using Nuclear.Channels.Authentication;
 using System;
-using System.Net;
 
 namespace Nuclear.Channels.Decorators
 {

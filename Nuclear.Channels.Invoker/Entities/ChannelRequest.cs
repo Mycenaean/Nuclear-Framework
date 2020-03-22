@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Nuclear.Channels.Invoker.Entities
+﻿namespace Nuclear.Channels.Invoker.Entities
 {
     /// <summary>
     /// Neccessary fields for Channel request
@@ -25,7 +19,7 @@ namespace Nuclear.Channels.Invoker.Entities
         /// <summary>
         /// HttpRequest Content-Type 
         /// </summary>
-        public string ContentType {get; set;}
+        public string ContentType { get; set; }
 
         /// <summary>
         /// Input body

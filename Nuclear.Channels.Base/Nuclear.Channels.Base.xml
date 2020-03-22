@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Nuclear.Channels.Base</name>
+    </assembly>
+    <members>
+        <member name="T:Nuclear.Channels.Base.Contracts.ChannelEndpoint">
+            <summary>
+            Http Endpoint to be initialized
+            </summary>
+        </member>
+        <member name="T:Nuclear.Channels.Base.Contracts.IChannelEndpoint">
+            <summary>
+            Http Endpoint to be initialized
+            </summary>
+        </member>
+        <member name="T:Nuclear.Channels.Base.Contracts.IChannelLocator">
+            <summary>
+            Service that contains all Channels
+            </summary>
+        </member>
+        <member name="M:Nuclear.Channels.Base.Contracts.IChannelLocator.RegisteredChannels(System.AppDomain)">
+            <summary>
+            Method that get all Channels
+            </summary>
+            <param name="domain">Domain with all assemblies</param>
+            <returns>List of classes that are decorated with ChannelAttribute</returns>
+        </member>
+        <member name="T:Nuclear.Channels.Base.Enums.ChannelHttpMethod">
+            <summary>
+            ChannelMethod Http Method to be used
+            </summary>
+        </member>
+        <member name="T:Nuclear.Channels.Base.Exceptions.ChannelMethodContentTypeException">
+            <summary>
+            Exception thrown when Content-Type is neither application/json nor application/xml
+            </summary>
+        </member>
+        <member name="T:Nuclear.Channels.Base.Exceptions.ChannelMethodParameterException">
+            <summary>
+            Exception thrown when parameters dont match
+            </summary>
+        </member>
+        <member name="T:Nuclear.Channels.Base.Exceptions.HttpListenerNotSupportedException">
+            <summary>
+            Exception that is thrown when HttpListener is not supported
+            </summary>
+        </member>
+        <member name="T:Nuclear.Channels.Base.IChannelMethodContext">
+            <summary>
+            Service that provide Request-Response Context
+            </summary>
+            <remarks>Be careful how you use Request and Response Objects</remarks>
+        </member>
+        <member name="P:Nuclear.Channels.Base.IChannelMethodContext.ChannelMethodRequest">
+            <summary>
+            Http Request sent to ChannelMethod
+            </summary>
+        </member>
+        <member name="P:Nuclear.Channels.Base.IChannelMethodContext.ChannelMethodResponse">
+            <summary>
+            Http Response to be written
+            </summary>
+            <remarks>Be careful with what you do with the response since closing the response inside ChannelMethod could break the workflow</remarks>
+        </member>
+        <member name="P:Nuclear.Channels.Base.IChannelMethodContext.ChannelHttpMethod">
+            <summary>
+            Http Method used to call ChannelMethod
+            </summary>
+        </member>
+        <member name="P:Nuclear.Channels.Base.IChannelMethodContext.Parameters">
+            <summary>
+            ChannelMethod parameter list ordered
+            </summary>
+        </member>
+        <member name="P:Nuclear.Channels.Base.IChannelMethodContext.IsAuthenticated">
+            <summary>
+            Is User Authenticated
+            </summary>
+        </member>
+        <member name="T:Nuclear.Channels.Contracts.IChannel">
+            <summary>
+            Base contract for abstract ChannelBase class
+            </summary>
+        </member>
+    </members>
+</doc>

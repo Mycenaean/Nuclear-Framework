@@ -2,10 +2,9 @@
 // Licensed under the MIT License (MIT).
 // See License.md in the repository root for more information.
 
-using Nuclear.Channels.Auth;
-using Nuclear.Channels.Enums;
+using Nuclear.Channels.Authentication;
+using Nuclear.Channels.Base.Enums;
 using System;
-using System.Net;
 
 namespace Nuclear.Channels.DocumentationTool
 {

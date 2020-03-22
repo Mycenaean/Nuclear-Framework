@@ -30,7 +30,7 @@ namespace Nuclear.ExportLocator.Services
         {
             get
             {
-                lock(_lock)
+                lock (_lock)
                 {
                     if (Locator == null)
                     {

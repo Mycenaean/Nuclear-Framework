@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Nuclear.Channels\Nuclear.Channels.csproj" />
-    <ProjectReference Include="..\Nuclear.Data\Nuclear.Data.csproj" />
     <ProjectReference Include="..\Nuclear.ExportLocator\Nuclear.ExportLocator.csproj" />
   </ItemGroup>
 
