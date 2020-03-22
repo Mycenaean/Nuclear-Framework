@@ -1,10 +1,8 @@
 ﻿using Moq;
-using Nuclear.Channels.Auth;
-using Nuclear.Channels.Auth.Identity;
+using Nuclear.Channels.Authentication.Identity;
 using System;
 using System.Collections.Generic;
 using System.Net;
-using System.Text;
 using Xunit;
 
 namespace Nuclear.Channels.UnitTests

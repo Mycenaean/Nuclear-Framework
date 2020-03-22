@@ -1,5 +1,4 @@
 ﻿using Nuclear.Channels.Remoting.Enums;
-using System.Net;
 
 namespace Nuclear.Channels.Remoting.Services
 {/// <summary>

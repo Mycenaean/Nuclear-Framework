@@ -8,23 +8,27 @@
     <RepositoryUrl>https://github.com/Mycenaean/Nuclear-Framework/tree/master/Nuclear.Channels</RepositoryUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>3.0.4</Version>
-    <PackageReleaseNotes>Extending ChannelBase class</PackageReleaseNotes>
+    <Version>3.0.5</Version>
+    <PackageReleaseNotes>Adding Redirection capability to ChannelBase</PackageReleaseNotes>
     <Description>Lightweight API Framework for building Http Endpoints</Description>
-    <AssemblyVersion>3.0.4.0</AssemblyVersion>
-    <FileVersion>3.0.4.0</FileVersion>
+    <AssemblyVersion>3.0.5.0</AssemblyVersion>
+    <FileVersion>3.0.5.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile></DocumentationFile>
+    <DocumentationFile>C:\Users\Mycenaean\source\repos\Nuclear-Framework\Nuclear.Channels\Nuclear.Channels.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Nuclear.Data\Nuclear.Data.csproj" />
+    <ProjectReference Include="..\Nuclear.Channels.Authentication\Nuclear.Channels.Authentication.csproj" />
+    <ProjectReference Include="..\Nuclear.Channels.Base\Nuclear.Channels.Base.csproj" />
+    <ProjectReference Include="..\Nuclear.Channels.Data\Nuclear.Channels.Data.csproj" />
+    <ProjectReference Include="..\Nuclear.Channels.InvokerServices\Nuclear.Channels.InvokerServices.csproj" />
+    <ProjectReference Include="..\Nuclear.Channels.Messaging\Nuclear.Channels.Messaging.csproj" />
     <ProjectReference Include="..\Nuclear.ExportLocator\Nuclear.ExportLocator.csproj" />
   </ItemGroup>
 

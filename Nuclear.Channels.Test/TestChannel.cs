@@ -1,16 +1,11 @@
-﻿using Nuclear.Channels.Auth;
-using Nuclear.Channels.Base;
+﻿using Nuclear.Channels;
+using Nuclear.Channels.Base.Enums;
 using Nuclear.Channels.Decorators;
-using Nuclear.Channels.Enums;
 using Nuclear.Channels.Messaging;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ConsoleApp1
 {
-    [Channel(EnableSessions = true)]
-    [AuthorizeChannel(ChannelAuthenticationSchemes.Token)]
+    [Channel]
     public class TestChannel : ChannelBase
     {
         [ChannelMethod]
@@ -36,6 +31,12 @@ namespace ConsoleApp1
             };
 
             ChannelMessageWriter.Write(msg, Context.ChannelMethodResponse);
+        }
+
+        [ChannelMethod]
+        public void RedirectionTest(string url)
+        {
+            RedirectToUrl(url);
         }
     }
 

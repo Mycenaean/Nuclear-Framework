@@ -1,5 +1,4 @@
-﻿using Nuclear.Channels.Base;
-using System;
+﻿using System;
 
 namespace Nuclear.Channels.Test
 {

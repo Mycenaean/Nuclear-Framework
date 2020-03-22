@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Nuclear.Channels.Test
+﻿namespace Nuclear.Channels.Test
 {
     public class AuthMethods
     {
-        public bool AuthenticateBasic(string username,string password)
+        public bool AuthenticateBasic(string username, string password)
         {
             return true;
         }

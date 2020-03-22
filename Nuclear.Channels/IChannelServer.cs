@@ -2,7 +2,7 @@
 // Licensed under the MIT License (MIT).
 // See License.md in the repository root for more information.
 
-using Nuclear.Channels.Hosting.Exceptions;
+using Nuclear.Channels.Base.Exceptions;
 using System;
 
 namespace Nuclear.Channels
