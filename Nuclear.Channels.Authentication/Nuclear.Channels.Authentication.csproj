@@ -13,4 +13,11 @@
     <DocumentationFile>C:\Users\Mycenaean\source\repos\Nuclear-Framework\Nuclear.Channels.Authentication\Nuclear.Channels.Authentication.xml</DocumentationFile>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Include="LICENSE.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
 </Project>
