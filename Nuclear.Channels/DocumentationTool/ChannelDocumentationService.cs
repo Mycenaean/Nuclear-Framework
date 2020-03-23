@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+using Nuclear.Channels.Base;
 
 namespace Nuclear.Channels.DocumentationTool
 {
@@ -57,14 +58,14 @@ namespace Nuclear.Channels.DocumentationTool
                 {
 
                     ChannelMethodDocument methodDocument = new ChannelMethodDocument();
-                    Dictionary<string, Type> description = _services.Get<IChannelMethodDescriptor>().GetMethodDescription(method);
+                    ChannelMethodInfo description = _services.Get<IChannelMethodDescriptor>().GetMethodDescription(method);
                     ChannelMethodAttribute ChannelMethodAttribute = method.GetCustomAttribute<ChannelMethodAttribute>();
                     ChannelHttpMethod HttpMethod = ChannelMethodAttribute.HttpMethod;
-                    Dictionary<string, Type>.KeyCollection keys = description.Keys;
-                    Dictionary<string, Type>.ValueCollection values = description.Values;
+                    string[] names = description.Parameters.Select(x => x.Name).ToArray();
+                    Type[] types = description.Parameters.Select(x => x.Type).ToArray() ;
                     methodDocument.HttpMethod = HttpMethod;
-                    methodDocument.InputParameters = keys != null ? keys.ToArray() : null;
-                    methodDocument.InputParameterTypes = values != null ? values.ToArray() : null;
+                    methodDocument.InputParameters = names;
+                    methodDocument.InputParameterTypes = types;
                     methodDocument.ReturnTypeName = method.ReturnType.Name;
                     methodDocument.ReturnType = method.ReturnType;
                     methodDocument.URL = $"{channelRoute}/{method.Name}/";

@@ -11,6 +11,7 @@ using Nuclear.Channels.Base.Exceptions;
 using Nuclear.Channels.Data.Deserializers;
 using Nuclear.Channels.Data.Logging;
 using Nuclear.Channels.Decorators;
+using Nuclear.Channels.InvokerServices;
 using Nuclear.Channels.InvokerServices.Contracts;
 using Nuclear.Channels.Messaging;
 using Nuclear.ExportLocator.Decorators;
@@ -32,7 +33,7 @@ using System.Threading.Tasks;
 namespace Nuclear.Channels
 {
     [Export(typeof(IChannelActivator), Lifetime = ExportLifetime.Singleton)]
-    public class ChannelActivator : IChannelActivator, IExecutor
+    internal class ChannelActivator : IChannelActivator, IExecutor
     {
         private IServiceLocator _services;
         private IChannelLocator _channelLocator;
@@ -224,7 +225,7 @@ namespace Nuclear.Channels
                 }
 
 
-                Dictionary<string, Type> methodDescription = _channelMethodDescriptor.GetMethodDescription(method);
+                ChannelMethodInfo methodDescription = _channelMethodDescriptor.GetMethodDescription(method);
                 List<object> channelRequestBody = null;
                 ChannelMethodDeserializerFactory dsrFactory = null;
 
@@ -238,7 +239,7 @@ namespace Nuclear.Channels
                 }
                 else if (request.HttpMethod == "GET" && request.QueryString.AllKeys.Length == 0)
                 {
-                    if (methodDescription.Count > 0)
+                    if (methodDescription.Parameters.Count > 0)
                     {
                         StreamWriter writer = new StreamWriter(response.OutputStream);
                         _msgService.ExceptionHandler(writer, new TargetParameterCountException(), response);

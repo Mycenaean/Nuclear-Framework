@@ -24,15 +24,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nuclear.Channels.Remoting",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nuclear.Channels.UnitTests", "Nuclear.Channels.UnitTests\Nuclear.Channels.UnitTests.csproj", "{9E21D19D-3653-460D-B017-0FDCF6D5354F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nuclear.Channels.Base", "Nuclear.Channels.Base\Nuclear.Channels.Base.csproj", "{BF476A28-210C-4A29-91D0-0A327487CAFF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nuclear.Channels.Base", "Nuclear.Channels.Base\Nuclear.Channels.Base.csproj", "{BF476A28-210C-4A29-91D0-0A327487CAFF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nuclear.Channels.Authentication", "Nuclear.Channels.Authentication\Nuclear.Channels.Authentication.csproj", "{3A7CA6D1-543A-4199-9553-8D18EDF99D1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nuclear.Channels.Authentication", "Nuclear.Channels.Authentication\Nuclear.Channels.Authentication.csproj", "{3A7CA6D1-543A-4199-9553-8D18EDF99D1C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nuclear.Channels.Data", "Nuclear.Channels.Data\Nuclear.Channels.Data.csproj", "{BF35E495-F8BE-44F0-B46B-E5039D88BF68}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nuclear.Channels.Data", "Nuclear.Channels.Data\Nuclear.Channels.Data.csproj", "{BF35E495-F8BE-44F0-B46B-E5039D88BF68}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nuclear.Channels.Messaging", "Nuclear.Channels.Messaging\Nuclear.Channels.Messaging.csproj", "{33A43B8C-888D-4244-ACE9-A36C0659F701}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nuclear.Channels.Messaging", "Nuclear.Channels.Messaging\Nuclear.Channels.Messaging.csproj", "{33A43B8C-888D-4244-ACE9-A36C0659F701}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nuclear.Channels.InvokerServices", "Nuclear.Channels.InvokerServices\Nuclear.Channels.InvokerServices.csproj", "{71E291D7-1950-4FD6-B01D-6B6C8471FC57}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nuclear.Channels.InvokerServices", "Nuclear.Channels.InvokerServices\Nuclear.Channels.InvokerServices.csproj", "{71E291D7-1950-4FD6-B01D-6B6C8471FC57}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nuclear.Channels.Extensions", "Nuclear.Channels.Extensions\Nuclear.Channels.Extensions.csproj", "{17F6F18F-0BB2-4F8D-979C-89C601109C82}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -80,6 +82,10 @@ Global
 		{71E291D7-1950-4FD6-B01D-6B6C8471FC57}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71E291D7-1950-4FD6-B01D-6B6C8471FC57}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71E291D7-1950-4FD6-B01D-6B6C8471FC57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17F6F18F-0BB2-4F8D-979C-89C601109C82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17F6F18F-0BB2-4F8D-979C-89C601109C82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17F6F18F-0BB2-4F8D-979C-89C601109C82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17F6F18F-0BB2-4F8D-979C-89C601109C82}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -95,6 +101,7 @@ Global
 		{BF35E495-F8BE-44F0-B46B-E5039D88BF68} = {9AA01687-2C6F-4F10-8172-DCB8D6355687}
 		{33A43B8C-888D-4244-ACE9-A36C0659F701} = {9AA01687-2C6F-4F10-8172-DCB8D6355687}
 		{71E291D7-1950-4FD6-B01D-6B6C8471FC57} = {9AA01687-2C6F-4F10-8172-DCB8D6355687}
+		{17F6F18F-0BB2-4F8D-979C-89C601109C82} = {9AA01687-2C6F-4F10-8172-DCB8D6355687}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EBCA10CE-333B-4FAA-82AA-4379B0FCFF4A}

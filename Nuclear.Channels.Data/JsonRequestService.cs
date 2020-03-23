@@ -3,6 +3,7 @@
 // See License.md in the repository root for more information.
 
 using Newtonsoft.Json.Linq;
+using Nuclear.Channels.Base;
 using Nuclear.Channels.Data.Deserializers;
 using Nuclear.ExportLocator.Decorators;
 using Nuclear.ExportLocator.Enumerations;
@@ -20,20 +21,20 @@ namespace Nuclear.Channels.Data
     [Export(typeof(IJsonRequestService), ExportLifetime.Transient)]
     internal class JsonRequestService : IJsonRequestService
     {
-        public List<object> Deserialize(string inputBody, Dictionary<string, Type> methodDescription)
+        public List<object> Deserialize(string inputBody, ChannelMethodInfo methodDescription)
         {
             List<object> parameters = new List<object>();
             JObject propObject = JObject.Parse(inputBody);
 
             Debug.Assert(propObject != null);
 
-            foreach (var property in methodDescription)
+            foreach (ChannelMethodParameter parameter in methodDescription.Parameters)
             {
-                JProperty jProperty = propObject.Property(property.Key, StringComparison.OrdinalIgnoreCase);
+                JProperty jProperty = propObject.Property(parameter.Name, StringComparison.OrdinalIgnoreCase);
                 if (jProperty != null)
                 {
                     if (jProperty.Value != null)
-                        parameters.Add(jProperty.Value.ToObject(property.Value));
+                        parameters.Add(jProperty.Value.ToObject(parameter.Type));
                 }
                 else
                     continue;
