@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Nuclear.Channel.Generators.Exceptions
+namespace Nuclear.Channels.Generators.Exceptions
 {
     public class ImportFailedException : Exception
     {

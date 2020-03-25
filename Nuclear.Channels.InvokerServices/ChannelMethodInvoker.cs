@@ -2,7 +2,7 @@
 // Licensed under the MIT License (MIT).
 // See License.md in the repository root for more information.
 
-using Nuclear.Channel.Generators;
+using Nuclear.Channels.Generators;
 using Nuclear.Channels.Base;
 using Nuclear.Channels.InvokerServices.Contracts;
 using Nuclear.Channels.Messaging;

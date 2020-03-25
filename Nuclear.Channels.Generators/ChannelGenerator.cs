@@ -2,7 +2,7 @@
 // Licensed under the MIT License (MIT).
 // See License.md in the repository root for more information.
 
-using Nuclear.Channels.Generators;
+using Nuclear.Channels.Base.Decorators;
 using Nuclear.ExportLocator;
 using Nuclear.ExportLocator.Decorators;
 using Nuclear.ExportLocator.Enumerations;
@@ -14,7 +14,7 @@ using System.Reflection;
 using System.Reflection.Emit;
 using System.Text;
 
-namespace Nuclear.Channel.Generators
+namespace Nuclear.Channels.Generators
 {
     [Export(typeof(IChannelGenerator), ExportLifetime.Singleton)]
     public class ChannelGenerator : IChannelGenerator

@@ -1,7 +1,7 @@
 ﻿using Nuclear.Channels;
 using Nuclear.Channels.Base.Enums;
 using Nuclear.Channels.Decorators;
-using Nuclear.Channels.Generators;
+using Nuclear.Channels.Base.Decorators;
 using Nuclear.Channels.Messaging;
 using Nuclear.ExportLocator.Decorators;
 using System;
@@ -20,7 +20,7 @@ namespace ConsoleApp1
             return Service.Write();
         }
 
-        [ChannelMethod(HttpMethod = ChannelHttpMethod.POST)]
+        [ChannelMethod]
         public string PostParams(string name)
         {
             return $"Hello {name} from ChannelMethod";

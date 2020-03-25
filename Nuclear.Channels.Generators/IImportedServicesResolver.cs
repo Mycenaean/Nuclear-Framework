@@ -8,11 +8,8 @@ using System.Text;
 
 namespace Nuclear.Channels.Generators
 {
-    /// <summary>
-    /// Attribute which will import service for decorated interface
-    /// </summary>
-    [AttributeUsage(AttributeTargets.Interface | AttributeTargets.Property, AllowMultiple = true)]
-    public sealed class ImportedServiceAttribute : Attribute
+    public interface IImportedServicesResolver
     {
+        object GetImportedService(Type type);
     }
 }

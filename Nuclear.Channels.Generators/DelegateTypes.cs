@@ -6,10 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Nuclear.Channel.Generators
+namespace Nuclear.Channels.Generators
 {
-    public interface IChannelGenerator
-    {
-        object GetInstance(Type channel);
-    }
+    public delegate object ChannelObject();
 }

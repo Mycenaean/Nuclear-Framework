@@ -6,10 +6,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Nuclear.Channel.Generators
+namespace Nuclear.Channels.Generators
 {
-    public interface IImportedServicesResolver
+    public interface IChannelGenerator
     {
-        object GetImportedService(Type type);
+        object GetInstance(Type channel);
     }
 }

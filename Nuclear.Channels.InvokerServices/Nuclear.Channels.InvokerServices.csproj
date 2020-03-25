@@ -9,10 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Nuclear.Channel.Generators\Nuclear.Channel.Generators.csproj" />
     <ProjectReference Include="..\Nuclear.Channels.Authentication\Nuclear.Channels.Authentication.csproj" />
     <ProjectReference Include="..\Nuclear.Channels.Base\Nuclear.Channels.Base.csproj" />
     <ProjectReference Include="..\Nuclear.Channels.Data\Nuclear.Channels.Data.csproj" />
+    <ProjectReference Include="..\Nuclear.Channels.Generators\Nuclear.Channels.Generators.csproj" />
     <ProjectReference Include="..\Nuclear.Channels.Messaging\Nuclear.Channels.Messaging.csproj" />
     <ProjectReference Include="..\Nuclear.ExportLocator\Nuclear.ExportLocator.csproj" />
   </ItemGroup>
