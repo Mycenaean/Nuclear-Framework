@@ -206,3 +206,43 @@
 3/25/2020 9:08:33 PM::::Info::::Method StartListening::::IsAuthenticated:False
 3/25/2020 9:08:33 PM::::Debug::::Method StartListening::::Request finished...
 3/25/2020 9:08:33 PM::::Debug::::Method StartListening::::Closing the response
+3/25/2020 9:26:59 PM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+3/25/2020 9:26:59 PM::::Info::::Method StartListening::::HttpMethod:GET
+3/25/2020 9:26:59 PM::::Info::::Method StartListening::::IsAuthenticated:False
+3/25/2020 9:27:00 PM::::Debug::::Method StartListening::::Request finished...
+3/25/2020 9:27:00 PM::::Debug::::Method StartListening::::Closing the response
+3/25/2020 9:27:10 PM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+3/25/2020 9:27:10 PM::::Info::::Method StartListening::::HttpMethod:GET
+3/25/2020 9:27:10 PM::::Info::::Method StartListening::::IsAuthenticated:False
+3/25/2020 9:27:10 PM::::Debug::::Method StartListening::::Request finished...
+3/25/2020 9:27:10 PM::::Debug::::Method StartListening::::Closing the response
+3/25/2020 9:27:17 PM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+3/25/2020 9:27:17 PM::::Info::::Method StartListening::::HttpMethod:POST
+3/25/2020 9:27:17 PM::::Info::::Method StartListening::::IsAuthenticated:False
+3/25/2020 9:27:17 PM::::Info::::Method DeserializeFromBody::::Request body: 
+3/25/2020 9:27:17 PM::::Info::::Method DeserializeFromBody::::{
+   "name":"nuclear framework"
+}
+3/25/2020 9:27:17 PM::::Debug::::Method StartListening::::Request finished...
+3/25/2020 9:27:17 PM::::Debug::::Method StartListening::::Closing the response
+3/25/2020 9:27:30 PM::::Info::::Method StartListening::::Request coming to TestChannel.HelloWorld
+3/25/2020 9:27:30 PM::::Info::::Method StartListening::::HttpMethod:GET
+3/25/2020 9:27:30 PM::::Info::::Method StartListening::::IsAuthenticated:False
+3/25/2020 9:27:30 PM::::Debug::::Method StartListening::::Request finished...
+3/25/2020 9:27:30 PM::::Debug::::Method StartListening::::Closing the response
+3/25/2020 9:27:39 PM::::Info::::Method StartListening::::Request coming to TestChannel.HelloWorld
+3/25/2020 9:27:39 PM::::Info::::Method StartListening::::HttpMethod:POST
+3/25/2020 9:27:39 PM::::Info::::Method StartListening::::IsAuthenticated:False
+3/25/2020 9:27:39 PM::::Info::::Method DeserializeFromBody::::Request body: 
+3/25/2020 9:27:39 PM::::Info::::Method DeserializeFromBody::::{
+   "name":"nuclear framework"
+}
+3/25/2020 9:27:39 PM::::Debug::::Method StartListening::::Request finished...
+3/25/2020 9:27:39 PM::::Debug::::Method StartListening::::Closing the response
+3/25/2020 9:28:03 PM::::Info::::Method StartListening::::Request coming to TestChannel.CreateTestClass
+3/25/2020 9:28:03 PM::::Info::::Method StartListening::::HttpMethod:GET
+3/25/2020 9:28:03 PM::::Info::::Method StartListening::::IsAuthenticated:False
+3/25/2020 9:28:03 PM::::Error::::Method WrongHttpMethod::::Wrong HTTP Method used
+3/25/2020 9:28:03 PM::::Error::::Method StartListening::::Wrong HttpMethod... Closing request
+3/25/2020 9:28:03 PM::::Debug::::Method StartListening::::Request finished...
+3/25/2020 9:28:03 PM::::Debug::::Method StartListening::::Closing the response

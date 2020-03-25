@@ -63,6 +63,7 @@ namespace Nuclear.Channels
         {
             _tokenAuthenticationMethod = tokenAuthMethod ?? throw new ArgumentNullException("Authentication function must not be null");
         }
+
         private void OneTimeSetup()
         {
             _channelLocator = _services.Get<IChannelLocator>();
@@ -192,7 +193,7 @@ namespace Nuclear.Channels
                         }
                     }
                     if (!authenticated)
-                        goto Failed;
+                        goto EndRequest;
                     else
                     {
                         if (channelConfig.ChannelAttribute.EnableSessions)
@@ -216,7 +217,7 @@ namespace Nuclear.Channels
                 {
                     _msgService.WrongHttpMethod(response, channelConfig.HttpMethod);
                     LogChannel.Write(LogSeverity.Error, "Wrong HttpMethod... Closing request");
-                    goto Failed;
+                    goto EndRequest;
                 }
 
 
@@ -224,21 +225,10 @@ namespace Nuclear.Channels
                 List<object> channelRequestBody = null;
                 ChannelMethodDeserializerFactory dsrFactory = null;
 
-                if (request.HttpMethod == "GET" && request.QueryString.AllKeys.Length > 0)
+                if(request.HttpMethod == "GET")
                 {
-                    SetupAndInvokeGetRequest(channel, method, dsrFactory, request, response, methodDescription, channelConfig, channelRequestBody, authenticated, true);
-                }
-                else if (request.HttpMethod == "GET" && request.QueryString.AllKeys.Length == 0)
-                {
-                    if (methodDescription.Parameters.Count > 0)
-                    {
-                        StreamWriter writer = new StreamWriter(response.OutputStream);
-                        _msgService.ExceptionHandler(writer, new TargetParameterCountException(), response);
-                        writer.Close();
-                        goto Failed;
-                    }
-
-                    SetupAndInvokeGetRequest(channel, method, dsrFactory, request, response, methodDescription, channelConfig, channelRequestBody, authenticated, false);
+                    bool invoked = TryInvokeGetRequest(channel, method, request, response, dsrFactory, methodDescription, channelConfig, channelRequestBody, authenticated);
+                    goto EndRequest;
                 }
 
                 //Enter only if Request Body is supplied with POST Method
@@ -270,6 +260,12 @@ namespace Nuclear.Channels
                         _msgService.ExceptionHandler(writer, tEx, response);
                         LogChannel.Write(LogSeverity.Error, tEx.Message);
                     }
+                    catch(Exception ex)
+                    {
+                        response.StatusCode = 500;
+                        _msgService.ExceptionHandler(writer, ex, response);
+                        LogChannel.Write(LogSeverity.Fatal, ex.Message);
+                    }
                     finally
                     {
                         _contextProvider.DestroyChannelMethodContext(channelConfig.Endpoint);
@@ -278,10 +274,53 @@ namespace Nuclear.Channels
                     }
                 }
 
-            Failed:
+            EndRequest:
                 LogChannel.Write(LogSeverity.Debug, "Request finished...");
                 LogChannel.Write(LogSeverity.Debug, "Closing the response");
                 response.Close();
+            }
+
+        }
+
+        private bool TryInvokeGetRequest(Type channel,
+            MethodInfo method,
+            HttpListenerRequest request,
+            HttpListenerResponse response,
+            ChannelMethodDeserializerFactory dsrFactory,
+            ChannelMethodInfo methodDescription,
+            ChannelConfigurationInfo channelConfig,
+            List<object> channelRequestBody,
+            bool authenticated)
+        {
+            try
+            {
+                if (request.QueryString.AllKeys.Length > 0)
+                {
+                    SetupAndInvokeGetRequest(channel, method, dsrFactory, request, response, methodDescription, channelConfig, channelRequestBody, authenticated, true);
+                }
+                else if (request.QueryString.AllKeys.Length == 0)
+                {
+                    if (methodDescription.Parameters.Count > 0)
+                    {
+                        StreamWriter writer = new StreamWriter(response.OutputStream);
+                        _msgService.ExceptionHandler(writer, new TargetParameterCountException(), response);
+                        writer.Close();
+                        return false;
+                    }
+
+                    SetupAndInvokeGetRequest(channel, method, dsrFactory, request, response, methodDescription, channelConfig, channelRequestBody, authenticated, false);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                using (StreamWriter writer = new StreamWriter(response.OutputStream))
+                {
+                    _msgService.ExceptionHandler(writer, ex, response);
+                    LogChannel.Write(LogSeverity.Fatal, ex.Message);
+                }
+
+                return true;
             }
 
         }
