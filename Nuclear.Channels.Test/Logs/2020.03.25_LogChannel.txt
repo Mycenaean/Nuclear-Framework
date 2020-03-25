@@ -1,0 +1,74 @@
+3/25/2020 11:09:55 AM::::Info::::Method StartListening::::Request coming to TestChannel.HelloWorld
+3/25/2020 11:09:55 AM::::Info::::Method StartListening::::HttpMethod:GET
+3/25/2020 11:09:55 AM::::Info::::Method StartListening::::IsAuthenticated:False
+3/25/2020 11:10:23 AM::::Info::::Method StartListening::::Request coming to TestChannel.HelloWorld
+3/25/2020 11:10:23 AM::::Info::::Method StartListening::::HttpMethod:GET
+3/25/2020 11:10:23 AM::::Info::::Method StartListening::::IsAuthenticated:False
+3/25/2020 11:10:54 AM::::Info::::Method StartListening::::Request coming to TestChannel.HelloWorld
+3/25/2020 11:10:55 AM::::Info::::Method StartListening::::HttpMethod:GET
+3/25/2020 11:10:55 AM::::Info::::Method StartListening::::IsAuthenticated:False
+3/25/2020 11:12:11 AM::::Info::::Method StartListening::::Request coming to TestChannel.HelloWorld
+3/25/2020 11:12:11 AM::::Info::::Method StartListening::::HttpMethod:GET
+3/25/2020 11:12:11 AM::::Info::::Method StartListening::::IsAuthenticated:False
+3/25/2020 11:13:13 AM::::Info::::Method StartListening::::Request coming to TestChannel.HelloWorld
+3/25/2020 11:13:13 AM::::Info::::Method StartListening::::HttpMethod:GET
+3/25/2020 11:13:13 AM::::Info::::Method StartListening::::IsAuthenticated:False
+3/25/2020 11:15:13 AM::::Info::::Method StartListening::::Request coming to TestChannel.HelloWorld
+3/25/2020 11:15:13 AM::::Info::::Method StartListening::::HttpMethod:GET
+3/25/2020 11:15:13 AM::::Info::::Method StartListening::::IsAuthenticated:False
+3/25/2020 11:20:28 AM::::Info::::Method StartListening::::Request coming to TestChannel.HelloWorld
+3/25/2020 11:20:28 AM::::Info::::Method StartListening::::HttpMethod:GET
+3/25/2020 11:20:28 AM::::Info::::Method StartListening::::IsAuthenticated:False
+3/25/2020 11:22:12 AM::::Info::::Method StartListening::::Request coming to TestChannel.HelloWorld
+3/25/2020 11:22:12 AM::::Info::::Method StartListening::::HttpMethod:GET
+3/25/2020 11:22:12 AM::::Info::::Method StartListening::::IsAuthenticated:False
+3/25/2020 11:24:59 AM::::Info::::Method StartListening::::Request coming to TestChannel.HelloWorld
+3/25/2020 11:24:59 AM::::Info::::Method StartListening::::HttpMethod:GET
+3/25/2020 11:24:59 AM::::Info::::Method StartListening::::IsAuthenticated:False
+3/25/2020 11:26:01 AM::::Info::::Method StartListening::::Request coming to TestChannel.HelloWorld
+3/25/2020 11:26:01 AM::::Info::::Method StartListening::::HttpMethod:GET
+3/25/2020 11:26:01 AM::::Info::::Method StartListening::::IsAuthenticated:False
+3/25/2020 11:27:19 AM::::Info::::Method StartListening::::Request coming to TestChannel.HelloWorld
+3/25/2020 11:27:19 AM::::Info::::Method StartListening::::HttpMethod:GET
+3/25/2020 11:27:19 AM::::Info::::Method StartListening::::IsAuthenticated:False
+3/25/2020 11:28:57 AM::::Info::::Method StartListening::::Request coming to TestChannel.HelloWorld
+3/25/2020 11:28:57 AM::::Info::::Method StartListening::::HttpMethod:GET
+3/25/2020 11:28:57 AM::::Info::::Method StartListening::::IsAuthenticated:False
+3/25/2020 11:29:20 AM::::Info::::Method StartListening::::Request coming to TestChannel.HelloWorld
+3/25/2020 11:29:20 AM::::Info::::Method StartListening::::HttpMethod:GET
+3/25/2020 11:29:20 AM::::Info::::Method StartListening::::IsAuthenticated:False
+3/25/2020 11:30:05 AM::::Info::::Method StartListening::::Request coming to TestChannel.HelloWorld
+3/25/2020 11:30:05 AM::::Info::::Method StartListening::::HttpMethod:GET
+3/25/2020 11:30:05 AM::::Info::::Method StartListening::::IsAuthenticated:False
+3/25/2020 11:31:26 AM::::Info::::Method StartListening::::Request coming to TestChannel.HelloWorld
+3/25/2020 11:31:26 AM::::Info::::Method StartListening::::HttpMethod:GET
+3/25/2020 11:31:26 AM::::Info::::Method StartListening::::IsAuthenticated:False
+3/25/2020 11:32:48 AM::::Info::::Method StartListening::::Request coming to TestChannel.HelloWorld
+3/25/2020 11:32:48 AM::::Info::::Method StartListening::::HttpMethod:GET
+3/25/2020 11:32:48 AM::::Info::::Method StartListening::::IsAuthenticated:False
+3/25/2020 11:35:10 AM::::Info::::Method StartListening::::Request coming to TestChannel.HelloWorld
+3/25/2020 11:35:10 AM::::Info::::Method StartListening::::HttpMethod:GET
+3/25/2020 11:35:10 AM::::Info::::Method StartListening::::IsAuthenticated:False
+3/25/2020 11:35:44 AM::::Info::::Method StartListening::::Request coming to TestChannel.HelloWorld
+3/25/2020 11:35:44 AM::::Info::::Method StartListening::::HttpMethod:GET
+3/25/2020 11:35:44 AM::::Info::::Method StartListening::::IsAuthenticated:False
+3/25/2020 11:36:05 AM::::Debug::::Method StartListening::::Request finished...
+3/25/2020 11:36:05 AM::::Debug::::Method StartListening::::Closing the response
+3/25/2020 12:25:20 PM::::Info::::Method StartListening::::Request coming to TestChannel.HelloWorld
+3/25/2020 12:25:20 PM::::Info::::Method StartListening::::HttpMethod:GET
+3/25/2020 12:25:20 PM::::Info::::Method StartListening::::IsAuthenticated:False
+3/25/2020 12:25:23 PM::::Debug::::Method StartListening::::Request finished...
+3/25/2020 12:25:23 PM::::Debug::::Method StartListening::::Closing the response
+3/25/2020 12:25:27 PM::::Info::::Method StartListening::::Request coming to TestChannel.HelloWorld
+3/25/2020 12:25:27 PM::::Info::::Method StartListening::::HttpMethod:GET
+3/25/2020 12:25:27 PM::::Info::::Method StartListening::::IsAuthenticated:False
+3/25/2020 12:26:37 PM::::Info::::Method StartListening::::Request coming to TestChannel.HelloWorld
+3/25/2020 12:26:37 PM::::Info::::Method StartListening::::HttpMethod:GET
+3/25/2020 12:26:37 PM::::Info::::Method StartListening::::IsAuthenticated:False
+3/25/2020 12:26:43 PM::::Debug::::Method StartListening::::Request finished...
+3/25/2020 12:26:43 PM::::Debug::::Method StartListening::::Closing the response
+3/25/2020 12:26:46 PM::::Info::::Method StartListening::::Request coming to TestChannel.HelloWorld
+3/25/2020 12:26:46 PM::::Info::::Method StartListening::::HttpMethod:GET
+3/25/2020 12:26:46 PM::::Info::::Method StartListening::::IsAuthenticated:False
+3/25/2020 12:26:55 PM::::Debug::::Method StartListening::::Request finished...
+3/25/2020 12:26:55 PM::::Debug::::Method StartListening::::Closing the response

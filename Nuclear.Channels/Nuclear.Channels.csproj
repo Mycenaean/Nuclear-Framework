@@ -7,7 +7,7 @@
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <RepositoryUrl>https://github.com/Mycenaean/Nuclear-Framework/tree/master/Nuclear.Channels</RepositoryUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Version>3.0.5</Version>
     <PackageReleaseNotes>Adding Redirection capability to ChannelBase</PackageReleaseNotes>
     <Description>Lightweight API Framework for building Http Endpoints</Description>
@@ -16,7 +16,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>C:\Users\Mycenaean\source\repos\Nuclear-Framework\Nuclear.Channels\Nuclear.Channels.xml</DocumentationFile>
+    <DocumentationFile></DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -24,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Nuclear.Channel.Generators\Nuclear.Channel.Generators.csproj" />
     <ProjectReference Include="..\Nuclear.Channels.Authentication\Nuclear.Channels.Authentication.csproj" />
     <ProjectReference Include="..\Nuclear.Channels.Base\Nuclear.Channels.Base.csproj" />
     <ProjectReference Include="..\Nuclear.Channels.Data\Nuclear.Channels.Data.csproj" />

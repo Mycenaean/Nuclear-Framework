@@ -5,11 +5,11 @@
     <Authors>Nikola Milinkovic</Authors>
     <Copyright>Nikola Milinkovic</Copyright>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Nuclear.Channel.Generators\Nuclear.Channel.Generators.csproj" />
     <ProjectReference Include="..\Nuclear.Channels.Authentication\Nuclear.Channels.Authentication.csproj" />
     <ProjectReference Include="..\Nuclear.Channels.Base\Nuclear.Channels.Base.csproj" />
     <ProjectReference Include="..\Nuclear.Channels.Data\Nuclear.Channels.Data.csproj" />
