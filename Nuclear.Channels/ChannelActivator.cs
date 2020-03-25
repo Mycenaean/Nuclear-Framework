@@ -11,7 +11,6 @@ using Nuclear.Channels.Base.Exceptions;
 using Nuclear.Channels.Data.Deserializers;
 using Nuclear.Channels.Data.Logging;
 using Nuclear.Channels.Decorators;
-using Nuclear.Channels.InvokerServices;
 using Nuclear.Channels.InvokerServices.Contracts;
 using Nuclear.Channels.Messaging;
 using Nuclear.ExportLocator.Decorators;
@@ -41,11 +40,13 @@ namespace Nuclear.Channels
         private IChannelMethodRequestActivator _requestActivator;
         private IChannelMessageService _msgService;
         private IChannelMethodContextProvider _contextProvider;
-        private string BaseURL = null;
+        private IChannelConfiguration _configuration;
+        private IChannelAuthenticationService _authenticationService;
         private Func<string, string, bool> _basicAuthenticationMethod;
         private Func<string, bool> _tokenAuthenticationMethod;
         private static List<Cookie> _sessionKeys;
         private string _rootPath;
+        private string _baseURL = null;
 
         [DebuggerStepThrough]
         public ChannelActivator()
@@ -78,22 +79,9 @@ namespace Nuclear.Channels
                 throw new HttpListenerNotSupportedException("HttpListener is not supported");
             }
             if (baseURL != null)
-                BaseURL = baseURL;
-
-            _channelLocator = _services.Get<IChannelLocator>();
-            _channelMethodDescriptor = _services.Get<IChannelMethodDescriptor>();
-            _requestActivator = _services.Get<IChannelMethodRequestActivator>();
-            _msgService = _services.Get<IChannelMessageService>();
-            _contextProvider = _services.Get<IChannelMethodContextProvider>();
-
-            Debug.Assert(_channelLocator != null);
-            Debug.Assert(_channelMethodDescriptor != null);
-            Debug.Assert(_requestActivator != null);
-            Debug.Assert(_msgService != null);
-            Debug.Assert(_contextProvider != null);
+                _baseURL = baseURL;
 
             List<Type> channels = new List<Type>();
-
             channels = _channelLocator.RegisteredChannels(domain);
 
             //Initialization part
@@ -125,48 +113,10 @@ namespace Nuclear.Channels
         public void StartListening(MethodInfo method, Type channel, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            ChannelEndpoint endpoint = new ChannelEndpoint();
-            ChannelAttribute channelAttr = channel.GetCustomAttribute<ChannelAttribute>();
-            if (!String.IsNullOrEmpty(channelAttr.Name))
-                endpoint.URL = "/channels/" + channelAttr.Name + "/" + method.Name + "/";
-            else
-                endpoint.URL = "/channels/" + channel.Name + "/" + method.Name + "/";
-
-            endpoint.Name = channel.Name + "." + method.Name;
-
-            ChannelMethodAttribute ChannelMethod = method.GetCustomAttribute<ChannelMethodAttribute>();
-            AuthorizeChannelAttribute authAttr = channel.GetCustomAttribute<AuthorizeChannelAttribute>();
-            ChannelAuthenticationSchemes ChannelSchema = ChannelMethod.Schema;
-            ChannelHttpMethod HttpMethod = ChannelMethod.HttpMethod;
+            
             HttpListener httpChannel = new HttpListener();
 
-            string methodURL = string.Empty;
-            if (BaseURL == null)
-                methodURL = "http://localhost:4200" + endpoint.URL;
-            else
-                methodURL = BaseURL + endpoint.URL;
-
-            bool httpAuthRequired = false;
-
-            //Start hosting
-            httpChannel.Prefixes.Add(methodURL);
-            if (authAttr != null)
-            {
-                if (authAttr.Schema != ChannelAuthenticationSchemes.Anonymous)
-                {
-                    httpAuthRequired = true;
-                }
-            }
-            //ChannelMethod can override ChannelAttribute Authentication Schemes
-            if (ChannelSchema != ChannelAuthenticationSchemes.Anonymous)
-            {
-                httpAuthRequired = true;
-            }
-            else
-            {
-                if (authAttr != null)
-                    ChannelSchema = authAttr.Schema;
-            }
+            ChannelConfigurationInfo channelConfig = _configuration.Configure(httpChannel, channel, method, _baseURL);            
 
             //Keep the ChannelMethod open for new requests
             while (true)
@@ -177,31 +127,50 @@ namespace Nuclear.Channels
                 }
                 catch (HttpListenerException hle)
                 {
-                    Console.WriteLine($"System.Net.HttpListenerException encountered on {methodURL} with reason :{hle.Message}");
+                    Console.WriteLine($"System.Net.HttpListenerException encountered on {channelConfig.MethodUrl} with reason :{hle.Message}");
                     return;
                 }
 
-                Console.WriteLine($"Listening on {methodURL}");
+                Console.WriteLine($"Listening on {channelConfig.MethodUrl}");
                 HttpListenerContext context = httpChannel.GetContext();
                 HttpListenerRequest request = context.Request;
 
-                LogChannel.Write(LogSeverity.Info, $"Request coming to {endpoint.Name}");
+                LogChannel.Write(LogSeverity.Info, $"Request coming to {channelConfig.Endpoint.Name}");
                 LogChannel.Write(LogSeverity.Info, $"HttpMethod:{request.HttpMethod}");
                 LogChannel.Write(LogSeverity.Info, $"IsAuthenticated:{request.IsAuthenticated}");
 
                 HttpListenerResponse response = context.Response;
                 bool validCookie = false;
                 bool authenticated = false;
-                if (channelAttr.EnableSessions)
+                if (channelConfig.ChannelAttribute.EnableSessions)
                     validCookie = ValidSession(request);
-                if (httpAuthRequired && !validCookie)
+                if (channelConfig.AuthenticationRequired && !validCookie)
                 {
-                    authenticated = CheckAuthentication(context, ChannelSchema, response);
+                    try
+                    {
+                        ChannelAuthenticationContext authContext = new ChannelAuthenticationContext
+                        {
+                            Context = context,
+                            Scheme = channelConfig.AuthScheme,
+                            BasicAuthenticationDelegate = _basicAuthenticationMethod,
+                            TokenAuthenticationDelegate = _tokenAuthenticationMethod
+                        };
+                        
+                        authenticated = _authenticationService.CheckAuthentication(authContext);
+                    }
+                    catch(Exception ex)
+                    {
+                        using(StreamWriter writer = new StreamWriter(response.OutputStream))
+                        {
+                            _msgService.ExceptionHandler(writer, ex, response);
+                            LogChannel.Write(LogSeverity.Error,"Authentication Failed");
+                        }
+                    }
                     if (!authenticated)
-                        goto AuthenticationFailed;
+                        goto Failed;
                     else
                     {
-                        if (channelAttr.EnableSessions)
+                        if (channelConfig.ChannelAttribute.EnableSessions)
                         {
                             string sessionKey = Guid.NewGuid().ToString();
                             Cookie sessionCookie = new Cookie()
@@ -218,10 +187,11 @@ namespace Nuclear.Channels
                 }
 
                 //Check if the Http Method is correct
-                if (HttpMethod.ToString() != request.HttpMethod && HttpMethod != ChannelHttpMethod.Unknown)
+                if (channelConfig.HttpMethod.ToString() != request.HttpMethod && channelConfig.HttpMethod != ChannelHttpMethod.Unknown)
                 {
-                    _msgService.WrongHttpMethod(response, HttpMethod);
+                    _msgService.WrongHttpMethod(response, channelConfig.HttpMethod);
                     LogChannel.Write(LogSeverity.Error, "Wrong HttpMethod... Closing request");
+                    goto Failed;
                 }
 
 
@@ -233,9 +203,9 @@ namespace Nuclear.Channels
                 {
                     dsrFactory = new ChannelMethodDeserializerFactory(request.QueryString);
                     channelRequestBody = dsrFactory.DeserializeFromQueryParameters(methodDescription);
-                    InitChannelMethodContext(endpoint, request, response, authenticated, HttpMethod, channelRequestBody);
+                    InitChannelMethodContext(channelConfig.Endpoint, request, response, authenticated, channelConfig.HttpMethod, channelRequestBody);
                     _requestActivator.GetActivateWithParameters(channel, method, channelRequestBody, response);
-                    _contextProvider.DestroyChannelMethodContext(endpoint);
+                    _contextProvider.DestroyChannelMethodContext(channelConfig.Endpoint);
                 }
                 else if (request.HttpMethod == "GET" && request.QueryString.AllKeys.Length == 0)
                 {
@@ -244,12 +214,12 @@ namespace Nuclear.Channels
                         StreamWriter writer = new StreamWriter(response.OutputStream);
                         _msgService.ExceptionHandler(writer, new TargetParameterCountException(), response);
                         writer.Close();
-                        goto AuthenticationFailed;
+                        goto Failed;
                     }
 
-                    InitChannelMethodContext(endpoint, request, response, authenticated, HttpMethod, channelRequestBody);
+                    InitChannelMethodContext(channelConfig.Endpoint, request, response, authenticated, channelConfig.HttpMethod, channelRequestBody);
                     _requestActivator.GetActivateWithoutParameters(channel, method, response);
-                    _contextProvider.DestroyChannelMethodContext(endpoint);
+                    _contextProvider.DestroyChannelMethodContext(channelConfig.Endpoint);
                 }
 
                 //Enter only if Request Body is supplied with POST Method
@@ -260,7 +230,7 @@ namespace Nuclear.Channels
                     {
                         dsrFactory = new ChannelMethodDeserializerFactory(request.InputStream);
                         channelRequestBody = dsrFactory.DeserializeFromBody(methodDescription, request.ContentType);
-                        InitChannelMethodContext(endpoint, request, response, authenticated, HttpMethod, channelRequestBody);
+                        InitChannelMethodContext(channelConfig.Endpoint, request, response, authenticated, channelConfig.HttpMethod, channelRequestBody);
                         _requestActivator.PostActivate(channel, method, channelRequestBody, response);
                     }
                     catch (ChannelMethodContentTypeException cEx)
@@ -283,13 +253,13 @@ namespace Nuclear.Channels
                     }
                     finally
                     {
-                        _contextProvider.DestroyChannelMethodContext(endpoint);
+                        _contextProvider.DestroyChannelMethodContext(channelConfig.Endpoint);
                         writer.Flush();
                         writer.Close();
                     }
                 }
 
-            AuthenticationFailed:
+            Failed:
                 LogChannel.Write(LogSeverity.Debug, "Request finished...");
                 LogChannel.Write(LogSeverity.Debug, "Closing the response");
                 response.Close();
@@ -299,6 +269,22 @@ namespace Nuclear.Channels
 
         private void OneTimeSetup()
         {
+            _channelLocator = _services.Get<IChannelLocator>();
+            _channelMethodDescriptor = _services.Get<IChannelMethodDescriptor>();
+            _requestActivator = _services.Get<IChannelMethodRequestActivator>();
+            _msgService = _services.Get<IChannelMessageService>();
+            _contextProvider = _services.Get<IChannelMethodContextProvider>();
+            _configuration = _services.Get<IChannelConfiguration>();
+            _authenticationService = _services.Get<IChannelAuthenticationService>();
+
+            Debug.Assert(_channelLocator != null);
+            Debug.Assert(_channelMethodDescriptor != null);
+            Debug.Assert(_requestActivator != null);
+            Debug.Assert(_msgService != null);
+            Debug.Assert(_contextProvider != null);
+            Debug.Assert(_configuration != null);
+            Debug.Assert(_authenticationService != null);
+
             _rootPath = (new FileInfo(AppDomain.CurrentDomain.BaseDirectory)).Directory.Parent.Parent.Parent.FullName;
             DirectoryInfo logsDirectory = new DirectoryInfo(Path.Combine(_rootPath, "Logs"));
             if (!Directory.Exists(logsDirectory.FullName))

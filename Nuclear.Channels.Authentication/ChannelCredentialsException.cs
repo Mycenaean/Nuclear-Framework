@@ -9,7 +9,6 @@ namespace Nuclear.Channels.Authentication
     public class ChannelCredentialsException : Exception
     {
         public ChannelCredentialsException() { }
-
         public ChannelCredentialsException(string message) : base(message) { }
     }
 }
