@@ -19,7 +19,6 @@ namespace Nuclear.Channels
         /// <param name="assemblies">Assembly names of your projects</param>
         void LoadAssemblies(AppDomain domain, string[] assemblies);
 
-
         /// <summary>
         /// Load Application Domain
         /// </summary>

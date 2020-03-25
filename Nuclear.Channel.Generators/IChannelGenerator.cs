@@ -2,14 +2,14 @@
 // Licensed under the MIT License (MIT).
 // See License.md in the repository root for more information.
 
-using Nuclear.Channels.Base;
 using System;
 using System.Collections.Generic;
+using System.Text;
 
-namespace Nuclear.Channels.Data.Deserializers
+namespace Nuclear.Channel.Generators
 {
-    internal interface IRequestDeserializer
+    public interface IChannelGenerator
     {
-        List<object> Deserialize(string inputBody, ChannelMethodInfo methodDescription);
+        object GetInstance(Type channel);
     }
 }

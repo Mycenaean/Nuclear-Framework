@@ -56,6 +56,7 @@ namespace Nuclear.Channels
             AppDomain.CurrentDomain.Load("Nuclear.Channels.InvokerServices");
             AppDomain.CurrentDomain.Load("Nuclear.Channels.Authentication");
             AppDomain.CurrentDomain.Load("Nuclear.Channels.Data");
+            AppDomain.CurrentDomain.Load("Nuclear.Channel.Generators");
 
             return ServiceLocatorBuilder.CreateServiceLocator();
         }

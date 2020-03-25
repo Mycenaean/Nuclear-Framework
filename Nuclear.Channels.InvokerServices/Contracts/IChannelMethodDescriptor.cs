@@ -2,6 +2,7 @@
 // Licensed under the MIT License (MIT).
 // See License.md in the repository root for more information.
 
+using Nuclear.Channels.Base;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -18,6 +19,6 @@ namespace Nuclear.Channels.InvokerServices.Contracts
         /// </summary>
         /// <param name="method">Targeted ChannelMethod</param>
         /// <returns>Dictionary with the name and type of the input parameters</returns>
-        Dictionary<string, Type> GetMethodDescription(MethodInfo method);
+        ChannelMethodInfo GetMethodDescription(MethodInfo method);
     }
 }

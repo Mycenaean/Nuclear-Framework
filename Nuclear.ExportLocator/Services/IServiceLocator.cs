@@ -2,6 +2,8 @@
 // Licensed under the MIT License (MIT).
 // See License.md in the repository root for more information.
 
+using System;
+
 namespace Nuclear.ExportLocator.Services
 {
     /// <summary>
@@ -15,5 +17,12 @@ namespace Nuclear.ExportLocator.Services
         /// <typeparam name="T">Requested Interface</typeparam>
         /// <returns>Specified service</returns>
         T Get<T>();
+
+        /// <summary>
+        /// Get the service from IServiceLocator
+        /// </summary>
+        /// <param name="service">Requested Interface type</param>
+        /// <returns></returns>
+        object GetObject(Type service);
     }
 }

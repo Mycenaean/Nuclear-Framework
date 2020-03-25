@@ -2,6 +2,7 @@
 // Licensed under the MIT License (MIT).
 // See License.md in the repository root for more information.
 
+using Nuclear.Channels.Base;
 using Nuclear.Channels.Base.Exceptions;
 using Nuclear.Channels.Data.Logging;
 using Nuclear.ExportLocator;
@@ -31,7 +32,7 @@ namespace Nuclear.Channels.Data.Deserializers
             _queryParameters = queryParameters;
         }
 
-        public List<object> DeserializeFromBody(Dictionary<string, Type> methodDescription, string contentType)
+        public List<object> DeserializeFromBody(ChannelMethodInfo methodDescription, string contentType)
         {
             string inputRequest = string.Empty;
             using (StreamReader reader = new StreamReader(_requestStream))
@@ -51,7 +52,7 @@ namespace Nuclear.Channels.Data.Deserializers
 
         }
 
-        public List<object> DeserializeFromQueryParameters(Dictionary<string, Type> methodDescription)
+        public List<object> DeserializeFromQueryParameters(ChannelMethodInfo methodDescription)
         {
             List<object> channelRequestBody = new List<object>();
             Dictionary<string, string> deserializedNameValues = new Dictionary<string, string>();
@@ -61,12 +62,12 @@ namespace Nuclear.Channels.Data.Deserializers
                 deserializedNameValues.Add(urlParameters.Keys[i].ToLower(), urlParameters[i]);
 
             }
-            foreach (var description in methodDescription)
+            foreach (ChannelMethodParameter description in methodDescription.Parameters)
             {
-                Type paramType = description.Value;
-                if (deserializedNameValues.Any(x => x.Key.Equals(description.Key.ToLower())))
+                Type paramType = description.Type;
+                if (deserializedNameValues.Any(x => x.Key.Equals(description.Name.ToLower())))
                 {
-                    KeyValuePair<string, string> exists = deserializedNameValues.FirstOrDefault(x => x.Key.Equals(description.Key.ToLower()));
+                    KeyValuePair<string, string> exists = deserializedNameValues.FirstOrDefault(x => x.Key.Equals(description.Name.ToLower()));
 
                     if (paramType == typeof(string))
                         channelRequestBody.Add(exists.Value);

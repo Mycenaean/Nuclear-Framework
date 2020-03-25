@@ -2,6 +2,7 @@
 // Licensed under the MIT License (MIT).
 // See License.md in the repository root for more information.
 
+using Nuclear.Channel.Generators;
 using Nuclear.Channels.Base;
 using Nuclear.Channels.InvokerServices.Contracts;
 using Nuclear.Channels.Messaging;
@@ -31,6 +32,7 @@ namespace Nuclear.Channels.InvokerServices.ExecutorServices
         private IChannelMessageService _channelMessageService;
         private IChannelMessageOutputWriter _channelMessageWriter;
         private IChannelRedirectionEvents _eventService;
+        private IChannelGenerator _channelGenerator;
         private static bool alreadyInvokedFlag = false;
 
         public ChannelMethodInvoker()
@@ -39,11 +41,13 @@ namespace Nuclear.Channels.InvokerServices.ExecutorServices
             _channelMessageService = _services.Get<IChannelMessageService>();
             _channelMessageWriter = _services.Get<IChannelMessageOutputWriter>();
             _eventService = _services.Get<IChannelRedirectionEvents>();
+            _channelGenerator = _services.Get<IChannelGenerator>();
 
             Debug.Assert(_services != null);
             Debug.Assert(_channelMessageService != null);
             Debug.Assert(_channelMessageWriter != null);
             Debug.Assert(_eventService != null);
+            Debug.Assert(_channelGenerator != null);
 
             _channelMessageWriter.OnPostMessageServiceInvoked += _channelMessageWriter_OnPostMessageServiceInvoked;
             _eventService.OnRedirectionInvoked += _eventService_OnRedirectionInvoked;
@@ -75,14 +79,14 @@ namespace Nuclear.Channels.InvokerServices.ExecutorServices
                 InvokeChannelMethodAsync(channel, method, response, null);
             else
             {
-                object chResponse = method.Invoke(Activator.CreateInstance(channel), null);
+                object chResponse = method.Invoke(_channelGenerator.GetInstance(channel), null) ;
                 WriteResponse(chResponse, response);
             }
         }
 
         public void InvokeChannelMethodSync(Type channel, MethodInfo method, HttpListenerResponse response, List<object> channelRequestBody)
         {
-            object chResponse = method.Invoke(Activator.CreateInstance(channel), channelRequestBody.ToArray());
+            object chResponse = method.Invoke(_channelGenerator.GetInstance(channel), channelRequestBody.ToArray());
             WriteResponse(chResponse, response);
         }
 
@@ -95,7 +99,7 @@ namespace Nuclear.Channels.InvokerServices.ExecutorServices
             else
                 bodyArray = null;
 
-            Task<Task<object>> task = Task.Factory.StartNew(async () => await Task.Run(() => method.Invoke(Activator.CreateInstance(channel), bodyArray)));
+            Task<Task<object>> task = Task.Factory.StartNew(async () => await Task.Run(() => method.Invoke(_channelGenerator.GetInstance(channel), bodyArray)));
             task.Wait();
 
             Task<object> chResponseTask = task.Result;

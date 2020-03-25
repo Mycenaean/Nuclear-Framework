@@ -86,5 +86,10 @@ namespace Nuclear.ExportLocator.Services
             Debug.Assert(provider.GetService<T>() != null);
             return provider.GetService<T>();
         }
+
+        public object GetObject(Type service)
+        {
+            return provider.GetService(service);
+        }
     }
 }
