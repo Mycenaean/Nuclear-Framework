@@ -4,38 +4,38 @@
         <name>Nuclear.Channels.Authentication</name>
     </assembly>
     <members>
-        <member name="T:Nuclear.Channels.Authentication.IChannelAuthenticationentication">
+        <member name="T:Nuclear.Channels.Authentication.IChannelAuthentication">
             <summary>
             Contract for Channel and ChannelMethods Authentication 
             </summary>
         </member>
-        <member name="M:Nuclear.Channels.Authentication.IChannelAuthenticationentication.AuthenticationenticateRequest(System.Net.HttpListenerContext,System.Net.HttpListenerResponse,Nuclear.Channels.Authentication.ChannelAuthenticationSchemes,System.Boolean@)">
+        <member name="M:Nuclear.Channels.Authentication.IChannelAuthentication.AuthenticationenticateRequest(System.Net.HttpListenerContext,System.Net.HttpListenerResponse,Nuclear.Channels.Authentication.ChannelAuthenticationSchemes,System.Boolean@)">
             <summary>
             Authenticationenticating Request based on AuthenticationType
             </summary>
             <param name="context">HttpListenerContext</param>
             <param name="response">HttpListenerResponse for the client</param>
-            <param name="ChannelSchema">AuthenticationenticationSchemes for the Channel</param>
+            <param name="ChannelSchema">AuthenticationSchemes for the Channel</param>
             <param name="Authenticationenticated">True to be returned if user is Authenticationenticated and Authenticationorized</param>
         </member>
         <member name="T:Nuclear.Channels.Authentication.Identity.HttpListenerIdentityService">
             <summary>
-            Service for HttpListenerRequest identity Authenticationentication and Authenticationorization
+            Service for HttpListenerRequest identity Authentication and Authenticationorization
             </summary>
         </member>
         <member name="M:Nuclear.Channels.Authentication.Identity.HttpListenerIdentityService.#ctor(System.Func{System.String,System.String,System.Boolean},System.Func{System.String,System.Boolean})">
             <summary>
             Constructor taking delegates that will be used to Authenticationenticate and Authenticationorize user
             </summary>
-            <param name="BasicAuthenticationenticationMethod">Delegate for basic Authenticationentication</param>
-            <param name="TokenAuthenticationenticationMethod">Delegate for token Authenticationentication</param>
+            <param name="BasicAuthenticationMethod">Delegate for basic Authentication</param>
+            <param name="TokenAuthenticationMethod">Delegate for token Authentication</param>
         </member>
         <member name="M:Nuclear.Channels.Authentication.Identity.HttpListenerIdentityService.AuthenticatedAndAuthorized(System.Net.HttpListenerContext,Nuclear.Channels.Authentication.ChannelAuthenticationSchemes)">
             <summary>
-            Function that will do Authenticationentication and Authenticationorization
+            Function that will do Authentication and Authenticationorization
             </summary>
             <param name="context">Current HttpListenerContext </param>
-            <param name="Schemes">AuthenticationenticationSchemes</param>
+            <param name="Schemes">AuthenticationSchemes</param>
             <exception cref="T:Nuclear.Channels.Authentication.ChannelCredentialsException"></exception>
             <returns>True if user is Authenticationenticated and Authenticationorized , False if not</returns>
         </member>

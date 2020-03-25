@@ -12,29 +12,29 @@ using System.Security.Principal;
 namespace Nuclear.Channels.Authentication.Identity
 {
     /// <summary>
-    /// Service for HttpListenerRequest identity Authenticationentication and Authenticationorization
+    /// Service for HttpListenerRequest identity Authentication and Authenticationorization
     /// </summary>
     public class HttpListenerIdentityService
     {
         /// <summary>
         /// Constructor taking delegates that will be used to Authenticationenticate and Authenticationorize user
         /// </summary>
-        /// <param name="BasicAuthenticationenticationMethod">Delegate for basic Authenticationentication</param>
-        /// <param name="TokenAuthenticationenticationMethod">Delegate for token Authenticationentication</param>
-        public HttpListenerIdentityService(Func<string, string, bool> BasicAuthenticationenticationMethod, Func<string, bool> TokenAuthenticationenticationMethod)
+        /// <param name="BasicAuthenticationMethod">Delegate for basic Authentication</param>
+        /// <param name="TokenAuthenticationMethod">Delegate for token Authentication</param>
+        public HttpListenerIdentityService(Func<string, string, bool> BasicAuthenticationMethod, Func<string, bool> TokenAuthenticationMethod)
         {
-            this.BasicAuthenticationenticationMethod = BasicAuthenticationenticationMethod;
-            this.TokenAuthenticationenticationMethod = TokenAuthenticationenticationMethod;
+            this.BasicAuthenticationMethod = BasicAuthenticationMethod;
+            this.TokenAuthenticationMethod = TokenAuthenticationMethod;
         }
 
-        internal Func<string, string, bool> BasicAuthenticationenticationMethod { get; set; }
-        internal Func<string, bool> TokenAuthenticationenticationMethod { get; set; }
+        internal Func<string, string, bool> BasicAuthenticationMethod { get; set; }
+        internal Func<string, bool> TokenAuthenticationMethod { get; set; }
 
         /// <summary>
-        /// Function that will do Authenticationentication and Authenticationorization
+        /// Function that will do Authentication and Authenticationorization
         /// </summary>
         /// <param name="context">Current HttpListenerContext </param>
-        /// <param name="Schemes">AuthenticationenticationSchemes</param>
+        /// <param name="Schemes">AuthenticationSchemes</param>
         /// <exception cref="ChannelCredentialsException"></exception>
         /// <returns>True if user is Authenticationenticated and Authenticationorized , False if not</returns>
         public bool AuthenticatedAndAuthorized(HttpListenerContext context, ChannelAuthenticationSchemes Schemes)
@@ -45,11 +45,11 @@ namespace Nuclear.Channels.Authentication.Identity
                 bool isToken = HttpListenerIdentityMiddleware.IsTokenHeader(context.Request, out token);
                 if (isToken)
                 {
-                    IPrincipal tokenIdentity = HttpListenerIdentityMiddleware.ParseTokenAuthenticationentication(token);
+                    IPrincipal tokenIdentity = HttpListenerIdentityMiddleware.ParseTokenAuthentication(token);
                     return AuthenticateRequest(tokenIdentity.Identity, Schemes);
                 }
                 else
-                    throw new ChannelCredentialsException("Malformed or missing header for the token Authenticationentication");
+                    throw new ChannelCredentialsException("Malformed or missing header for the token Authentication");
             }
             else
             {
@@ -59,10 +59,10 @@ namespace Nuclear.Channels.Authentication.Identity
 
                 if (isBasic)
                 {
-                    IPrincipal basicIdentity = HttpListenerIdentityMiddleware.ParseBasicAuthenticationentication(username, password);
+                    IPrincipal basicIdentity = HttpListenerIdentityMiddleware.ParseBasicAuthentication(username, password);
                     return AuthenticateRequest(basicIdentity.Identity, ChannelAuthenticationSchemes.Basic);
                 }
-                throw new ChannelCredentialsException("Malformed or missing header for the basic Authenticationentication");
+                throw new ChannelCredentialsException("Malformed or missing header for the basic Authentication");
             }
         }
 
@@ -77,12 +77,12 @@ namespace Nuclear.Channels.Authentication.Identity
                 if (AuthenticationSchema == ChannelAuthenticationSchemes.Basic)
                 {
                     KeyValuePair<string, string> userCredentials = GetCredentialsForBasicAuthentication(identity);
-                    return BasicAuthenticationenticationMethod.Invoke(userCredentials.Key, userCredentials.Value);
+                    return BasicAuthenticationMethod.Invoke(userCredentials.Key, userCredentials.Value);
                 }
                 else
                 {
                     string token = GetCredentialsForTokenAuthentication(identity);
-                    return TokenAuthenticationenticationMethod.Invoke(token);
+                    return TokenAuthenticationMethod.Invoke(token);
                 }
             }
         }
@@ -95,7 +95,7 @@ namespace Nuclear.Channels.Authentication.Identity
                 return new KeyValuePair<string, string>(basicIdentity.Name, basicIdentity.Password);
             }
             else
-                throw new ChannelCredentialsException("Authenticationentication required is Basic ");
+                throw new ChannelCredentialsException("Authentication required is Basic ");
         }
 
         internal string GetCredentialsForTokenAuthentication(IIdentity identity)
@@ -106,7 +106,7 @@ namespace Nuclear.Channels.Authentication.Identity
                 return token.Token;
             }
             else
-                throw new ChannelCredentialsException("Authenticationentication required is Token");
+                throw new ChannelCredentialsException("Authentication required is Token");
         }
     }
 }

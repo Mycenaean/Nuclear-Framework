@@ -5,10 +5,12 @@ using Nuclear.Channels.Base.Decorators;
 using Nuclear.Channels.Messaging;
 using Nuclear.ExportLocator.Decorators;
 using System;
+using Nuclear.Channels.Authentication;
 
 namespace ConsoleApp1
 {
     [Channel]
+    [AuthorizeChannel(ChannelAuthenticationSchemes.Token)]
     public class TestChannel : ChannelBase
     {
         [ImportedService]

@@ -15,7 +15,7 @@ namespace Nuclear.Channels.Authentication.Identity
     {
         internal static bool IsTokenHeader(HttpListenerRequest request, out string token)
         {
-            string tokenHeader = request.Headers["Authenticationorization"];
+            string tokenHeader = request.Headers["Authorization"];
             if (string.IsNullOrEmpty(tokenHeader))
             {
                 token = string.Empty;
@@ -37,7 +37,7 @@ namespace Nuclear.Channels.Authentication.Identity
 
         internal static bool IsBasicHeader(HttpListenerRequest request, out string username, out string password)
         {
-            string basicIdentity = request.Headers["Authenticationorization"];
+            string basicIdentity = request.Headers["Authorization"];
             if (!String.IsNullOrEmpty(basicIdentity))
             {
                 string[] AuthenticationHeader = basicIdentity.Split(' ');
@@ -52,13 +52,13 @@ namespace Nuclear.Channels.Authentication.Identity
             return false;
         }
 
-        internal static IPrincipal ParseBasicAuthenticationentication(string username, string password)
+        internal static IPrincipal ParseBasicAuthentication(string username, string password)
         {
             HttpListenerBasicIdentity identity = new HttpListenerBasicIdentity(username, password);
             return new GenericPrincipal(identity, Array.Empty<string>());
         }
 
-        internal static IPrincipal ParseTokenAuthenticationentication(string token)
+        internal static IPrincipal ParseTokenAuthentication(string token)
         {
             token = Encoding.UTF8.GetString(Convert.FromBase64String(token));
             return new GenericPrincipal(new HttpListenerTokenIdentity(token), Array.Empty<string>());

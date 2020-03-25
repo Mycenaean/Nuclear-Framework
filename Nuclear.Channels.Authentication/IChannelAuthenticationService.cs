@@ -16,7 +16,7 @@ namespace Nuclear.Channels.Authentication
         /// </summary>
         /// <param name="context">HttpListenerContext</param>
         /// <param name="response">HttpListenerResponse for the client</param>
-        /// <param name="channelSchema">AuthenticationenticationSchemes for the Channel</param>
+        /// <param name="channelSchema">AuthenticationSchemes for the Channel</param>
         /// <param name="Authenticationenticated">True to be returned if user is Authenticationenticated and Authenticationorized</param>
         bool CheckAuthentication(ChannelAuthenticationContext context);
     }
