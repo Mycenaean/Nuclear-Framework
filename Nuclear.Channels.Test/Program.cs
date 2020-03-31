@@ -1,4 +1,5 @@
 ﻿using System;
+using Nuclear.Channels.Authentication.Extensions;
 
 namespace Nuclear.Channels.Test
 {
@@ -9,8 +10,7 @@ namespace Nuclear.Channels.Test
             AuthMethods authMethods = new AuthMethods();
             IChannelServer host = ChannelServerBuilder.CreateServer();
             host.LoadAssemblies(AppDomain.CurrentDomain, null);
-            host.AuthenticationOptions(authMethods.AuthenticateBasic);
-            host.AuthenticationOptions(authMethods.AuthenticateToken);
+            host.AddTokenAuthentication(authMethods.AuthenticateToken);
             host.StartHosting(null);
 
             Console.ReadLine();

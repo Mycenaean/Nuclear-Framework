@@ -96,7 +96,7 @@ namespace Nuclear.Channels
         /// </summary>
         public void StartHosting(string baseURL)
         {
-            _activator.Execute(_domain, _services, baseURL);
+            _activator.Execute(_domain, _services, AuthenticationSettings, baseURL);
             Task.WaitAll();
         }
 

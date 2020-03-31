@@ -10,7 +10,7 @@ using Nuclear.Channels.Authentication;
 namespace ConsoleApp1
 {
     [Channel]
-    [AuthorizeChannel(ChannelAuthenticationSchemes.Token)]
+    [AuthorizeChannel(ChannelAuthenticationSchemes.Token, "Role", "Admin")]
     public class TestChannel : ChannelBase
     {
         [ImportedService]
@@ -49,7 +49,7 @@ namespace ConsoleApp1
     }
 
     public interface ITestService { string Write(); }
-    
+
     [Export(typeof(ITestService))]
     public class TestService : ITestService
     {

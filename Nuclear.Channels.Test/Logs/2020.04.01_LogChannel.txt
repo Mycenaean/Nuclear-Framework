@@ -1,0 +1,125 @@
+4/1/2020 12:00:04 AM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/1/2020 12:00:04 AM::::Info::::Method StartListening::::HttpMethod:POST
+4/1/2020 12:00:04 AM::::Info::::Method StartListening::::IsAuthenticated:False
+4/1/2020 12:02:45 AM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/1/2020 12:02:45 AM::::Info::::Method StartListening::::HttpMethod:POST
+4/1/2020 12:02:45 AM::::Info::::Method StartListening::::IsAuthenticated:False
+4/1/2020 12:03:03 AM::::Error::::Method ExceptionHandler::::Exception handler called..
+4/1/2020 12:03:03 AM::::Error::::Method ExceptionHandler::::Method may only be called on a Type for which Type.IsGenericParameter is true.
+4/1/2020 12:03:03 AM::::Error::::Method ExceptionHandler::::No Inner Exception
+4/1/2020 12:03:04 AM::::Error::::Method StartListening::::Authentication Failed
+4/1/2020 12:03:04 AM::::Debug::::Method StartListening::::Request finished...
+4/1/2020 12:03:04 AM::::Debug::::Method StartListening::::Closing the response
+4/1/2020 12:03:10 AM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/1/2020 12:03:10 AM::::Info::::Method StartListening::::HttpMethod:POST
+4/1/2020 12:03:10 AM::::Info::::Method StartListening::::IsAuthenticated:False
+4/1/2020 12:05:11 AM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/1/2020 12:05:11 AM::::Info::::Method StartListening::::HttpMethod:POST
+4/1/2020 12:05:11 AM::::Info::::Method StartListening::::IsAuthenticated:False
+4/1/2020 12:05:23 AM::::Error::::Method ExceptionHandler::::Exception handler called..
+4/1/2020 12:05:23 AM::::Error::::Method ExceptionHandler::::Parameter count mismatch.
+4/1/2020 12:05:23 AM::::Error::::Method ExceptionHandler::::No Inner Exception
+4/1/2020 12:05:23 AM::::Error::::Method StartListening::::Authentication Failed
+4/1/2020 12:05:23 AM::::Debug::::Method StartListening::::Request finished...
+4/1/2020 12:05:23 AM::::Debug::::Method StartListening::::Closing the response
+4/1/2020 12:05:26 AM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/1/2020 12:05:26 AM::::Info::::Method StartListening::::HttpMethod:POST
+4/1/2020 12:05:26 AM::::Info::::Method StartListening::::IsAuthenticated:False
+4/1/2020 12:08:24 AM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/1/2020 12:08:24 AM::::Info::::Method StartListening::::HttpMethod:POST
+4/1/2020 12:08:24 AM::::Info::::Method StartListening::::IsAuthenticated:False
+4/1/2020 12:09:59 AM::::Error::::Method ExceptionHandler::::Exception handler called..
+4/1/2020 12:09:59 AM::::Error::::Method ExceptionHandler::::Parameter count mismatch.
+4/1/2020 12:09:59 AM::::Error::::Method ExceptionHandler::::No Inner Exception
+4/1/2020 12:09:59 AM::::Error::::Method StartListening::::Authentication Failed
+4/1/2020 12:09:59 AM::::Debug::::Method StartListening::::Request finished...
+4/1/2020 12:09:59 AM::::Debug::::Method StartListening::::Closing the response
+4/1/2020 12:13:56 AM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/1/2020 12:13:56 AM::::Info::::Method StartListening::::HttpMethod:POST
+4/1/2020 12:13:56 AM::::Info::::Method StartListening::::IsAuthenticated:False
+4/1/2020 12:14:56 AM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/1/2020 12:14:56 AM::::Info::::Method StartListening::::HttpMethod:POST
+4/1/2020 12:14:56 AM::::Info::::Method StartListening::::IsAuthenticated:False
+4/1/2020 12:16:38 AM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/1/2020 12:16:38 AM::::Info::::Method StartListening::::HttpMethod:POST
+4/1/2020 12:16:38 AM::::Info::::Method StartListening::::IsAuthenticated:False
+4/1/2020 12:18:28 AM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/1/2020 12:18:28 AM::::Info::::Method StartListening::::HttpMethod:POST
+4/1/2020 12:18:28 AM::::Info::::Method StartListening::::IsAuthenticated:False
+4/1/2020 12:22:55 AM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/1/2020 12:22:55 AM::::Info::::Method StartListening::::HttpMethod:POST
+4/1/2020 12:22:55 AM::::Info::::Method StartListening::::IsAuthenticated:False
+4/1/2020 12:23:09 AM::::Error::::Method ExceptionHandler::::Exception handler called..
+4/1/2020 12:23:09 AM::::Error::::Method ExceptionHandler::::Type must derive from Delegate. (Parameter 'delegateType')
+4/1/2020 12:23:09 AM::::Error::::Method ExceptionHandler::::No Inner Exception
+4/1/2020 12:23:09 AM::::Error::::Method StartListening::::Authentication Failed
+4/1/2020 12:23:09 AM::::Debug::::Method StartListening::::Request finished...
+4/1/2020 12:23:09 AM::::Debug::::Method StartListening::::Closing the response
+4/1/2020 12:23:14 AM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/1/2020 12:23:14 AM::::Info::::Method StartListening::::HttpMethod:POST
+4/1/2020 12:23:14 AM::::Info::::Method StartListening::::IsAuthenticated:False
+4/1/2020 12:24:37 AM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/1/2020 12:24:37 AM::::Info::::Method StartListening::::HttpMethod:POST
+4/1/2020 12:24:37 AM::::Info::::Method StartListening::::IsAuthenticated:False
+4/1/2020 12:28:53 AM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/1/2020 12:28:53 AM::::Info::::Method StartListening::::HttpMethod:POST
+4/1/2020 12:28:53 AM::::Info::::Method StartListening::::IsAuthenticated:False
+4/1/2020 12:35:24 AM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/1/2020 12:35:24 AM::::Info::::Method StartListening::::HttpMethod:POST
+4/1/2020 12:35:24 AM::::Info::::Method StartListening::::IsAuthenticated:False
+4/1/2020 12:37:08 AM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/1/2020 12:37:08 AM::::Info::::Method StartListening::::HttpMethod:POST
+4/1/2020 12:37:08 AM::::Info::::Method StartListening::::IsAuthenticated:False
+4/1/2020 12:37:21 AM::::Error::::Method ExceptionHandler::::Exception handler called..
+4/1/2020 12:37:21 AM::::Error::::Method ExceptionHandler::::Method may only be called on a Type for which Type.IsGenericParameter is true.
+4/1/2020 12:37:21 AM::::Error::::Method ExceptionHandler::::No Inner Exception
+4/1/2020 12:37:21 AM::::Error::::Method StartListening::::Authentication Failed
+4/1/2020 12:37:21 AM::::Debug::::Method StartListening::::Request finished...
+4/1/2020 12:37:21 AM::::Debug::::Method StartListening::::Closing the response
+4/1/2020 12:37:24 AM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/1/2020 12:37:24 AM::::Info::::Method StartListening::::HttpMethod:POST
+4/1/2020 12:37:24 AM::::Info::::Method StartListening::::IsAuthenticated:False
+4/1/2020 12:40:41 AM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/1/2020 12:40:41 AM::::Info::::Method StartListening::::HttpMethod:POST
+4/1/2020 12:40:41 AM::::Info::::Method StartListening::::IsAuthenticated:False
+4/1/2020 12:44:19 AM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/1/2020 12:44:19 AM::::Info::::Method StartListening::::HttpMethod:POST
+4/1/2020 12:44:19 AM::::Info::::Method StartListening::::IsAuthenticated:False
+4/1/2020 12:44:19 AM::::Error::::Method ExceptionHandler::::Exception handler called..
+4/1/2020 12:44:19 AM::::Error::::Method ExceptionHandler::::Cannot bind to the target method because its signature is not compatible with that of the delegate type.
+4/1/2020 12:44:19 AM::::Error::::Method ExceptionHandler::::No Inner Exception
+4/1/2020 12:44:20 AM::::Error::::Method StartListening::::Authentication Failed
+4/1/2020 12:44:20 AM::::Debug::::Method StartListening::::Request finished...
+4/1/2020 12:44:20 AM::::Debug::::Method StartListening::::Closing the response
+4/1/2020 12:44:56 AM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/1/2020 12:44:56 AM::::Info::::Method StartListening::::HttpMethod:POST
+4/1/2020 12:44:56 AM::::Info::::Method StartListening::::IsAuthenticated:False
+4/1/2020 12:46:05 AM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/1/2020 12:46:05 AM::::Info::::Method StartListening::::HttpMethod:POST
+4/1/2020 12:46:05 AM::::Info::::Method StartListening::::IsAuthenticated:False
+4/1/2020 12:46:12 AM::::Error::::Method ExceptionHandler::::Exception handler called..
+4/1/2020 12:46:12 AM::::Error::::Method ExceptionHandler::::Cannot bind to the target method because its signature is not compatible with that of the delegate type.
+4/1/2020 12:46:12 AM::::Error::::Method ExceptionHandler::::No Inner Exception
+4/1/2020 12:46:12 AM::::Error::::Method StartListening::::Authentication Failed
+4/1/2020 12:46:12 AM::::Debug::::Method StartListening::::Request finished...
+4/1/2020 12:46:12 AM::::Debug::::Method StartListening::::Closing the response
+4/1/2020 12:53:49 AM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/1/2020 12:53:49 AM::::Info::::Method StartListening::::HttpMethod:POST
+4/1/2020 12:53:49 AM::::Info::::Method StartListening::::IsAuthenticated:False
+4/1/2020 1:01:10 AM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/1/2020 1:01:10 AM::::Info::::Method StartListening::::HttpMethod:POST
+4/1/2020 1:01:10 AM::::Info::::Method StartListening::::IsAuthenticated:False
+4/1/2020 1:01:10 AM::::Debug::::Method StartListening::::Request finished...
+4/1/2020 1:01:10 AM::::Debug::::Method StartListening::::Closing the response
+4/1/2020 1:01:33 AM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/1/2020 1:01:33 AM::::Info::::Method StartListening::::HttpMethod:POST
+4/1/2020 1:01:33 AM::::Info::::Method StartListening::::IsAuthenticated:False
+4/1/2020 1:09:16 AM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/1/2020 1:09:16 AM::::Info::::Method StartListening::::HttpMethod:POST
+4/1/2020 1:09:16 AM::::Info::::Method StartListening::::IsAuthenticated:False
+4/1/2020 1:10:00 AM::::Info::::Method DeserializeFromBody::::Request body: 
+4/1/2020 1:10:00 AM::::Info::::Method DeserializeFromBody::::{
+   "name":"nuclear framework"
+}
+4/1/2020 1:10:01 AM::::Debug::::Method StartListening::::Request finished...
+4/1/2020 1:10:01 AM::::Debug::::Method StartListening::::Closing the response

@@ -2,6 +2,7 @@
 // Licensed under the MIT License (MIT).
 // See License.md in the repository root for more information.
 
+using Nuclear.Channels.Authentication;
 using Nuclear.Channels.Base.Exceptions;
 using Nuclear.ExportLocator.Services;
 using System;
@@ -20,7 +21,7 @@ namespace Nuclear.Channels
         /// <param name="Services">IServiceLocator</param>
         /// <param name="baseURL">Base URL to be exposed for channels</param>
         /// <exception cref="HttpListenerNotSupportedException"></exception>
-        void Execute(AppDomain currentDomain, IServiceLocator Services, string baseURL = null);
+        void Execute(AppDomain currentDomain, IServiceLocator Services, AuthenticationSettings settings, string baseURL = null);
 
         /// <summary>
         /// Set authentication options

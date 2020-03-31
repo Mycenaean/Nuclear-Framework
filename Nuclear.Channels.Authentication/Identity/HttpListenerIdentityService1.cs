@@ -23,7 +23,7 @@ namespace Nuclear.Channels.Authentication.Identity
         }
 
         public bool Authenticated(out object delegateResponse)
-        { 
+        {
             AuthenticationSettings settings = _context.AuthenticationSettings;
             ChannelAuthenticationSchemes scheme = settings.Schema;
             bool authenticated = false;
@@ -36,12 +36,7 @@ namespace Nuclear.Channels.Authentication.Identity
                     throw new ChannelCredentialsException("Missing or malformed basic authentication header");
 
                 PropertyInfo basicDelegate = GetNotNullDelegate();
-                object[] args = new object[] { username, password };
-
-                Type trueDelegate = basicDelegate.GetType();
-                object delegateResult = trueDelegate.InvokeMember(basicDelegate.Name, BindingFlags.InvokeMethod, null, _context.AuthenticationSettings, args, null);
-
-                delegateResponse = ResolveReturnType(basicDelegate.Name, delegateResult);
+                delegateResponse = ResolveBasicDelegate(basicDelegate, username, password, out authenticated);
             }
             else
             {
@@ -50,10 +45,7 @@ namespace Nuclear.Channels.Authentication.Identity
                     throw new ChannelCredentialsException("Missing or malformed token authentication header");
 
                 PropertyInfo tokenDelegate = GetNotNullDelegate();
-                object[] args = new object[] { token };
-                Type trueDelegate = tokenDelegate.GetType();
-                object delegateResult = trueDelegate.InvokeMember(tokenDelegate.Name, BindingFlags.InvokeMethod, null, _context.AuthenticationSettings, args, null);
-                delegateResponse = ResolveReturnType(tokenDelegate.Name, delegateResult);
+                delegateResponse = ResolveTokenDelegate(tokenDelegate, token, out authenticated);
             }
 
             return authenticated;
@@ -103,17 +95,72 @@ namespace Nuclear.Channels.Authentication.Identity
             return dlgt;
         }
 
-        private object ResolveReturnType(string name , object result)
+
+        private object ResolveTokenDelegate(PropertyInfo tokenDelegate, string token, out bool authenticated)
         {
+            string name = tokenDelegate.Name;
+            MethodInfo delegateMethod = tokenDelegate.GetMethod;
             if (name.Contains("principal", StringComparison.OrdinalIgnoreCase))
-                return (ClaimsPrincipal)result;
+            {
+                Func<string, ClaimsPrincipal> delegateValue = (Func<string, ClaimsPrincipal>)tokenDelegate.GetValue(_context.AuthenticationSettings);
+                ClaimsPrincipal principal = delegateValue.Invoke(token);
+                if (principal == null)
+                    authenticated = false;
+                else
+                    authenticated = true;
+                return principal;
+            }
             else if (name.Contains("claim", StringComparison.OrdinalIgnoreCase))
-                return (Claim[])result;
+            {
+                Func<string, Claim[]> delegateValue = (Func<string, Claim[]>)tokenDelegate.GetValue(_context.AuthenticationSettings);
+                Claim[] claims = delegateValue.Invoke(token);
+                if (claims == null)
+                    authenticated = false;
+                else
+                    authenticated = true;
+
+                return claims;
+            }
             else
-                return (bool)result;
+            {
+                Func<string, bool> delegateValue = (Func<string, bool>)tokenDelegate.GetValue(_context.AuthenticationSettings);
+                authenticated = delegateValue.Invoke(token);
+                return authenticated;
+            }
         }
 
-        
+        private object ResolveBasicDelegate(PropertyInfo basicDelegate, string username, string password, out bool authenticated)
+        {
+            string name = basicDelegate.Name;
+            MethodInfo delegateMethod = basicDelegate.GetMethod;
+            if (name.Contains("principal", StringComparison.OrdinalIgnoreCase))
+            {
+                Func<string, string, ClaimsPrincipal> delegateValue = (Func<string, string, ClaimsPrincipal>)basicDelegate.GetValue(_context.AuthenticationSettings);
+                ClaimsPrincipal principal = delegateValue.Invoke(username, password);
+                if (principal == null)
+                    authenticated = false;
+                else
+                    authenticated = true;
+                return principal;
+            }
+            else if (name.Contains("claim", StringComparison.OrdinalIgnoreCase))
+            {
+                Func<string, string, Claim[]> delegateValue = (Func<string, string, Claim[]>)basicDelegate.GetValue(_context.AuthenticationSettings);
+                Claim[] claims = delegateValue.Invoke(username, password);
+                if (claims == null)
+                    authenticated = false;
+                else
+                    authenticated = true;
+
+                return claims;
+            }
+            else
+            {
+                Func<string, string, bool> delegateValue = (Func<string, string, bool>)basicDelegate.GetValue(_context.AuthenticationSettings);
+                authenticated = delegateValue.Invoke(username, password);
+                return authenticated;
+            }
+        }
 
 
     }

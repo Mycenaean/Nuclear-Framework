@@ -1,4 +1,7 @@
-﻿namespace Nuclear.Channels.Test
+﻿using System.Collections.Generic;
+using System.Security.Claims;
+
+namespace Nuclear.Channels.Test
 {
     public class AuthMethods
     {
@@ -7,9 +10,19 @@
             return true;
         }
 
-        public bool AuthenticateToken(string token)
+        //public bool AuthenticateToken(string token)
+        //{
+        //    return true;
+        //}
+
+        public Claim[] AuthenticateToken(string token)
         {
-            return true;
+            List<Claim> claims = new List<Claim>()
+            {
+                new Claim("Role","Admin")
+            };
+
+            return claims.ToArray();
         }
     }
 }

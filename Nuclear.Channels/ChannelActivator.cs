@@ -43,6 +43,7 @@ namespace Nuclear.Channels
         private IChannelMethodContextProvider _contextProvider;
         private IChannelConfiguration _configuration;
         private IChannelAuthenticationService _authenticationService;
+        private AuthenticationSettings _settings;
         private Func<string, string, bool> _basicAuthenticationMethod;
         private Func<string, bool> _tokenAuthenticationMethod;
         private static List<Cookie> _sessionKeys;
@@ -91,8 +92,9 @@ namespace Nuclear.Channels
             _sessionKeys = new List<Cookie>();
         }
 
-        public void Execute(AppDomain domain, IServiceLocator _Services, string baseURL = null)
+        public void Execute(AppDomain domain, IServiceLocator _Services, AuthenticationSettings settings, string baseURL = null)
         {
+            _settings = settings;
             _services = _Services;
             Debug.Assert(HttpListener.IsSupported);
             Debug.Assert(_Services != null);
@@ -181,12 +183,19 @@ namespace Nuclear.Channels
                             Context = context,
                             Scheme = channelConfig.AuthScheme,
                             BasicAuthenticationDelegate = _basicAuthenticationMethod,
-                            TokenAuthenticationDelegate = _tokenAuthenticationMethod
+                            TokenAuthenticationDelegate = _tokenAuthenticationMethod,
+                            AuthenticationSettings = _settings
+                            
                         };
 
                         KeyValuePair<bool, object> authenticationResult = _authenticationService.CheckAuthenticationAndGetResponseObject(authContext);
                         if (authenticationResult.Key == true)
                             authenticated = true;
+                        else
+                        {
+                            _msgService.FailedAuthenticationResponse(channelConfig.AuthScheme, response);
+                            goto EndRequest;
+                        }
 
                         string claimName = channelConfig.AuthorizeAttribute.ClaimName;
                         string claimValue = channelConfig.AuthorizeAttribute.ClaimValue;
