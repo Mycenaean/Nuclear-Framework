@@ -2,6 +2,7 @@
 // Licensed under the MIT License (MIT).
 // See License.md in the repository root for more information.
 
+using Nuclear.Channels.Authentication;
 using Nuclear.ExportLocator;
 using Nuclear.ExportLocator.Services;
 using System;
@@ -21,6 +22,8 @@ namespace Nuclear.Channels
         private IChannelActivator _activator;
         private static ChannelHost _host;
         private static object _lock = new object();
+
+        public AuthenticationSettings AuthenticationSettings { get; set; }
 
         /// <summary>
         /// Get the Singleton Instance
@@ -47,6 +50,7 @@ namespace Nuclear.Channels
         {
             _services = RegisterServices();
             _activator = _services.Get<IChannelActivator>();
+            AuthenticationSettings = null;
         }
 
         private IServiceLocator RegisterServices()

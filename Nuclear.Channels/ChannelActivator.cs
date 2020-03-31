@@ -25,6 +25,7 @@ using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -168,6 +169,7 @@ namespace Nuclear.Channels
                 HttpListenerResponse response = context.Response;
                 bool validCookie = false;
                 bool authenticated = false;
+                bool authorized = false;
                 if (channelConfig.ChannelAttribute.EnableSessions)
                     validCookie = ValidSession(request);
                 if (channelConfig.AuthenticationRequired && !validCookie)
@@ -182,7 +184,25 @@ namespace Nuclear.Channels
                             TokenAuthenticationDelegate = _tokenAuthenticationMethod
                         };
 
-                        authenticated = _authenticationService.CheckAuthentication(authContext);
+                        KeyValuePair<bool, object> authenticationResult = _authenticationService.CheckAuthenticationAndGetResponseObject(authContext);
+                        if (authenticationResult.Key == true)
+                            authenticated = true;
+
+                        string claimName = channelConfig.AuthorizeAttribute.ClaimName;
+                        string claimValue = channelConfig.AuthorizeAttribute.ClaimValue;
+                        if (!String.IsNullOrEmpty(claimName) && !String.IsNullOrEmpty(claimValue))
+                        {
+                            if (authenticationResult.Value.GetType() == typeof(ClaimsPrincipal))
+                                authorized = _authenticationService.Authorized(claimName, claimValue, (ClaimsPrincipal)authenticationResult.Value);
+                            else
+                                authorized = _authenticationService.Authorized(claimName, claimValue, (Claim[])authenticationResult.Value);
+
+                            if (!authorized)
+                            {
+                                _msgService.FailedAuthorizationResponse(response);
+                                LogChannel.Write(LogSeverity.Error, "Failed authorization");
+                            }
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -225,7 +245,7 @@ namespace Nuclear.Channels
                 List<object> channelRequestBody = null;
                 ChannelMethodDeserializerFactory dsrFactory = null;
 
-                if(request.HttpMethod == "GET")
+                if (request.HttpMethod == "GET")
                 {
                     bool invoked = TryInvokeGetRequest(channel, method, request, response, dsrFactory, methodDescription, channelConfig, channelRequestBody, authenticated);
                     goto EndRequest;
@@ -260,7 +280,7 @@ namespace Nuclear.Channels
                         _msgService.ExceptionHandler(writer, tEx, response);
                         LogChannel.Write(LogSeverity.Error, tEx.Message);
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         response.StatusCode = 500;
                         _msgService.ExceptionHandler(writer, ex, response);
@@ -325,15 +345,15 @@ namespace Nuclear.Channels
 
         }
 
-        private void SetupAndInvokeGetRequest(Type channel , 
+        private void SetupAndInvokeGetRequest(Type channel,
             MethodInfo method,
-            ChannelMethodDeserializerFactory dsrFactory, 
+            ChannelMethodDeserializerFactory dsrFactory,
             HttpListenerRequest request,
-            HttpListenerResponse response ,
-            ChannelMethodInfo methodDescription, 
-            ChannelConfigurationInfo channelConfig, 
-            List<object> channelRequestBody, 
-            bool authenticated, 
+            HttpListenerResponse response,
+            ChannelMethodInfo methodDescription,
+            ChannelConfigurationInfo channelConfig,
+            List<object> channelRequestBody,
+            bool authenticated,
             bool hasParams)
         {
             if (hasParams)

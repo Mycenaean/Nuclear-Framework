@@ -19,12 +19,35 @@ namespace Nuclear.Channels.Decorators
         public ChannelAuthenticationSchemes Schema { get; set; }
 
         /// <summary>
+        /// Claim to base Authorization on
+        /// </summary>
+        public string ClaimName { get; set; }
+
+        /// <summary>
+        /// Claim value
+        /// </summary>
+        public string ClaimValue { get; set; }
+
+        /// <summary>
         /// Get the Auth type for the channel
         /// </summary>
         /// <param name="schemes">Specified Auth Schemes</param>
-        public AuthorizeChannelAttribute(ChannelAuthenticationSchemes schemes)
+        /// <param name="Claim">Claim used for authorization</param>
+        public AuthorizeChannelAttribute(ChannelAuthenticationSchemes schemes, string Claim = null, string claimValue = null)
         {
             Schema = schemes;
+            ClaimName = Claim;
+            ClaimValue = claimValue;
+        }
+
+        /// <summary>
+        /// Set authorization based on claim
+        /// </summary>
+        /// <param name="Claim">Claim used for authorization</param>
+        public AuthorizeChannelAttribute(string Claim, string claimValue)
+        {
+            ClaimName = Claim;
+            ClaimValue = claimValue;
         }
     }
 }

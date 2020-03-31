@@ -2,15 +2,17 @@
 // Licensed under the MIT License (MIT).
 // See License.md in the repository root for more information.
 
+using Nuclear.Channels.Authentication;
 using Nuclear.Channels.Base.Exceptions;
 using System;
+using System.Security.Claims;
 
 namespace Nuclear.Channels
 {
     /// <summary>
     /// Service that will host the Channels
     /// </summary>
-    public interface IChannelServer
+    public interface IChannelServer : IChannelAuthenticationEnabled
     {
         /// <summary>
         /// Method to load all assemblies containing channels
@@ -29,13 +31,15 @@ namespace Nuclear.Channels
         /// AuthenticationOptions for Token Authentication
         /// </summary>
         /// <param name="tokenAuthenticationMethod">Delegate for token authentication</param>
+        [Obsolete("Please use one of the overloads of AddTokenAuthentication method")]
         void AuthenticationOptions(Func<string, bool> tokenAuthenticationMethod);
 
         /// <summary>
         /// AuthenticationOptions for Basic Authentication
         /// </summary>
         /// <param name="basicAuthenticationMethod">Delegate for basic authentication</param>
-        void AuthenticationOptions(Func<string, string, bool> basicAuthenticationMethod);
+        [Obsolete("Please use one of the overloads of AddTokenAuthentication method")]
+        void AuthenticationOptions(Func<string, string, bool> basicAuthenticationMethod);      
 
         /// <summary>
         /// Starts hosting

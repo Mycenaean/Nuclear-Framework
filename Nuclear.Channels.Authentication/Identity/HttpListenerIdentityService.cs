@@ -14,7 +14,7 @@ namespace Nuclear.Channels.Authentication.Identity
     /// <summary>
     /// Service for HttpListenerRequest identity Authentication and Authenticationorization
     /// </summary>
-    public class HttpListenerIdentityService
+    public partial class HttpListenerIdentityService
     {
         /// <summary>
         /// Constructor taking delegates that will be used to Authenticationenticate and Authenticationorize user

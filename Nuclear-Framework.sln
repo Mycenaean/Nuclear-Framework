@@ -36,7 +36,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nuclear.Channels.InvokerSer
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nuclear.Channels.Extensions", "Nuclear.Channels.Extensions\Nuclear.Channels.Extensions.csproj", "{17F6F18F-0BB2-4F8D-979C-89C601109C82}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nuclear.Channels.Generators", "Nuclear.Channels.Generators\Nuclear.Channels.Generators.csproj", "{ACFF002B-9109-40AF-BB82-A58B1A2676A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nuclear.Channels.Generators", "Nuclear.Channels.Generators\Nuclear.Channels.Generators.csproj", "{ACFF002B-9109-40AF-BB82-A58B1A2676A7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

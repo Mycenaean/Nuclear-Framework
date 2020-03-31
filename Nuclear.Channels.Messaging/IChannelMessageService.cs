@@ -39,6 +39,12 @@ namespace Nuclear.Channels.Messaging
         void FailedAuthenticationResponse(ChannelAuthenticationSchemes ChannelSchema, HttpListenerResponse response);
 
         /// <summary>
+        /// Failed Authorization ChannelMessage
+        /// </summary>
+        /// <param name="response">Response for the client</param>
+        void FailedAuthorizationResponse(HttpListenerResponse response);
+
+        /// <summary>
         /// Wrong HttpMethod Used
         /// </summary>
         /// <param name="response">Response for the client</param>

@@ -86,6 +86,22 @@ namespace Nuclear.Channels.Messaging
             }
         }
 
+        public void FailedAuthorizationResponse(HttpListenerResponse response)
+        {
+            LogChannel.Write(LogSeverity.Info, "Authorization failed...Exiting");
+            response.StatusCode = (int)HttpStatusCode.Unauthorized;
+            IChannelMessage msg = new ChannelMessage()
+            {
+                Success = false,
+                Message = $"Unauthorized"
+            };
+            string outputString = JsonConvert.SerializeObject(msg, Formatting.Indented);
+            using (StreamWriter writer = new StreamWriter(response.OutputStream))
+            {
+                writer.WriteLine(outputString);
+            }
+        }
+
         public void WrongHttpMethod(HttpListenerResponse response, ChannelHttpMethod HttpMethod)
         {
             IChannelMessage msg = new ChannelMessage()
