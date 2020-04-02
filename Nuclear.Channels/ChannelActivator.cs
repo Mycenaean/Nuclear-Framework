@@ -166,7 +166,6 @@ namespace Nuclear.Channels
 
                 LogChannel.Write(LogSeverity.Info, $"Request coming to {channelConfig.Endpoint.Name}");
                 LogChannel.Write(LogSeverity.Info, $"HttpMethod:{request.HttpMethod}");
-                LogChannel.Write(LogSeverity.Info, $"IsAuthenticated:{request.IsAuthenticated}");
 
                 HttpListenerResponse response = context.Response;
                 bool validCookie = false;
@@ -196,7 +195,7 @@ namespace Nuclear.Channels
                             _msgService.FailedAuthenticationResponse(channelConfig.AuthScheme, response);
                             goto EndRequest;
                         }
-
+                        LogChannel.Write(LogSeverity.Info,"User Authenticated");
                         string claimName = channelConfig.AuthorizeAttribute.ClaimName;
                         string claimValue = channelConfig.AuthorizeAttribute.ClaimValue;
                         if (!String.IsNullOrEmpty(claimName) && !String.IsNullOrEmpty(claimValue))
@@ -211,6 +210,8 @@ namespace Nuclear.Channels
                                 _msgService.FailedAuthorizationResponse(response);
                                 LogChannel.Write(LogSeverity.Error, "Failed authorization");
                             }
+                            else
+                                LogChannel.Write(LogSeverity.Info,"User Authorized");
                         }
                     }
                     catch (Exception ex)
