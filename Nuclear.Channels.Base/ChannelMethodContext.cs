@@ -12,16 +12,16 @@ namespace Nuclear.Channels.Base
     {
         public ChannelMethodContext(HttpListenerRequest request, HttpListenerResponse response, ChannelHttpMethod method, List<object> parameters, bool isAuthenticated)
         {
-            ChannelMethodRequest = request;
-            ChannelMethodResponse = response;
-            ChannelHttpMethod = method;
+            Request = request;
+            Response = response;
+            HttpMethod = method;
             IsAuthenticated = isAuthenticated;
             Parameters = parameters;
         }
 
-        public HttpListenerRequest ChannelMethodRequest { get; }
-        public HttpListenerResponse ChannelMethodResponse { get; }
-        public ChannelHttpMethod ChannelHttpMethod { get; }
+        public HttpListenerRequest Request { get; }
+        public HttpListenerResponse Response { get; }
+        public ChannelHttpMethod HttpMethod { get; }
         public List<object> Parameters { get; }
         public bool IsAuthenticated { get; }
 

@@ -17,18 +17,18 @@ namespace Nuclear.Channels.Base
         /// <summary>
         /// Http Request sent to ChannelMethod
         /// </summary>
-        HttpListenerRequest ChannelMethodRequest { get; }
+        HttpListenerRequest Request { get; }
 
         /// <summary>
         /// Http Response to be written
         /// </summary>
         /// <remarks>Be careful with what you do with the response since closing the response inside ChannelMethod could break the workflow</remarks>
-        HttpListenerResponse ChannelMethodResponse { get; }
+        HttpListenerResponse Response { get; }
 
         /// <summary>
         /// Http Method used to call ChannelMethod
         /// </summary>
-        ChannelHttpMethod ChannelHttpMethod { get; }
+        ChannelHttpMethod HttpMethod { get; }
 
         /// <summary>
         /// ChannelMethod parameter list ordered

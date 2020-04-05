@@ -9,8 +9,14 @@ using System.Text;
 
 namespace Nuclear.Channels.Authentication
 {
+    /// <summary>
+    /// Contract used for authentication extensions
+    /// </summary>
     public interface IChannelAuthenticationEnabled
     {
+        /// <summary>
+        /// Authentication settings used for authentication
+        /// </summary>
         AuthenticationSettings AuthenticationSettings { get; set; }
     }
 }

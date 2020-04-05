@@ -2,6 +2,7 @@
 // Licensed under the MIT License (MIT).
 // See License.md in the repository root for more information.
 
+using Nuclear.Channels.Base;
 using Nuclear.Channels.Base.Decorators;
 using Nuclear.ExportLocator;
 using Nuclear.ExportLocator.Decorators;
@@ -22,18 +23,26 @@ namespace Nuclear.Channels.Generators
         private static Dictionary<Type, object> _existingChannels;
         private readonly IImportedServicesResolver _importResolver;
         private readonly IServiceLocator _services;
+        private readonly IChannelMethodContextProvider _contextProvider;
 
         public ChannelGenerator()
         {
             _existingChannels = new Dictionary<Type, object>();
             _services = ServiceLocatorBuilder.CreateServiceLocator();
             _importResolver = _services.Get<IImportedServicesResolver>();
+            _contextProvider = _services.Get<IChannelMethodContextProvider>();
         }
 
         public object GetInstance(Type channel)
         {
             if (_existingChannels.ContainsKey(channel))
+            {
+                MethodInfo initContext = channel.BaseType.GetProperty("Context").GetSetMethod(true);
+                IChannelMethodContext context = _contextProvider.GetDefaultContext();
+                object[] mparam = new object[] { context };
+                initContext.Invoke(_existingChannels[channel], mparam);
                 return _existingChannels[channel];
+            }
 
             ConstructorInfo ctor = channel.GetConstructor(new Type[0]);
             string methodName = $"{channel.Name}Ctor";

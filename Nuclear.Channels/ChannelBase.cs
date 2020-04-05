@@ -7,7 +7,9 @@ using Nuclear.Channels.Contracts;
 using Nuclear.Channels.Messaging;
 using Nuclear.ExportLocator;
 using Nuclear.ExportLocator.Services;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("Nuclear.Channels.Generators")]
 namespace Nuclear.Channels
 {
     /// <summary>
@@ -25,7 +27,7 @@ namespace Nuclear.Channels
         /// <summary>
         /// Request context
         /// </summary>
-        public IChannelMethodContext Context { get; }
+        public IChannelMethodContext Context { get; private set; }
 
         /// <summary>
         /// Service that will write IChannelMessage as an output. This is the fastest way to get response from ChannelMethod.
@@ -40,6 +42,7 @@ namespace Nuclear.Channels
             _events = Services.Get<IChannelRedirectionEvents>();
         }
 
+
         /// <summary>
         /// Redirect to a specified url, https prefix is the default if not provided otherwise
         /// </summary>
@@ -51,17 +54,17 @@ namespace Nuclear.Channels
                 RedirectToHttpUrl(url);
 
             if (CheckForHttpPrefix(url))
-                _events.ExecuteRedirection(url, Context.ChannelMethodResponse);
+                _events.ExecuteRedirection(url, Context.Response);
             else
-                _events.ExecuteRedirection($"https://{url}", Context.ChannelMethodResponse);
+                _events.ExecuteRedirection($"https://{url}", Context.Response);
         }
 
         private void RedirectToHttpUrl(string url)
         {
             if (CheckForHttpPrefix(url))
-                _events.ExecuteRedirection(url, Context.ChannelMethodResponse);
+                _events.ExecuteRedirection(url, Context.Response);
             else
-                _events.ExecuteRedirection($"http://{url}", Context.ChannelMethodResponse);
+                _events.ExecuteRedirection($"http://{url}", Context.Response);
         }
 
         private bool CheckForHttpPrefix(string url)

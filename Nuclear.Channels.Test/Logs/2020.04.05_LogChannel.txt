@@ -1,0 +1,175 @@
+4/5/2020 10:52:34 AM::::Info::::Method StartListening::::Request coming to TestChannel.RedirectionTest
+4/5/2020 10:52:34 AM::::Info::::Method StartListening::::HttpMethod:GET
+4/5/2020 10:52:35 AM::::Error::::Method ExceptionHandler::::Exception handler called..
+4/5/2020 10:52:35 AM::::Error::::Method ExceptionHandler::::Missing or malformed token authentication header
+4/5/2020 10:52:35 AM::::Error::::Method ExceptionHandler::::No Inner Exception
+4/5/2020 10:52:36 AM::::Error::::Method StartListening::::Authentication Failed
+4/5/2020 10:52:36 AM::::Debug::::Method StartListening::::Request finished...
+4/5/2020 10:52:36 AM::::Debug::::Method StartListening::::Closing the response
+4/5/2020 10:53:19 AM::::Info::::Method StartListening::::Request coming to TestChannel.RedirectionTest
+4/5/2020 10:53:19 AM::::Info::::Method StartListening::::HttpMethod:GET
+4/5/2020 10:53:19 AM::::Error::::Method ExceptionHandler::::Exception handler called..
+4/5/2020 10:53:19 AM::::Error::::Method ExceptionHandler::::Number of parameters specified does not match the expected number.
+4/5/2020 10:53:20 AM::::Error::::Method ExceptionHandler::::No Inner Exception
+4/5/2020 10:53:20 AM::::Debug::::Method StartListening::::Request finished...
+4/5/2020 10:53:20 AM::::Debug::::Method StartListening::::Closing the response
+4/5/2020 10:53:27 AM::::Info::::Method StartListening::::Request coming to TestChannel.RedirectionTest
+4/5/2020 10:53:27 AM::::Info::::Method StartListening::::HttpMethod:GET
+4/5/2020 10:53:27 AM::::Error::::Method ExceptionHandler::::Exception handler called..
+4/5/2020 10:53:27 AM::::Error::::Method ExceptionHandler::::Exception has been thrown by the target of an invocation.
+4/5/2020 10:53:27 AM::::Error::::Method ExceptionHandler::::System.NullReferenceException: Object reference not set to an instance of an object.
+   at Nuclear.Channels.ChannelBase.RedirectToUrl(String url, Boolean isHttps) in C:\Users\Mycenaean\source\repos\Nuclear-Framework\Nuclear.Channels\ChannelBase.cs:line 56
+   at ConsoleApp1.TestChannel.RedirectionTest(String url) in C:\Users\Mycenaean\source\repos\Nuclear-Framework\Nuclear.Channels.Test\TestChannel.cs:line 47
+4/5/2020 10:53:27 AM::::Debug::::Method StartListening::::Request finished...
+4/5/2020 10:53:28 AM::::Debug::::Method StartListening::::Closing the response
+4/5/2020 1:22:50 PM::::Info::::Method StartListening::::Request coming to TestChannel.RedirectionTest
+4/5/2020 1:22:50 PM::::Info::::Method StartListening::::HttpMethod:GET
+4/5/2020 1:22:50 PM::::Error::::Method ExceptionHandler::::Exception handler called..
+4/5/2020 1:22:51 PM::::Error::::Method ExceptionHandler::::Number of parameters specified does not match the expected number.
+4/5/2020 1:22:51 PM::::Error::::Method ExceptionHandler::::No Inner Exception
+4/5/2020 1:22:51 PM::::Debug::::Method StartListening::::Request finished...
+4/5/2020 1:22:51 PM::::Debug::::Method StartListening::::Closing the response
+4/5/2020 1:22:58 PM::::Info::::Method StartListening::::Request coming to TestChannel.RedirectionTest
+4/5/2020 1:22:58 PM::::Info::::Method StartListening::::HttpMethod:GET
+4/5/2020 1:22:58 PM::::Debug::::Method StartListening::::Request finished...
+4/5/2020 1:22:58 PM::::Debug::::Method StartListening::::Closing the response
+4/5/2020 1:35:50 PM::::Info::::Method StartListening::::Request coming to TestChannel.HelloWorld
+4/5/2020 1:35:50 PM::::Info::::Method StartListening::::HttpMethod:GET
+4/5/2020 1:35:51 PM::::Debug::::Method StartListening::::Request finished...
+4/5/2020 1:35:51 PM::::Debug::::Method StartListening::::Closing the response
+4/5/2020 1:36:11 PM::::Info::::Method StartListening::::Request coming to TestChannel.RedirectionTest
+4/5/2020 1:36:11 PM::::Info::::Method StartListening::::HttpMethod:GET
+4/5/2020 1:36:11 PM::::Error::::Method ExceptionHandler::::Exception handler called..
+4/5/2020 1:36:11 PM::::Error::::Method ExceptionHandler::::Exception has been thrown by the target of an invocation.
+4/5/2020 1:36:12 PM::::Error::::Method ExceptionHandler::::System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'System.Net.HttpListenerResponse'.
+   at System.Net.HttpListenerResponse.CheckDisposed()
+   at System.Net.HttpListenerResponse.set_StatusCode(Int32 value)
+   at System.Net.HttpListenerResponse.Redirect(String url)
+   at Nuclear.Channels.InvokerServices.ExecutorServices.ChannelMethodInvoker._eventService_OnRedirectionInvoked(Object sender, ChannelRedirectionEventArgs e) in C:\Users\Mycenaean\source\repos\Nuclear-Framework\Nuclear.Channels.InvokerServices\ChannelMethodInvoker.cs:line 59
+   at Nuclear.Channels.Base.ChannelRedirectionEvents.ExecuteRedirection(String url, HttpListenerResponse response) in C:\Users\Mycenaean\source\repos\Nuclear-Framework\Nuclear.Channels.Base\ChannelRedirectionEvents.cs:line 15
+   at Nuclear.Channels.ChannelBase.RedirectToUrl(String url, Boolean isHttps) in C:\Users\Mycenaean\source\repos\Nuclear-Framework\Nuclear.Channels\ChannelBase.cs:line 54
+   at ConsoleApp1.TestChannel.RedirectionTest(String url) in C:\Users\Mycenaean\source\repos\Nuclear-Framework\Nuclear.Channels.Test\TestChannel.cs:line 58
+4/5/2020 1:36:12 PM::::Debug::::Method StartListening::::Request finished...
+4/5/2020 1:36:12 PM::::Debug::::Method StartListening::::Closing the response
+4/5/2020 1:36:19 PM::::Info::::Method StartListening::::Request coming to TestChannel.RedirectionTest
+4/5/2020 1:36:19 PM::::Info::::Method StartListening::::HttpMethod:GET
+4/5/2020 1:36:19 PM::::Error::::Method ExceptionHandler::::Exception handler called..
+4/5/2020 1:36:19 PM::::Error::::Method ExceptionHandler::::Exception has been thrown by the target of an invocation.
+4/5/2020 1:36:19 PM::::Error::::Method ExceptionHandler::::System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'System.Net.HttpListenerResponse'.
+   at System.Net.HttpListenerResponse.CheckDisposed()
+   at System.Net.HttpListenerResponse.set_StatusCode(Int32 value)
+   at System.Net.HttpListenerResponse.Redirect(String url)
+   at Nuclear.Channels.InvokerServices.ExecutorServices.ChannelMethodInvoker._eventService_OnRedirectionInvoked(Object sender, ChannelRedirectionEventArgs e) in C:\Users\Mycenaean\source\repos\Nuclear-Framework\Nuclear.Channels.InvokerServices\ChannelMethodInvoker.cs:line 59
+   at Nuclear.Channels.Base.ChannelRedirectionEvents.ExecuteRedirection(String url, HttpListenerResponse response) in C:\Users\Mycenaean\source\repos\Nuclear-Framework\Nuclear.Channels.Base\ChannelRedirectionEvents.cs:line 15
+   at Nuclear.Channels.ChannelBase.RedirectToUrl(String url, Boolean isHttps) in C:\Users\Mycenaean\source\repos\Nuclear-Framework\Nuclear.Channels\ChannelBase.cs:line 56
+   at ConsoleApp1.TestChannel.RedirectionTest(String url) in C:\Users\Mycenaean\source\repos\Nuclear-Framework\Nuclear.Channels.Test\TestChannel.cs:line 58
+4/5/2020 1:36:19 PM::::Debug::::Method StartListening::::Request finished...
+4/5/2020 1:36:19 PM::::Debug::::Method StartListening::::Closing the response
+4/5/2020 1:37:05 PM::::Info::::Method StartListening::::Request coming to TestChannel.RedirectionTest
+4/5/2020 1:37:06 PM::::Info::::Method StartListening::::HttpMethod:GET
+4/5/2020 1:37:47 PM::::Debug::::Method StartListening::::Request finished...
+4/5/2020 1:37:47 PM::::Debug::::Method StartListening::::Closing the response
+4/5/2020 1:37:54 PM::::Info::::Method StartListening::::Request coming to TestChannel.RedirectionTest
+4/5/2020 1:37:54 PM::::Info::::Method StartListening::::HttpMethod:GET
+4/5/2020 1:38:08 PM::::Error::::Method ExceptionHandler::::Exception handler called..
+4/5/2020 1:38:08 PM::::Error::::Method ExceptionHandler::::Exception has been thrown by the target of an invocation.
+4/5/2020 1:38:08 PM::::Error::::Method ExceptionHandler::::System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'System.Net.HttpListenerResponse'.
+   at System.Net.HttpListenerResponse.CheckDisposed()
+   at System.Net.HttpListenerResponse.set_StatusCode(Int32 value)
+   at System.Net.HttpListenerResponse.Redirect(String url)
+   at Nuclear.Channels.InvokerServices.ExecutorServices.ChannelMethodInvoker._eventService_OnRedirectionInvoked(Object sender, ChannelRedirectionEventArgs e) in C:\Users\Mycenaean\source\repos\Nuclear-Framework\Nuclear.Channels.InvokerServices\ChannelMethodInvoker.cs:line 59
+   at Nuclear.Channels.Base.ChannelRedirectionEvents.ExecuteRedirection(String url, HttpListenerResponse response) in C:\Users\Mycenaean\source\repos\Nuclear-Framework\Nuclear.Channels.Base\ChannelRedirectionEvents.cs:line 15
+   at Nuclear.Channels.ChannelBase.RedirectToUrl(String url, Boolean isHttps) in C:\Users\Mycenaean\source\repos\Nuclear-Framework\Nuclear.Channels\ChannelBase.cs:line 54
+   at ConsoleApp1.TestChannel.RedirectionTest(String url) in C:\Users\Mycenaean\source\repos\Nuclear-Framework\Nuclear.Channels.Test\TestChannel.cs:line 58
+4/5/2020 1:38:09 PM::::Debug::::Method StartListening::::Request finished...
+4/5/2020 1:38:09 PM::::Debug::::Method StartListening::::Closing the response
+4/5/2020 1:38:17 PM::::Info::::Method StartListening::::Request coming to TestChannel.RedirectionTest
+4/5/2020 1:38:17 PM::::Info::::Method StartListening::::HttpMethod:GET
+4/5/2020 1:38:42 PM::::Info::::Method StartListening::::Request coming to TestChannel.RedirectionTest
+4/5/2020 1:38:42 PM::::Info::::Method StartListening::::HttpMethod:GET
+4/5/2020 1:39:09 PM::::Debug::::Method StartListening::::Request finished...
+4/5/2020 1:39:09 PM::::Debug::::Method StartListening::::Closing the response
+4/5/2020 1:39:25 PM::::Info::::Method StartListening::::Request coming to TestChannel.RedirectionTest
+4/5/2020 1:39:26 PM::::Info::::Method StartListening::::HttpMethod:GET
+4/5/2020 1:42:08 PM::::Info::::Method StartListening::::Request coming to TestChannel.WriteStringWithMessageWriter
+4/5/2020 1:42:08 PM::::Info::::Method StartListening::::HttpMethod:GET
+4/5/2020 1:42:08 PM::::Error::::Method ExceptionHandler::::Exception handler called..
+4/5/2020 1:42:08 PM::::Error::::Method ExceptionHandler::::Number of parameters specified does not match the expected number.
+4/5/2020 1:42:08 PM::::Error::::Method ExceptionHandler::::No Inner Exception
+4/5/2020 1:42:08 PM::::Debug::::Method StartListening::::Request finished...
+4/5/2020 1:42:08 PM::::Debug::::Method StartListening::::Closing the response
+4/5/2020 1:42:16 PM::::Info::::Method StartListening::::Request coming to TestChannel.WriteStringWithMessageWriter
+4/5/2020 1:42:16 PM::::Info::::Method StartListening::::HttpMethod:GET
+4/5/2020 1:42:16 PM::::Debug::::Method StartListening::::Request finished...
+4/5/2020 1:42:17 PM::::Debug::::Method StartListening::::Closing the response
+4/5/2020 1:48:03 PM::::Info::::Method StartListening::::Request coming to TestChannel.WriteStringWithMessageWriter
+4/5/2020 1:48:03 PM::::Info::::Method StartListening::::HttpMethod:GET
+4/5/2020 1:48:04 PM::::Debug::::Method StartListening::::Request finished...
+4/5/2020 1:48:04 PM::::Debug::::Method StartListening::::Closing the response
+4/5/2020 1:48:11 PM::::Info::::Method StartListening::::Request coming to TestChannel.WriteStringWithMessageWriter
+4/5/2020 1:48:11 PM::::Info::::Method StartListening::::HttpMethod:GET
+4/5/2020 1:48:11 PM::::Error::::Method ExceptionHandler::::Exception handler called..
+4/5/2020 1:48:11 PM::::Error::::Method ExceptionHandler::::Property set method not found.
+4/5/2020 1:48:11 PM::::Error::::Method ExceptionHandler::::No Inner Exception
+4/5/2020 1:48:11 PM::::Debug::::Method StartListening::::Request finished...
+4/5/2020 1:48:11 PM::::Debug::::Method StartListening::::Closing the response
+4/5/2020 1:48:26 PM::::Info::::Method StartListening::::Request coming to TestChannel.WriteStringWithMessageWriter
+4/5/2020 1:48:26 PM::::Info::::Method StartListening::::HttpMethod:GET
+4/5/2020 1:52:13 PM::::Info::::Method StartListening::::Request coming to TestChannel.WriteStringWithMessageWriter
+4/5/2020 1:52:13 PM::::Info::::Method StartListening::::HttpMethod:GET
+4/5/2020 1:52:15 PM::::Debug::::Method StartListening::::Request finished...
+4/5/2020 1:52:15 PM::::Debug::::Method StartListening::::Closing the response
+4/5/2020 1:52:19 PM::::Info::::Method StartListening::::Request coming to TestChannel.WriteStringWithMessageWriter
+4/5/2020 1:52:19 PM::::Info::::Method StartListening::::HttpMethod:GET
+4/5/2020 1:52:40 PM::::Error::::Method ExceptionHandler::::Exception handler called..
+4/5/2020 1:52:40 PM::::Error::::Method ExceptionHandler::::Object reference not set to an instance of an object.
+4/5/2020 1:52:40 PM::::Error::::Method ExceptionHandler::::No Inner Exception
+4/5/2020 1:52:40 PM::::Debug::::Method StartListening::::Request finished...
+4/5/2020 1:52:40 PM::::Debug::::Method StartListening::::Closing the response
+4/5/2020 1:52:43 PM::::Info::::Method StartListening::::Request coming to TestChannel.WriteStringWithMessageWriter
+4/5/2020 1:52:43 PM::::Info::::Method StartListening::::HttpMethod:GET
+4/5/2020 1:54:15 PM::::Info::::Method StartListening::::Request coming to TestChannel.WriteStringWithMessageWriter
+4/5/2020 1:54:15 PM::::Info::::Method StartListening::::HttpMethod:GET
+4/5/2020 1:54:17 PM::::Debug::::Method StartListening::::Request finished...
+4/5/2020 1:54:17 PM::::Debug::::Method StartListening::::Closing the response
+4/5/2020 1:54:21 PM::::Info::::Method StartListening::::Request coming to TestChannel.WriteStringWithMessageWriter
+4/5/2020 1:54:21 PM::::Info::::Method StartListening::::HttpMethod:GET
+4/5/2020 1:55:49 PM::::Info::::Method StartListening::::Request coming to TestChannel.WriteStringWithMessageWriter
+4/5/2020 1:55:49 PM::::Info::::Method StartListening::::HttpMethod:GET
+4/5/2020 1:55:50 PM::::Debug::::Method StartListening::::Request finished...
+4/5/2020 1:55:50 PM::::Debug::::Method StartListening::::Closing the response
+4/5/2020 1:55:54 PM::::Info::::Method StartListening::::Request coming to TestChannel.WriteStringWithMessageWriter
+4/5/2020 1:55:54 PM::::Info::::Method StartListening::::HttpMethod:GET
+4/5/2020 2:02:12 PM::::Info::::Method StartListening::::Request coming to TestChannel.WriteStringWithMessageWriter
+4/5/2020 2:02:12 PM::::Info::::Method StartListening::::HttpMethod:GET
+4/5/2020 2:02:14 PM::::Debug::::Method StartListening::::Request finished...
+4/5/2020 2:02:14 PM::::Debug::::Method StartListening::::Closing the response
+4/5/2020 2:02:20 PM::::Info::::Method StartListening::::Request coming to TestChannel.WriteStringWithMessageWriter
+4/5/2020 2:02:20 PM::::Info::::Method StartListening::::HttpMethod:GET
+4/5/2020 2:05:01 PM::::Info::::Method StartListening::::Request coming to TestChannel.WriteStringWithMessageWriter
+4/5/2020 2:05:01 PM::::Info::::Method StartListening::::HttpMethod:GET
+4/5/2020 2:05:04 PM::::Debug::::Method StartListening::::Request finished...
+4/5/2020 2:05:04 PM::::Debug::::Method StartListening::::Closing the response
+4/5/2020 2:05:12 PM::::Info::::Method StartListening::::Request coming to TestChannel.WriteStringWithMessageWriter
+4/5/2020 2:05:12 PM::::Info::::Method StartListening::::HttpMethod:GET
+4/5/2020 2:06:49 PM::::Info::::Method StartListening::::Request coming to TestChannel.WriteStringWithMessageWriter
+4/5/2020 2:06:49 PM::::Info::::Method StartListening::::HttpMethod:GET
+4/5/2020 2:06:53 PM::::Debug::::Method StartListening::::Request finished...
+4/5/2020 2:06:53 PM::::Debug::::Method StartListening::::Closing the response
+4/5/2020 2:06:59 PM::::Info::::Method StartListening::::Request coming to TestChannel.WriteStringWithMessageWriter
+4/5/2020 2:07:00 PM::::Info::::Method StartListening::::HttpMethod:GET
+4/5/2020 2:09:00 PM::::Info::::Method StartListening::::Request coming to TestChannel.WriteStringWithMessageWriter
+4/5/2020 2:09:00 PM::::Info::::Method StartListening::::HttpMethod:GET
+4/5/2020 2:09:02 PM::::Debug::::Method StartListening::::Request finished...
+4/5/2020 2:09:02 PM::::Debug::::Method StartListening::::Closing the response
+4/5/2020 2:09:07 PM::::Info::::Method StartListening::::Request coming to TestChannel.WriteStringWithMessageWriter
+4/5/2020 2:09:07 PM::::Info::::Method StartListening::::HttpMethod:GET
+4/5/2020 2:09:50 PM::::Debug::::Method StartListening::::Request finished...
+4/5/2020 2:09:50 PM::::Debug::::Method StartListening::::Closing the response
+4/5/2020 2:09:55 PM::::Info::::Method StartListening::::Request coming to TestChannel.WriteStringWithMessageWriter
+4/5/2020 2:09:55 PM::::Info::::Method StartListening::::HttpMethod:GET
+4/5/2020 2:09:56 PM::::Debug::::Method StartListening::::Request finished...
+4/5/2020 2:09:56 PM::::Debug::::Method StartListening::::Closing the response

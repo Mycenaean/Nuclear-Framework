@@ -12,6 +12,10 @@ namespace Nuclear.Channels.Authentication.Extensions
 {
     public static class ChannelAuthenticationExtensions
     {
+        /// <summary>
+        /// Adds Basic Authentication rules
+        /// </summary>
+        /// <param name="basicDelegate">Delegate used to authenticate user</param>
         public static IChannelAuthenticationEnabled AddBasicAuthentication(this IChannelAuthenticationEnabled server, Func<string, string, bool> basicDelegate)
         {
             server.AuthenticationSettings = new AuthenticationSettings()
@@ -22,6 +26,10 @@ namespace Nuclear.Channels.Authentication.Extensions
             return server;
         }
 
+        /// <summary>
+        /// Adds Basic Authentication rules
+        /// </summary>
+        /// <param name="basicDelegate">Delegate used to authenticate user</param>
         public static IChannelAuthenticationEnabled AddBasicAuthentication(this IChannelAuthenticationEnabled server, Func<string, string, Claim[]> basicDelegate)
         {
             server.AuthenticationSettings = new AuthenticationSettings()
@@ -33,6 +41,10 @@ namespace Nuclear.Channels.Authentication.Extensions
 
         }
 
+        /// <summary>
+        /// Adds Basic Authentication rules
+        /// </summary>
+        /// <param name="basicDelegate">Delegate used to authenticate user</param>
         public static IChannelAuthenticationEnabled AddBasicAuthentication(this IChannelAuthenticationEnabled server, Func<string, string, ClaimsPrincipal> basicDelegate)
         {
             server.AuthenticationSettings = new AuthenticationSettings()
@@ -44,6 +56,10 @@ namespace Nuclear.Channels.Authentication.Extensions
 
         }
 
+        /// <summary>
+        /// Adds Token Authentication rules
+        /// </summary>
+        /// <param name="basicDelegate">Delegate used to authenticate user</param>
         public static IChannelAuthenticationEnabled AddTokenAuthentication(this IChannelAuthenticationEnabled server, Func<string, bool> tokenDelegate)
         {
             server.AuthenticationSettings = new AuthenticationSettings()
@@ -55,6 +71,10 @@ namespace Nuclear.Channels.Authentication.Extensions
 
         }
 
+        /// <summary>
+        /// Adds Token Authentication rules
+        /// </summary>
+        /// <param name="basicDelegate">Delegate used to authenticate user</param>
         public static IChannelAuthenticationEnabled AddTokenAuthentication(this IChannelAuthenticationEnabled server, Func<string, Claim[]> tokenDelegate)
         {
             server.AuthenticationSettings = new AuthenticationSettings()
@@ -66,6 +86,10 @@ namespace Nuclear.Channels.Authentication.Extensions
 
         }
 
+        /// <summary>
+        /// Adds Token Authentication rules
+        /// </summary>
+        /// <param name="basicDelegate">Delegate used to authenticate user</param>
         public static IChannelAuthenticationEnabled AddTokenAuthentication(this IChannelAuthenticationEnabled server, Func<string, ClaimsPrincipal> tokenDelegate)
         {
             server.AuthenticationSettings = new AuthenticationSettings()

@@ -31,14 +31,14 @@ namespace Nuclear.Channels
         /// AuthenticationOptions for Token Authentication
         /// </summary>
         /// <param name="tokenAuthenticationMethod">Delegate for token authentication</param>
-        [Obsolete("Please use one of the overloads of AddTokenAuthentication method")]
+        [Obsolete("Please use one of the overloads of AddTokenAuthentication extension method")]
         void AuthenticationOptions(Func<string, bool> tokenAuthenticationMethod);
 
         /// <summary>
         /// AuthenticationOptions for Basic Authentication
         /// </summary>
         /// <param name="basicAuthenticationMethod">Delegate for basic authentication</param>
-        [Obsolete("Please use one of the overloads of AddTokenAuthentication method")]
+        [Obsolete("Please use one of the overloads of AddBasicAuthentication extension method")]
         void AuthenticationOptions(Func<string, string, bool> basicAuthenticationMethod);      
 
         /// <summary>

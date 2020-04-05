@@ -366,6 +366,7 @@ namespace Nuclear.Channels
             bool authenticated,
             bool hasParams)
         {
+            InitChannelMethodContext(channelConfig.Endpoint, request, response, authenticated, channelConfig.HttpMethod, channelRequestBody);
             if (hasParams)
             {
                 dsrFactory = new ChannelMethodDeserializerFactory(request.QueryString);
@@ -374,8 +375,7 @@ namespace Nuclear.Channels
             }
             else
                 _requestActivator.GetActivateWithoutParameters(channel, method, response);
-
-            InitChannelMethodContext(channelConfig.Endpoint, request, response, authenticated, channelConfig.HttpMethod, channelRequestBody);
+            
             _contextProvider.DestroyChannelMethodContext(channelConfig.Endpoint);
         }
 

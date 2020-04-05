@@ -10,7 +10,7 @@ using Nuclear.Channels.Authentication;
 namespace ConsoleApp1
 {
     [Channel]
-    [AuthorizeChannel(ChannelAuthenticationSchemes.Token, "Role", "Admin")]
+    // [AuthorizeChannel(ChannelAuthenticationSchemes.Token, "Role", "Admin")]
     public class TestChannel : ChannelBase
     {
         [ImportedService]
@@ -28,6 +28,17 @@ namespace ConsoleApp1
             return $"Hello {name} from ChannelMethod";
         }
 
+        [ChannelMethod]
+        public void WriteStringWithMessageWriter(string message)
+        {
+            ChannelMessageWriter.Write(new ChannelMessage()
+            {
+                Success = true,
+                Output = message,
+                Message = message
+            },Context.Response);
+        }
+
         [ChannelMethod(ChannelHttpMethod.POST)]
         public void CreateTestClass(string id, string name)
         {
@@ -38,7 +49,7 @@ namespace ConsoleApp1
                 Success = true
             };
 
-            ChannelMessageWriter.Write(msg, Context.ChannelMethodResponse);
+            ChannelMessageWriter.Write(msg, Context.Response);
         }
 
         [ChannelMethod]

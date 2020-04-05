@@ -8,11 +8,11 @@
     <RepositoryUrl>https://github.com/Mycenaean/Nuclear-Framework/tree/master/Nuclear.Channels</RepositoryUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <Version>3.0.5</Version>
-    <PackageReleaseNotes>Adding Redirection capability to ChannelBase</PackageReleaseNotes>
+    <Version>3.0.7</Version>
+    <PackageReleaseNotes>Performance , Fixing Context problems</PackageReleaseNotes>
     <Description>Lightweight API Framework for building Http Endpoints</Description>
-    <AssemblyVersion>3.0.5.0</AssemblyVersion>
-    <FileVersion>3.0.5.0</FileVersion>
+    <AssemblyVersion>3.0.7.0</AssemblyVersion>
+    <FileVersion>3.0.7.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
