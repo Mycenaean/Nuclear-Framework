@@ -185,7 +185,7 @@ public void HelloWorld(string name)
         Success = true
     };
 
-    ChannelMessageWriter.Write(msg, Context.ChannelMethodResponse);
+    ChannelMessageWriter.Write(msg, Context.Response);
 }
 ```
 
