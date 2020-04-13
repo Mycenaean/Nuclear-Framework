@@ -1,32 +1,17 @@
-﻿using Nuclear.Channels.Remoting.Enums;
-using Nuclear.Channels.Remoting.Services;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Nuclear.Channels.Remoting
 {
-    public class ChannelCredentials : IChannelCredentials
+    public class ChannelCredentials
     {
-        public ChannelCredentials()
+        IChannelCredentials GetCredentials(ChannelCredentialsType type)
         {
-
+            if (type == ChannelCredentialsType.Basic)
+                return new ChannelBasicCredentials();
+            else
+                return new ChannelTokenCredentials();
         }
-
-        public ChannelCredentials(ChannelAuthenticationOptions options, string token)
-        {
-            AuthenticationOptions = options;
-            Token = token;
-        }
-
-        public ChannelCredentials(ChannelAuthenticationOptions options, string username, string password)
-        {
-            AuthenticationOptions = options;
-            Username = username;
-            Password = password;
-        }
-
-        public ChannelAuthenticationOptions AuthenticationOptions { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public string Token { get; set; }
     }
 }
-

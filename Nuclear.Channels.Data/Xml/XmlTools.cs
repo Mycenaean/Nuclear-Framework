@@ -57,10 +57,10 @@ namespace Nuclear.Channels.Data.Xml
         /// <returns>Parameter value</returns>
         public static string DeserializeString(XmlDocument document, string name)
         {
-            XmlNode root = document.FirstChild;
-            foreach (XmlNode node in root.ChildNodes)
+            XmlNodeList elementNodes = document.GetElementsByTagName(name);
+            foreach (XmlNode node in elementNodes)
             {
-                if (node.Name.Equals(name, StringComparison.OrdinalIgnoreCase))
+                if (node.ParentNode.Name == "channels")
                     return node.InnerText;
             }
 

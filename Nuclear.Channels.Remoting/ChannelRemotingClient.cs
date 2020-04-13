@@ -1,72 +1,169 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Nuclear.Channels.Remoting.Enums;
-using Nuclear.Channels.Remoting.Exceptions;
-using Nuclear.Channels.Remoting.Services;
-using Nuclear.ExportLocator;
 using Nuclear.ExportLocator.Decorators;
 using Nuclear.ExportLocator.Enumerations;
-using Nuclear.ExportLocator.Services;
 using System;
-using System.Diagnostics;
+using System.Collections.Generic;
+using System.IO;
+using System.Net;
+using System.Text;
+using System.Xml;
+using System.Xml.Linq;
+using System.Xml.Serialization;
 
 namespace Nuclear.Channels.Remoting
 {
-    [Export(typeof(IChannelRemotingClient), ExportLifetime.Transient)]
     public class ChannelRemotingClient : IChannelRemotingClient
     {
-        private IServiceLocator Services;
-        private readonly IRemoteInvoker _remoteInvoker;
+        private string _http;
 
-        [DebuggerStepThrough]
+        private class ChannelMessage
+        {
+            public bool Success { get; set; }
+            public object Output { get; set; }
+            public string Message { get; set; }
+        }
+
         public ChannelRemotingClient()
         {
-            Services = ServiceLocatorBuilder.CreateServiceLocator();
-            _remoteInvoker = Services.Get<IRemoteInvoker>();
+            _http = string.Empty;
         }
 
-        public T InvokeChannel<T>(string URL, HttpChannelMethod method, IChannelCredentials credentials)
+        public object GetResponse(ChannelRequest request)
         {
-            string channelResponse = _remoteInvoker.InvokeChannel(URL, method, credentials);
-            return (T)DeserializeChannelResponse<T>(channelResponse);
+            return GetResponseObject(request);
         }
 
-        public T InvokeChannel<T>(string URL, object inputBody, HttpChannelMethod method, IChannelCredentials credentials, string contentType = null)
+        public TEntity GetResponse<TEntity>(ChannelRequest request)
         {
-            string jsonBody = JsonConvert.SerializeObject(inputBody);
-            string channelResponse = _remoteInvoker.InvokeChannel(URL, jsonBody, method, credentials, contentType);
-            return (T)DeserializeChannelResponse<T>(channelResponse);
+            return (TEntity)GetResponseObject(request);
         }
 
-        private object DeserializeChannelResponse<T>(string channelResponse)
+        public void Send(ChannelRequest request)
         {
-            JObject responseObject = JObject.Parse(channelResponse);
-            string success = responseObject.Property("Success", StringComparison.OrdinalIgnoreCase).Value.ToString();
-            if (success == "True")
-            {
-                string output = responseObject.Property("Output").Value.ToString();
-                if (typeof(T) == typeof(string))
-                    return output;
-                else if (typeof(T) == typeof(int))
-                    return int.Parse(output);
-                else if (typeof(T) == typeof(bool))
-                    return Convert.ToBoolean(output);
-                else if (typeof(T) == typeof(double))
-                    return double.Parse(output);
-                else if (typeof(T) == typeof(decimal))
-                    return decimal.Parse(output);
-                else if (typeof(T) == typeof(char))
-                    return char.Parse(output);
-                else
-                    return JsonConvert.DeserializeObject(output);
-            }
+            ChannelMessage channelMessage = GetChannelMessage(request);
+            if (!channelMessage.Success)
+                throw new ChannelRequestException(channelMessage.Message);
+        }
+
+        private string GetHttpMethod(Type requestType)
+        {
+            if (requestType == typeof(ChannelMethodGetRequest))
+                return "GET";
             else
+                return "POST";
+        }
+
+        private object GetResponseObject(ChannelRequest request)
+        {
+            ChannelMessage channelMessage = GetChannelMessage(request);
+            return channelMessage.Output;
+        }
+
+        private ChannelMessage GetChannelMessage(ChannelRequest request)
+        {
+            HttpWebRequest httpRequest = CreateWebRequest(request);
+            string response = GetWebResponse(httpRequest);
+            ChannelMessage channelMessage = JsonConvert.DeserializeObject<ChannelMessage>(response);
+            if (channelMessage.Success)
+                return channelMessage;
+            else
+                throw new ChannelRequestException(channelMessage.Message);
+        }
+
+        private HttpWebRequest CreateWebRequest(ChannelRequest request)
+        {
+            _http = GetHttpMethod(request.GetType());
+            string requestBody = string.Empty;
+            byte[] bodyBuffer = null;
+
+            if (_http == "GET" && request.Parameters != null && request.Parameters.Count() > 0)
             {
-                string message = responseObject.Property("Message", StringComparison.OrdinalIgnoreCase).Value.ToString();
-                throw new ChannelRemotingException(message);
+                StringBuilder queryUrl = new StringBuilder(request.Url);
+                ChannelMethodParameter first = request.Parameters.GetFirstParam();
+                queryUrl.Append($"?{first.Name}={first.Value}");
+                request.Parameters.RemoveParameter(first);
+                foreach (ChannelMethodParameter cmparam in request.Parameters.AllParameters())
+                {
+                    queryUrl.Append($"&{cmparam.Name}={cmparam.Value}");
+                }
+
+                request.Url = queryUrl.ToString();
+            }
+            else if (_http == "POST" && request.Parameters != null && request.Parameters.Count() > 0)
+            {
+                if (request.Parameters.ContentType == RequestContentType.JSON)
+                {
+                    Dictionary<string, object> jsonRequsetBuilder = new Dictionary<string, object>();
+                    foreach (ChannelMethodParameter cmparam in request.Parameters.AllParameters())
+                    {
+                        jsonRequsetBuilder.Add(cmparam.Name, cmparam.Value);
+                    }
+
+                    requestBody = JsonConvert.SerializeObject(jsonRequsetBuilder);
+                }
+                else
+                {
+                    string xmlHeader = "<?xml version=\"1.0\" encoding=\"UTF - 8\"?>";
+                    StringBuilder xmlRequestBuilder = new StringBuilder(xmlHeader);
+                    xmlRequestBuilder.Append(Environment.NewLine);
+                    xmlRequestBuilder.Append("<channels>");
+                    foreach (ChannelMethodParameter cmparam in request.Parameters.AllParameters())
+                    {
+                        xmlRequestBuilder.Append(Environment.NewLine);
+                        xmlRequestBuilder.Append($"<{cmparam.Name}>{cmparam.Value}</{cmparam.Name}>");
+                    }
+                    xmlRequestBuilder.Append("</channels>");
+
+                    requestBody = xmlRequestBuilder.ToString();
+                }
+            }
+
+
+            HttpWebRequest httpRequest = (HttpWebRequest)WebRequest.Create(request.Url);
+            httpRequest.Method = _http;
+            if (request.Credentials != null)
+            {
+                httpRequest.PreAuthenticate = true;
+                string authorize = string.Empty;
+                if (request.Credentials.GetType() == typeof(ChannelBasicCredentials))
+                {
+                    ChannelBasicCredentials basic = (ChannelBasicCredentials)request.Credentials;
+                    authorize = Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes($"{basic.Username}:{basic.Password}"));
+                }
+                else
+                {
+                    ChannelTokenCredentials token = (ChannelTokenCredentials)request.Credentials;
+                    authorize = Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes($"{token.Token}"));
+                }
+                httpRequest.Headers["Authorization"] = authorize;
+            }
+
+
+            if (!String.IsNullOrEmpty(requestBody))
+            {
+                bodyBuffer = Encoding.ASCII.GetBytes(requestBody);
+                Stream requestStream = httpRequest.GetRequestStream();
+                requestStream.Write(bodyBuffer, 0, bodyBuffer.Length);
+                requestStream.Close();
+
+                if (request.Parameters.ContentType == RequestContentType.JSON)
+                    httpRequest.ContentType = "application/json";
+                else
+                    httpRequest.ContentType = "application/xml";
+            }
+
+            return httpRequest;
+        }
+
+        private string GetWebResponse(HttpWebRequest request)
+        {
+            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+            {
+                using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+                {
+                    return reader.ReadToEnd();
+                }
             }
         }
     }
-
 }
-

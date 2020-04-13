@@ -58,7 +58,7 @@ namespace ConsoleApp1
             RedirectToUrl(url);
         }
     }
-
+    public class ChannelEndpointAttribute : Attribute { }
     public interface ITestService { string Write(); }
 
     [Export(typeof(ITestService))]
