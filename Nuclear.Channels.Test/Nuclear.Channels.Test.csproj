@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Nuclear.Channels.Generators\Nuclear.Channels.Generators.csproj" />
+    <ProjectReference Include="..\Nuclear.Channels.Heuristics\Nuclear.Channels.Heuristics.csproj" />
     <ProjectReference Include="..\Nuclear.Channels\Nuclear.Channels.csproj" />
     <ProjectReference Include="..\Nuclear.ExportLocator\Nuclear.ExportLocator.csproj" />
   </ItemGroup>

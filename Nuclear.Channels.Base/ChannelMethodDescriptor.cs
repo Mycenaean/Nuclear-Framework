@@ -3,14 +3,13 @@
 // See License.md in the repository root for more information.
 
 using Nuclear.Channels.Base;
-using Nuclear.Channels.InvokerServices.Contracts;
 using Nuclear.ExportLocator.Decorators;
 using Nuclear.ExportLocator.Enumerations;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace Nuclear.Channels.InvokerServices
+namespace Nuclear.Channels.Base
 {
     /// <summary>
     /// Service for ChannelMethod informations

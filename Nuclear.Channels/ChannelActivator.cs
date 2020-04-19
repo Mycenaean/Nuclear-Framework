@@ -11,6 +11,8 @@ using Nuclear.Channels.Base.Exceptions;
 using Nuclear.Channels.Data.Deserializers;
 using Nuclear.Channels.Data.Logging;
 using Nuclear.Channels.Decorators;
+using Nuclear.Channels.Heuristics;
+using Nuclear.Channels.Heuristics.Contexts;
 using Nuclear.Channels.InvokerServices.Contracts;
 using Nuclear.Channels.Messaging;
 using Nuclear.ExportLocator.Decorators;
@@ -43,6 +45,7 @@ namespace Nuclear.Channels
         private IChannelMethodContextProvider _contextProvider;
         private IChannelConfiguration _configuration;
         private IChannelAuthenticationService _authenticationService;
+        private IChannelHeuristics _heuristics;
         private AuthenticationSettings _settings;
         private Func<string, string, bool> _basicAuthenticationMethod;
         private Func<string, bool> _tokenAuthenticationMethod;
@@ -75,6 +78,7 @@ namespace Nuclear.Channels
             _contextProvider = _services.Get<IChannelMethodContextProvider>();
             _configuration = _services.Get<IChannelConfiguration>();
             _authenticationService = _services.Get<IChannelAuthenticationService>();
+            _heuristics = _services.Get<IChannelHeuristics>();
 
             Debug.Assert(_channelLocator != null);
             Debug.Assert(_channelMethodDescriptor != null);
@@ -83,6 +87,7 @@ namespace Nuclear.Channels
             Debug.Assert(_contextProvider != null);
             Debug.Assert(_configuration != null);
             Debug.Assert(_authenticationService != null);
+            Debug.Assert(_heuristics != null);
 
             _rootPath = (new FileInfo(AppDomain.CurrentDomain.BaseDirectory)).Directory.Parent.Parent.Parent.FullName;
             DirectoryInfo logsDirectory = new DirectoryInfo(Path.Combine(_rootPath, "Logs"));
@@ -163,84 +168,22 @@ namespace Nuclear.Channels
                 Console.WriteLine($"Listening on {channelConfig.MethodUrl}");
                 HttpListenerContext context = httpChannel.GetContext();
                 HttpListenerRequest request = context.Request;
+                HttpListenerResponse response = context.Response;
+                IChannelHeuristicContext heuristicsCtx = _services.Get<IChannelHeuristicContext>();
+
+                bool executedIfCached = ExecuteIfCached(channel, method, request, response, heuristicsCtx);
+                if (executedIfCached)
+                {
+                    heuristicsCtx.Clear();
+                    goto EndRequest;
+                }
 
                 LogChannel.Write(LogSeverity.Info, $"Request coming to {channelConfig.Endpoint.Name}");
                 LogChannel.Write(LogSeverity.Info, $"HttpMethod:{request.HttpMethod}");
 
-                HttpListenerResponse response = context.Response;
-                bool validCookie = false;
-                bool authenticated = false;
-                bool authorized = false;
-                if (channelConfig.ChannelAttribute.EnableSessions)
-                    validCookie = ValidSession(request);
-                if (channelConfig.AuthenticationRequired && !validCookie)
-                {
-                    try
-                    {
-                        ChannelAuthenticationContext authContext = new ChannelAuthenticationContext
-                        {
-                            Context = context,
-                            Scheme = channelConfig.AuthScheme,
-                            BasicAuthenticationDelegate = _basicAuthenticationMethod,
-                            TokenAuthenticationDelegate = _tokenAuthenticationMethod,
-                            AuthenticationSettings = _settings
-                            
-                        };
-
-                        KeyValuePair<bool, object> authenticationResult = _authenticationService.CheckAuthenticationAndGetResponseObject(authContext);
-                        if (authenticationResult.Key == true)
-                            authenticated = true;
-                        else
-                        {
-                            _msgService.FailedAuthenticationResponse(channelConfig.AuthScheme, response);
-                            goto EndRequest;
-                        }
-                        LogChannel.Write(LogSeverity.Info,"User Authenticated");
-                        string claimName = channelConfig.AuthorizeAttribute.ClaimName;
-                        string claimValue = channelConfig.AuthorizeAttribute.ClaimValue;
-                        if (!String.IsNullOrEmpty(claimName) && !String.IsNullOrEmpty(claimValue))
-                        {
-                            if (authenticationResult.Value.GetType() == typeof(ClaimsPrincipal))
-                                authorized = _authenticationService.Authorized(claimName, claimValue, (ClaimsPrincipal)authenticationResult.Value);
-                            else
-                                authorized = _authenticationService.Authorized(claimName, claimValue, (Claim[])authenticationResult.Value);
-
-                            if (!authorized)
-                            {
-                                _msgService.FailedAuthorizationResponse(response);
-                                LogChannel.Write(LogSeverity.Error, "Failed authorization");
-                            }
-                            else
-                                LogChannel.Write(LogSeverity.Info,"User Authorized");
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        using (StreamWriter writer = new StreamWriter(response.OutputStream))
-                        {
-                            _msgService.ExceptionHandler(writer, ex, response);
-                            LogChannel.Write(LogSeverity.Error, "Authentication Failed");
-                        }
-                    }
-                    if (!authenticated)
-                        goto EndRequest;
-                    else
-                    {
-                        if (channelConfig.ChannelAttribute.EnableSessions)
-                        {
-                            string sessionKey = Guid.NewGuid().ToString();
-                            Cookie sessionCookie = new Cookie()
-                            {
-                                Expires = DateTime.Now.AddMinutes(30),
-                                Name = "channelAuthCookie",
-                                Secure = true,
-                                Value = sessionKey
-                            };
-                            response.SetCookie(sessionCookie);
-                            _sessionKeys.Add(sessionCookie);
-                        }
-                    }
-                }
+                bool authFailed = AuthenticationFailedIfRequired(context, request, response, channelConfig, out bool authenticated);
+                if (authFailed)
+                    goto EndRequest;
 
                 //Check if the Http Method is correct
                 if (channelConfig.HttpMethod.ToString() != request.HttpMethod && channelConfig.HttpMethod != ChannelHttpMethod.Unknown)
@@ -375,7 +318,7 @@ namespace Nuclear.Channels
             }
             else
                 _requestActivator.GetActivateWithoutParameters(channel, method, response);
-            
+
             _contextProvider.DestroyChannelMethodContext(channelConfig.Endpoint);
         }
 
@@ -403,6 +346,138 @@ namespace Nuclear.Channels
         {
             ChannelMethodContext methodContext = new ChannelMethodContext(request, response, method, channelRequestBody, isAuthenticated);
             _contextProvider.SetChannelMethodContext(endpoint, methodContext);
+        }
+
+        private bool IsCached(MethodInfo methodInfo)
+        {
+            EnableCacheAttribute cache = methodInfo.GetCustomAttribute<EnableCacheAttribute>();
+            if(methodInfo.ReturnType == typeof(void))
+                throw new InvalidChannelMethodTargetException("EnableCache can not be applied to a method with return type void");
+
+            return cache != null;
+        }
+
+        private bool ExecuteIfCached(Type channel, MethodInfo method, HttpListenerRequest request, HttpListenerResponse response, IChannelHeuristicContext heurContext)
+        {
+            bool isCacheEnabled = false;
+            try
+            {
+                isCacheEnabled = IsCached(method);
+            }
+            catch(InvalidChannelMethodTargetException ex)
+            {
+                StreamWriter writer = new StreamWriter(response.OutputStream);
+                _msgService.ExceptionHandler(writer, ex, response);
+                writer.Close();
+                return true;
+            }
+            
+            if (isCacheEnabled)
+            {
+                HeuristicsInfo hInfo = new HeuristicsInfo();
+                bool isCached = _heuristics.IsMethodCached(channel, method, out hInfo);
+                if (isCached)
+                {
+                    ChannelMethodHeuristicOptions hOptions = new ChannelMethodHeuristicOptions
+                    {
+                        Channel = channel,
+                        ChannelMethod = method,
+                        Request = request,
+                        Response = response
+                    };
+                    return _heuristics.Execute(hOptions, hInfo);
+                }
+                else
+                {
+                    heurContext.ExpectsAdding = true;
+                    heurContext.Channel = channel;
+                    heurContext.MethodInfo = method;
+                }
+            }
+
+            return false;
+        }
+
+        private bool AuthenticationFailedIfRequired(HttpListenerContext context, HttpListenerRequest request, HttpListenerResponse response, ChannelConfigurationInfo channelConfig, out bool authenticated)
+        {
+            bool failed = false;
+            bool validCookie = false;
+            authenticated = false;
+            bool authorized = false;
+            if (channelConfig.ChannelAttribute.EnableSessions)
+                validCookie = ValidSession(request);
+            if (channelConfig.AuthenticationRequired && !validCookie)
+            {
+                try
+                {
+                    ChannelAuthenticationContext authContext = new ChannelAuthenticationContext
+                    {
+                        Context = context,
+                        Scheme = channelConfig.AuthScheme,
+                        BasicAuthenticationDelegate = _basicAuthenticationMethod,
+                        TokenAuthenticationDelegate = _tokenAuthenticationMethod,
+                        AuthenticationSettings = _settings
+
+                    };
+
+                    KeyValuePair<bool, object> authenticationResult = _authenticationService.CheckAuthenticationAndGetResponseObject(authContext);
+                    if (authenticationResult.Key == true)
+                        authenticated = true;
+                    else
+                    {
+                        _msgService.FailedAuthenticationResponse(channelConfig.AuthScheme, response);
+                        failed = true;
+                    }
+                    LogChannel.Write(LogSeverity.Info, "User Authenticated");
+                    string claimName = channelConfig.AuthorizeAttribute.ClaimName;
+                    string claimValue = channelConfig.AuthorizeAttribute.ClaimValue;
+                    if (!String.IsNullOrEmpty(claimName) && !String.IsNullOrEmpty(claimValue))
+                    {
+                        if (authenticationResult.Value.GetType() == typeof(ClaimsPrincipal))
+                            authorized = _authenticationService.Authorized(claimName, claimValue, (ClaimsPrincipal)authenticationResult.Value);
+                        else
+                            authorized = _authenticationService.Authorized(claimName, claimValue, (Claim[])authenticationResult.Value);
+
+                        if (!authorized)
+                        {
+                            _msgService.FailedAuthorizationResponse(response);
+                            LogChannel.Write(LogSeverity.Error, "Failed authorization");
+                            failed = true;
+                        }
+                        else
+                            LogChannel.Write(LogSeverity.Info, "User Authorized");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    using (StreamWriter writer = new StreamWriter(response.OutputStream))
+                    {
+                        _msgService.ExceptionHandler(writer, ex, response);
+                        LogChannel.Write(LogSeverity.Error, "Authentication Failed");
+                        failed = true;
+                    }
+                }
+                if (!authenticated)
+                    failed = true;
+                else
+                {
+                    if (channelConfig.ChannelAttribute.EnableSessions)
+                    {
+                        string sessionKey = Guid.NewGuid().ToString();
+                        Cookie sessionCookie = new Cookie()
+                        {
+                            Expires = DateTime.Now.AddMinutes(30),
+                            Name = "channelAuthCookie",
+                            Secure = true,
+                            Value = sessionKey
+                        };
+                        response.SetCookie(sessionCookie);
+                        _sessionKeys.Add(sessionCookie);
+                    }
+                }
+            }
+
+            return failed;
         }
     }
 }
