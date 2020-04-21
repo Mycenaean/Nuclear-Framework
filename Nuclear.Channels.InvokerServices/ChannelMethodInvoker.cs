@@ -18,6 +18,7 @@ using System.Net;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using Nuclear.Channels.Heuristics.Contexts;
 
 [assembly: InternalsVisibleTo("Nuclear.Channels.UnitTests")]
 namespace Nuclear.Channels.InvokerServices.ExecutorServices
@@ -33,6 +34,7 @@ namespace Nuclear.Channels.InvokerServices.ExecutorServices
         private IChannelMessageOutputWriter _channelMessageWriter;
         private IChannelRedirectionEvents _eventService;
         private IChannelGenerator _channelGenerator;
+        private IChannelHeuristicContext _heurCtx;
         private static bool alreadyInvokedFlag = false;
 
         public ChannelMethodInvoker()
@@ -42,12 +44,14 @@ namespace Nuclear.Channels.InvokerServices.ExecutorServices
             _channelMessageWriter = _services.Get<IChannelMessageOutputWriter>();
             _eventService = _services.Get<IChannelRedirectionEvents>();
             _channelGenerator = _services.Get<IChannelGenerator>();
+            _heurCtx = _services.Get<IChannelHeuristicContext>();
 
             Debug.Assert(_services != null);
             Debug.Assert(_channelMessageService != null);
             Debug.Assert(_channelMessageWriter != null);
             Debug.Assert(_eventService != null);
             Debug.Assert(_channelGenerator != null);
+            Debug.Assert(_heurCtx != null);
 
             _channelMessageWriter.OnPostMessageServiceInvoked += _channelMessageWriter_OnPostMessageServiceInvoked;
             _eventService.OnRedirectionInvoked += _eventService_OnRedirectionInvoked;
@@ -80,6 +84,11 @@ namespace Nuclear.Channels.InvokerServices.ExecutorServices
             else
             {
                 object chResponse = method.Invoke(_channelGenerator.GetInstance(channel), null) ;
+                if(_heurCtx.ExpectsAdding)
+                {
+                    _heurCtx.MethodResponse = chResponse;
+                    _heurCtx.CacheResponse();
+                }
                 WriteResponse(chResponse, response);
             }
         }
@@ -87,6 +96,11 @@ namespace Nuclear.Channels.InvokerServices.ExecutorServices
         public void InvokeChannelMethodSync(Type channel, MethodInfo method, HttpListenerResponse response, List<object> channelRequestBody)
         {
             object chResponse = method.Invoke(_channelGenerator.GetInstance(channel), channelRequestBody.ToArray());
+            if (_heurCtx.ExpectsAdding)
+            {
+                _heurCtx.MethodResponse = chResponse;
+                _heurCtx.CacheResponse();
+            }
             WriteResponse(chResponse, response);
         }
 
@@ -112,6 +126,11 @@ namespace Nuclear.Channels.InvokerServices.ExecutorServices
             PropertyInfo[] properties = chResponse.GetType().GetProperties();
             var result = properties.FirstOrDefault(x => x.Name.Equals("result", StringComparison.OrdinalIgnoreCase));
             object resultValue = result.GetValue(chResponse);
+            if (_heurCtx.ExpectsAdding)
+            {
+                _heurCtx.MethodResponse = chResponse;
+                _heurCtx.CacheResponse();
+            }
             Debug.Assert(resultValue != null);
             WriteResponse(resultValue, response);
         }

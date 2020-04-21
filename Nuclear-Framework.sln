@@ -42,6 +42,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nuclear.Channels.RemotingTe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nuclear.Channels.WebTemplate", "Nuclear.Channels.WebTemplate\Nuclear.Channels.WebTemplate.csproj", "{9D16AE53-CC75-45C5-8F6E-45ACD8EE543E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nuclear.Channels.Heuristics", "Nuclear.Channels.Heuristics\Nuclear.Channels.Heuristics.csproj", "{58182598-79D9-4154-99F6-425CE487CC78}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -100,6 +102,10 @@ Global
 		{F87A6243-1E40-4072-A1E6-0C8662B47C51}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F87A6243-1E40-4072-A1E6-0C8662B47C51}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F87A6243-1E40-4072-A1E6-0C8662B47C51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58182598-79D9-4154-99F6-425CE487CC78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58182598-79D9-4154-99F6-425CE487CC78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58182598-79D9-4154-99F6-425CE487CC78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58182598-79D9-4154-99F6-425CE487CC78}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9D16AE53-CC75-45C5-8F6E-45ACD8EE543E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9D16AE53-CC75-45C5-8F6E-45ACD8EE543E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D16AE53-CC75-45C5-8F6E-45ACD8EE543E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -123,6 +129,7 @@ Global
 		{ACFF002B-9109-40AF-BB82-A58B1A2676A7} = {9AA01687-2C6F-4F10-8172-DCB8D6355687}
 		{F87A6243-1E40-4072-A1E6-0C8662B47C51} = {F676966B-1281-418E-9F0E-1F3DE01BC9AF}
 		{9D16AE53-CC75-45C5-8F6E-45ACD8EE543E} = {F676966B-1281-418E-9F0E-1F3DE01BC9AF}
+		{58182598-79D9-4154-99F6-425CE487CC78} = {9AA01687-2C6F-4F10-8172-DCB8D6355687}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EBCA10CE-333B-4FAA-82AA-4379B0FCFF4A}

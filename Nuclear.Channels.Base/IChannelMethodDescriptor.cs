@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace Nuclear.Channels.InvokerServices.Contracts
+namespace Nuclear.Channels.Base
 {
     /// <summary>
     /// ChannelMethodDescriptor Contract

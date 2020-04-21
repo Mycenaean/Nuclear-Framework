@@ -11,5 +11,6 @@ namespace Nuclear.Channels.Generators
     public interface IChannelGenerator
     {
         object GetInstance(Type channel);
+        Dictionary<Type, object> GetKnownChannels();
     }
 }

@@ -67,5 +67,10 @@ namespace Nuclear.Channels.Generators
             _existingChannels.Add(channel, channelInstace);
             return channelInstace;
         }
+
+        public Dictionary<Type, object> GetKnownChannels()
+        {
+            return _existingChannels;
+        }
     }
 }

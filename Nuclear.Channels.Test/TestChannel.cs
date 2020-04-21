@@ -6,6 +6,7 @@ using Nuclear.Channels.Messaging;
 using Nuclear.ExportLocator.Decorators;
 using System;
 using Nuclear.Channels.Authentication;
+using Nuclear.Channels.Heuristics;
 
 namespace ConsoleApp1
 {
@@ -17,12 +18,14 @@ namespace ConsoleApp1
         public ITestService Service { get; set; }
 
         [ChannelMethod]
+        [EnableCache(20, CacheDurationUnit.Seconds)]
         public string HelloWorld()
         {
             return Service.Write();
         }
 
         [ChannelMethod]
+        [EnableCache(1, CacheDurationUnit.Minutes)]
         public string PostParams(string name)
         {
             return $"Hello {name} from ChannelMethod";
@@ -36,7 +39,7 @@ namespace ConsoleApp1
                 Success = true,
                 Output = message,
                 Message = message
-            },Context.Response);
+            }, Context.Response);
         }
 
         [ChannelMethod(ChannelHttpMethod.POST)]
@@ -58,7 +61,6 @@ namespace ConsoleApp1
             RedirectToUrl(url);
         }
     }
-    public class ChannelEndpointAttribute : Attribute { }
     public interface ITestService { string Write(); }
 
     [Export(typeof(ITestService))]
