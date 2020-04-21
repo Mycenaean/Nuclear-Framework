@@ -1,4 +1,8 @@
-﻿using Nuclear.Channels.Heuristics.EventArguments;
+﻿// Copyright © Nikola Milinkovic 
+// Licensed under the MIT License (MIT).
+// See License.md in the repository root for more information.
+
+using Nuclear.Channels.Heuristics.EventArguments;
 using Nuclear.Channels.Heuristics.Events;
 using Nuclear.ExportLocator;
 using Nuclear.ExportLocator.Decorators;
@@ -12,7 +16,7 @@ using System.Text;
 namespace Nuclear.Channels.Heuristics.Contexts
 {
     [Export(typeof(IChannelHeuristicContext), ExportLifetime.Singleton)]
-    public class ChannelHeuristicContext : IChannelHeuristicContext
+    internal class ChannelHeuristicContext : IChannelHeuristicContext
     {
         private readonly IServiceLocator _services;
         private readonly IChannelHeuristicEvents _events;

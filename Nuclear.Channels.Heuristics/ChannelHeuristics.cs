@@ -1,4 +1,8 @@
-﻿using Nuclear.Channels.Base;
+﻿// Copyright © Nikola Milinkovic 
+// Licensed under the MIT License (MIT).
+// See License.md in the repository root for more information.
+
+using Nuclear.Channels.Base;
 using Nuclear.Channels.Data.Deserializers;
 using Nuclear.Channels.Heuristics.EventArguments;
 using Nuclear.Channels.Heuristics.Events;
@@ -15,8 +19,11 @@ using System.Text;
 
 namespace Nuclear.Channels.Heuristics
 {
+    /// <summary>
+    /// Purpose of this service is to write cached response without invoking already registered Channel
+    /// </summary>
     [Export(typeof(IChannelHeuristics), ExportLifetime.Singleton)]
-    public class ChannelHeuristics : IChannelHeuristics
+    internal class ChannelHeuristics : IChannelHeuristics
     {
         private readonly IServiceLocator _services;
         private readonly IChannelMessageService _msgService;

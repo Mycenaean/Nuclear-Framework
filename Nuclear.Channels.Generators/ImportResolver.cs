@@ -16,7 +16,7 @@ using System.Text;
 namespace Nuclear.Channels.Generators
 {
     [Export(typeof(IImportedServicesResolver), ExportLifetime.Transient)]
-    public class ImportResolver : IImportedServicesResolver
+    internal class ImportResolver : IImportedServicesResolver
     {
         private readonly IServiceLocator _services;
 

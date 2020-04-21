@@ -8,6 +8,9 @@ using System.Text;
 
 namespace Nuclear.Channels.Generators
 {
+    /// <summary>
+    /// Service responsible for creation of Channel instances
+    /// </summary>
     public interface IChannelGenerator
     {
         object GetInstance(Type channel);

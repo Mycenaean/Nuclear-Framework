@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Nuclear.Channels.Generators
 {
-    public interface IImportedServicesResolver
+    internal interface IImportedServicesResolver
     {
         object GetImportedService(Type type);
     }

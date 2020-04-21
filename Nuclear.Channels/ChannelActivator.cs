@@ -147,6 +147,9 @@ namespace Nuclear.Channels
         public void StartListening(MethodInfo method, Type channel, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
+            
+            //Exception should be thrown to developer if EnableCache is on top of void Method
+            CheckCacheValidity(method);
 
             HttpListener httpChannel = new HttpListener();
 
@@ -171,21 +174,24 @@ namespace Nuclear.Channels
                 HttpListenerResponse response = context.Response;
                 IChannelHeuristicContext heuristicsCtx = _services.Get<IChannelHeuristicContext>();
 
+                LogChannel.Write(LogSeverity.Info, $"Request coming to {channelConfig.Endpoint.Name}");
+                LogChannel.Write(LogSeverity.Info, $"HttpMethod:{request.HttpMethod}");
+
+                //Even if method is cached check authenticaion first
+                bool authFailed = AuthenticationFailedIfRequired(context, request, response, channelConfig, out bool authenticated);
+                if (authFailed)
+                    goto EndRequest;
+
+                //Before execution check if cache is enabled for targeted method if yes execute it
+                //Note that executedIfCached will only return if cached response is executed and not that
+                //method is cached but is expired or cache is empty
                 bool executedIfCached = ExecuteIfCached(channel, method, request, response, heuristicsCtx);
                 if (executedIfCached)
                 {
                     heuristicsCtx.Clear();
                     goto EndRequest;
-                }
+                } 
 
-                LogChannel.Write(LogSeverity.Info, $"Request coming to {channelConfig.Endpoint.Name}");
-                LogChannel.Write(LogSeverity.Info, $"HttpMethod:{request.HttpMethod}");
-
-                bool authFailed = AuthenticationFailedIfRequired(context, request, response, channelConfig, out bool authenticated);
-                if (authFailed)
-                    goto EndRequest;
-
-                //Check if the Http Method is correct
                 if (channelConfig.HttpMethod.ToString() != request.HttpMethod && channelConfig.HttpMethod != ChannelHttpMethod.Unknown)
                 {
                     _msgService.WrongHttpMethod(response, channelConfig.HttpMethod);
@@ -309,6 +315,7 @@ namespace Nuclear.Channels
             bool authenticated,
             bool hasParams)
         {
+            //Context should be initialized before invoking the method because ChannelBase relies on Context
             InitChannelMethodContext(channelConfig.Endpoint, request, response, authenticated, channelConfig.HttpMethod, channelRequestBody);
             if (hasParams)
             {
@@ -351,10 +358,14 @@ namespace Nuclear.Channels
         private bool IsCached(MethodInfo methodInfo)
         {
             EnableCacheAttribute cache = methodInfo.GetCustomAttribute<EnableCacheAttribute>();
-            if(methodInfo.ReturnType == typeof(void))
-                throw new InvalidChannelMethodTargetException("EnableCache can not be applied to a method with return type void");
-
             return cache != null;
+        }
+
+        private void CheckCacheValidity(MethodInfo methodInfo)
+        {
+            EnableCacheAttribute cache = methodInfo.GetCustomAttribute<EnableCacheAttribute>();
+            if (methodInfo.ReturnType == typeof(void) && cache != null)
+                throw new InvalidChannelMethodTargetException("EnableCache can not be applied to a method with return type void");
         }
 
         private bool ExecuteIfCached(Type channel, MethodInfo method, HttpListenerRequest request, HttpListenerResponse response, IChannelHeuristicContext heurContext)

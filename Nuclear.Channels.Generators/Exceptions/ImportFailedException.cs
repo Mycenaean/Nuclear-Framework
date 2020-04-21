@@ -8,6 +8,9 @@ using System.Text;
 
 namespace Nuclear.Channels.Generators.Exceptions
 {
+    /// <summary>
+    /// Exception thrown when requested service does not contain implementation in IServiceLocator
+    /// </summary>
     public class ImportFailedException : Exception
     {
         public ImportFailedException() { }

@@ -39,7 +39,7 @@ namespace Nuclear.Channels
 
             bool httpAuthRequired = false;
 
-            //Start hosting
+            //Add prefixes for hosting
             httpChannel.Prefixes.Add(methodURL);
             if (authAttr != null)
             {

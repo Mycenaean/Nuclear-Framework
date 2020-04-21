@@ -18,7 +18,7 @@ using System.Text;
 namespace Nuclear.Channels.Generators
 {
     [Export(typeof(IChannelGenerator), ExportLifetime.Singleton)]
-    public class ChannelGenerator : IChannelGenerator
+    internal class ChannelGenerator : IChannelGenerator
     {
         private static Dictionary<Type, object> _existingChannels;
         private readonly IImportedServicesResolver _importResolver;
@@ -35,6 +35,7 @@ namespace Nuclear.Channels.Generators
 
         public object GetInstance(Type channel)
         {
+            //If channel is already instantiated its important to change old Context to current request Context
             if (_existingChannels.ContainsKey(channel))
             {
                 MethodInfo initContext = channel.BaseType.GetProperty("Context").GetSetMethod(true);
@@ -44,6 +45,7 @@ namespace Nuclear.Channels.Generators
                 return _existingChannels[channel];
             }
 
+            //From the perfomarce perspective its much much faster to generate instance with IL than with Activator
             ConstructorInfo ctor = channel.GetConstructor(new Type[0]);
             string methodName = $"{channel.Name}Ctor";
             DynamicMethod dynamicMtd = new DynamicMethod(methodName, channel, new Type[0]);
@@ -54,6 +56,8 @@ namespace Nuclear.Channels.Generators
             ChannelObject channelObject = (ChannelObject)dynamicMtd.CreateDelegate(typeof(ChannelObject));
             object channelInstace = channelObject();
 
+            //Since channels can have services that have ImportedService attribute its crucial to find them
+            //so that channels dont break when trying to invoke requested service
             PropertyInfo[] properties = channel.GetProperties();
             foreach (PropertyInfo property in properties)
             {
