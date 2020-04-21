@@ -140,7 +140,7 @@ public SomeEntity EntityMethod(SomeEntity entity)
 
 ## Caching response
 
-You can cache ChannelMethod response with EnableCacheAttribute. But note that EnableCacheAttribute can not me implemented on top of method that return void. Parameteres are Duration and Duration Unit.
+You can cache ChannelMethod response with EnableCacheAttribute. But note that EnableCacheAttribute can not be implemented on top of method that returns void. Parameteres are Duration and Duration Unit.
 
 ```c#
 	[ChannelMethod]
@@ -151,7 +151,7 @@ You can cache ChannelMethod response with EnableCacheAttribute. But note that En
         }
 ```
 
-In case you are worried about the state of memory you can setup background cache cleaner with extension method ConfigureCacheCleaner which is located in Nuclear.Channels.Heuristics.CacheCleaner namespace.
+In case you are worried about the state of memory, you can setup background cache cleaner with extension method ConfigureCacheCleaner , located in Nuclear.Channels.Heuristics.CacheCleaner namespace, which will clear expired cached responses in time interval provided.
 
 ```c#
 	IChannelServer server = ChannelServerBuilder.CreateServer();
