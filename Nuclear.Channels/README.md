@@ -6,11 +6,11 @@ Channels Library is part of the Nuclear Framework set of .NET Standard class lib
 
 To install it with Package Manager
  ```
- Install-Package Nuclear.Channels -Version 3.0.9
+ Install-Package Nuclear.Channels -Version 3.1.0
  ```
  To install it with .NET CLI
  ```
- dotnet add package Nuclear.Channels --version 3.0.9
+ dotnet add package Nuclear.Channels --version 3.1.0
  ```
 
 # How to use
@@ -136,6 +136,27 @@ public SomeEntity EntityMethod(SomeEntity entity)
 {
 	return entity;
 }
+```
+
+## Caching response
+
+You can cache ChannelMethod response with EnableCacheAttribute. But note that EnableCacheAttribute can not me implemented on top of method that return void. Parameteres are Duration and Duration Unit.
+
+```c#
+	[ChannelMethod]
+        [EnableCache(20, CacheDurationUnit.Seconds)]
+        public string HelloWorld()
+        {
+            return "Hello World";
+        }
+```
+
+In case you are worried about the state of memory you can setup background cache cleaner with extension method ConfigureCacheCleaner which is located in Nuclear.Channels.Heuristics.CacheCleaner namespace.
+
+```c#
+	IChannelServer server = ChannelServerBuilder.CreateServer();
+	...
+	server.ConfigureCacheCleaner(TimeSpan.FromSeconds(30)); // put your time interval here
 ```
 
 ## ChannelBase class
