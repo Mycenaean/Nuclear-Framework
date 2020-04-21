@@ -4,6 +4,7 @@
 
 using Nuclear.Channels.Authentication;
 using Nuclear.Channels.Base.Exceptions;
+using Nuclear.Channels.Heuristics.CacheCleaner;
 using System;
 using System.Security.Claims;
 
@@ -12,7 +13,7 @@ namespace Nuclear.Channels
     /// <summary>
     /// Service that will host the Channels
     /// </summary>
-    public interface IChannelServer : IChannelAuthenticationEnabled
+    public interface IChannelServer : IChannelAuthenticationEnabled , IChannelCacheCleanable
     {
         /// <summary>
         /// Method to load all assemblies containing channels

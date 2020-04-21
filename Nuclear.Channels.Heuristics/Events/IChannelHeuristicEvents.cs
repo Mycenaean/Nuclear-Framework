@@ -15,7 +15,7 @@ namespace Nuclear.Channels.Heuristics.Events
         event EventHandler<RemoveHeuristicsEventArgs> RemoveFromHeuristics;
 
         void OnAddToHeuristics(AddHeuristicsEventArgs args);
-        void OnRemoveFromHeuristics();
+        void OnRemoveFromHeuristics(RemoveHeuristicsEventArgs args);
     }
 }
 

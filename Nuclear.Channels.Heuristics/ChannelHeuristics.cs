@@ -32,8 +32,6 @@ namespace Nuclear.Channels.Heuristics
         private readonly IChannelMethodDescriptor _descriptor;
         private readonly IChannelHeuristicEvents _events;
         private static List<HeuristicsInfo> _cachedInfos;
-        private Timer _timer;
-        private static object _lock = new object();
 
         public ChannelHeuristics()
         {
@@ -46,14 +44,10 @@ namespace Nuclear.Channels.Heuristics
             _events.RemoveFromHeuristics += _events_RemoveFromHeuristics;
             _cachedInfos = new List<HeuristicsInfo>();
 
-            //timer to clear cache every 5 minutes
-            _timer = new Timer(CollectExpiredCacheObject, null, TimeSpan.Zero, TimeSpan.FromMinutes(5));
         }
 
         public bool IsMethodCached(Type channel, MethodInfo channelMethod, out HeuristicsInfo hInfo)
         {
-            lock (_lock)
-            {
                 HeuristicsInfo cached = _cachedInfos.FirstOrDefault(x => x.Channel == channel && x.ChannelMethod == channelMethod);
 
                 if (cached == null)
@@ -74,7 +68,6 @@ namespace Nuclear.Channels.Heuristics
                     hInfo = cached;
                     return true;
                 }
-            }
         }
 
         public bool Execute(ChannelMethodHeuristicOptions options, HeuristicsInfo hInfo)
@@ -89,6 +82,11 @@ namespace Nuclear.Channels.Heuristics
             {
                 return TryInvokePostMethod(options, hInfo);
             }
+        }
+
+        public HeuristicsInfo[] GetExpiredCache()
+        {
+            return _cachedInfos.Where(x => x.Expired()).ToArray();
         }
 
         private bool TryInvokeGetMethod(ChannelMethodHeuristicOptions options, HeuristicsInfo hInfo)
@@ -138,13 +136,15 @@ namespace Nuclear.Channels.Heuristics
 
         private void _events_RemoveFromHeuristics(object sender, RemoveHeuristicsEventArgs e)
         {
-            lock (_lock)
+            if (e.SingleForRemoval != null)
+                _cachedInfos.Remove(e.SingleForRemoval);
+            else
             {
-                HeuristicsInfo expired = _cachedInfos.FirstOrDefault(x => x.Channel == e.Channel && x.ChannelMethod == e.ChannelMethod);
-
-                _cachedInfos.Remove(expired);
+                foreach (HeuristicsInfo expired in e.CollectionForRemoval)
+                {
+                    _cachedInfos.Remove(expired);
+                }
             }
-
         }
 
         private void _events_AddToHeuristics(object sender, AddHeuristicsEventArgs e)
@@ -161,25 +161,9 @@ namespace Nuclear.Channels.Heuristics
                 DurationUnit = cache.Unit
             };
 
-            lock (_lock)
-            {
-                _cachedInfos.Add(addInfo);
-            }
+            _cachedInfos.Add(addInfo);
         }
 
-        [SuppressMessage("Nullable.Reference.Warning", "CS8632", Justification = "Needed for Timer constructor")]
-        private void CollectExpiredCacheObject(object? state)
-        {
-            lock (_lock)
-            {
-                HeuristicsInfo[] expired = _cachedInfos.Where(x => x.Expired()).ToArray();
-                foreach (HeuristicsInfo hInfo in expired)
-                {
-                    _cachedInfos.Remove(hInfo);
-
-                }
-            }
-        }
 
     }
 }

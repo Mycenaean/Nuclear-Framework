@@ -56,3 +56,19 @@
 4/21/2020 4:38:48 PM::::Info::::Method StartListening::::HttpMethod:GET
 4/21/2020 4:39:03 PM::::Debug::::Method StartListening::::Request finished...
 4/21/2020 4:39:03 PM::::Debug::::Method StartListening::::Closing the response
+4/21/2020 7:32:12 PM::::Info::::Method StartListening::::Request coming to TestChannel.HelloWorld
+4/21/2020 7:32:12 PM::::Info::::Method StartListening::::HttpMethod:GET
+4/21/2020 7:32:20 PM::::Debug::::Method StartListening::::Request finished...
+4/21/2020 7:32:20 PM::::Debug::::Method StartListening::::Closing the response
+4/21/2020 7:32:38 PM::::Info::::Method StartListening::::Request coming to TestChannel.HelloWorld
+4/21/2020 7:32:38 PM::::Info::::Method StartListening::::HttpMethod:GET
+4/21/2020 7:32:38 PM::::Debug::::Method StartListening::::Request finished...
+4/21/2020 7:32:38 PM::::Debug::::Method StartListening::::Closing the response
+4/21/2020 7:33:15 PM::::Info::::Method StartListening::::Request coming to TestChannel.HelloWorld
+4/21/2020 7:33:15 PM::::Info::::Method StartListening::::HttpMethod:GET
+4/21/2020 7:33:19 PM::::Debug::::Method StartListening::::Request finished...
+4/21/2020 7:33:19 PM::::Debug::::Method StartListening::::Closing the response
+4/21/2020 7:33:30 PM::::Info::::Method StartListening::::Request coming to TestChannel.HelloWorld
+4/21/2020 7:33:30 PM::::Info::::Method StartListening::::HttpMethod:GET
+4/21/2020 7:33:30 PM::::Debug::::Method StartListening::::Request finished...
+4/21/2020 7:33:30 PM::::Debug::::Method StartListening::::Closing the response

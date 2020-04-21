@@ -11,7 +11,7 @@ namespace Nuclear.Channels.Heuristics.EventArguments
 {
     public class RemoveHeuristicsEventArgs : EventArgs
     {
-        public Type Channel { get; set; }
-        public MethodInfo ChannelMethod { get; set; }
+        public HeuristicsInfo SingleForRemoval { get; set; }
+        public HeuristicsInfo[] CollectionForRemoval { get; set; }
     }
 }

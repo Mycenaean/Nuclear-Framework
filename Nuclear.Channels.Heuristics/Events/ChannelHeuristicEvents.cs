@@ -22,9 +22,9 @@ namespace Nuclear.Channels.Heuristics.Events
             AddToHeuristics?.Invoke(this, args);
         }
 
-        public void OnRemoveFromHeuristics()
+        public void OnRemoveFromHeuristics(RemoveHeuristicsEventArgs args)
         {
-            throw new NotImplementedException();
+            RemoveFromHeuristics?.Invoke(this, args);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Nuclear.Channels
     public class ChannelServerBuilder
     {
         /// <summary>
-        /// Method that creates IChannelHost instance
+        /// Method that creates IChannelServer instance
         /// </summary>
         public static IChannelServer CreateServer()
         {
