@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Nuclear.Channels.Heuristics</name>
+    </assembly>
+    <members>
+        <member name="T:Nuclear.Channels.Heuristics.ChannelHeuristics">
+            <summary>
+            Purpose of this service is to write cached response without invoking already registered Channel
+            </summary>
+        </member>
+        <member name="T:Nuclear.Channels.Heuristics.Contexts.IChannelHeuristicContext">
+            <summary>
+            Service containing information about ChannelMethod thats cached or expects caching
+            </summary>
+        </member>
+        <member name="T:Nuclear.Channels.Heuristics.EnableCacheAttribute">
+            <summary>
+            Enables cached response
+            </summary>
+        </member>
+        <member name="M:Nuclear.Channels.Heuristics.EnableCacheAttribute.#ctor(System.Double)">
+            <summary>
+            Registers cached response in seconds
+            </summary>
+            <param name="duration">Number of seconds</param>
+        </member>
+        <member name="M:Nuclear.Channels.Heuristics.EnableCacheAttribute.#ctor(System.Double,Nuclear.Channels.Heuristics.CacheDurationUnit)">
+            <summary>
+            Registers cached response
+            </summary>
+            <param name="duration">Time interval</param>
+            <param name="unit">Time interval unit</param>
+        </member>
+        <member name="T:Nuclear.Channels.Heuristics.HeuristicsInfo">
+            <summary>
+            Entity containing all informations for caching
+            </summary>
+        </member>
+        <member name="T:Nuclear.Channels.Heuristics.IChannelHeuristics">
+            <summary>
+            Service which writes cached response to the client
+            </summary>
+        </member>
+        <member name="T:Nuclear.Channels.Heuristics.InvalidChannelMethodTargetException">
+            <summary>
+            Exception thrown when EnableCacheAttribute is applied to method returning void
+            </summary>
+        </member>
+    </members>
+</doc>
