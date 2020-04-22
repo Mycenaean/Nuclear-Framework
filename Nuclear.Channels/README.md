@@ -236,6 +236,7 @@ public class TestChannel
 	}
 }
 ```
+You can check full example here [TestChannel](https://github.com/Mycenaean/Nuclear-Framework/blob/master/Nuclear.Channels.Test/TestChannel.cs)
 ## Response Object
 Response of the ChannelMethods is always in the form of IChannelMessage containing properties , Success , Message and Output. Methods return object is always in the Output field.
 
