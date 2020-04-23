@@ -83,7 +83,7 @@
         </member>
         <member name="M:Nuclear.Channels.ChannelServerBuilder.CreateServer">
             <summary>
-            Method that creates IChannelHost instance
+            Method that creates IChannelServer instance
             </summary>
         </member>
         <member name="T:Nuclear.Channels.Decorators.AuthorizeChannelAttribute">
@@ -96,11 +96,28 @@
             Auth Schema
             </summary>
         </member>
-        <member name="M:Nuclear.Channels.Decorators.AuthorizeChannelAttribute.#ctor(Nuclear.Channels.Authentication.ChannelAuthenticationSchemes)">
+        <member name="P:Nuclear.Channels.Decorators.AuthorizeChannelAttribute.ClaimName">
+            <summary>
+            Claim to base Authorization on
+            </summary>
+        </member>
+        <member name="P:Nuclear.Channels.Decorators.AuthorizeChannelAttribute.ClaimValue">
+            <summary>
+            Claim value
+            </summary>
+        </member>
+        <member name="M:Nuclear.Channels.Decorators.AuthorizeChannelAttribute.#ctor(Nuclear.Channels.Authentication.ChannelAuthenticationSchemes,System.String,System.String)">
             <summary>
             Get the Auth type for the channel
             </summary>
             <param name="schemes">Specified Auth Schemes</param>
+            <param name="Claim">Claim used for authorization</param>
+        </member>
+        <member name="M:Nuclear.Channels.Decorators.AuthorizeChannelAttribute.#ctor(System.String,System.String)">
+            <summary>
+            Set authorization based on claim
+            </summary>
+            <param name="Claim">Claim used for authorization</param>
         </member>
         <member name="T:Nuclear.Channels.Decorators.ChannelAttribute">
             <summary>
@@ -251,7 +268,7 @@
             Service that will initialize all ChannelMethods as HTTP Endopints
             </summary>
         </member>
-        <member name="M:Nuclear.Channels.IChannelActivator.Execute(System.AppDomain,Nuclear.ExportLocator.Services.IServiceLocator,System.String)">
+        <member name="M:Nuclear.Channels.IChannelActivator.Execute(System.AppDomain,Nuclear.ExportLocator.Services.IServiceLocator,Nuclear.Channels.Authentication.AuthenticationSettings,System.String)">
             <summary>
             Method that will do the initialization of Channels
             </summary>

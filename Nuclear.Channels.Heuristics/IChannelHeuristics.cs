@@ -15,7 +15,7 @@ namespace Nuclear.Channels.Heuristics
     public interface IChannelHeuristics
     {
         bool IsMethodCached(Type channel, MethodInfo channelMethod, out HeuristicsInfo hInfo);
-        bool Execute(ChannelMethodHeuristicOptions options, HeuristicsInfo hInfo, out List<object> requestParameters);
+        CacheExecutionResult Execute(ChannelMethodHeuristicOptions options, HeuristicsInfo hInfo);
         HeuristicsInfo[] GetExpiredCache();
     }
 }

@@ -147,7 +147,7 @@ namespace Nuclear.Channels
         public void StartListening(MethodInfo method, Type channel, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            
+
             //Exception should be thrown to developer if EnableCache is on top of void Method
             CheckCacheValidity(method);
 
@@ -184,15 +184,13 @@ namespace Nuclear.Channels
 
                 List<object> channelRequestBody = null;
 
-                //Before execution check if cache is enabled for targeted method if yes execute it
-                //Note that executedIfCached will only return if cached response is executed and not that
-                //method is cached but is expired or cache is empty
-                bool executedIfCached = ExecuteIfCached(channel, method, request, response, heuristicsCtx,out channelRequestBody);
-                if (executedIfCached)
+                
+                CacheExecutionResult cacheExecutionResult = ExecuteIfCached(channel, method, request, response, heuristicsCtx);
+                if (cacheExecutionResult.Executed)
                 {
                     heuristicsCtx.Clear();
                     goto EndRequest;
-                } 
+                }
 
                 if (channelConfig.HttpMethod.ToString() != request.HttpMethod && channelConfig.HttpMethod != ChannelHttpMethod.Unknown)
                 {
@@ -201,20 +199,19 @@ namespace Nuclear.Channels
                     goto EndRequest;
                 }
 
-
-                ChannelMethodInfo methodDescription = _channelMethodDescriptor.GetMethodDescription(method);                
+                ChannelMethodInfo methodDescription = _channelMethodDescriptor.GetMethodDescription(method);
                 ChannelMethodDeserializerFactory dsrFactory = null;
 
                 if (request.HttpMethod == "GET")
                 {
-                    bool invoked = TryInvokeGetRequest(channel, method, request, response, dsrFactory, methodDescription, channelConfig, channelRequestBody, authenticated);
+                    TryInvokeGetRequest(channel, method, request, response, dsrFactory, methodDescription, channelConfig, channelRequestBody, authenticated,cacheExecutionResult);
                     goto EndRequest;
                 }
 
                 //Enter only if Request Body is supplied with POST Method
                 if (request.HasEntityBody == true && request.HttpMethod == "POST")
                 {
-                    TryInvokePostRequest(channel, method, request, response, dsrFactory, channelRequestBody, methodDescription, channelConfig, authenticated);
+                    TryInvokePostRequest(channel, method, request, response, dsrFactory, channelRequestBody, methodDescription, channelConfig, authenticated, cacheExecutionResult);
                 }
 
             EndRequest:
@@ -233,16 +230,23 @@ namespace Nuclear.Channels
             List<object> channelRequestBody,
             ChannelMethodInfo methodDescription,
             ChannelConfigurationInfo channelConfig,
-            bool authenticated)
+            bool authenticated,
+            CacheExecutionResult cacheExecutionResult)
         {
             StreamWriter writer = new StreamWriter(response.OutputStream);
             try
             {
-                if (channelRequestBody == null)
+                //Since request body will be processed in Heuristics if cache is enabled
+                //InputStream is flushed and data is already stored in Data.Parameters  
+                //property of CacheExecutionResult
+                if (!cacheExecutionResult.DataProcessed)
                 {
                     dsrFactory = new ChannelMethodDeserializerFactory(request.InputStream);
-                    channelRequestBody = dsrFactory.DeserializeFromBody(methodDescription,request.ContentType);
+                    channelRequestBody = dsrFactory.DeserializeFromBody(methodDescription, request.ContentType);
                 }
+                else
+                    channelRequestBody = cacheExecutionResult.Data.Parameters;
+
                 InitChannelMethodContext(channelConfig.Endpoint, request, response, authenticated, channelConfig.HttpMethod, channelRequestBody);
                 _requestActivator.PostActivate(channel, method, channelRequestBody, response);
             }
@@ -287,13 +291,14 @@ namespace Nuclear.Channels
             ChannelMethodInfo methodDescription,
             ChannelConfigurationInfo channelConfig,
             List<object> channelRequestBody,
-            bool authenticated)
+            bool authenticated,
+            CacheExecutionResult cacheExecutionResult)
         {
             try
             {
                 if (request.QueryString.AllKeys.Length > 0)
                 {
-                    SetupAndInvokeGetRequest(channel, method, dsrFactory, request, response, methodDescription, channelConfig, channelRequestBody, authenticated, true);
+                    SetupAndInvokeGetRequest(channel, method, dsrFactory, request, response, methodDescription, channelConfig, channelRequestBody, authenticated, true, cacheExecutionResult);
                 }
                 else if (request.QueryString.AllKeys.Length == 0)
                 {
@@ -305,7 +310,7 @@ namespace Nuclear.Channels
                         return false;
                     }
 
-                    SetupAndInvokeGetRequest(channel, method, dsrFactory, request, response, methodDescription, channelConfig, channelRequestBody, authenticated, false);
+                    SetupAndInvokeGetRequest(channel, method, dsrFactory, request, response, methodDescription, channelConfig, channelRequestBody, authenticated, false, cacheExecutionResult);
                 }
                 return true;
             }
@@ -331,17 +336,23 @@ namespace Nuclear.Channels
             ChannelConfigurationInfo channelConfig,
             List<object> channelRequestBody,
             bool authenticated,
-            bool hasParams)
+            bool hasParams,
+            CacheExecutionResult cacheExecutionResult)
         {
             //Context should be initialized before invoking the method because ChannelBase relies on Context
             InitChannelMethodContext(channelConfig.Endpoint, request, response, authenticated, channelConfig.HttpMethod, channelRequestBody);
             if (hasParams)
             {
-                if(channelRequestBody == null)
+                //Since request body will be processed in Heuristics if cache is enabled
+                //Data is already stored in Data.Parameters property of CacheExecutionResult 
+                if (!cacheExecutionResult.DataProcessed)
                 {
                     dsrFactory = new ChannelMethodDeserializerFactory(request.QueryString);
                     channelRequestBody = dsrFactory.DeserializeFromQueryParameters(methodDescription);
                 }
+                else
+                    channelRequestBody = cacheExecutionResult.Data.Parameters;
+
                 _requestActivator.GetActivateWithParameters(channel, method, channelRequestBody, response);
             }
             else
@@ -389,22 +400,23 @@ namespace Nuclear.Channels
                 throw new InvalidChannelMethodTargetException("EnableCache can not be applied to a method with return type void");
         }
 
-        private bool ExecuteIfCached(Type channel, MethodInfo method, HttpListenerRequest request, HttpListenerResponse response, IChannelHeuristicContext heurContext,out List<object> channelRequestBody)
+        private CacheExecutionResult ExecuteIfCached(Type channel, MethodInfo method, HttpListenerRequest request, HttpListenerResponse response, IChannelHeuristicContext heurContext)
         {
+            CacheExecutionResult result = new CacheExecutionResult();
+            result.Executed = false;
             bool isCacheEnabled = false;
             try
             {
                 isCacheEnabled = IsCached(method);
             }
-            catch(InvalidChannelMethodTargetException ex)
+            catch (InvalidChannelMethodTargetException ex)
             {
                 StreamWriter writer = new StreamWriter(response.OutputStream);
                 _msgService.ExceptionHandler(writer, ex, response);
                 writer.Close();
-                channelRequestBody = null;
-                return true;
+                result.Executed = true;
             }
-            
+
             if (isCacheEnabled)
             {
                 HeuristicsInfo hInfo = new HeuristicsInfo();
@@ -418,18 +430,19 @@ namespace Nuclear.Channels
                         Request = request,
                         Response = response
                     };
-                    return _heuristics.Execute(hOptions, hInfo, out channelRequestBody);
+                    return _heuristics.Execute(hOptions, hInfo);
                 }
                 else
                 {
                     heurContext.ExpectsAdding = true;
                     heurContext.Channel = channel;
                     heurContext.MethodInfo = method;
+                    result.Executed = false;
+                    result.DataProcessed = false;
                 }
             }
 
-            channelRequestBody = null;
-            return false;
+            return result;
         }
 
         private bool AuthenticationFailedIfRequired(HttpListenerContext context, HttpListenerRequest request, HttpListenerResponse response, ChannelConfigurationInfo channelConfig, out bool authenticated)

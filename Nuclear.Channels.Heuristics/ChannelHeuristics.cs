@@ -70,17 +70,17 @@ namespace Nuclear.Channels.Heuristics
             }
         }
 
-        public bool Execute(ChannelMethodHeuristicOptions options, HeuristicsInfo hInfo, out List<object> requestParameters)
+        public CacheExecutionResult Execute(ChannelMethodHeuristicOptions options, HeuristicsInfo hInfo)
         {
             string method = options.Request.HttpMethod;
 
             if (method == "GET")
             {
-                return TryInvokeGetMethod(options, hInfo, out requestParameters);
+                return TryInvokeGetMethod(options, hInfo);
             }
             else
             {
-                return TryInvokePostMethod(options, hInfo, out requestParameters);
+                return TryInvokePostMethod(options, hInfo);
             }
         }
 
@@ -89,26 +89,34 @@ namespace Nuclear.Channels.Heuristics
             return _cachedInfos.Where(x => x.Expired()).ToArray();
         }
 
-        private bool TryInvokeGetMethod(ChannelMethodHeuristicOptions options, HeuristicsInfo hInfo, out List<object> requestParameters)
+        private CacheExecutionResult TryInvokeGetMethod(ChannelMethodHeuristicOptions options, HeuristicsInfo hInfo)
         {
+            CacheExecutionResult result = new CacheExecutionResult();
             if (options.Request.QueryString.AllKeys.Length == 0)
             {
                 _msgService.WriteHttpResponse(hInfo.MethodResponse, options.Response);
-                requestParameters = null;
-                return true;
+                result.Executed = true;
+                return result;
             }
             else
             {
                 ChannelMethodDeserializerFactory dsrFactory = new ChannelMethodDeserializerFactory(options.Request.QueryString);
-                requestParameters = dsrFactory.DeserializeFromQueryParameters(_descriptor.GetMethodDescription(options.ChannelMethod));
+               List<object> requestParameters = dsrFactory.DeserializeFromQueryParameters(_descriptor.GetMethodDescription(options.ChannelMethod));
 
                 if (ParameteresMatch(hInfo.Parameters, requestParameters))
                 {
                     _msgService.WriteHttpResponse(hInfo.MethodResponse, options.Response);
-                    return true;
+                    result.Executed = true;
+                    return result;
                 }
                 else
-                    return false;
+                {
+                    result.Executed = false;
+                    result.DataProcessed = true;
+                    result.Data.HasData = true;
+                    result.Data.Parameters = requestParameters;
+                    return result;
+                }
             }
 
         }
@@ -121,28 +129,34 @@ namespace Nuclear.Channels.Heuristics
             return (notInCache.Count() + notInCurrent.Count()) == 0;
         }
 
-        private bool TryInvokePostMethod(ChannelMethodHeuristicOptions options, HeuristicsInfo hInfo, out List<object> requestParameters)
+        private CacheExecutionResult TryInvokePostMethod(ChannelMethodHeuristicOptions options, HeuristicsInfo hInfo)
         {
+            CacheExecutionResult result = new CacheExecutionResult();
             if (options.Request.HasEntityBody)
             {
                 ChannelMethodDeserializerFactory dsrFactory = new ChannelMethodDeserializerFactory(options.Request.InputStream);
-                requestParameters = dsrFactory.DeserializeFromBody(_descriptor.GetMethodDescription(options.ChannelMethod), options.Request.ContentType);
+                List<object> requestParameters = dsrFactory.DeserializeFromBody(_descriptor.GetMethodDescription(options.ChannelMethod), options.Request.ContentType);
 
                 if (ParameteresMatch(hInfo.Parameters, requestParameters))
                 {
                     _msgService.WriteHttpResponse(hInfo.MethodResponse, options.Response);
-                    requestParameters = null;
-                    return true;
+                    result.Executed = true;
                 }
-                else
-                    return false;
+                else 
+                {
+                    result.Executed = false;
+                    result.DataProcessed = true;
+                    result.Data.HasData = true;
+                    result.Data.Parameters = requestParameters;
+                }
             }
             else
             {
                 _msgService.WriteHttpResponse(hInfo.MethodResponse, options.Response);
-                requestParameters = null;
-                return true;
+                result.Executed = true;
             }
+
+            return result;
         }
 
         private void _events_RemoveFromHeuristics(object sender, RemoveHeuristicsEventArgs e)
