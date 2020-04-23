@@ -48,39 +48,39 @@ namespace Nuclear.Channels.Heuristics
 
         public bool IsMethodCached(Type channel, MethodInfo channelMethod, out HeuristicsInfo hInfo)
         {
-                HeuristicsInfo cached = _cachedInfos.FirstOrDefault(x => x.Channel == channel && x.ChannelMethod == channelMethod);
+            HeuristicsInfo cached = _cachedInfos.FirstOrDefault(x => x.Channel == channel && x.ChannelMethod == channelMethod);
 
-                if (cached == null)
-                {
-                    hInfo = null;
-                    return false;
-                }
+            if (cached == null)
+            {
+                hInfo = null;
+                return false;
+            }
 
-                if (cached.Expired())
-                {
-                    hInfo = null;
+            if (cached.Expired())
+            {
+                hInfo = null;
 
-                    _cachedInfos.Remove(cached);
-                    return false;
-                }
-                else
-                {
-                    hInfo = cached;
-                    return true;
-                }
+                _cachedInfos.Remove(cached);
+                return false;
+            }
+            else
+            {
+                hInfo = cached;
+                return true;
+            }
         }
 
-        public bool Execute(ChannelMethodHeuristicOptions options, HeuristicsInfo hInfo)
+        public bool Execute(ChannelMethodHeuristicOptions options, HeuristicsInfo hInfo, out List<object> requestParameters)
         {
             string method = options.Request.HttpMethod;
 
             if (method == "GET")
             {
-                return TryInvokeGetMethod(options, hInfo);
+                return TryInvokeGetMethod(options, hInfo, out requestParameters);
             }
             else
             {
-                return TryInvokePostMethod(options, hInfo);
+                return TryInvokePostMethod(options, hInfo, out requestParameters);
             }
         }
 
@@ -89,19 +89,20 @@ namespace Nuclear.Channels.Heuristics
             return _cachedInfos.Where(x => x.Expired()).ToArray();
         }
 
-        private bool TryInvokeGetMethod(ChannelMethodHeuristicOptions options, HeuristicsInfo hInfo)
+        private bool TryInvokeGetMethod(ChannelMethodHeuristicOptions options, HeuristicsInfo hInfo, out List<object> requestParameters)
         {
             if (options.Request.QueryString.AllKeys.Length == 0)
             {
                 _msgService.WriteHttpResponse(hInfo.MethodResponse, options.Response);
+                requestParameters = null;
                 return true;
             }
             else
             {
                 ChannelMethodDeserializerFactory dsrFactory = new ChannelMethodDeserializerFactory(options.Request.QueryString);
-                List<object> requestParameters = dsrFactory.DeserializeFromQueryParameters(_descriptor.GetMethodDescription(options.ChannelMethod));
+                requestParameters = dsrFactory.DeserializeFromQueryParameters(_descriptor.GetMethodDescription(options.ChannelMethod));
 
-                if (requestParameters == hInfo.Parameters)
+                if (ParameteresMatch(hInfo.Parameters, requestParameters))
                 {
                     _msgService.WriteHttpResponse(hInfo.MethodResponse, options.Response);
                     return true;
@@ -112,24 +113,34 @@ namespace Nuclear.Channels.Heuristics
 
         }
 
-        private bool TryInvokePostMethod(ChannelMethodHeuristicOptions options, HeuristicsInfo hInfo)
+        private bool ParameteresMatch(List<object> cached, List<object> current)
+        {
+            IEnumerable<object> notInCache = cached.Except(current);
+            IEnumerable<object> notInCurrent = current.Except(cached);
+
+            return (notInCache.Count() + notInCurrent.Count()) == 0;
+        }
+
+        private bool TryInvokePostMethod(ChannelMethodHeuristicOptions options, HeuristicsInfo hInfo, out List<object> requestParameters)
         {
             if (options.Request.HasEntityBody)
             {
                 ChannelMethodDeserializerFactory dsrFactory = new ChannelMethodDeserializerFactory(options.Request.InputStream);
-                List<object> requestParameters = dsrFactory.DeserializeFromBody(_descriptor.GetMethodDescription(options.ChannelMethod), options.Request.ContentType);
+                requestParameters = dsrFactory.DeserializeFromBody(_descriptor.GetMethodDescription(options.ChannelMethod), options.Request.ContentType);
 
-                if (requestParameters == hInfo.Parameters)
+                if (ParameteresMatch(hInfo.Parameters, requestParameters))
                 {
                     _msgService.WriteHttpResponse(hInfo.MethodResponse, options.Response);
+                    requestParameters = null;
                     return true;
                 }
                 else
-                    return true;
+                    return false;
             }
             else
             {
                 _msgService.WriteHttpResponse(hInfo.MethodResponse, options.Response);
+                requestParameters = null;
                 return true;
             }
         }

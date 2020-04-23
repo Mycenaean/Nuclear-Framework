@@ -99,6 +99,7 @@ namespace Nuclear.Channels.InvokerServices.ExecutorServices
             if (_heurCtx.ExpectsAdding)
             {
                 _heurCtx.MethodResponse = chResponse;
+                _heurCtx.Parameters = channelRequestBody;
                 _heurCtx.CacheResponse();
             }
             WriteResponse(chResponse, response);
@@ -129,6 +130,7 @@ namespace Nuclear.Channels.InvokerServices.ExecutorServices
             if (_heurCtx.ExpectsAdding)
             {
                 _heurCtx.MethodResponse = chResponse;
+                _heurCtx.Parameters = channelRequestBody;
                 _heurCtx.CacheResponse();
             }
             Debug.Assert(resultValue != null);

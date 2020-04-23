@@ -1,0 +1,225 @@
+4/23/2020 5:47:17 PM::::Info::::Method StartListening::::Request coming to TestChannel.CreateTestClass
+4/23/2020 5:47:17 PM::::Info::::Method StartListening::::HttpMethod:POST
+4/23/2020 5:47:17 PM::::Info::::Method DeserializeFromBody::::Request body: 
+4/23/2020 5:47:17 PM::::Info::::Method DeserializeFromBody::::{
+	"id" : "5",
+	"name" : "Nuclear Channels Testing"
+}
+4/23/2020 5:47:21 PM::::Debug::::Method StartListening::::Request finished...
+4/23/2020 5:47:21 PM::::Debug::::Method StartListening::::Closing the response
+4/23/2020 5:47:30 PM::::Info::::Method StartListening::::Request coming to TestChannel.CreateTestClass
+4/23/2020 5:47:30 PM::::Info::::Method StartListening::::HttpMethod:POST
+4/23/2020 5:47:30 PM::::Info::::Method DeserializeFromBody::::Request body: 
+4/23/2020 5:47:30 PM::::Info::::Method DeserializeFromBody::::{
+	"id" : "5",
+	"name" : "Nuclear Channels Testing"
+}
+4/23/2020 5:47:30 PM::::Debug::::Method StartListening::::Request finished...
+4/23/2020 5:47:30 PM::::Debug::::Method StartListening::::Closing the response
+4/23/2020 5:47:34 PM::::Info::::Method StartListening::::Request coming to TestChannel.CreateTestClass
+4/23/2020 5:47:34 PM::::Info::::Method StartListening::::HttpMethod:POST
+4/23/2020 5:47:34 PM::::Info::::Method DeserializeFromBody::::Request body: 
+4/23/2020 5:47:34 PM::::Info::::Method DeserializeFromBody::::{
+	"id" : "5",
+	"name" : "Nuclear Channels Testing"
+}
+4/23/2020 5:47:34 PM::::Debug::::Method StartListening::::Request finished...
+4/23/2020 5:47:34 PM::::Debug::::Method StartListening::::Closing the response
+4/23/2020 5:48:43 PM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/23/2020 5:48:43 PM::::Info::::Method StartListening::::HttpMethod:POST
+4/23/2020 5:48:43 PM::::Info::::Method DeserializeFromBody::::Request body: 
+4/23/2020 5:48:43 PM::::Info::::Method DeserializeFromBody::::{
+   "name":"nuclear framework"
+}
+4/23/2020 5:48:43 PM::::Debug::::Method StartListening::::Request finished...
+4/23/2020 5:48:43 PM::::Debug::::Method StartListening::::Closing the response
+4/23/2020 5:48:47 PM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/23/2020 5:48:47 PM::::Info::::Method StartListening::::HttpMethod:POST
+4/23/2020 5:48:47 PM::::Info::::Method DeserializeFromBody::::Request body: 
+4/23/2020 5:48:47 PM::::Info::::Method DeserializeFromBody::::{
+   "name":"nuclear framework"
+}
+4/23/2020 5:48:47 PM::::Debug::::Method StartListening::::Request finished...
+4/23/2020 5:48:47 PM::::Debug::::Method StartListening::::Closing the response
+4/23/2020 5:48:53 PM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/23/2020 5:48:53 PM::::Info::::Method StartListening::::HttpMethod:POST
+4/23/2020 5:48:53 PM::::Info::::Method DeserializeFromBody::::Request body: 
+4/23/2020 5:48:53 PM::::Info::::Method DeserializeFromBody::::{
+   "name":"nuclear framework"
+}
+4/23/2020 5:48:53 PM::::Debug::::Method StartListening::::Request finished...
+4/23/2020 5:48:53 PM::::Debug::::Method StartListening::::Closing the response
+4/23/2020 5:49:09 PM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/23/2020 5:49:09 PM::::Info::::Method StartListening::::HttpMethod:POST
+4/23/2020 5:49:09 PM::::Info::::Method DeserializeFromBody::::Request body: 
+4/23/2020 5:49:09 PM::::Info::::Method DeserializeFromBody::::{
+   "name":"nuclear framework"
+}
+4/23/2020 5:49:16 PM::::Debug::::Method StartListening::::Request finished...
+4/23/2020 5:49:16 PM::::Debug::::Method StartListening::::Closing the response
+4/23/2020 5:49:31 PM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/23/2020 5:49:31 PM::::Info::::Method StartListening::::HttpMethod:POST
+4/23/2020 5:50:06 PM::::Info::::Method DeserializeFromBody::::Request body: 
+4/23/2020 5:50:06 PM::::Info::::Method DeserializeFromBody::::{
+   "name":"nuclear framework"
+}
+4/23/2020 5:50:06 PM::::Debug::::Method StartListening::::Request finished...
+4/23/2020 5:50:06 PM::::Debug::::Method StartListening::::Closing the response
+4/23/2020 5:50:26 PM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/23/2020 5:50:26 PM::::Info::::Method StartListening::::HttpMethod:POST
+4/23/2020 5:51:08 PM::::Info::::Method DeserializeFromBody::::Request body: 
+4/23/2020 5:51:09 PM::::Info::::Method DeserializeFromBody::::{
+   "name":"nuclear framework"
+}
+4/23/2020 5:54:55 PM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/23/2020 5:54:55 PM::::Info::::Method StartListening::::HttpMethod:POST
+4/23/2020 5:54:59 PM::::Info::::Method DeserializeFromBody::::Request body: 
+4/23/2020 5:54:59 PM::::Info::::Method DeserializeFromBody::::{
+   "name":"nuclear framework"
+}
+4/23/2020 5:54:59 PM::::Debug::::Method StartListening::::Request finished...
+4/23/2020 5:54:59 PM::::Debug::::Method StartListening::::Closing the response
+4/23/2020 5:55:03 PM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/23/2020 5:55:03 PM::::Info::::Method StartListening::::HttpMethod:POST
+4/23/2020 5:55:03 PM::::Info::::Method DeserializeFromBody::::Request body: 
+4/23/2020 5:55:03 PM::::Info::::Method DeserializeFromBody::::{
+   "name":"nuclear framework"
+}
+4/23/2020 5:55:03 PM::::Debug::::Method StartListening::::Request finished...
+4/23/2020 5:55:03 PM::::Debug::::Method StartListening::::Closing the response
+4/23/2020 5:55:21 PM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/23/2020 5:55:21 PM::::Info::::Method StartListening::::HttpMethod:POST
+4/23/2020 5:56:04 PM::::Info::::Method DeserializeFromBody::::Request body: 
+4/23/2020 5:56:04 PM::::Info::::Method DeserializeFromBody::::{
+   "name":"nuclear framework"
+}
+4/23/2020 5:57:47 PM::::Debug::::Method StartListening::::Request finished...
+4/23/2020 5:57:47 PM::::Debug::::Method StartListening::::Closing the response
+4/23/2020 5:58:07 PM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/23/2020 5:58:07 PM::::Info::::Method StartListening::::HttpMethod:POST
+4/23/2020 5:58:40 PM::::Info::::Method DeserializeFromBody::::Request body: 
+4/23/2020 5:58:40 PM::::Info::::Method DeserializeFromBody::::{
+   "name":"nuclear framework"
+}
+4/23/2020 6:04:26 PM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/23/2020 6:04:26 PM::::Info::::Method StartListening::::HttpMethod:POST
+4/23/2020 6:04:33 PM::::Info::::Method DeserializeFromBody::::Request body: 
+4/23/2020 6:04:33 PM::::Info::::Method DeserializeFromBody::::{
+   "name":"nuclear framework"
+}
+4/23/2020 6:04:34 PM::::Debug::::Method StartListening::::Request finished...
+4/23/2020 6:04:34 PM::::Debug::::Method StartListening::::Closing the response
+4/23/2020 6:04:37 PM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/23/2020 6:04:37 PM::::Info::::Method StartListening::::HttpMethod:POST
+4/23/2020 6:04:41 PM::::Info::::Method DeserializeFromBody::::Request body: 
+4/23/2020 6:04:41 PM::::Info::::Method DeserializeFromBody::::{
+   "name":"nuclear framework"
+}
+4/23/2020 6:04:47 PM::::Debug::::Method StartListening::::Request finished...
+4/23/2020 6:04:47 PM::::Debug::::Method StartListening::::Closing the response
+4/23/2020 6:04:54 PM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/23/2020 6:04:54 PM::::Info::::Method StartListening::::HttpMethod:POST
+4/23/2020 6:04:57 PM::::Info::::Method DeserializeFromBody::::Request body: 
+4/23/2020 6:04:57 PM::::Info::::Method DeserializeFromBody::::{
+   "name":"nuclear test"
+}
+4/23/2020 6:05:52 PM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/23/2020 6:05:52 PM::::Info::::Method StartListening::::HttpMethod:POST
+4/23/2020 6:05:57 PM::::Info::::Method DeserializeFromBody::::Request body: 
+4/23/2020 6:05:57 PM::::Info::::Method DeserializeFromBody::::{
+   "name":"nuclear test"
+}
+4/23/2020 6:05:58 PM::::Debug::::Method StartListening::::Request finished...
+4/23/2020 6:05:58 PM::::Debug::::Method StartListening::::Closing the response
+4/23/2020 6:06:00 PM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/23/2020 6:06:00 PM::::Info::::Method StartListening::::HttpMethod:POST
+4/23/2020 6:06:02 PM::::Info::::Method DeserializeFromBody::::Request body: 
+4/23/2020 6:06:02 PM::::Info::::Method DeserializeFromBody::::{
+   "name":"nuclear test"
+}
+4/23/2020 6:06:08 PM::::Debug::::Method StartListening::::Request finished...
+4/23/2020 6:06:08 PM::::Debug::::Method StartListening::::Closing the response
+4/23/2020 6:06:16 PM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/23/2020 6:06:16 PM::::Info::::Method StartListening::::HttpMethod:POST
+4/23/2020 6:06:18 PM::::Info::::Method DeserializeFromBody::::Request body: 
+4/23/2020 6:06:18 PM::::Info::::Method DeserializeFromBody::::{
+   "name":"nuclear framework"
+}
+4/23/2020 6:06:19 PM::::Info::::Method DeserializeFromBody::::Request body: 
+4/23/2020 6:06:19 PM::::Info::::Method DeserializeFromBody::::
+4/23/2020 6:06:19 PM::::Error::::Method ExceptionHandler::::Exception handler called..
+4/23/2020 6:06:19 PM::::Error::::Method ExceptionHandler::::Error reading JObject from JsonReader. Path '', line 0, position 0.
+4/23/2020 6:06:19 PM::::Error::::Method ExceptionHandler::::No Inner Exception
+4/23/2020 6:06:19 PM::::Fatal::::Method TryInvokePostRequest::::Error reading JObject from JsonReader. Path '', line 0, position 0.
+4/23/2020 6:06:19 PM::::Debug::::Method StartListening::::Request finished...
+4/23/2020 6:06:19 PM::::Debug::::Method StartListening::::Closing the response
+4/23/2020 6:06:30 PM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/23/2020 6:06:31 PM::::Info::::Method StartListening::::HttpMethod:POST
+4/23/2020 6:06:33 PM::::Info::::Method DeserializeFromBody::::Request body: 
+4/23/2020 6:06:33 PM::::Info::::Method DeserializeFromBody::::{
+   "name":"nuclear framework"
+}
+4/23/2020 6:12:31 PM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/23/2020 6:12:31 PM::::Info::::Method StartListening::::HttpMethod:POST
+4/23/2020 6:12:32 PM::::Error::::Method ExceptionHandler::::Exception handler called..
+4/23/2020 6:12:32 PM::::Error::::Method ExceptionHandler::::Object reference not set to an instance of an object.
+4/23/2020 6:12:32 PM::::Error::::Method ExceptionHandler::::No Inner Exception
+4/23/2020 6:12:32 PM::::Fatal::::Method TryInvokePostRequest::::Object reference not set to an instance of an object.
+4/23/2020 6:12:32 PM::::Debug::::Method StartListening::::Request finished...
+4/23/2020 6:12:32 PM::::Debug::::Method StartListening::::Closing the response
+4/23/2020 6:12:51 PM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/23/2020 6:12:51 PM::::Info::::Method StartListening::::HttpMethod:POST
+4/23/2020 6:14:58 PM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/23/2020 6:14:58 PM::::Info::::Method StartListening::::HttpMethod:POST
+4/23/2020 6:15:00 PM::::Info::::Method DeserializeFromBody::::Request body: 
+4/23/2020 6:15:00 PM::::Info::::Method DeserializeFromBody::::{
+   "name":"nuclear framework"
+}
+4/23/2020 6:15:00 PM::::Debug::::Method StartListening::::Request finished...
+4/23/2020 6:15:00 PM::::Debug::::Method StartListening::::Closing the response
+4/23/2020 6:15:03 PM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/23/2020 6:15:03 PM::::Info::::Method StartListening::::HttpMethod:POST
+4/23/2020 6:15:21 PM::::Info::::Method DeserializeFromBody::::Request body: 
+4/23/2020 6:15:21 PM::::Info::::Method DeserializeFromBody::::{
+   "name":"nuclear framework"
+}
+4/23/2020 6:15:31 PM::::Debug::::Method StartListening::::Request finished...
+4/23/2020 6:15:31 PM::::Debug::::Method StartListening::::Closing the response
+4/23/2020 6:15:36 PM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/23/2020 6:15:36 PM::::Info::::Method StartListening::::HttpMethod:POST
+4/23/2020 6:15:54 PM::::Info::::Method DeserializeFromBody::::Request body: 
+4/23/2020 6:15:54 PM::::Info::::Method DeserializeFromBody::::{
+   "name":"nuclear test"
+}
+4/23/2020 6:16:47 PM::::Debug::::Method StartListening::::Request finished...
+4/23/2020 6:16:47 PM::::Debug::::Method StartListening::::Closing the response
+4/23/2020 6:16:52 PM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/23/2020 6:16:53 PM::::Info::::Method StartListening::::HttpMethod:POST
+4/23/2020 6:16:55 PM::::Info::::Method DeserializeFromBody::::Request body: 
+4/23/2020 6:16:55 PM::::Info::::Method DeserializeFromBody::::{
+   "name":"nuclear test"
+}
+4/23/2020 6:16:55 PM::::Debug::::Method StartListening::::Request finished...
+4/23/2020 6:16:55 PM::::Debug::::Method StartListening::::Closing the response
+4/23/2020 6:17:03 PM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/23/2020 6:17:03 PM::::Info::::Method StartListening::::HttpMethod:POST
+4/23/2020 6:17:06 PM::::Info::::Method DeserializeFromBody::::Request body: 
+4/23/2020 6:17:06 PM::::Info::::Method DeserializeFromBody::::{
+   "name":"nuclear framework"
+}
+4/23/2020 6:17:07 PM::::Debug::::Method StartListening::::Request finished...
+4/23/2020 6:17:07 PM::::Debug::::Method StartListening::::Closing the response
+4/23/2020 6:17:16 PM::::Info::::Method StartListening::::Request coming to TestChannel.CreateTestClass
+4/23/2020 6:17:16 PM::::Info::::Method StartListening::::HttpMethod:GET
+4/23/2020 6:17:16 PM::::Error::::Method WrongHttpMethod::::Wrong HTTP Method used
+4/23/2020 6:17:16 PM::::Error::::Method StartListening::::Wrong HttpMethod... Closing request
+4/23/2020 6:17:16 PM::::Debug::::Method StartListening::::Request finished...
+4/23/2020 6:17:16 PM::::Debug::::Method StartListening::::Closing the response
+4/23/2020 6:17:37 PM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/23/2020 6:17:37 PM::::Info::::Method StartListening::::HttpMethod:GET
+4/23/2020 6:17:38 PM::::Debug::::Method StartListening::::Request finished...
+4/23/2020 6:17:38 PM::::Debug::::Method StartListening::::Closing the response
+4/23/2020 6:17:43 PM::::Info::::Method StartListening::::Request coming to TestChannel.PostParams
+4/23/2020 6:17:43 PM::::Info::::Method StartListening::::HttpMethod:GET
+4/23/2020 6:17:45 PM::::Debug::::Method StartListening::::Request finished...
+4/23/2020 6:17:45 PM::::Debug::::Method StartListening::::Closing the response
