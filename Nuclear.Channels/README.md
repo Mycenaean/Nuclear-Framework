@@ -6,11 +6,11 @@ Channels Library is part of the Nuclear Framework set of .NET Standard class lib
 
 To install it with Package Manager
  ```
- Install-Package Nuclear.Channels -Version 3.0.9
+ Install-Package Nuclear.Channels -Version 3.1.0
  ```
  To install it with .NET CLI
  ```
- dotnet add package Nuclear.Channels --version 3.0.9
+ dotnet add package Nuclear.Channels --version 3.1.0
  ```
 
 # How to use
@@ -138,6 +138,27 @@ public SomeEntity EntityMethod(SomeEntity entity)
 }
 ```
 
+## Caching response
+
+You can cache ChannelMethod response with EnableCacheAttribute. But note that EnableCacheAttribute can not be implemented on top of method that returns void. Parameteres are Duration and Duration Unit.
+
+```c#
+	[ChannelMethod]
+        [EnableCache(20, CacheDurationUnit.Seconds)]
+        public string HelloWorld()
+        {
+            return "Hello World";
+        }
+```
+
+In case you are worried about the state of memory, you can setup background cache cleaner with extension method ConfigureCacheCleaner , located in Nuclear.Channels.Heuristics.CacheCleaner namespace, which will clear expired cached responses in time interval provided.
+
+```c#
+	IChannelServer server = ChannelServerBuilder.CreateServer();
+	...
+	server.ConfigureCacheCleaner(TimeSpan.FromSeconds(30)); // put your time interval here
+```
+
 ## ChannelBase class
 
 If you want to have access to all global services , request context and messaging service your channel class can inherit from ChannelBase class
@@ -215,6 +236,7 @@ public class TestChannel
 	}
 }
 ```
+You can check full example here [TestChannel](https://github.com/Mycenaean/Nuclear-Framework/blob/master/Nuclear.Channels.Test/TestChannel.cs)
 ## Response Object
 Response of the ChannelMethods is always in the form of IChannelMessage containing properties , Success , Message and Output. Methods return object is always in the Output field.
 
