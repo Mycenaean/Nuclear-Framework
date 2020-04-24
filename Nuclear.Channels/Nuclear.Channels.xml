@@ -4,6 +4,11 @@
         <name>Nuclear.Channels</name>
     </assembly>
     <members>
+        <member name="T:Nuclear.Channels.ChannelActivator.ChannelMethodCacheInspector">
+            <summary>
+            Internal cache inspector
+            </summary>
+        </member>
         <member name="T:Nuclear.Channels.ChannelBase">
             <summary>
             Base abstract Channel Helper class
