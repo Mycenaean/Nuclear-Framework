@@ -14,7 +14,14 @@ namespace Nuclear.Channels.Heuristics
     [AttributeUsage(AttributeTargets.Method)]
     public sealed class EnableCacheAttribute : Attribute
     {
+        /// <summary>
+        /// Duration of the cache
+        /// </summary>
         public double Duration { get; set; }
+
+        /// <summary>
+        /// Time unit for duration
+        /// </summary>
         public CacheDurationUnit Unit { get; set; }
 
         /// <summary>

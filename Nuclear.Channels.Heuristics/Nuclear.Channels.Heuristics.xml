@@ -4,6 +4,13 @@
         <name>Nuclear.Channels.Heuristics</name>
     </assembly>
     <members>
+        <member name="M:Nuclear.Channels.Heuristics.CacheCleaner.ChannelCacheExtensions.ConfigureCacheCleaner(Nuclear.Channels.Heuristics.CacheCleaner.IChannelCacheCleanable,System.TimeSpan)">
+            <summary>
+            Enables cache cleaning background service
+            </summary>
+            <param name="server">Channel server</param>
+            <param name="interval">Cleanup interval</param>
+        </member>
         <member name="T:Nuclear.Channels.Heuristics.ChannelHeuristics">
             <summary>
             Purpose of this service is to write cached response without invoking already registered Channel
@@ -17,6 +24,16 @@
         <member name="T:Nuclear.Channels.Heuristics.EnableCacheAttribute">
             <summary>
             Enables cached response
+            </summary>
+        </member>
+        <member name="P:Nuclear.Channels.Heuristics.EnableCacheAttribute.Duration">
+            <summary>
+            Duration of the cache
+            </summary>
+        </member>
+        <member name="P:Nuclear.Channels.Heuristics.EnableCacheAttribute.Unit">
+            <summary>
+            Time unit for duration
             </summary>
         </member>
         <member name="M:Nuclear.Channels.Heuristics.EnableCacheAttribute.#ctor(System.Double)">

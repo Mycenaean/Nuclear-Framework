@@ -5,6 +5,8 @@
 using Nuclear.Channels.Authentication;
 using Nuclear.Channels.Base.Enums;
 using System;
+using System.Linq;
+using System.Reflection;
 
 namespace Nuclear.Channels.Decorators
 {
@@ -78,6 +80,14 @@ namespace Nuclear.Channels.Decorators
             Schema = Schemes;
             this.HttpMethod = HttpMethod;
             this.Description = Description;
+        }
+    }
+
+    internal class ChannelMethodReflector
+    {
+        public static MethodInfo[] GetChannelMethods(Type channel)
+        {
+            return channel.GetMethods().Where(x => x.GetCustomAttribute<ChannelMethodAttribute>() != null).ToArray();
         }
     }
 }

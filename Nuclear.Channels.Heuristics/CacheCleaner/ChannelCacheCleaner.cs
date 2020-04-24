@@ -17,7 +17,7 @@ using System.Threading;
 namespace Nuclear.Channels.Heuristics.CacheCleaner
 {
     [Export(typeof(IChannelCacheCleaner), ExportLifetime.Singleton)]
-    public class ChannelCacheCleaner : IChannelCacheCleaner
+    internal class ChannelCacheCleaner : IChannelCacheCleaner
     {
         private readonly IChannelHeuristicEvents _events;
         private readonly IServiceLocator _services;

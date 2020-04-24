@@ -14,7 +14,13 @@ namespace Nuclear.Channels.Heuristics.CacheCleaner
     {
         private static IServiceLocator _services = ServiceLocatorBuilder.CreateServiceLocator();
         private static IChannelCacheCleaner _cleaner = _services.Get<IChannelCacheCleaner>();
-        public static IChannelCacheCleanable ConfigureCacheCleaner(this IChannelCacheCleanable server,TimeSpan interval)
+
+        /// <summary>
+        /// Enables cache cleaning background service
+        /// </summary>
+        /// <param name="server">Channel server</param>
+        /// <param name="interval">Cleanup interval</param>
+        public static IChannelCacheCleanable ConfigureCacheCleaner(this IChannelCacheCleanable server, TimeSpan interval)
         {
             _cleaner.CollectExpired(interval);
             return server;

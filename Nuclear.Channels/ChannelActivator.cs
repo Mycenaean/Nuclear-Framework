@@ -130,10 +130,13 @@ namespace Nuclear.Channels
 
         public void MethodExecute(Type channel, CancellationToken cancellationToken)
         {
-            MethodInfo[] methods = channel.GetMethods().Where(x => x.GetCustomAttribute<ChannelMethodAttribute>() != null).ToArray();
+            MethodInfo[] methods = ChannelMethodReflector.GetChannelMethods(channel);
 
             foreach (MethodInfo method in methods)
             {
+                //Exception should be thrown to developer if EnableCache is on top of void Method
+                CheckCacheValidity(method);
+
                 cancellationToken.ThrowIfCancellationRequested();
                 CancellationTokenSource cts = new CancellationTokenSource();
                 CancellationToken token = cts.Token;
@@ -147,10 +150,7 @@ namespace Nuclear.Channels
         public void StartListening(MethodInfo method, Type channel, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
-
-            //Exception should be thrown to developer if EnableCache is on top of void Method
-            CheckCacheValidity(method);
-
+            
             HttpListener httpChannel = new HttpListener();
 
             ChannelConfigurationInfo channelConfig = _configuration.Configure(httpChannel, channel, method, _baseURL);
