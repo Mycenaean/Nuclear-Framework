@@ -12,9 +12,11 @@ using System.Xml.Serialization;
 
 namespace Nuclear.Channels.Remoting
 {
-    public class ChannelRemotingClient : IChannelRemotingClient
+    public class ChannelRemotingClient : IChannelRemotingClient 
     {
         private string _http;
+
+        private ChannelRequest _channelRequest;
 
         private class ChannelMessage
         {
@@ -26,6 +28,11 @@ namespace Nuclear.Channels.Remoting
         public ChannelRemotingClient()
         {
             _http = string.Empty;
+        }
+
+        public ChannelRemotingClient(ChannelRequest request)
+        {
+            _channelRequest = request;
         }
 
         public object GetResponse(ChannelRequest request)
@@ -164,6 +171,21 @@ namespace Nuclear.Channels.Remoting
                     return reader.ReadToEnd();
                 }
             }
+        }
+
+        public void Send()
+        {
+            Send(_channelRequest);
+        }
+
+        public object GetResponse()
+        {
+            return GetResponse(_channelRequest);
+        }
+
+        public TEntity GetResponse<TEntity>()
+        {
+            return GetResponse<TEntity>(_channelRequest);
         }
     }
 }

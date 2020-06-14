@@ -13,7 +13,7 @@ namespace Nuclear.Channels
     /// <summary>
     /// Service that will host the Channels
     /// </summary>
-    public interface IChannelServer : IChannelAuthenticationEnabled , IChannelCacheCleanable
+    public interface IChannelServer : IChannelAuthenticationEnabled, IChannelCacheCleanable , IServerManaged
     {
         /// <summary>
         /// Method to load all assemblies containing channels
@@ -40,7 +40,7 @@ namespace Nuclear.Channels
         /// </summary>
         /// <param name="basicAuthenticationMethod">Delegate for basic authentication</param>
         [Obsolete("Please use one of the overloads of AddBasicAuthentication extension method")]
-        void AuthenticationOptions(Func<string, string, bool> basicAuthenticationMethod);      
+        void AuthenticationOptions(Func<string, string, bool> basicAuthenticationMethod);
 
         /// <summary>
         /// Starts hosting

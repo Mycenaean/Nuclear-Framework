@@ -1,0 +1,16 @@
+6/11/2020 11:47:38 PM::::Info::::Method Start::::Request coming to TestChannel.HelloWorld
+6/11/2020 11:47:39 PM::::Info::::Method Start::::HttpMethod:GET
+6/11/2020 11:47:43 PM::::Debug::::Method Start::::Request finished...
+6/11/2020 11:47:43 PM::::Debug::::Method Start::::Closing the response
+6/11/2020 11:49:52 PM::::Info::::Method Start::::Request coming to TestChannel.HelloWorld
+6/11/2020 11:49:53 PM::::Info::::Method Start::::HttpMethod:GET
+6/11/2020 11:49:53 PM::::Debug::::Method Start::::Request finished...
+6/11/2020 11:49:53 PM::::Debug::::Method Start::::Closing the response
+6/11/2020 11:50:16 PM::::Info::::Method Start::::Request coming to TestChannel.PostParams
+6/11/2020 11:50:16 PM::::Info::::Method Start::::HttpMethod:GET
+6/11/2020 11:50:16 PM::::Debug::::Method Start::::Request finished...
+6/11/2020 11:50:16 PM::::Debug::::Method Start::::Closing the response
+6/11/2020 11:50:19 PM::::Info::::Method Start::::Request coming to TestChannel.PostParams
+6/11/2020 11:50:19 PM::::Info::::Method Start::::HttpMethod:GET
+6/11/2020 11:50:19 PM::::Debug::::Method Start::::Request finished...
+6/11/2020 11:50:19 PM::::Debug::::Method Start::::Closing the response

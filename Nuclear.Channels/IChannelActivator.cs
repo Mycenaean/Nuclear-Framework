@@ -12,7 +12,7 @@ namespace Nuclear.Channels
     /// <summary>
     /// Service that will initialize all ChannelMethods as HTTP Endopints
     /// </summary>
-    public interface IChannelActivator
+    public interface IChannelActivator : IServerManaged
     {
         /// <summary>
         /// Method that will do the initialization of Channels
@@ -22,6 +22,12 @@ namespace Nuclear.Channels
         /// <param name="baseURL">Base URL to be exposed for channels</param>
         /// <exception cref="HttpListenerNotSupportedException"></exception>
         void Execute(AppDomain currentDomain, IServiceLocator Services, AuthenticationSettings settings, string baseURL = null);
+
+        /// <summary>
+        /// Returns Raw Executor instance used in ChannelServer
+        /// </summary>
+        /// <returns></returns>
+        IExecutor GetRawExecutor();
 
         /// <summary>
         /// Set authentication options

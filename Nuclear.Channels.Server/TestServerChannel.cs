@@ -8,11 +8,10 @@ using System;
 using Nuclear.Channels.Authentication;
 using Nuclear.Channels.Heuristics;
 
-namespace ConsoleApp1
+namespace Nuclear.Channels.Server
 {
-    [Channel/*(EnableSessions = true)*/]
-    //[AuthorizeChannel(ChannelAuthenticationSchemes.Token, "Role", "Admin")]
-    public class TestChannel : ChannelBase
+    [Channel]
+    public class TestServerChannel : ChannelBase
     {
         [ImportedService]
         public ITestService Service { get; set; }

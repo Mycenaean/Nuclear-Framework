@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Nuclear.Channels.Remoting
 {
-    public interface IChannelRemotingClient
+    public interface IChannelRemotingClient : IChannelRemotingPopulatedClient
     {
         void Send(ChannelRequest request);
         object GetResponse(ChannelRequest request);

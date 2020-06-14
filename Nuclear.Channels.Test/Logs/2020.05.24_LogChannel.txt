@@ -1,0 +1,8 @@
+5/24/2020 4:23:59 PM::::Info::::Method StartListening::::Request coming to TestChannel.RedirectionTest
+5/24/2020 4:23:59 PM::::Info::::Method StartListening::::HttpMethod:GET
+5/24/2020 4:23:59 PM::::Error::::Method ExceptionHandler::::Exception handler called..
+5/24/2020 4:23:59 PM::::Error::::Method ExceptionHandler::::Missing or malformed token authentication header
+5/24/2020 4:23:59 PM::::Error::::Method ExceptionHandler::::No Inner Exception
+5/24/2020 4:24:00 PM::::Error::::Method AuthenticationFailedIfRequired::::Authentication Failed
+5/24/2020 4:24:00 PM::::Debug::::Method StartListening::::Request finished...
+5/24/2020 4:24:00 PM::::Debug::::Method StartListening::::Closing the response

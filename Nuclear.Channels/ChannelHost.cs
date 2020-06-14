@@ -101,6 +101,11 @@ namespace Nuclear.Channels
             Task.WaitAll();
         }
 
+        public void IsServerManaged(bool managed = false)
+        {
+            _activator.IsServerManaged(managed);
+        }
+
         public void AuthenticationOptions(Func<string, bool> tokenAuthenticationMethod)
         {
             _activator.AuthenticationOptions(tokenAuthenticationMethod);

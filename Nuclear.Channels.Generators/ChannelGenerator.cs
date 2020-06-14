@@ -45,7 +45,7 @@ namespace Nuclear.Channels.Generators
                 return _existingChannels[channel];
             }
 
-            //From the perfomarce perspective its much much faster to generate instance with IL than with Activator
+            //From the performance perspective its much much faster to generate instance with IL than with Activator
             ConstructorInfo ctor = channel.GetConstructor(new Type[0]);
             string methodName = $"{channel.Name}Ctor";
             DynamicMethod dynamicMtd = new DynamicMethod(methodName, channel, new Type[0]);

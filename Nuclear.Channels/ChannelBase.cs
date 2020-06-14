@@ -7,6 +7,7 @@ using Nuclear.Channels.Contracts;
 using Nuclear.Channels.Messaging;
 using Nuclear.ExportLocator;
 using Nuclear.ExportLocator.Services;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("Nuclear.Channels.Generators")]
@@ -34,6 +35,7 @@ namespace Nuclear.Channels
         /// </summary>
         public IChannelMessageOutputWriter ChannelMessageWriter { get; }
 
+        [DebuggerStepThrough]
         public ChannelBase()
         {
             Services = ServiceLocatorBuilder.CreateServiceLocator();
