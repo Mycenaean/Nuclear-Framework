@@ -7,24 +7,14 @@ namespace Nuclear.Channels.Server
     {
         static void Main(string[] args)
         {
-            IChannelServerManager serverManager = ChannelServer.GetManager();
-
-            IChannelServer server = serverManager.Server;
-            server.LoadAssemblies(AppDomain.CurrentDomain, null);
-            server.IsServerManaged(true);
-            server.StartHosting(null);
-
-            IServerInstructionCollection instructions = serverManager.Instructions;
-            instructions.PrintOnConsole();
-
-            while (true)
+            IChannelServerManager serverManager = ChannelServerManagerBuilder.Build(server => 
             {
-                //print all channels and channel methods with their ids and states
-                string instruction = Console.ReadLine();
-                //interpret instruction
-                //execute instruction
-            }
-            
+                server.LoadAssemblies(AppDomain.CurrentDomain, null);
+                server.IsServerManaged(true);
+            });
+
+            serverManager.Start();            
         }
     }
 }
+

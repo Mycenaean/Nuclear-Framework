@@ -1,0 +1,28 @@
+6/14/2020 9:28:56 PM::::Info::::Method Start::::Request coming to TestChannel.HelloWorld
+6/14/2020 9:28:56 PM::::Info::::Method Start::::HttpMethod:GET
+6/14/2020 9:28:57 PM::::Debug::::Method Start::::Request finished...
+6/14/2020 9:28:57 PM::::Debug::::Method Start::::Closing the response
+6/14/2020 9:29:00 PM::::Info::::Method Start::::Request coming to TestChannel.HelloWorld
+6/14/2020 9:29:00 PM::::Info::::Method Start::::HttpMethod:GET
+6/14/2020 9:29:00 PM::::Debug::::Method Start::::Request finished...
+6/14/2020 9:29:00 PM::::Debug::::Method Start::::Closing the response
+6/14/2020 9:29:04 PM::::Info::::Method Start::::Request coming to TestChannel.PostParams
+6/14/2020 9:29:04 PM::::Info::::Method Start::::HttpMethod:GET
+6/14/2020 9:29:04 PM::::Debug::::Method Start::::Request finished...
+6/14/2020 9:29:04 PM::::Debug::::Method Start::::Closing the response
+6/14/2020 9:29:07 PM::::Info::::Method Start::::Request coming to TestChannel.PostParams
+6/14/2020 9:29:07 PM::::Info::::Method Start::::HttpMethod:GET
+6/14/2020 9:29:07 PM::::Debug::::Method Start::::Request finished...
+6/14/2020 9:29:07 PM::::Debug::::Method Start::::Closing the response
+6/14/2020 9:29:12 PM::::Info::::Method Start::::Request coming to TestChannel.PostParams
+6/14/2020 9:29:12 PM::::Info::::Method Start::::HttpMethod:GET
+6/14/2020 9:29:12 PM::::Debug::::Method Start::::Request finished...
+6/14/2020 9:29:12 PM::::Debug::::Method Start::::Closing the response
+6/14/2020 9:29:25 PM::::Info::::Method Start::::Request coming to TestChannel.RedirectionTest
+6/14/2020 9:29:25 PM::::Info::::Method Start::::HttpMethod:GET
+6/14/2020 9:29:25 PM::::Debug::::Method Start::::Request finished...
+6/14/2020 9:29:25 PM::::Debug::::Method Start::::Closing the response
+6/14/2020 9:29:48 PM::::Info::::Method Start::::Request coming to TestChannel.WriteStringWithMessageWriter
+6/14/2020 9:29:48 PM::::Info::::Method Start::::HttpMethod:GET
+6/14/2020 9:29:48 PM::::Debug::::Method Start::::Request finished...
+6/14/2020 9:29:48 PM::::Debug::::Method Start::::Closing the response

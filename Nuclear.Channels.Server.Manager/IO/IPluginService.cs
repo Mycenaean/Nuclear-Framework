@@ -1,7 +1,7 @@
 namespace Nuclear.Channels.Server.Manager.IO
 {
-    public interface IFileSystemOperations
+    public interface IPluginService
     {
-         
+        void Init();
     }
 }

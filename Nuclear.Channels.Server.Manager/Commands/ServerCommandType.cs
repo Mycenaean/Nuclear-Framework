@@ -2,6 +2,7 @@
 {
     public enum ServerCommandType
     {
+        Read,
         Start,
         Restart,
         Stop

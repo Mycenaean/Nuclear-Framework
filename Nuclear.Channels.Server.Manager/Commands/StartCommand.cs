@@ -16,11 +16,13 @@ namespace Nuclear.Channels.Server.Manager.Commands
 
         protected override void ExecuteOnMethod()
         {
-            _methodHandler.Start();
+            _writer.Write($"{this.GetType().Name} started execution");
+            _methodHandler.Start();            
         }
 
         protected override void ExecuteOnChannel()
         {
+            _writer.Write($"{this.GetType().Name} started execution");
             ChannelMethodHandler[] methods = _channelHandler.MethodHandlers.AsArray();
             for (int i = 0; i < methods.Length; i++)
             {

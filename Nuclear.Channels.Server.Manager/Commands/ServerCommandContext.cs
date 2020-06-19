@@ -3,7 +3,7 @@ using System;
 
 namespace Nuclear.Channels.Server.Manager.Commands
 {
-    public class ServerCommandContext
+    public class ServerCommandContext 
     {
         private IServiceLocator _services;
         private IServerCommandInterpreter _commandInterpreter;

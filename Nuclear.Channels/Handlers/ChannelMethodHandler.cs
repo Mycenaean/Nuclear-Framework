@@ -23,14 +23,14 @@ namespace Nuclear.Channels.Handlers
     public class ChannelMethodHandler : IHandlerContract , IServerManaged
     {
         private readonly IServiceLocator _services;
-        private IChannelMethodDescriptor _channelMethodDescriptor;
-        private IChannelMethodRequestActivator _requestActivator;
-        private IChannelMessageService _msgService;
-        private IChannelMethodContextProvider _contextProvider;
-        private IChannelConfiguration _configuration;
-        private IChannelAuthenticationService _authenticationService;
-        private IChannelHeuristics _heuristics;
-        private ISessionService _session;
+        private readonly IChannelMethodDescriptor _channelMethodDescriptor;
+        private readonly IChannelMethodRequestActivator _requestActivator;
+        private readonly IChannelMessageService _msgService;
+        private readonly IChannelMethodContextProvider _contextProvider;
+        private readonly IChannelConfiguration _configuration;
+        private readonly IChannelAuthenticationService _authenticationService;
+        private readonly IChannelHeuristics _heuristics;
+        private readonly ISessionService _session;
         private AuthenticationSettings _settings;
         private Func<string, string, bool> _basicAuthenticationMethod;
         private Func<string, bool> _tokenAuthenticationMethod;
@@ -43,6 +43,8 @@ namespace Nuclear.Channels.Handlers
         public EntityState State { get; private set; }
         public string HandlerId { get;  }
         public string ChannelHandlerId { get; }
+        public string Url { get; private set; }
+
 
         public ChannelMethodHandler(IServiceLocator services, Type channel, MethodInfo method, AuthenticationSettings settings, string baseURL, string channelHandlerId)
         {
@@ -88,6 +90,7 @@ namespace Nuclear.Channels.Handlers
             _httpListener = new HttpListener();
             ChannelConfigurationInfo channelConfig = _configuration.Configure(_httpListener, _channel, _method, _baseURL);
 
+            Url = channelConfig.MethodUrl;
             //Keep the ChannelMethod open for new requests
             while (true)
             {
@@ -103,7 +106,7 @@ namespace Nuclear.Channels.Handlers
                 }
 
                 if(!_isManaged)
-                    Console.WriteLine($"Listening on {channelConfig.MethodUrl}");
+                    Console.WriteLine($"Listening on {Url}");
 
                 HttpListenerContext context = _httpListener.GetContext();
                 HttpListenerRequest request = context.Request;

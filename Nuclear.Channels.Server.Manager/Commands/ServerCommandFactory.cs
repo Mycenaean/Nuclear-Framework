@@ -28,6 +28,8 @@ namespace Nuclear.Channels.Server.Manager.Commands
                 ChannelHandler channelHandler = _channelHandlers.GetHandler(context.HandlerId);
                 switch(context.CommandType)
                 {
+                    case ServerCommandType.Read:
+                        return new ReadStateCommand(channelHandler);
                     case ServerCommandType.Restart:
                          return new RestartCommand(channelHandler);
                     case ServerCommandType.Start:
@@ -43,6 +45,8 @@ namespace Nuclear.Channels.Server.Manager.Commands
                 ChannelMethodHandler methodHandler = _methodHandlers.GetHandler(context.HandlerId);
                 switch(context.CommandType)
                 {
+                    case ServerCommandType.Read:
+                        return new ReadStateCommand(methodHandler);
                     case ServerCommandType.Restart:
                          return new RestartCommand(methodHandler);
                     case ServerCommandType.Start:
