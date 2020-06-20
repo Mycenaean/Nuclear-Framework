@@ -8,5 +8,7 @@ namespace Nuclear.Channels.Server.Manager.Console
         void WriteHelp();
         void Write(string line);
         void TextColor(ConsoleColor color);
+        void InjectServerMessagePrefix();
+        void InjectServerPrefix();
     }
 }

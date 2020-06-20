@@ -5,6 +5,7 @@ using Nuclear.ExportLocator.Enumerations;
 using Nuclear.ExportLocator.Services;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Reflection;
 using DesktopConsole = System.Console;
 
@@ -16,6 +17,7 @@ namespace Nuclear.Channels.Server.Manager.Console
         private IChannelMethodHandlerCollection _methodHandlers;
         private const string lineWrapper = "============================================";
 
+        [DebuggerStepThrough]
         public ConsoleWriter()
         {
             _methodHandlers = ServiceLocatorBuilder
@@ -23,11 +25,24 @@ namespace Nuclear.Channels.Server.Manager.Console
                                     .Get<IChannelMethodHandlerCollection>();
         }
 
+        public void InjectServerMessagePrefix()
+        {
+            DesktopConsole.ForegroundColor = ConsoleColor.Yellow;
+            DesktopConsole.Write("server message# ");
+            DesktopConsole.ResetColor();
+        }
+
+        public void InjectServerPrefix()
+        {
+            DesktopConsole.ForegroundColor = ConsoleColor.Green;
+            DesktopConsole.Write("server# ");
+            DesktopConsole.ResetColor();
+        }
+
         public void Write(string line)
         {
-            DesktopConsole.WriteLine(lineWrapper);
-            DesktopConsole.WriteLine();
-            DesktopConsole.WriteLine(line);
+            InjectServerMessagePrefix();
+            DesktopConsole.WriteLine(line);            
         }
 
         public void WriteUrls()
@@ -35,6 +50,7 @@ namespace Nuclear.Channels.Server.Manager.Console
             ChannelMethodHandler[] handlers = _methodHandlers.AsArray();
             for (int i = 0; i < handlers.Length; i++)
             {
+                InjectServerMessagePrefix();
                 DesktopConsole.WriteLine($"{handlers[i]?.HandlerId} {handlers[i]?.Url} {handlers[i]?.State}");
             }
         }
@@ -45,6 +61,7 @@ namespace Nuclear.Channels.Server.Manager.Console
             FieldInfo[] serverCommands = typeof(ServerCommandList).GetFields();
             for (int i = 0; i < serverCommands.Length; i++)
             {
+                InjectServerMessagePrefix();
                 DesktopConsole.WriteLine(serverCommands[i]?.GetValue(cmdList)?.ToString());
             }
         }

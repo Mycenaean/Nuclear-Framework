@@ -64,7 +64,7 @@ namespace Nuclear.Channels.Handlers
             _heuristics = _services.Get<IChannelHeuristics>();
             _session = _services.Get<ISessionService>();
 
-            HandlerId = $"{_channel}:{_method}";
+            HandlerId = $"{Guid.NewGuid()}";
             ChannelHandlerId = channelHandlerId;
         }
 

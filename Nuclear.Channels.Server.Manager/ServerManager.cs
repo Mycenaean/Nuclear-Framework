@@ -1,6 +1,6 @@
 ﻿using Nuclear.Channels.Server.Manager.Commands;
 using Nuclear.Channels.Server.Manager.Console;
-using Nuclear.Channels.Server.Manager.IO;
+using Nuclear.Channels.Server.Manager.CoreCommands;
 using Nuclear.ExportLocator;
 using Nuclear.ExportLocator.Decorators;
 using Nuclear.ExportLocator.Enumerations;
@@ -20,7 +20,6 @@ namespace Nuclear.Channels.Server.Manager
         private readonly IChannelServer _server;
         private readonly IServerCommandFactory _commandFactory;
         private readonly ICommandExecutionResults _commandResults;
-        private readonly IPluginService _plugins;
 
         public ServerManager(IServiceLocator services, IChannelServer server)
         {
@@ -31,20 +30,37 @@ namespace Nuclear.Channels.Server.Manager
             _reader = _services.Get<IConsoleReader>();
             _commandFactory = _services.Get<IServerCommandFactory>();
             _commandResults = _services.Get<ICommandExecutionResults>();
-            _plugins = _services.Get<IPluginService>();
 
-            //_plugins.Init();
-            Init();
+            InitCommands();
         }
 
-        private void Init()
+        private void InitCommands()
         {
-            //_server.StartHosting(null);
+            //CoreCommand initPlugins = new CoreCommand("InitPlugins");
+            //IServerCommand initPluginsCommand = _commandFactory.GetCoreCommand(initPlugins);
+            //initPluginsCommand.Execute();
+
+            CoreCommand initServer = new CoreCommand("InitServer");
+            initServer.AddService(_server);            
+
+            IServerCommand initServerCommand = _commandFactory.GetCoreCommand(initServer);
+
+            CoreCommand serverThreading = new CoreCommand("ServerThread");
+            // ORDER OF THE ADDED SERVICES MATTERS!
+            serverThreading.AddService(initServerCommand);
+            serverThreading.AddService(_services);
+            serverThreading.AddService(_writer);
+
+            IServerCommand serverThreadCommand = _commandFactory.GetCoreCommand(serverThreading);
+            serverThreadCommand.Execute();
         }
 
         public void Start()
         {
-            _writer.WriteHelp();
+            _writer.Write("Listening for commands");
+            _writer.Write($"To see list of commands type : {ServerCommandList.Help}");
+           
+            _writer.InjectServerPrefix();
             string userInput = DesktopConsole.ReadLine();
 
             while (!userInput.Equals(ServerCommandList.StopProgram, StringComparison.OrdinalIgnoreCase))
@@ -54,25 +70,31 @@ namespace Nuclear.Channels.Server.Manager
                     if (userInput.Equals(ServerCommandList.Help))
                     {
                         _writer.WriteHelp();
-                        return;
                     }
-                    ServerCommandContext cmdContext = _reader.Read(userInput);
-                    IServerCommand command = _commandFactory.GetCommand(cmdContext);
-                    command.Execute();
-
-                    CommandId commandId = _commandResults.GetLastCommandId();
-                    object commandResult = _commandResults.GetResult(commandId);
-                    if (commandResult != null)
-                        _writer.Write($"Executed {commandId.Value} with result {commandResult}");
                     else
-                        _writer.Write($"Executed {commandId.Value}");
+                    {
+                        ServerCommandContext cmdContext = _reader.Read(userInput);
+                        IServerCommand command = _commandFactory.GetCommand(cmdContext);
+                        command.Execute();
+
+                        CommandId commandId = _commandResults.GetLastCommandId();
+                        object commandResult = _commandResults.GetResult(commandId);
+                        if (commandResult != null)
+                            _writer.Write($"{commandResult.ToString()}");
+                        else
+                            _writer.Write($"Executed {commandId.Value}");
+                    }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     _writer.Write(ex.Message);
                 }
+
+                _writer.InjectServerPrefix();
+                userInput = DesktopConsole.ReadLine();
             }
         }
+
     }
 
 }

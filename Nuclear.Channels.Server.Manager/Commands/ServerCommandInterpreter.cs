@@ -38,6 +38,8 @@ namespace Nuclear.Channels.Server.Manager.Commands
                     return ServerCommandType.Start;
                 case "stop":
                     return ServerCommandType.Stop;
+                case "read":
+                    return ServerCommandType.Read;
                 default:
                     throw new ArgumentException(nameof(type));
             }

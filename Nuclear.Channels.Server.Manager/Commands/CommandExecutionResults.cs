@@ -23,7 +23,7 @@ namespace Nuclear.Channels.Server.Manager.Commands
 
         public object GetResult(CommandId cmdId)
         {
-            return _commandResults.FirstOrDefault(x => x.Key.Equals(cmdId));
+            return _commandResults.FirstOrDefault(x => x.Key.Equals(cmdId)).Value;
         }
 
         public CommandId GetLastCommandId()

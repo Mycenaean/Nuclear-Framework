@@ -4,6 +4,7 @@ using Nuclear.ExportLocator;
 using Nuclear.ExportLocator.Decorators;
 using Nuclear.ExportLocator.Enumerations;
 using System;
+using System.Diagnostics;
 using System.Linq;
 using DesktopConsole = System.Console;
 
@@ -14,6 +15,7 @@ namespace Nuclear.Channels.Server.Manager.Console
     {
         private string[] _instructions;
 
+        [DebuggerStepThrough]
         public ConsoleReader()
         {
             _instructions = new string[] { "read", "start", "stop", "restart" };
@@ -22,16 +24,19 @@ namespace Nuclear.Channels.Server.Manager.Console
         public ServerCommandContext Read(string consoleLine)
         {
             string[] userInput = consoleLine.Split(' ');
-            if (userInput.Length > 3)
+            if (userInput.Length > 4)
                 throw new InvalidInstructionException("Number of arguments exceeds 3");
 
-            if (_instructions.Any(x => x.Equals(userInput[0])))
+            if (!_instructions.Any(x => x.Equals(userInput[0])))
                 throw new InvalidInstructionException("Instruction not recognized");
 
-            if (!userInput[1].Equals("channel", StringComparison.OrdinalIgnoreCase) || !userInput[1].Equals("channelMethod", StringComparison.OrdinalIgnoreCase))
+            if (!userInput[1].Equals("channel", StringComparison.OrdinalIgnoreCase) && !userInput[1].Equals("channelMethod", StringComparison.OrdinalIgnoreCase))
                 throw new InvalidInstructionTargetException("Target not recognized");
 
-            return new ServerCommandContext(ServiceLocatorBuilder.CreateServiceLocator(), userInput[2], userInput[0]);
+            if (userInput[0].Equals("read", StringComparison.OrdinalIgnoreCase))
+                return new ServerCommandContext(ServiceLocatorBuilder.CreateServiceLocator(), userInput[3], userInput[0]);
+            else
+                return new ServerCommandContext(ServiceLocatorBuilder.CreateServiceLocator(), userInput[2], userInput[0]);
 
         }
     }
