@@ -1,4 +1,8 @@
-﻿using Nuclear.Channels;
+﻿// Copyright © Nikola Milinkovic 
+// Licensed under the MIT License (MIT).
+// See License.md in the repository root for more information.
+
+using Nuclear.Channels;
 using Nuclear.Channels.Base.Enums;
 using Nuclear.Channels.Decorators;
 using Nuclear.Channels.Base.Decorators;

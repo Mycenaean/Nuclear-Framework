@@ -1,4 +1,8 @@
-﻿using Nuclear.Channels.Handlers;
+﻿// Copyright © Nikola Milinkovic 
+// Licensed under the MIT License (MIT).
+// See License.md in the repository root for more information.
+
+using Nuclear.Channels.Handlers;
 using Nuclear.Channels.Server.Manager.Exceptions;
 using System;
 using System.Collections.Generic;

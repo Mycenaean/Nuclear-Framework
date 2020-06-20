@@ -1,4 +1,8 @@
-﻿using Nuclear.Channels.Server.Manager.Commands;
+﻿// Copyright © Nikola Milinkovic 
+// Licensed under the MIT License (MIT).
+// See License.md in the repository root for more information.
+
+using Nuclear.Channels.Server.Manager.Commands;
 using Nuclear.Channels.Server.Manager.Exceptions;
 using Nuclear.ExportLocator;
 using Nuclear.ExportLocator.Decorators;
