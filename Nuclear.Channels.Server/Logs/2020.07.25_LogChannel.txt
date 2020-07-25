@@ -1,0 +1,8 @@
+7/25/2020 22:26:42::::Info::::Method Start::::Request coming to TestServerChannel.HelloWorld
+7/25/2020 22:26:42::::Info::::Method Start::::HttpMethod:GET
+7/25/2020 22:26:42::::Debug::::Method Start::::Request finished...
+7/25/2020 22:26:42::::Debug::::Method Start::::Closing the response
+7/25/2020 22:26:57::::Info::::Method Start::::Request coming to ServerChannel.ListChannelMethods
+7/25/2020 22:26:57::::Info::::Method Start::::HttpMethod:GET
+7/25/2020 22:26:58::::Debug::::Method Start::::Request finished...
+7/25/2020 22:26:58::::Debug::::Method Start::::Closing the response

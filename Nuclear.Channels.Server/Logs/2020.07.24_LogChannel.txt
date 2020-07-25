@@ -1,0 +1,32 @@
+7/24/2020 11:44:26::::Info::::Method Start::::Request coming to ServerChannel.ListChannelMethods
+7/24/2020 11:44:26::::Info::::Method Start::::HttpMethod:GET
+7/24/2020 11:44:27::::Debug::::Method Start::::Request finished...
+7/24/2020 11:44:27::::Debug::::Method Start::::Closing the response
+7/24/2020 11:45:09::::Info::::Method Start::::Request coming to ServerChannel.ListChannelMethods
+7/24/2020 11:45:09::::Info::::Method Start::::HttpMethod:GET
+7/24/2020 11:45:09::::Debug::::Method Start::::Request finished...
+7/24/2020 11:45:09::::Debug::::Method Start::::Closing the response
+7/24/2020 11:45:47::::Info::::Method Start::::Request coming to ServerChannel.ListChannelMethods
+7/24/2020 11:45:47::::Info::::Method Start::::HttpMethod:GET
+7/24/2020 11:45:47::::Debug::::Method Start::::Request finished...
+7/24/2020 11:45:47::::Debug::::Method Start::::Closing the response
+7/24/2020 11:45:50::::Info::::Method Start::::Request coming to TestServerChannel.HelloWorld
+7/24/2020 11:45:50::::Info::::Method Start::::HttpMethod:GET
+7/24/2020 11:45:50::::Debug::::Method Start::::Request finished...
+7/24/2020 11:45:50::::Debug::::Method Start::::Closing the response
+7/24/2020 11:46:05::::Info::::Method Start::::Request coming to TestServerChannel.PostParams
+7/24/2020 11:46:05::::Info::::Method Start::::HttpMethod:GET
+7/24/2020 11:46:05::::Debug::::Method Start::::Request finished...
+7/24/2020 11:46:05::::Debug::::Method Start::::Closing the response
+7/24/2020 11:46:22::::Info::::Method Start::::Request coming to TestServerChannel.PostParams
+7/24/2020 11:46:22::::Info::::Method Start::::HttpMethod:GET
+7/24/2020 11:46:22::::Debug::::Method Start::::Request finished...
+7/24/2020 11:46:22::::Debug::::Method Start::::Closing the response
+7/24/2020 11:46:24::::Info::::Method Start::::Request coming to TestServerChannel.PostParams
+7/24/2020 11:46:24::::Info::::Method Start::::HttpMethod:GET
+7/24/2020 11:46:24::::Debug::::Method Start::::Request finished...
+7/24/2020 11:46:24::::Debug::::Method Start::::Closing the response
+7/24/2020 11:46:25::::Info::::Method Start::::Request coming to TestServerChannel.PostParams
+7/24/2020 11:46:25::::Info::::Method Start::::HttpMethod:GET
+7/24/2020 11:46:25::::Debug::::Method Start::::Request finished...
+7/24/2020 11:46:25::::Debug::::Method Start::::Closing the response

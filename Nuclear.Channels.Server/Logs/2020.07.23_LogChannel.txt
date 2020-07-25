@@ -1,0 +1,84 @@
+7/23/2020 19:26:16::::Info::::Method Start::::Request coming to TestServerChannel.HelloWorld
+7/23/2020 19:26:16::::Info::::Method Start::::HttpMethod:GET
+7/23/2020 19:26:17::::Debug::::Method Start::::Request finished...
+7/23/2020 19:26:17::::Debug::::Method Start::::Closing the response
+7/23/2020 19:26:29::::Info::::Method Start::::Request coming to ServerChannel.ListChannels
+7/23/2020 19:26:29::::Info::::Method Start::::HttpMethod:GET
+7/23/2020 19:26:29::::Debug::::Method Start::::Request finished...
+7/23/2020 19:26:29::::Debug::::Method Start::::Closing the response
+7/23/2020 19:26:43::::Info::::Method Start::::Request coming to ServerChannel.ListChannelMethods
+7/23/2020 19:26:43::::Info::::Method Start::::HttpMethod:GET
+7/23/2020 19:26:43::::Debug::::Method Start::::Request finished...
+7/23/2020 19:26:43::::Debug::::Method Start::::Closing the response
+7/23/2020 19:31:13::::Info::::Method Start::::Request coming to ServerChannel.ListChannelMethods
+7/23/2020 19:31:13::::Info::::Method Start::::HttpMethod:GET
+7/23/2020 19:31:13::::Debug::::Method Start::::Request finished...
+7/23/2020 19:31:13::::Debug::::Method Start::::Closing the response
+7/23/2020 19:32:05::::Info::::Method Start::::Request coming to ServerChannel.ListChannelMethods
+7/23/2020 19:32:05::::Info::::Method Start::::HttpMethod:GET
+7/23/2020 19:32:05::::Debug::::Method Start::::Request finished...
+7/23/2020 19:32:05::::Debug::::Method Start::::Closing the response
+7/23/2020 19:38:53::::Info::::Method Start::::Request coming to ServerChannel.ListChannelMethods
+7/23/2020 19:38:53::::Info::::Method Start::::HttpMethod:GET
+7/23/2020 19:38:54::::Debug::::Method Start::::Request finished...
+7/23/2020 19:38:54::::Debug::::Method Start::::Closing the response
+7/23/2020 19:39:25::::Info::::Method Start::::Request coming to ServerChannel.ListChannelMethods
+7/23/2020 19:39:25::::Info::::Method Start::::HttpMethod:GET
+7/23/2020 19:39:26::::Debug::::Method Start::::Request finished...
+7/23/2020 19:39:26::::Debug::::Method Start::::Closing the response
+7/23/2020 19:51:09::::Info::::Method Start::::Request coming to ServerChannel.ListChannelMethods
+7/23/2020 19:51:09::::Info::::Method Start::::HttpMethod:GET
+7/23/2020 19:51:09::::Debug::::Method Start::::Request finished...
+7/23/2020 19:51:09::::Debug::::Method Start::::Closing the response
+7/23/2020 19:53:27::::Info::::Method Start::::Request coming to TestServerChannel.HelloWorld
+7/23/2020 19:53:27::::Info::::Method Start::::HttpMethod:GET
+7/23/2020 19:53:28::::Debug::::Method Start::::Request finished...
+7/23/2020 19:53:28::::Debug::::Method Start::::Closing the response
+7/23/2020 19:56:39::::Info::::Method Start::::Request coming to ServerChannel.ListChannelMethods
+7/23/2020 19:56:39::::Info::::Method Start::::HttpMethod:GET
+7/23/2020 19:56:40::::Debug::::Method Start::::Request finished...
+7/23/2020 19:56:40::::Debug::::Method Start::::Closing the response
+7/23/2020 20:01:53::::Info::::Method Start::::Request coming to ServerChannel.ListChannelMethods
+7/23/2020 20:01:53::::Info::::Method Start::::HttpMethod:GET
+7/23/2020 20:01:53::::Debug::::Method Start::::Request finished...
+7/23/2020 20:01:53::::Debug::::Method Start::::Closing the response
+7/23/2020 20:02:58::::Info::::Method Start::::Request coming to TestServerChannel.HelloWorld
+7/23/2020 20:02:58::::Info::::Method Start::::HttpMethod:GET
+7/23/2020 20:02:58::::Debug::::Method Start::::Request finished...
+7/23/2020 20:02:58::::Debug::::Method Start::::Closing the response
+7/23/2020 20:05:49::::Info::::Method Start::::Request coming to ServerChannel.ListChannelMethods
+7/23/2020 20:05:49::::Info::::Method Start::::HttpMethod:GET
+7/23/2020 20:05:50::::Debug::::Method Start::::Request finished...
+7/23/2020 20:05:50::::Debug::::Method Start::::Closing the response
+7/23/2020 20:07:57::::Info::::Method Start::::Request coming to ServerChannel.ListChannelMethods
+7/23/2020 20:07:57::::Info::::Method Start::::HttpMethod:GET
+7/23/2020 20:07:57::::Debug::::Method Start::::Request finished...
+7/23/2020 20:07:57::::Debug::::Method Start::::Closing the response
+7/23/2020 20:15:13::::Info::::Method Start::::Request coming to ServerChannel.ListChannels
+7/23/2020 20:15:13::::Info::::Method Start::::HttpMethod:GET
+7/23/2020 20:15:14::::Debug::::Method Start::::Request finished...
+7/23/2020 20:15:14::::Debug::::Method Start::::Closing the response
+7/23/2020 20:15:23::::Info::::Method Start::::Request coming to ServerChannel.ListChannelMethods
+7/23/2020 20:15:23::::Info::::Method Start::::HttpMethod:GET
+7/23/2020 20:15:23::::Debug::::Method Start::::Request finished...
+7/23/2020 20:15:23::::Debug::::Method Start::::Closing the response
+7/23/2020 20:15:53::::Info::::Method Start::::Request coming to ServerChannel.ListChannelMethods
+7/23/2020 20:15:53::::Info::::Method Start::::HttpMethod:GET
+7/23/2020 20:15:53::::Debug::::Method Start::::Request finished...
+7/23/2020 20:15:53::::Debug::::Method Start::::Closing the response
+7/23/2020 20:16:03::::Info::::Method Start::::Request coming to ServerChannel.ListChannelMethods
+7/23/2020 20:16:03::::Info::::Method Start::::HttpMethod:GET
+7/23/2020 20:16:03::::Debug::::Method Start::::Request finished...
+7/23/2020 20:16:03::::Debug::::Method Start::::Closing the response
+7/23/2020 20:18:28::::Info::::Method Start::::Request coming to ServerChannel.ListChannelMethods
+7/23/2020 20:18:28::::Info::::Method Start::::HttpMethod:GET
+7/23/2020 20:18:28::::Debug::::Method Start::::Request finished...
+7/23/2020 20:18:28::::Debug::::Method Start::::Closing the response
+7/23/2020 20:18:42::::Info::::Method Start::::Request coming to ServerChannel.ListChannelMethods
+7/23/2020 20:18:42::::Info::::Method Start::::HttpMethod:GET
+7/23/2020 20:18:42::::Debug::::Method Start::::Request finished...
+7/23/2020 20:18:42::::Debug::::Method Start::::Closing the response
+7/23/2020 20:18:56::::Info::::Method Start::::Request coming to ServerChannel.ListChannelMethods
+7/23/2020 20:18:56::::Info::::Method Start::::HttpMethod:GET
+7/23/2020 20:18:56::::Debug::::Method Start::::Request finished...
+7/23/2020 20:18:56::::Debug::::Method Start::::Closing the response
