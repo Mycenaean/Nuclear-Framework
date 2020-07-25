@@ -4,6 +4,8 @@
 
 using System;
 using System.Drawing;
+using System.Threading;
+using System.Threading.Tasks;
 using Nuclear.Channels.Handlers;
 
 namespace Nuclear.Channels.Server.Manager.Commands
@@ -20,15 +22,17 @@ namespace Nuclear.Channels.Server.Manager.Commands
 
         protected override void ExecuteOnMethod()
         {
-            _methodHandler.Restart();
+            _writer.Write($"{this.GetType().Name} started execution");
+            Task.Run(()=> _methodHandler.Restart());
+            Thread.Sleep(1000);
         }
 
         protected override void ExecuteOnChannel()
         {
-            ChannelMethodHandler[] methods = _channelHandler.MethodHandlers.AsArray();
-            for (int i = 0; i < methods.Length; i++)
+            var methods = _channelHandler.MethodHandlers.AsArray();
+            foreach (var handler in methods)
             {
-                methods[i].Restart();
+                Task.Run(()=> handler.Restart());
             }
         }
     }

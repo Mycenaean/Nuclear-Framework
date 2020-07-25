@@ -8,7 +8,9 @@ using Nuclear.ExportLocator.Global;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("Nuclear.ExportLocator.Extensions")]
 namespace Nuclear.ExportLocator.Services
 {
     /// <summary>
@@ -16,15 +18,17 @@ namespace Nuclear.ExportLocator.Services
     /// </summary>
     internal sealed class ServiceLocator : IServiceLocator
     {
-        private IServiceProvider provider;
-        private IServiceCollection services;
-        private ExportFactory factory;
-        private IList<ExportInformation> exports;
+        private readonly IServiceProvider _provider;
+        private readonly IServiceCollection _services;
+        private readonly ExportFactory _factory;
+        private IList<ExportInformation> _exports;
         private static ServiceLocator Locator = null;
-        private static object _lock = new object();
+        private static readonly object _lock = new object();
+
+        internal IServiceCollection Services => _services;
 
         /// <summary>
-        /// Get ServiceLocator singleton instance
+        /// Get ServiceLocator instance
         /// </summary>
         public static ServiceLocator GetInstance
         {
@@ -44,14 +48,23 @@ namespace Nuclear.ExportLocator.Services
         }
 
         /// <summary>
-        /// Private constructor for Singletone Design Pattern
+        /// Private constructor for Singleton Design Pattern
         /// </summary>
         private ServiceLocator()
         {
-            factory = new ExportFactory();
-            services = new ServiceCollection();
-            exports = new List<ExportInformation>();
-            provider = InitializeServices();
+            _factory = new ExportFactory();
+            _services = new ServiceCollection();
+            _exports = new List<ExportInformation>();
+            _provider = InitializeServices();
+        }
+
+        internal ServiceLocator(List<string> assemblies)
+        {
+            _factory = new ExportFactory(assemblies.ToArray());
+            _services = new ServiceCollection();
+            _exports = new List<ExportInformation>();
+            _provider = InitializeServices();
+            Locator = this;
         }
 
         /// <summary>
@@ -60,20 +73,26 @@ namespace Nuclear.ExportLocator.Services
         /// <returns>IServiceProvider Instance</returns>
         private IServiceProvider InitializeServices()
         {
-            exports = factory.GetExports();
-            foreach (var export in exports)
+            _exports = _factory.GetExports();
+            foreach (var export in _exports)
             {
-                if (export.ExportLifetime == ExportLifetime.Scoped)
-                    services.AddScoped(export.ServiceType, export.Implementation);
-                else if (export.ExportLifetime == ExportLifetime.Transient)
-                    services.AddTransient(export.ServiceType, export.Implementation);
-                else if (export.ExportLifetime == ExportLifetime.Singleton)
-                    services.AddSingleton(export.ServiceType, export.Implementation);
-                else
-                    services.AddTransient(export.ServiceType, export.Implementation);
-
+                switch (export.ExportLifetime)
+                {
+                    case ExportLifetime.Scoped:
+                        _services.AddScoped(export.ServiceType, export.Implementation);
+                        break;
+                    case ExportLifetime.Transient:
+                        _services.AddTransient(export.ServiceType, export.Implementation);
+                        break;
+                    case ExportLifetime.Singleton:
+                        _services.AddSingleton(export.ServiceType, export.Implementation);
+                        break;
+                    default:
+                        _services.AddTransient(export.ServiceType, export.Implementation);
+                        break;
+                }
             }
-            return services.BuildServiceProvider();
+            return _services.BuildServiceProvider();
         }
 
         /// <summary>
@@ -83,13 +102,19 @@ namespace Nuclear.ExportLocator.Services
         /// <returns>Specified service</returns>
         public T Get<T>()
         {
-            Debug.Assert(provider.GetService<T>() != null);
-            return provider.GetService<T>();
+            Debug.Assert(_provider.GetService<T>() != null);
+            return _provider.GetService<T>();
         }
 
+        /// <summary>
+        /// Get the service from IServiceLocator
+        /// </summary>
+        /// <param name="service">Requested Type</param>
+        /// <returns>Specified service as an object</returns>
         public object GetObject(Type service)
-        {
-            return provider.GetService(service);
+        {   
+            Debug.Assert(_provider.GetService(service) != null);
+            return _provider.GetService(service);
         }
     }
 }

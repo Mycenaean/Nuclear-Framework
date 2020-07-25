@@ -11,7 +11,7 @@ namespace Nuclear.Channels.Server
     {
         static void Main(string[] args)
         {
-            IChannelServerManager serverManager = ChannelServerManagerBuilder.Build(server => 
+            var serverManager = ChannelServerManagerBuilder.Build(server => 
             {
                 server.LoadAssemblies(AppDomain.CurrentDomain, null);
                 server.IsServerManaged(true);

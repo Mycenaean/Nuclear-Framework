@@ -2,6 +2,7 @@
 // Licensed under the MIT License (MIT).
 // See License.md in the repository root for more information.
 
+using System;
 using Nuclear.Channels.Handlers;
 using Nuclear.Channels.Server.Manager.Commands;
 using Nuclear.Channels.Server.Manager.Console;
@@ -36,24 +37,27 @@ namespace Nuclear.Channels.Server.Manager.CoreCommands
             _writer.Write("Starting the Server Manager....");
             //Wait for handlers to be initialized since IChannelServer will start 
             //a new Task for every ChannelMethod
-            for (int i = 0; i < 10; i++)
+            for (var i = 0; i < 10; i++)
             {
                 _methodHandlersList = _methodHandlers.AsList();
-                int startingState = 0;
-                foreach (ChannelMethodHandler handler in _methodHandlersList)
+                var startingState = 0;
+                foreach (var handler in _methodHandlersList)
                 {
                     if (handler.State == EntityState.Starting)
                         startingState++;
                     else if(handler.State != EntityState.Running )
-                        _writer.Write($"{handler.HandlerId} {handler.Url} {handler.State}");
+                        _writer.Write($"{handler.HandlerId} " +
+                                      $"{handler.Url} " +
+                                      $"{Enum.GetName(typeof(EntityState),handler.State)}");
                 }
+                
 
                 //Give time for IChannelServer to start all ChannelMethod tasks
-                Thread.Sleep(1000);
+                Thread.Sleep(3000);
 
-                if (i > 2 && startingState == 0)
+                if (i <= 2 || startingState != 0) continue;
                 {
-                    foreach (ChannelMethodHandler handler in _methodHandlersList)
+                    foreach (var handler in _methodHandlersList)
                     {
                         _writer.Write($"{handler.HandlerId} {handler.Url} {handler.State}");
                     }

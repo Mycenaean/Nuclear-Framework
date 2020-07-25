@@ -24,7 +24,7 @@ namespace Nuclear.Channels.Server.Manager.CoreCommands
             Services.Add(service);
         }
 
-        public void AddServices(List<object> services)
+        public void AddServices(IEnumerable<object> services)
         {
             Services.AddRange(services);
         }

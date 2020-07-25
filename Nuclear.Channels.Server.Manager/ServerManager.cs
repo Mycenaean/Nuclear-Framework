@@ -40,22 +40,19 @@ namespace Nuclear.Channels.Server.Manager
 
         private void InitCommands()
         {
-            //CoreCommand initPlugins = new CoreCommand("InitPlugins");
-            //IServerCommand initPluginsCommand = _commandFactory.GetCoreCommand(initPlugins);
-            //initPluginsCommand.Execute();
-
-            CoreCommand initServer = new CoreCommand("InitServer");
+            var initServer = new CoreCommand("InitServer");
             initServer.AddService(_server);            
 
-            IServerCommand initServerCommand = _commandFactory.GetCoreCommand(initServer);
+            var initServerCommand = _commandFactory.GetCoreCommand(initServer);
 
-            CoreCommand serverThreading = new CoreCommand("ServerThread");
+            var serverThreading = new CoreCommand("ServerThread");
+            
             // ORDER OF THE ADDED SERVICES MATTERS!
             serverThreading.AddService(initServerCommand);
             serverThreading.AddService(_services);
             serverThreading.AddService(_writer);
 
-            IServerCommand serverThreadCommand = _commandFactory.GetCoreCommand(serverThreading);
+            var serverThreadCommand = _commandFactory.GetCoreCommand(serverThreading);
             serverThreadCommand.Execute();
         }
 
@@ -63,11 +60,13 @@ namespace Nuclear.Channels.Server.Manager
         {
             _writer.Write("Listening for commands");
             _writer.Write($"To see list of commands type : {ServerCommandList.Help}");
-           
-            _writer.InjectServerPrefix();
-            string userInput = DesktopConsole.ReadLine();
 
-            while (!userInput.Equals(ServerCommandList.StopProgram, StringComparison.OrdinalIgnoreCase))
+            _writer.InjectServerPrefix();
+            var userInput = DesktopConsole.ReadLine();
+
+            ContinueWhenStopped:
+            
+            while (userInput != null && !userInput.Equals(ServerCommandList.StopProgram, StringComparison.OrdinalIgnoreCase))
             {
                 try
                 {
@@ -77,16 +76,15 @@ namespace Nuclear.Channels.Server.Manager
                     }
                     else
                     {
-                        ServerCommandContext cmdContext = _reader.Read(userInput);
-                        IServerCommand command = _commandFactory.GetCommand(cmdContext);
+                        var cmdContext = _reader.Read(userInput);
+                        var command = _commandFactory.GetCommand(cmdContext);
                         command.Execute();
 
-                        CommandId commandId = _commandResults.GetLastCommandId();
-                        object commandResult = _commandResults.GetResult(commandId);
-                        if (commandResult != null)
-                            _writer.Write($"{commandResult.ToString()}");
-                        else
-                            _writer.Write($"Executed {commandId.Value}");
+                        var commandId = _commandResults.GetLastCommandId();
+                        var commandResult = _commandResults.GetResult(commandId);
+                        _writer.Write(commandResult != null
+                            ? $"{commandResult.ToString()}"
+                            : $"Executed {commandId.Value}");
                     }
                 }
                 catch (Exception ex)
@@ -97,6 +95,18 @@ namespace Nuclear.Channels.Server.Manager
                 _writer.InjectServerPrefix();
                 userInput = DesktopConsole.ReadLine();
             }
+
+            if (userInput != null && userInput.Equals(ServerCommandList.ShutDown, StringComparison.OrdinalIgnoreCase))
+            {
+                DesktopConsole.WriteLine("Application shutting down...");
+                return;
+            };
+            
+            _writer.InjectServerPrefix();
+            DesktopConsole.WriteLine("Server is stopped...");
+            while(!String.IsNullOrEmpty(userInput = DesktopConsole.ReadLine()))
+                if(userInput.Equals(ServerCommandList.StartProgram,StringComparison.OrdinalIgnoreCase))
+                    goto ContinueWhenStopped;
         }
 
     }

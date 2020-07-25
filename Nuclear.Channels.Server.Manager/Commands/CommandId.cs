@@ -12,7 +12,7 @@ namespace Nuclear.Channels.Server.Manager.Commands
 
         public CommandId(Type command, string handlerId, DateTime executedTime)
         {
-            Value = $"{command.GetType().Name}_{handlerId}_{executedTime}";
+            Value = $"{command.Name} on {handlerId} at {executedTime}";
         }
 
     }

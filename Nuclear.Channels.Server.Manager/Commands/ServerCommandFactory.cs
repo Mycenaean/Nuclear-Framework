@@ -17,9 +17,9 @@ namespace Nuclear.Channels.Server.Manager.Commands
     [Export(typeof(IServerCommandFactory), ExportLifetime.Singleton)]
     internal class ServerCommandFactory : IServerCommandFactory
     {
-        private IServiceLocator _services;
-        private IChannelHandlerCollection _channelHandlers;
-        private IChannelMethodHandlerCollection _methodHandlers;
+        private readonly IServiceLocator _services;
+        private readonly IChannelHandlerCollection _channelHandlers;
+        private readonly IChannelMethodHandlerCollection _methodHandlers;
 
         [DebuggerStepThrough]
         public ServerCommandFactory()
@@ -34,37 +34,27 @@ namespace Nuclear.Channels.Server.Manager.Commands
         {
             if (context.CommandTarget == ServerCommandTarget.Channel)
             {
-                ChannelHandler channelHandler = _channelHandlers.GetHandler(context.HandlerId);
-                switch (context.CommandType)
+                var channelHandler = _channelHandlers.GetHandler(context.HandlerId);
+                return context.CommandType switch
                 {
-                    case ServerCommandType.Read:
-                        return new ReadStateCommand(channelHandler);
-                    case ServerCommandType.Restart:
-                        return new RestartCommand(channelHandler);
-                    case ServerCommandType.Start:
-                        return new StartCommand(channelHandler);
-                    case ServerCommandType.Stop:
-                        return new StopCommand(channelHandler);
-                    default:
-                        return null;
-                }
+                    ServerCommandType.Read => new ReadStateCommand(channelHandler),
+                    ServerCommandType.Restart => new RestartCommand(channelHandler),
+                    ServerCommandType.Start => new StartCommand(channelHandler),
+                    ServerCommandType.Stop => new StopCommand(channelHandler),
+                    _ => null
+                };
             }
             else
             {
-                ChannelMethodHandler methodHandler = _methodHandlers.GetHandler(context.HandlerId);
-                switch (context.CommandType)
+                var methodHandler = _methodHandlers.GetHandler(context.HandlerId);
+                return context.CommandType switch
                 {
-                    case ServerCommandType.Read:
-                        return new ReadStateCommand(methodHandler);
-                    case ServerCommandType.Restart:
-                        return new RestartCommand(methodHandler);
-                    case ServerCommandType.Start:
-                        return new StartCommand(methodHandler);
-                    case ServerCommandType.Stop:
-                        return new StopCommand(methodHandler);
-                    default:
-                        return null;
-                }
+                    ServerCommandType.Read => new ReadStateCommand(methodHandler),
+                    ServerCommandType.Restart => new RestartCommand(methodHandler),
+                    ServerCommandType.Start => new StartCommand(methodHandler),
+                    ServerCommandType.Stop => new StopCommand(methodHandler),
+                    _ => null
+                };
             }
         }
 
@@ -72,19 +62,17 @@ namespace Nuclear.Channels.Server.Manager.Commands
         {
             switch (coreCommand.CommandName)
             {
-                case "InitPlugins":
-                    return new InitPluginsCommand();
                 case "InitServer":
                     {
-                        IChannelServer server = coreCommand.Services.FirstOrDefault() as IChannelServer;
+                        var server = coreCommand.Services.FirstOrDefault() as IChannelServer;
 
                         return new InitServerCommand(server);
                     }
                 case "ServerThread":
                     {
-                        InitServerCommand initServerCommand = coreCommand.Services[0] as InitServerCommand;
-                        IServiceLocator services = coreCommand.Services[1] as IServiceLocator;
-                        IConsoleWriter writer = coreCommand.Services[2] as IConsoleWriter;
+                        var initServerCommand = coreCommand.Services[0] as InitServerCommand;
+                        var services = coreCommand.Services[1] as IServiceLocator;
+                        var writer = coreCommand.Services[2] as IConsoleWriter;
 
                         return new ServerThreadCommand(services, writer, initServerCommand);
                     }

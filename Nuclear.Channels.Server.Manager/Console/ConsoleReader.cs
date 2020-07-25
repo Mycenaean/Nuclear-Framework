@@ -17,7 +17,7 @@ namespace Nuclear.Channels.Server.Manager.Console
     [Export(typeof(IConsoleReader), ExportLifetime.Transient)]
     public class ConsoleReader : IConsoleReader
     {
-        private string[] _instructions;
+        private readonly string[] _instructions;
 
         [DebuggerStepThrough]
         public ConsoleReader()
@@ -27,7 +27,7 @@ namespace Nuclear.Channels.Server.Manager.Console
 
         public ServerCommandContext Read(string consoleLine)
         {
-            string[] userInput = consoleLine.Split(' ');
+            var userInput = consoleLine.Split(' ');
             if (userInput.Length > 4)
                 throw new InvalidInstructionException("Number of arguments exceeds 3");
 
@@ -37,10 +37,9 @@ namespace Nuclear.Channels.Server.Manager.Console
             if (!userInput[1].Equals("channel", StringComparison.OrdinalIgnoreCase) && !userInput[1].Equals("channelMethod", StringComparison.OrdinalIgnoreCase))
                 throw new InvalidInstructionTargetException("Target not recognized");
 
-            if (userInput[0].Equals("read", StringComparison.OrdinalIgnoreCase))
-                return new ServerCommandContext(ServiceLocatorBuilder.CreateServiceLocator(), userInput[3], userInput[0]);
-            else
-                return new ServerCommandContext(ServiceLocatorBuilder.CreateServiceLocator(), userInput[2], userInput[0]);
+            return userInput[0].Equals("read", StringComparison.OrdinalIgnoreCase)
+                ? new ServerCommandContext(ServiceLocatorBuilder.CreateServiceLocator(), userInput[3], userInput[0])
+                : new ServerCommandContext(ServiceLocatorBuilder.CreateServiceLocator(), userInput[2], userInput[0]);
 
         }
     }

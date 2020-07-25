@@ -14,7 +14,7 @@ namespace Nuclear.Channels.Server.Manager.CoreCommands
 {
     public class InitServerCommand : IServerCommand
     {
-        private IChannelServer _server;
+        private readonly IChannelServer _server;
 
         public InitServerCommand(IChannelServer server)
         {

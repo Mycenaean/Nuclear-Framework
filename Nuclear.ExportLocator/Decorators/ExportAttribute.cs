@@ -11,7 +11,7 @@ namespace Nuclear.ExportLocator.Decorators
     /// Attribute that will register service in IServiceLocator
     /// </summary>
     [AttributeUsage(AttributeTargets.Class)]
-    public class ExportAttribute : Attribute
+    public sealed class ExportAttribute : Attribute
     {
         /// <summary>
         /// Service type
@@ -36,11 +36,11 @@ namespace Nuclear.ExportLocator.Decorators
         /// Registering Service with specified Lifetime
         /// </summary>
         /// <param name="service">Type of Service</param>
-        /// <param name="Lifetime">Lifetime of the Service</param>
-        public ExportAttribute(Type service, ExportLifetime Lifetime)
+        /// <param name="lifetime">Lifetime of the Service</param>
+        public ExportAttribute(Type service, ExportLifetime lifetime)
         {
             ServiceType = service;
-            this.Lifetime = Lifetime;
+            this.Lifetime = lifetime;
         }
     }
 }

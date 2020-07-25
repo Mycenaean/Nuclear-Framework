@@ -2,11 +2,6 @@
 // Licensed under the MIT License (MIT).
 // See License.md in the repository root for more information.
 
-using Nuclear.ExportLocator.Decorators;
-using Nuclear.ExportLocator.Enumerations;
-using System;
-using System.Collections.Generic;
-
 namespace Nuclear.Channels.Server.Manager
 {
     public class ServerCommandList 
@@ -20,6 +15,8 @@ namespace Nuclear.Channels.Server.Manager
         public static string ReadChannelState = "read channel state [channelId]";
         public static string ReadChannelMethodState = "read channelMethod state [channelMethodId]";
         public static string StopProgram = "channel server stop";
+        public static string StartProgram = "channel server start";
+        public static string ShutDown = "channel server shutdown";
         public static string Help = "channel server help";
 
     }

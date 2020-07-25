@@ -41,6 +41,7 @@ namespace Nuclear.Channels.Handlers
         private bool _isManaged;
 
         public EntityState State { get; private set; }
+        public string StateName { get; private set; }
         public string HandlerId { get;  }
         public string ChannelHandlerId { get; }
         public string Url { get; private set; }
@@ -86,7 +87,8 @@ namespace Nuclear.Channels.Handlers
         public void Start()
         {
             State = EntityState.Starting;
-
+            StateName = Enum.GetName(typeof(EntityState), EntityState.Starting);
+            
             _httpListener = new HttpListener();
             ChannelConfigurationInfo channelConfig = _configuration.Configure(_httpListener, _channel, _method, _baseURL);
 
@@ -98,6 +100,7 @@ namespace Nuclear.Channels.Handlers
                 {
                     _httpListener.Start();
                     State = EntityState.Running;
+                    StateName = Enum.GetName(typeof(EntityState), EntityState.Running);
                 }
                 catch (HttpListenerException hle)
                 {
@@ -171,6 +174,7 @@ namespace Nuclear.Channels.Handlers
                 _httpListener = null;
             }
             State = EntityState.Restarting;
+            StateName = Enum.GetName(typeof(EntityState), EntityState.Restarting);
             Start();
         }
 
@@ -180,6 +184,7 @@ namespace Nuclear.Channels.Handlers
                 _httpListener.Stop();
 
             State = EntityState.Stopped;
+            StateName = Enum.GetName(typeof(EntityState), EntityState.Stopped);
         }
     }
 }

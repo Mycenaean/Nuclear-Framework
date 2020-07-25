@@ -135,6 +135,7 @@ namespace Nuclear.Channels.Remoting
                 if (request.Credentials.GetType() == typeof(ChannelBasicCredentials))
                 {
                     ChannelBasicCredentials basic = (ChannelBasicCredentials)request.Credentials;
+
                     authorize = Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes($"{basic.Username}:{basic.Password}"));
                 }
                 else

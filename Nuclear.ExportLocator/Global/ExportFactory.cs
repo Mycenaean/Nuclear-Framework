@@ -15,15 +15,36 @@ namespace Nuclear.ExportLocator.Global
     /// </summary>
     internal class ExportFactory
     {
-        public IList<ExportInformation> exports = new List<ExportInformation>();
+        private readonly string[] _assemblyNames;
+        private readonly IList<ExportInformation> _exports = new List<ExportInformation>();
 
+        public ExportFactory()
+        {
+                
+        }
+
+        public ExportFactory(string[] assemblyNames)
+        {
+            _assemblyNames = assemblyNames;
+        }
+        
         /// <summary>
         /// Method that gets all exported Services
         /// </summary>
         /// <returns>List of exported services enclosed in ExportInformation</returns>
         public IList<ExportInformation> GetExports()
         {
-            Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
+            Assembly[] assemblies;
+            
+            if(_assemblyNames == null || _assemblyNames.Length == 0)
+                assemblies = AppDomain.CurrentDomain.GetAssemblies();
+            else
+            {
+                assemblies = new Assembly[_assemblyNames.Length];
+                
+                for (var i = 0; i < _assemblyNames.Length; i++)
+                    assemblies[i] = Assembly.Load(_assemblyNames[i]);
+            }
 
             foreach (var export in from assembly in assemblies
                                    from type in assembly.GetTypes()
@@ -39,10 +60,10 @@ namespace Nuclear.ExportLocator.Global
                                    }
                                    select export)
             {
-                exports.Add(export);
+                _exports.Add(export);
             }
 
-            return exports;
+            return _exports;
         }
 
 

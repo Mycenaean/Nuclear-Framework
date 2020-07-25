@@ -4,6 +4,8 @@
 
 using System;
 using System.Drawing;
+using System.Threading;
+using System.Threading.Tasks;
 using Nuclear.Channels.Handlers;
 
 namespace Nuclear.Channels.Server.Manager.Commands
@@ -21,7 +23,8 @@ namespace Nuclear.Channels.Server.Manager.Commands
         protected override void ExecuteOnMethod()
         {
             _writer.Write($"{this.GetType().Name} started execution");
-            _methodHandler.Start();            
+            Task.Run(() => _methodHandler.Start());
+            Thread.Sleep(1000);
         }
 
         protected override void ExecuteOnChannel()

@@ -20,6 +20,7 @@ namespace Nuclear.Channels.Server.Manager.Commands
 
         protected override void ExecuteOnMethod()
         {
+            _writer.Write($"{this.GetType().Name} started execution");
             _methodHandler.Stop();
         }
 
