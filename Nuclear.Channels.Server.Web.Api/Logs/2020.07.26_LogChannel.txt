@@ -1,0 +1,80 @@
+7/26/2020 08:31:53::::Info::::Method Start::::Request coming to ServerChannel.GetAllMethods
+7/26/2020 08:31:53::::Info::::Method Start::::HttpMethod:GET
+7/26/2020 09:37:04::::Info::::Method Start::::Request coming to ServerChannel.GetAllMethods
+7/26/2020 09:37:04::::Info::::Method Start::::HttpMethod:GET
+7/26/2020 09:37:05::::Debug::::Method Start::::Request finished...
+7/26/2020 09:37:05::::Debug::::Method Start::::Closing the response
+7/26/2020 09:37:35::::Info::::Method Start::::Request coming to ServerChannel.GetMethodsByState
+7/26/2020 09:37:35::::Info::::Method Start::::HttpMethod:GET
+7/26/2020 09:37:35::::Debug::::Method Start::::Request finished...
+7/26/2020 09:37:35::::Debug::::Method Start::::Closing the response
+7/26/2020 09:37:40::::Info::::Method Start::::Request coming to ServerChannel.GetMethodsByState
+7/26/2020 09:37:40::::Info::::Method Start::::HttpMethod:GET
+7/26/2020 09:37:40::::Debug::::Method Start::::Request finished...
+7/26/2020 09:37:40::::Debug::::Method Start::::Closing the response
+7/26/2020 09:37:45::::Info::::Method Start::::Request coming to ServerChannel.GetMethodsByState
+7/26/2020 09:37:45::::Info::::Method Start::::HttpMethod:GET
+7/26/2020 09:37:45::::Debug::::Method Start::::Request finished...
+7/26/2020 09:37:45::::Debug::::Method Start::::Closing the response
+7/26/2020 09:37:51::::Info::::Method Start::::Request coming to ServerChannel.GetMethodsByState
+7/26/2020 09:37:51::::Info::::Method Start::::HttpMethod:GET
+7/26/2020 09:39:00::::Info::::Method Start::::Request coming to ServerChannel.GetMethodsByState
+7/26/2020 09:39:00::::Info::::Method Start::::HttpMethod:GET
+7/26/2020 09:39:05::::Debug::::Method Start::::Request finished...
+7/26/2020 09:39:05::::Debug::::Method Start::::Closing the response
+7/26/2020 09:39:10::::Info::::Method Start::::Request coming to ServerChannel.GetMethodsByState
+7/26/2020 09:39:10::::Info::::Method Start::::HttpMethod:GET
+7/26/2020 09:39:10::::Debug::::Method Start::::Request finished...
+7/26/2020 09:39:10::::Debug::::Method Start::::Closing the response
+7/26/2020 09:39:48::::Info::::Method Start::::Request coming to ServerChannel.StopMethod
+7/26/2020 09:39:48::::Info::::Method Start::::HttpMethod:GET
+7/26/2020 09:39:48::::Debug::::Method Start::::Request finished...
+7/26/2020 09:39:48::::Debug::::Method Start::::Closing the response
+7/26/2020 09:39:56::::Info::::Method Start::::Request coming to ServerChannel.GetMethodsByState
+7/26/2020 09:39:56::::Info::::Method Start::::HttpMethod:GET
+7/26/2020 09:39:56::::Debug::::Method Start::::Request finished...
+7/26/2020 09:39:56::::Debug::::Method Start::::Closing the response
+7/26/2020 09:40:17::::Info::::Method Start::::Request coming to ServerChannel.GetMethodsByState
+7/26/2020 09:40:17::::Info::::Method Start::::HttpMethod:GET
+7/26/2020 09:40:17::::Debug::::Method Start::::Request finished...
+7/26/2020 09:40:17::::Debug::::Method Start::::Closing the response
+7/26/2020 09:40:27::::Info::::Method Start::::Request coming to ServerChannel.GetMethodsByState
+7/26/2020 09:40:27::::Info::::Method Start::::HttpMethod:GET
+7/26/2020 09:40:27::::Debug::::Method Start::::Request finished...
+7/26/2020 09:40:27::::Debug::::Method Start::::Closing the response
+7/26/2020 09:40:45::::Info::::Method Start::::Request coming to ServerChannel.StartMethod
+7/26/2020 09:40:45::::Info::::Method Start::::HttpMethod:GET
+7/26/2020 09:40:46::::Debug::::Method Start::::Request finished...
+7/26/2020 09:40:46::::Debug::::Method Start::::Closing the response
+7/26/2020 09:40:51::::Info::::Method Start::::Request coming to ServerChannel.GetMethodsByState
+7/26/2020 09:40:51::::Info::::Method Start::::HttpMethod:GET
+7/26/2020 09:40:52::::Debug::::Method Start::::Request finished...
+7/26/2020 09:40:52::::Debug::::Method Start::::Closing the response
+7/26/2020 09:40:56::::Info::::Method Start::::Request coming to ServerChannel.GetMethodsByState
+7/26/2020 09:40:56::::Info::::Method Start::::HttpMethod:GET
+7/26/2020 09:40:56::::Debug::::Method Start::::Request finished...
+7/26/2020 09:40:56::::Debug::::Method Start::::Closing the response
+7/26/2020 09:42:07::::Info::::Method Start::::Request coming to ServerChannel.GetAllMethods
+7/26/2020 09:42:07::::Info::::Method Start::::HttpMethod:GET
+7/26/2020 09:42:07::::Debug::::Method Start::::Request finished...
+7/26/2020 09:42:08::::Debug::::Method Start::::Closing the response
+7/26/2020 09:42:29::::Info::::Method Start::::Request coming to ServerChannel.StopMethod
+7/26/2020 09:42:29::::Info::::Method Start::::HttpMethod:GET
+7/26/2020 09:42:29::::Debug::::Method Start::::Request finished...
+7/26/2020 09:42:29::::Debug::::Method Start::::Closing the response
+7/26/2020 09:42:37::::Info::::Method Start::::Request coming to ServerChannel.GetAllMethods
+7/26/2020 09:42:37::::Info::::Method Start::::HttpMethod:GET
+7/26/2020 09:42:37::::Debug::::Method Start::::Request finished...
+7/26/2020 09:42:37::::Debug::::Method Start::::Closing the response
+7/26/2020 09:42:51::::Info::::Method Start::::Request coming to ServerChannel.StartMethod
+7/26/2020 09:42:51::::Info::::Method Start::::HttpMethod:GET
+7/26/2020 09:42:52::::Debug::::Method Start::::Request finished...
+7/26/2020 09:42:52::::Debug::::Method Start::::Closing the response
+7/26/2020 09:43:17::::Info::::Method Start::::Request coming to ServerChannel.GetHandlerHistory
+7/26/2020 09:43:18::::Info::::Method Start::::HttpMethod:GET
+7/26/2020 09:43:18::::Debug::::Method Start::::Request finished...
+7/26/2020 09:43:18::::Debug::::Method Start::::Closing the response
+7/26/2020 09:43:26::::Info::::Method Start::::Request coming to ServerChannel.GetAllMethods
+7/26/2020 09:43:26::::Info::::Method Start::::HttpMethod:GET
+7/26/2020 09:43:26::::Debug::::Method Start::::Request finished...
+7/26/2020 09:43:26::::Debug::::Method Start::::Closing the response
