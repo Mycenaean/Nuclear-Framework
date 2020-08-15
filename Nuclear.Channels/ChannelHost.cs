@@ -6,6 +6,7 @@ using Nuclear.Channels.Authentication;
 using Nuclear.ExportLocator;
 using Nuclear.ExportLocator.Services;
 using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
@@ -24,6 +25,18 @@ namespace Nuclear.Channels
         private static object _lock = new object();
 
         public AuthenticationSettings AuthenticationSettings { get; set; }
+
+        private static readonly List<string> KnownExportAssemblies = new List<string>()
+        {
+            "Nuclear.Channels",
+            "Nuclear.Channels.Base",
+            "Nuclear.Channels.Authentication",
+            "Nuclear.Channels.Generators",
+            "Nuclear.Channels.Heuristics",
+            "Nuclear.Channels.InvokerServices",
+            "Nuclear.Channels.Messaging",
+            "Nuclear.Channels.Data",
+        };
 
         /// <summary>
         /// Get the Singleton Instance

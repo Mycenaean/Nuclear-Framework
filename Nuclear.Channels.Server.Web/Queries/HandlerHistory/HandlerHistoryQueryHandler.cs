@@ -1,21 +1,19 @@
 ﻿using Nuclear.Channels.Server.Web.Common;
 using Nuclear.ExportLocator.Decorators;
 using Nuclear.ExportLocator.Enumerations;
+using Nuclear.Channels.Server.Web.Abstractions;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Nuclear.Channels.Server.Web.Queries.HandlerHistory
 {
     [Export(typeof(IEventHandler<HandlerHistoryQuery, List<string>>), ExportLifetime.Scoped)]
-    internal class HandlerHistoryQueryHandler : CqrsHandlersBase, IEventHandler<HandlerHistoryQuery, List<string>>
+    internal class HandlerHistoryQueryHandler : EventHandlerBase, IEventHandler<HandlerHistoryQuery, List<string>>
     {
         public List<string> Handle(HandlerHistoryQuery request)
         {
             var handler = HandlerInfos.FirstOrDefault(x => x.HandlerId == request.HandlerId);
-            if (handler != null)
-                return handler.History;
-            else
-                return null;
+            return handler != null ? handler.History : null;
         }
     }
 }

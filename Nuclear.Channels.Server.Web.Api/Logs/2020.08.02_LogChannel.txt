@@ -1,0 +1,27 @@
+8/2/2020 04:29:32::::Info::::Method Start::::Request coming to ServerChannel.GetAllMethods
+8/2/2020 04:29:32::::Info::::Method Start::::HttpMethod:GET
+8/2/2020 04:29:33::::Debug::::Method Start::::Request finished...
+8/2/2020 04:29:33::::Debug::::Method Start::::Closing the response
+8/2/2020 04:29:58::::Info::::Method Start::::Request coming to ServerChannel.GetAllMethods
+8/2/2020 04:29:58::::Info::::Method Start::::HttpMethod:GET
+8/2/2020 04:29:58::::Debug::::Method Start::::Request finished...
+8/2/2020 04:29:58::::Debug::::Method Start::::Closing the response
+8/2/2020 04:30:40::::Info::::Method Start::::Request coming to ServerChannel.GetAllMethods
+8/2/2020 04:30:40::::Info::::Method Start::::HttpMethod:GET
+8/2/2020 04:30:41::::Debug::::Method Start::::Request finished...
+8/2/2020 04:30:41::::Debug::::Method Start::::Closing the response
+8/2/2020 04:31:00::::Info::::Method Start::::Request coming to ServerChannel.GetMethodsByState
+8/2/2020 04:31:00::::Info::::Method Start::::HttpMethod:GET
+8/2/2020 04:31:00::::Error::::Method ExceptionHandler::::Exception handler called..
+8/2/2020 04:31:00::::Error::::Method ExceptionHandler::::Number of parameters specified does not match the expected number.
+8/2/2020 04:31:00::::Error::::Method ExceptionHandler::::No Inner Exception
+8/2/2020 04:31:00::::Debug::::Method Start::::Request finished...
+8/2/2020 04:31:00::::Debug::::Method Start::::Closing the response
+8/2/2020 04:31:06::::Info::::Method Start::::Request coming to ServerChannel.GetMethodsByState
+8/2/2020 04:31:06::::Info::::Method Start::::HttpMethod:GET
+8/2/2020 04:31:06::::Debug::::Method Start::::Request finished...
+8/2/2020 04:31:06::::Debug::::Method Start::::Closing the response
+8/2/2020 04:31:10::::Info::::Method Start::::Request coming to ServerChannel.GetMethodsByState
+8/2/2020 04:31:10::::Info::::Method Start::::HttpMethod:GET
+8/2/2020 04:31:10::::Debug::::Method Start::::Request finished...
+8/2/2020 04:31:10::::Debug::::Method Start::::Closing the response

@@ -2,13 +2,14 @@
 using Nuclear.Channels.Server.Web.Exceptions;
 using Nuclear.ExportLocator.Decorators;
 using Nuclear.ExportLocator.Enumerations;
+using Nuclear.Channels.Server.Web.Abstractions;
 using System;
 using System.Linq;
 
 namespace Nuclear.Channels.Server.Web.Commands.Stop
 {
     [Export(typeof(IEventHandler<StopChannelMethodCommand>), ExportLifetime.Scoped)]
-    internal class StopChannelMethodCommandHandler : CqrsHandlersBase, IEventHandler<StopChannelMethodCommand>
+    internal class StopChannelMethodCommandHandler : EventHandlerBase, IEventHandler<StopChannelMethodCommand>
     {
         public void Handle(StopChannelMethodCommand request)
         {

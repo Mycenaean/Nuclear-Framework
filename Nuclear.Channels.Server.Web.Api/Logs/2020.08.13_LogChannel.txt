@@ -1,0 +1,68 @@
+8/13/2020 21:02:10::::Info::::Method Start::::Request coming to PluginsChannel.PluginsInitStatus
+8/13/2020 21:02:10::::Info::::Method Start::::HttpMethod:POST
+8/13/2020 21:02:10::::Error::::Method ExceptionHandler::::Exception handler called..
+8/13/2020 21:02:10::::Error::::Method ExceptionHandler::::Missing or malformed basic authentication header
+8/13/2020 21:02:10::::Error::::Method ExceptionHandler::::No Inner Exception
+8/13/2020 21:02:10::::Error::::Method AuthenticationFailedIfRequired::::Authentication Failed
+8/13/2020 21:02:10::::Debug::::Method Start::::Request finished...
+8/13/2020 21:02:10::::Debug::::Method Start::::Closing the response
+8/13/2020 21:03:24::::Info::::Method Start::::Request coming to PluginsChannel.PluginsInitStatus
+8/13/2020 21:03:24::::Info::::Method Start::::HttpMethod:POST
+8/13/2020 21:03:24::::Error::::Method ExceptionHandler::::Exception handler called..
+8/13/2020 21:03:24::::Error::::Method ExceptionHandler::::Missing or malformed basic authentication header
+8/13/2020 21:03:24::::Error::::Method ExceptionHandler::::No Inner Exception
+8/13/2020 21:03:24::::Error::::Method AuthenticationFailedIfRequired::::Authentication Failed
+8/13/2020 21:03:24::::Debug::::Method Start::::Request finished...
+8/13/2020 21:03:24::::Debug::::Method Start::::Closing the response
+8/13/2020 21:04:02::::Info::::Method Start::::Request coming to PluginsChannel.PluginsInitStatus
+8/13/2020 21:04:02::::Info::::Method Start::::HttpMethod:POST
+8/13/2020 21:04:02::::Error::::Method ExceptionHandler::::Exception handler called..
+8/13/2020 21:04:02::::Error::::Method ExceptionHandler::::Index was outside the bounds of the array.
+8/13/2020 21:04:02::::Error::::Method ExceptionHandler::::No Inner Exception
+8/13/2020 21:04:02::::Error::::Method AuthenticationFailedIfRequired::::Authentication Failed
+8/13/2020 21:04:02::::Debug::::Method Start::::Request finished...
+8/13/2020 21:04:02::::Debug::::Method Start::::Closing the response
+8/13/2020 23:35:59::::Info::::Method Start::::Request coming to PluginsChannel.PluginsInitStatus
+8/13/2020 23:35:59::::Info::::Method Start::::HttpMethod:POST
+8/13/2020 23:36:53::::Error::::Method ExceptionHandler::::Exception handler called..
+8/13/2020 23:36:53::::Error::::Method ExceptionHandler::::Index was outside the bounds of the array.
+8/13/2020 23:36:53::::Error::::Method ExceptionHandler::::No Inner Exception
+8/13/2020 23:36:54::::Error::::Method AuthenticationFailedIfRequired::::Authentication Failed
+8/13/2020 23:36:54::::Debug::::Method Start::::Request finished...
+8/13/2020 23:36:55::::Debug::::Method Start::::Closing the response
+8/13/2020 23:37:01::::Info::::Method Start::::Request coming to PluginsChannel.PluginsInitStatus
+8/13/2020 23:37:02::::Info::::Method Start::::HttpMethod:POST
+8/13/2020 23:38:53::::Error::::Method ExceptionHandler::::Exception handler called..
+8/13/2020 23:38:53::::Error::::Method ExceptionHandler::::Index was outside the bounds of the array.
+8/13/2020 23:38:53::::Error::::Method ExceptionHandler::::No Inner Exception
+8/13/2020 23:38:54::::Error::::Method AuthenticationFailedIfRequired::::Authentication Failed
+8/13/2020 23:47:31::::Info::::Method Start::::Request coming to PluginsChannel.PluginsInitStatus
+8/13/2020 23:47:31::::Info::::Method Start::::HttpMethod:POST
+8/13/2020 23:47:32::::Info::::Method AuthenticationFailedIfRequired::::User Authenticated
+8/13/2020 23:47:32::::Info::::Method AuthenticationFailedIfRequired::::User Authorized
+8/13/2020 23:47:32::::Debug::::Method Start::::Request finished...
+8/13/2020 23:47:32::::Debug::::Method Start::::Closing the response
+8/13/2020 23:47:44::::Info::::Method Start::::Request coming to PluginsChannel.PluginsInitStatus
+8/13/2020 23:47:44::::Info::::Method Start::::HttpMethod:POST
+8/13/2020 23:49:06::::Info::::Method AuthenticationFailedIfRequired::::User Authenticated
+8/13/2020 23:49:18::::Info::::Method AuthenticationFailedIfRequired::::User Authorized
+8/13/2020 23:50:00::::Debug::::Method Start::::Request finished...
+8/13/2020 23:50:01::::Debug::::Method Start::::Closing the response
+8/13/2020 23:50:29::::Info::::Method Start::::Request coming to PluginsChannel.PluginsInitStatus
+8/13/2020 23:50:29::::Info::::Method Start::::HttpMethod:POST
+8/13/2020 23:50:31::::Info::::Method AuthenticationFailedIfRequired::::User Authenticated
+8/13/2020 23:50:31::::Info::::Method AuthenticationFailedIfRequired::::User Authorized
+8/13/2020 23:50:46::::Debug::::Method Start::::Request finished...
+8/13/2020 23:50:46::::Debug::::Method Start::::Closing the response
+8/13/2020 23:54:14::::Info::::Method Start::::Request coming to PluginsChannel.PluginsInitStatus
+8/13/2020 23:54:14::::Info::::Method Start::::HttpMethod:GET
+8/13/2020 23:54:14::::Info::::Method AuthenticationFailedIfRequired::::User Authenticated
+8/13/2020 23:54:15::::Info::::Method AuthenticationFailedIfRequired::::User Authorized
+8/13/2020 23:54:15::::Debug::::Method Start::::Request finished...
+8/13/2020 23:54:15::::Debug::::Method Start::::Closing the response
+8/13/2020 23:59:04::::Info::::Method Start::::Request coming to PluginsChannel.PluginsInitStatus
+8/13/2020 23:59:04::::Info::::Method Start::::HttpMethod:GET
+8/13/2020 23:59:06::::Info::::Method AuthenticationFailedIfRequired::::User Authenticated
+8/13/2020 23:59:06::::Info::::Method AuthenticationFailedIfRequired::::User Authorized
+8/13/2020 23:59:41::::Debug::::Method Start::::Request finished...
+8/13/2020 23:59:41::::Debug::::Method Start::::Closing the response

@@ -1,0 +1,4 @@
+7/28/2020 20:07:22::::Info::::Method Start::::Request coming to ServerChannel.GetAllMethods
+7/28/2020 20:07:22::::Info::::Method Start::::HttpMethod:GET
+7/28/2020 20:07:23::::Debug::::Method Start::::Request finished...
+7/28/2020 20:07:23::::Debug::::Method Start::::Closing the response

@@ -1,4 +1,4 @@
-﻿namespace Nuclear.Channels.Server.Web.Common
+﻿namespace Nuclear.Channels.Server.Web.Abstractions
 {
     public interface IEventHandler<in TRequest, out TResult>
     {

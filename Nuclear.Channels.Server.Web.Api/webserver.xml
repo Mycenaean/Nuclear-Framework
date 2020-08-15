@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <exports>
+    <export name=""/>
+  </exports>
+  <plugins>
+    <plugin name=""/>
+  </plugins>
+
+  <authentication>
+    <users>
+      <user username="ChannelUser" password="Secret123" role="Elevated"/>
+    </users>
+  </authentication>
+  <channels>
+    <channel name="PluginsChannel">
+      <roles>
+        <role>Elevated</role>
+        <role>Sudo</role>
+      </roles>
+    </channel>
+    <channel name="ServerChannel">
+      <role>Basic</role>
+      <role>Elevated</role>
+      <role>Sudo</role>
+    </channel>
+  </channels>
+</configuration>

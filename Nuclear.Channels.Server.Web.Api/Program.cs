@@ -1,4 +1,8 @@
-﻿using Nuclear.Channels.Server.Web.Common;
+﻿// Copyright © Nikola Milinkovic 
+// Licensed under the MIT License (MIT).
+// See License.md in the repository root for more information.
+
+using Nuclear.Channels.Server.Web.Common;
 using Nuclear.ExportLocator;
 using System;
 using System.Linq;
@@ -21,9 +25,7 @@ namespace Nuclear.Channels.Server.Web.Api
 
             server.Start();
 
-            var handlerInfos = ServiceLocatorBuilder
-                .CreateServiceLocator()
-                .Get<IInitiatedHandlersCollection>()
+            var handlerInfos = ServiceFactory.GetExportedService<IInitiatedHandlersCollection>()
                 .Handlers.ToList();
 
             Thread.Sleep(1000);

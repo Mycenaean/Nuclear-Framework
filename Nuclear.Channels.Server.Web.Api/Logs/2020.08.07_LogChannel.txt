@@ -1,0 +1,14 @@
+8/7/2020 19:32:02::::Info::::Method Start::::Request coming to PluginsChannel.InitPlugins
+8/7/2020 19:32:02::::Info::::Method Start::::HttpMethod:GET
+8/7/2020 19:33:36::::Info::::Method FailedAuthenticationResponse::::Authentication failed...Exiting
+8/7/2020 19:33:36::::Info::::Method AuthenticationFailedIfRequired::::User Authenticated
+8/7/2020 19:34:30::::Error::::Method ExceptionHandler::::Exception handler called..
+8/7/2020 19:34:30::::Error::::Method ExceptionHandler::::Object reference not set to an instance of an object.
+8/7/2020 19:34:30::::Error::::Method ExceptionHandler::::No Inner Exception
+8/7/2020 19:34:30::::Error::::Method AuthenticationFailedIfRequired::::Authentication Failed
+8/7/2020 19:34:30::::Debug::::Method Start::::Request finished...
+8/7/2020 19:34:30::::Debug::::Method Start::::Closing the response
+8/7/2020 19:47:11::::Info::::Method Start::::Request coming to PluginsChannel.InitPlugins
+8/7/2020 19:47:11::::Info::::Method Start::::HttpMethod:GET
+8/7/2020 19:48:59::::Info::::Method AuthenticationFailedIfRequired::::User Authenticated
+8/7/2020 19:49:42::::Info::::Method AuthenticationFailedIfRequired::::User Authorized

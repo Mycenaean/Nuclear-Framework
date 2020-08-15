@@ -2,6 +2,7 @@
 using Nuclear.Channels.Server.Web.Exceptions;
 using Nuclear.ExportLocator.Decorators;
 using Nuclear.ExportLocator.Enumerations;
+using Nuclear.Channels.Server.Web.Abstractions;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 namespace Nuclear.Channels.Server.Web.Commands.Restart
 {
     [Export(typeof(IEventHandler<RestartChannelMethodCommand>), ExportLifetime.Scoped)]
-    internal class RestartChannelMethodCommandHandler : CqrsHandlersBase, IEventHandler<RestartChannelMethodCommand>
+    internal class RestartChannelMethodCommandHandler : EventHandlerBase, IEventHandler<RestartChannelMethodCommand>
     {
         public void Handle(RestartChannelMethodCommand request)
         {

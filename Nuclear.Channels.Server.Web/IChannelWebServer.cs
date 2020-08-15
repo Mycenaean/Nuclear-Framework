@@ -2,6 +2,8 @@
 {
     public interface IChannelWebServer
     {
+        IChannelServer Server { get; set; }
+        IChannelServer ServerCopy { get; }
         void Start();
     }
 }

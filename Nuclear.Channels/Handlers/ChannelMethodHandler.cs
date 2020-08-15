@@ -2,6 +2,7 @@
 // Licensed under the MIT License (MIT).
 // See License.md in the repository root for more information.
 
+using Microsoft.Win32.SafeHandles;
 using Nuclear.Channels.Authentication;
 using Nuclear.Channels.Base;
 using Nuclear.Channels.Base.Enums;
@@ -15,12 +16,13 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 
 namespace Nuclear.Channels.Handlers
 {
-    public class ChannelMethodHandler : IHandlerContract , IServerManaged
+    public class ChannelMethodHandler : IHandlerContract , IServerManaged , IDisposable
     {
         private readonly IServiceLocator _services;
         private readonly IChannelMethodDescriptor _channelMethodDescriptor;
@@ -39,6 +41,8 @@ namespace Nuclear.Channels.Handlers
         private Type _channel;
         private string _baseURL;
         private bool _isManaged;
+        private bool _isDisposed;
+        private SafeHandle _safeHandle;
 
         public EntityState State { get; private set; }
         public string StateName { get; private set; }
@@ -67,6 +71,9 @@ namespace Nuclear.Channels.Handlers
 
             HandlerId = $"{Guid.NewGuid()}";
             ChannelHandlerId = channelHandlerId;
+
+            _isDisposed = false;
+            _safeHandle = new SafeFileHandle(IntPtr.Zero, true);
         }
 
         public void SetupBasicAuth(Func<string, string, bool> basicAuth)
@@ -185,6 +192,26 @@ namespace Nuclear.Channels.Handlers
 
             State = EntityState.Stopped;
             StateName = Enum.GetName(typeof(EntityState), EntityState.Stopped);
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+
+        private void Dispose(bool disposing)
+        {
+            if (_isDisposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                _safeHandle?.Dispose();
+            }
+
+            _isDisposed = true;
         }
     }
 }

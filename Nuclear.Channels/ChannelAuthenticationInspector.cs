@@ -84,7 +84,7 @@ namespace Nuclear.Channels
                     else
                     {
                         _msgService.FailedAuthenticationResponse(channelConfig.AuthScheme, response);
-                        failed = true;
+                        return true;                        
                     }
                     LogChannel.Write(LogSeverity.Info, "User Authenticated");
                     string claimName = channelConfig.AuthorizeAttribute.ClaimName;

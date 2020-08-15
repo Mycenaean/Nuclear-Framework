@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Nuclear.ExportLocator.Decorators;
 using Nuclear.ExportLocator.Enumerations;
 using System;
@@ -37,17 +38,17 @@ namespace Nuclear.Channels.Remoting
 
         public object GetResponse(ChannelRequest request)
         {
-            return GetResponseObject(request);
+            return GetChannelMessage<object>(request).Output;
         }
 
         public TEntity GetResponse<TEntity>(ChannelRequest request)
         {
-            return (TEntity)GetResponseObject(request);
+            return (TEntity)GetChannelMessage<TEntity>(request).Output;
         }
 
         public void Send(ChannelRequest request)
         {
-            ChannelMessage channelMessage = GetChannelMessage(request);
+            ChannelMessage channelMessage = GetChannelMessage<object>(request);
             if (!channelMessage.Success)
                 throw new ChannelRequestException(channelMessage.Message);
         }
@@ -60,21 +61,41 @@ namespace Nuclear.Channels.Remoting
                 return "POST";
         }
 
-        private object GetResponseObject(ChannelRequest request)
-        {
-            ChannelMessage channelMessage = GetChannelMessage(request);
-            return channelMessage.Output;
-        }
-
-        private ChannelMessage GetChannelMessage(ChannelRequest request)
+        private ChannelMessage GetChannelMessage<TOutputType>(ChannelRequest request)
         {
             HttpWebRequest httpRequest = CreateWebRequest(request);
             string response = GetWebResponse(httpRequest);
-            ChannelMessage channelMessage = JsonConvert.DeserializeObject<ChannelMessage>(response);
+            ChannelMessage channelMessage = CreateChannelMessageFromJson<TOutputType>(response);
             if (channelMessage.Success)
                 return channelMessage;
             else
                 throw new ChannelRequestException(channelMessage.Message);
+        }
+
+        private ChannelMessage CreateChannelMessageFromJson<TOutputType>(string response)
+        {
+            JObject propObject = JObject.Parse(response);
+            JProperty success = propObject.Property("Success", StringComparison.OrdinalIgnoreCase);
+            JProperty message = propObject.Property("Message", StringComparison.OrdinalIgnoreCase);
+            if(Convert.ToBoolean(success.Value))
+            {
+                JProperty output = propObject.Property("Output", StringComparison.OrdinalIgnoreCase);                
+                return new ChannelMessage
+                {
+                    Success = Convert.ToBoolean(success.Value) ,
+                    Message = message.Value.ToString(),
+                    Output = output.Value.ToObject<TOutputType>()
+                };
+            }
+            else
+            {
+                return new ChannelMessage()
+                {
+                    Success = Convert.ToBoolean(success.Value.ToString()) ,
+                    Message = message.Value.ToString(),
+                    Output = string.Empty
+                };
+            }
         }
 
         private HttpWebRequest CreateWebRequest(ChannelRequest request)
@@ -136,12 +157,12 @@ namespace Nuclear.Channels.Remoting
                 {
                     ChannelBasicCredentials basic = (ChannelBasicCredentials)request.Credentials;
 
-                    authorize = Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes($"{basic.Username}:{basic.Password}"));
+                    authorize = $"Basic {Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes($"{basic.Username}:{basic.Password}"))}";
                 }
                 else
                 {
                     ChannelTokenCredentials token = (ChannelTokenCredentials)request.Credentials;
-                    authorize = Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes($"{token.Token}"));
+                    authorize = $"Bearer {Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes($"{token.Token}"))}";
                 }
                 httpRequest.Headers["Authorization"] = authorize;
             }

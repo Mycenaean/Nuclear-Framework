@@ -1,21 +1,30 @@
-﻿using Nuclear.Channels.Base.Decorators;
+﻿// Copyright © Nikola Milinkovic 
+// Licensed under the MIT License (MIT).
+// See License.md in the repository root for more information.
+
+using Nuclear.Channels.Base.Decorators;
 using Nuclear.Channels.Decorators;
 using Nuclear.Channels.Messaging;
 using Nuclear.Channels.Server.Web.Commands.Restart;
 using Nuclear.Channels.Server.Web.Commands.Start;
 using Nuclear.Channels.Server.Web.Commands.Stop;
 using Nuclear.Channels.Server.Web.Common;
+using Nuclear.Channels.Server.Web.Decorators;
 using Nuclear.Channels.Server.Web.Exceptions;
+using Nuclear.Channels.Server.Web.Logging;
 using Nuclear.Channels.Server.Web.Queries.HandlerHistory;
 using Nuclear.Channels.Server.Web.Queries.ListHandlerByState;
 using Nuclear.Channels.Server.Web.Queries.ListHandlers;
-using System.Collections;
+using Nuclear.Channels.Server.Web.Abstractions;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Nuclear.Channels.Server.Web.Api
 {
+    /// <summary>
+    /// Server Command and Control Center
+    /// </summary>
     [Channel]
+    [ProtectedHandler]
     public class ServerChannel : ChannelBase
     {
         [ImportedService]
@@ -36,7 +45,16 @@ namespace Nuclear.Channels.Server.Web.Api
         [ImportedService]
         public IEventHandler<StopChannelMethodCommand> StopCommandHandler { get; set; }
 
-        
+        private IChannelLogger _logger;
+
+        public ServerChannel()
+        {
+            _logger = ServerLoggerFactory.CreateLogger("ServerChannel");
+        }
+
+        /// <summary>
+        /// Gets all ChannelMethods that are being managed
+        /// </summary>
         [ChannelMethod]
         public void GetAllMethods()
         {
@@ -49,9 +67,14 @@ namespace Nuclear.Channels.Server.Web.Api
                 Output = result
             };
 
+            _logger.LogInfo(message);
             ChannelMessageWriter.Write(message, Context.Response);
         }
 
+        /// <summary>
+        /// Gets all ChannelMethods with specified state
+        /// </summary>
+        /// <param name="state">Target state</param>
         [ChannelMethod]
         public void GetMethodsByState(string state)
         {
@@ -63,9 +86,14 @@ namespace Nuclear.Channels.Server.Web.Api
                 Message = string.Empty,
                 Output = result
             };
+            _logger.LogInfo(message);
             ChannelMessageWriter.Write(message, Context.Response);
         }
 
+        /// <summary>
+        /// Gets the history for the ChannelMethod
+        /// </summary>
+        /// <param name="handlerId">Targeted ChannelMethod Handler id</param>
         [ChannelMethod]
         public void GetHandlerHistory(string handlerId)
         {
@@ -90,9 +118,14 @@ namespace Nuclear.Channels.Server.Web.Api
                     Message = "ChannelMethod Handler not found"
                 };
             }
+            _logger.LogInfo(message);
             ChannelMessageWriter.Write(message, Context.Response);
         }
 
+        /// <summary>
+        /// Starts ChannelMethod
+        /// </summary>
+        /// <param name="handlerId">Targeted ChannelMethod Handler id</param>
         [ChannelMethod]
         public void StartMethod(string handlerId)
         {
@@ -116,9 +149,14 @@ namespace Nuclear.Channels.Server.Web.Api
                     Message = "ChannelMethod Handler not found"
                 };
             }
+            _logger.LogInfo(message);
             ChannelMessageWriter.Write(message, Context.Response);
         }
 
+        /// <summary>
+        /// Restarts ChannelMethod
+        /// </summary>
+        /// <param name="handlerId">Targeted ChannelMethod Handler id</param>
         [ChannelMethod]
         public void RestartMethod(string handlerId)
         {
@@ -142,10 +180,14 @@ namespace Nuclear.Channels.Server.Web.Api
                     Message = "Handler not found"
                 };
             }
+            _logger.LogInfo(message);
             ChannelMessageWriter.Write(message, Context.Response);
         }
 
-
+        /// <summary>
+        /// Stops ChannelMethod
+        /// </summary>
+        /// <param name="handlerId">Targeted ChannelMethod Handler id</param>
         [ChannelMethod]
         public void StopMethod(string handlerId)
         {
@@ -169,6 +211,7 @@ namespace Nuclear.Channels.Server.Web.Api
                     Message = "ChannelMethod Handler not found"
                 };
             }
+            _logger.LogInfo(message);
             ChannelMessageWriter.Write(message, Context.Response);
         }
     }

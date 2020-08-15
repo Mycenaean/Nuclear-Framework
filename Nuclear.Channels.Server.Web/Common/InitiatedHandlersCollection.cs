@@ -16,9 +16,9 @@ namespace Nuclear.Channels.Server.Web.Common
             _handlers = new List<HandlerInformation>();
         }
 
-        public void AddHandler(string handlerId, string url, string state)
+        public void AddHandler(string handlerId, string url, string state, bool isProtected)
         {
-            _handlers.Add(new HandlerInformation(handlerId, url, state));
+            _handlers.Add(new HandlerInformation(handlerId, url, state, isProtected));
         }
 
         public void UpdateHandlerState(string caller, string handlerId, string state)

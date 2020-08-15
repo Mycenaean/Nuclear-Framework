@@ -1,0 +1,62 @@
+8/14/2020 00:04:02::::Info::::Method Start::::Request coming to PluginsChannel.PluginsInitStatus
+8/14/2020 00:04:02::::Info::::Method Start::::HttpMethod:GET
+8/14/2020 00:04:02::::Info::::Method AuthenticationFailedIfRequired::::User Authenticated
+8/14/2020 00:04:02::::Info::::Method AuthenticationFailedIfRequired::::User Authorized
+8/14/2020 00:04:03::::Debug::::Method Start::::Request finished...
+8/14/2020 00:04:03::::Debug::::Method Start::::Closing the response
+8/14/2020 00:07:28::::Info::::Method Start::::Request coming to PluginsChannel.PluginsInitStatus
+8/14/2020 00:07:29::::Info::::Method Start::::HttpMethod:GET
+8/14/2020 00:07:29::::Info::::Method AuthenticationFailedIfRequired::::User Authenticated
+8/14/2020 00:07:29::::Info::::Method AuthenticationFailedIfRequired::::User Authorized
+8/14/2020 00:07:29::::Debug::::Method Start::::Request finished...
+8/14/2020 00:07:29::::Debug::::Method Start::::Closing the response
+8/14/2020 23:21:52::::Info::::Method Start::::Request coming to ServerChannel.GetAllMethods
+8/14/2020 23:21:52::::Info::::Method Start::::HttpMethod:GET
+8/14/2020 23:21:52::::Debug::::Method Start::::Request finished...
+8/14/2020 23:21:52::::Debug::::Method Start::::Closing the response
+8/14/2020 23:22:44::::Info::::Method Start::::Request coming to ServerChannel.GetAllMethods
+8/14/2020 23:22:44::::Info::::Method Start::::HttpMethod:GET
+8/14/2020 23:22:44::::Debug::::Method Start::::Request finished...
+8/14/2020 23:22:44::::Debug::::Method Start::::Closing the response
+8/14/2020 23:22:45::::Info::::Method Start::::Request coming to ServerChannel.GetAllMethods
+8/14/2020 23:22:45::::Info::::Method Start::::HttpMethod:GET
+8/14/2020 23:22:45::::Debug::::Method Start::::Request finished...
+8/14/2020 23:22:45::::Debug::::Method Start::::Closing the response
+8/14/2020 23:22:53::::Info::::Method Start::::Request coming to PluginsChannel.PluginsInitStatus
+8/14/2020 23:22:53::::Info::::Method Start::::HttpMethod:GET
+8/14/2020 23:22:53::::Info::::Method AuthenticationFailedIfRequired::::User Authenticated
+8/14/2020 23:22:53::::Info::::Method AuthenticationFailedIfRequired::::User Authorized
+8/14/2020 23:22:53::::Debug::::Method Start::::Request finished...
+8/14/2020 23:22:53::::Debug::::Method Start::::Closing the response
+8/14/2020 23:38:01::::Info::::Method Start::::Request coming to ServerChannel.GetAllMethods
+8/14/2020 23:38:01::::Info::::Method Start::::HttpMethod:GET
+8/14/2020 23:38:02::::Debug::::Method Start::::Request finished...
+8/14/2020 23:38:02::::Debug::::Method Start::::Closing the response
+8/14/2020 23:39:23::::Info::::Method Start::::Request coming to ServerChannel.GetAllMethods
+8/14/2020 23:39:23::::Info::::Method Start::::HttpMethod:GET
+8/14/2020 23:39:23::::Debug::::Method Start::::Request finished...
+8/14/2020 23:39:23::::Debug::::Method Start::::Closing the response
+8/14/2020 23:43:30::::Info::::Method Start::::Request coming to ServerChannel.GetAllMethods
+8/14/2020 23:43:30::::Info::::Method Start::::HttpMethod:GET
+8/14/2020 23:43:31::::Debug::::Method Start::::Request finished...
+8/14/2020 23:43:31::::Debug::::Method Start::::Closing the response
+8/14/2020 23:44:14::::Info::::Method Start::::Request coming to PluginsChannel.PluginsInitStatus
+8/14/2020 23:44:14::::Info::::Method Start::::HttpMethod:GET
+8/14/2020 23:44:14::::Info::::Method AuthenticationFailedIfRequired::::User Authenticated
+8/14/2020 23:44:14::::Info::::Method AuthenticationFailedIfRequired::::User Authorized
+8/14/2020 23:44:14::::Debug::::Method Start::::Request finished...
+8/14/2020 23:44:14::::Debug::::Method Start::::Closing the response
+8/14/2020 23:51:21::::Info::::Method Start::::Request coming to ServerChannel.GetAllMethods
+8/14/2020 23:51:21::::Info::::Method Start::::HttpMethod:GET
+8/14/2020 23:51:21::::Debug::::Method Start::::Request finished...
+8/14/2020 23:51:21::::Debug::::Method Start::::Closing the response
+8/14/2020 23:53:01::::Info::::Method Start::::Request coming to ServerChannel.GetAllMethods
+8/14/2020 23:53:01::::Info::::Method Start::::HttpMethod:GET
+8/14/2020 23:53:01::::Debug::::Method Start::::Request finished...
+8/14/2020 23:53:01::::Debug::::Method Start::::Closing the response
+8/14/2020 23:53:13::::Info::::Method Start::::Request coming to PluginsChannel.PluginsInitStatus
+8/14/2020 23:53:13::::Info::::Method Start::::HttpMethod:GET
+8/14/2020 23:53:13::::Info::::Method AuthenticationFailedIfRequired::::User Authenticated
+8/14/2020 23:53:13::::Info::::Method AuthenticationFailedIfRequired::::User Authorized
+8/14/2020 23:53:13::::Debug::::Method Start::::Request finished...
+8/14/2020 23:53:13::::Debug::::Method Start::::Closing the response

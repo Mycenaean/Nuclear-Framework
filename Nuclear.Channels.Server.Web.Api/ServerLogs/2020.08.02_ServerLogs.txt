@@ -1,0 +1,1265 @@
+8/2/2020 04:29:33::::Info::::ServerChannel::::Method GetAllMethods::::{
+  "Success": true,
+  "Output": [
+    {
+      "HandlerId": "3c99d017-12cc-44a7-a0ce-721c104051e3",
+      "Url": "http://localhost:4200/channels/PluginsChannel/PluginsInitStatus/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "2ca01297-d105-4dfc-9bfc-e12e16bcfbc6",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetMethodsByState/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "80cdd287-c0d6-47de-9a81-420088de9f4b",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetAllMethods/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "daf2d803-bf4b-426b-b1a5-1eee2f17cdcf",
+      "Url": "http://localhost:4200/channels/ServerChannel/StopMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "83368548-540a-4a13-8fc3-c3080e79ccb2",
+      "Url": "http://localhost:4200/channels/PluginsChannel/InitPlugins/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "6a18fc58-1933-490e-811c-1a8cf2492b3e",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetHandlerHistory/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "e50da076-3887-43c4-95d0-5e9d28db25d0",
+      "Url": "http://localhost:4200/channels/ServerChannel/StartMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "ee5d7a06-c7f3-4693-befd-58545e14bbb6",
+      "Url": "http://localhost:4200/channels/ServerChannel/RestartMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    }
+  ],
+  "Message": ""
+}
+8/2/2020 04:29:33::::Info::::ServerChannel::::Method GetAllMethods::::{
+  "Success": true,
+  "Output": [
+    {
+      "HandlerId": "3c99d017-12cc-44a7-a0ce-721c104051e3",
+      "Url": "http://localhost:4200/channels/PluginsChannel/PluginsInitStatus/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "2ca01297-d105-4dfc-9bfc-e12e16bcfbc6",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetMethodsByState/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "80cdd287-c0d6-47de-9a81-420088de9f4b",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetAllMethods/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "daf2d803-bf4b-426b-b1a5-1eee2f17cdcf",
+      "Url": "http://localhost:4200/channels/ServerChannel/StopMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "83368548-540a-4a13-8fc3-c3080e79ccb2",
+      "Url": "http://localhost:4200/channels/PluginsChannel/InitPlugins/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "6a18fc58-1933-490e-811c-1a8cf2492b3e",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetHandlerHistory/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "e50da076-3887-43c4-95d0-5e9d28db25d0",
+      "Url": "http://localhost:4200/channels/ServerChannel/StartMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "ee5d7a06-c7f3-4693-befd-58545e14bbb6",
+      "Url": "http://localhost:4200/channels/ServerChannel/RestartMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    }
+  ],
+  "Message": ""
+}
+8/2/2020 04:29:33::::Info::::ServerChannel::::Method GetAllMethods::::{
+  "Success": true,
+  "Output": [
+    {
+      "HandlerId": "3c99d017-12cc-44a7-a0ce-721c104051e3",
+      "Url": "http://localhost:4200/channels/PluginsChannel/PluginsInitStatus/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "2ca01297-d105-4dfc-9bfc-e12e16bcfbc6",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetMethodsByState/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "80cdd287-c0d6-47de-9a81-420088de9f4b",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetAllMethods/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "daf2d803-bf4b-426b-b1a5-1eee2f17cdcf",
+      "Url": "http://localhost:4200/channels/ServerChannel/StopMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "83368548-540a-4a13-8fc3-c3080e79ccb2",
+      "Url": "http://localhost:4200/channels/PluginsChannel/InitPlugins/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "6a18fc58-1933-490e-811c-1a8cf2492b3e",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetHandlerHistory/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "e50da076-3887-43c4-95d0-5e9d28db25d0",
+      "Url": "http://localhost:4200/channels/ServerChannel/StartMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "ee5d7a06-c7f3-4693-befd-58545e14bbb6",
+      "Url": "http://localhost:4200/channels/ServerChannel/RestartMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    }
+  ],
+  "Message": ""
+}
+8/2/2020 04:29:33::::Info::::ServerChannel::::Method GetAllMethods::::{
+  "Success": true,
+  "Output": [
+    {
+      "HandlerId": "3c99d017-12cc-44a7-a0ce-721c104051e3",
+      "Url": "http://localhost:4200/channels/PluginsChannel/PluginsInitStatus/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "2ca01297-d105-4dfc-9bfc-e12e16bcfbc6",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetMethodsByState/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "80cdd287-c0d6-47de-9a81-420088de9f4b",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetAllMethods/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "daf2d803-bf4b-426b-b1a5-1eee2f17cdcf",
+      "Url": "http://localhost:4200/channels/ServerChannel/StopMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "83368548-540a-4a13-8fc3-c3080e79ccb2",
+      "Url": "http://localhost:4200/channels/PluginsChannel/InitPlugins/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "6a18fc58-1933-490e-811c-1a8cf2492b3e",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetHandlerHistory/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "e50da076-3887-43c4-95d0-5e9d28db25d0",
+      "Url": "http://localhost:4200/channels/ServerChannel/StartMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "ee5d7a06-c7f3-4693-befd-58545e14bbb6",
+      "Url": "http://localhost:4200/channels/ServerChannel/RestartMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    }
+  ],
+  "Message": ""
+}
+8/2/2020 04:29:33::::Info::::ServerChannel::::Method GetAllMethods::::{
+  "Success": true,
+  "Output": [
+    {
+      "HandlerId": "3c99d017-12cc-44a7-a0ce-721c104051e3",
+      "Url": "http://localhost:4200/channels/PluginsChannel/PluginsInitStatus/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "2ca01297-d105-4dfc-9bfc-e12e16bcfbc6",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetMethodsByState/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "80cdd287-c0d6-47de-9a81-420088de9f4b",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetAllMethods/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "daf2d803-bf4b-426b-b1a5-1eee2f17cdcf",
+      "Url": "http://localhost:4200/channels/ServerChannel/StopMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "83368548-540a-4a13-8fc3-c3080e79ccb2",
+      "Url": "http://localhost:4200/channels/PluginsChannel/InitPlugins/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "6a18fc58-1933-490e-811c-1a8cf2492b3e",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetHandlerHistory/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "e50da076-3887-43c4-95d0-5e9d28db25d0",
+      "Url": "http://localhost:4200/channels/ServerChannel/StartMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "ee5d7a06-c7f3-4693-befd-58545e14bbb6",
+      "Url": "http://localhost:4200/channels/ServerChannel/RestartMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    }
+  ],
+  "Message": ""
+}
+8/2/2020 04:29:58::::Info::::ServerChannel::::Method GetAllMethods::::{
+  "Success": true,
+  "Output": [
+    {
+      "HandlerId": "3c99d017-12cc-44a7-a0ce-721c104051e3",
+      "Url": "http://localhost:4200/channels/PluginsChannel/PluginsInitStatus/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "2ca01297-d105-4dfc-9bfc-e12e16bcfbc6",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetMethodsByState/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "80cdd287-c0d6-47de-9a81-420088de9f4b",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetAllMethods/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "daf2d803-bf4b-426b-b1a5-1eee2f17cdcf",
+      "Url": "http://localhost:4200/channels/ServerChannel/StopMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "83368548-540a-4a13-8fc3-c3080e79ccb2",
+      "Url": "http://localhost:4200/channels/PluginsChannel/InitPlugins/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "6a18fc58-1933-490e-811c-1a8cf2492b3e",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetHandlerHistory/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "e50da076-3887-43c4-95d0-5e9d28db25d0",
+      "Url": "http://localhost:4200/channels/ServerChannel/StartMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "ee5d7a06-c7f3-4693-befd-58545e14bbb6",
+      "Url": "http://localhost:4200/channels/ServerChannel/RestartMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    }
+  ],
+  "Message": ""
+}
+8/2/2020 04:29:58::::Info::::ServerChannel::::Method GetAllMethods::::{
+  "Success": true,
+  "Output": [
+    {
+      "HandlerId": "3c99d017-12cc-44a7-a0ce-721c104051e3",
+      "Url": "http://localhost:4200/channels/PluginsChannel/PluginsInitStatus/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "2ca01297-d105-4dfc-9bfc-e12e16bcfbc6",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetMethodsByState/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "80cdd287-c0d6-47de-9a81-420088de9f4b",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetAllMethods/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "daf2d803-bf4b-426b-b1a5-1eee2f17cdcf",
+      "Url": "http://localhost:4200/channels/ServerChannel/StopMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "83368548-540a-4a13-8fc3-c3080e79ccb2",
+      "Url": "http://localhost:4200/channels/PluginsChannel/InitPlugins/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "6a18fc58-1933-490e-811c-1a8cf2492b3e",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetHandlerHistory/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "e50da076-3887-43c4-95d0-5e9d28db25d0",
+      "Url": "http://localhost:4200/channels/ServerChannel/StartMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "ee5d7a06-c7f3-4693-befd-58545e14bbb6",
+      "Url": "http://localhost:4200/channels/ServerChannel/RestartMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    }
+  ],
+  "Message": ""
+}
+8/2/2020 04:29:58::::Info::::ServerChannel::::Method GetAllMethods::::{
+  "Success": true,
+  "Output": [
+    {
+      "HandlerId": "3c99d017-12cc-44a7-a0ce-721c104051e3",
+      "Url": "http://localhost:4200/channels/PluginsChannel/PluginsInitStatus/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "2ca01297-d105-4dfc-9bfc-e12e16bcfbc6",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetMethodsByState/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "80cdd287-c0d6-47de-9a81-420088de9f4b",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetAllMethods/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "daf2d803-bf4b-426b-b1a5-1eee2f17cdcf",
+      "Url": "http://localhost:4200/channels/ServerChannel/StopMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "83368548-540a-4a13-8fc3-c3080e79ccb2",
+      "Url": "http://localhost:4200/channels/PluginsChannel/InitPlugins/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "6a18fc58-1933-490e-811c-1a8cf2492b3e",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetHandlerHistory/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "e50da076-3887-43c4-95d0-5e9d28db25d0",
+      "Url": "http://localhost:4200/channels/ServerChannel/StartMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "ee5d7a06-c7f3-4693-befd-58545e14bbb6",
+      "Url": "http://localhost:4200/channels/ServerChannel/RestartMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    }
+  ],
+  "Message": ""
+}
+8/2/2020 04:29:58::::Info::::ServerChannel::::Method GetAllMethods::::{
+  "Success": true,
+  "Output": [
+    {
+      "HandlerId": "3c99d017-12cc-44a7-a0ce-721c104051e3",
+      "Url": "http://localhost:4200/channels/PluginsChannel/PluginsInitStatus/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "2ca01297-d105-4dfc-9bfc-e12e16bcfbc6",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetMethodsByState/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "80cdd287-c0d6-47de-9a81-420088de9f4b",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetAllMethods/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "daf2d803-bf4b-426b-b1a5-1eee2f17cdcf",
+      "Url": "http://localhost:4200/channels/ServerChannel/StopMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "83368548-540a-4a13-8fc3-c3080e79ccb2",
+      "Url": "http://localhost:4200/channels/PluginsChannel/InitPlugins/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "6a18fc58-1933-490e-811c-1a8cf2492b3e",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetHandlerHistory/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "e50da076-3887-43c4-95d0-5e9d28db25d0",
+      "Url": "http://localhost:4200/channels/ServerChannel/StartMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "ee5d7a06-c7f3-4693-befd-58545e14bbb6",
+      "Url": "http://localhost:4200/channels/ServerChannel/RestartMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    }
+  ],
+  "Message": ""
+}
+8/2/2020 04:29:58::::Info::::ServerChannel::::Method GetAllMethods::::{
+  "Success": true,
+  "Output": [
+    {
+      "HandlerId": "3c99d017-12cc-44a7-a0ce-721c104051e3",
+      "Url": "http://localhost:4200/channels/PluginsChannel/PluginsInitStatus/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "2ca01297-d105-4dfc-9bfc-e12e16bcfbc6",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetMethodsByState/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "80cdd287-c0d6-47de-9a81-420088de9f4b",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetAllMethods/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "daf2d803-bf4b-426b-b1a5-1eee2f17cdcf",
+      "Url": "http://localhost:4200/channels/ServerChannel/StopMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "83368548-540a-4a13-8fc3-c3080e79ccb2",
+      "Url": "http://localhost:4200/channels/PluginsChannel/InitPlugins/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "6a18fc58-1933-490e-811c-1a8cf2492b3e",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetHandlerHistory/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "e50da076-3887-43c4-95d0-5e9d28db25d0",
+      "Url": "http://localhost:4200/channels/ServerChannel/StartMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "ee5d7a06-c7f3-4693-befd-58545e14bbb6",
+      "Url": "http://localhost:4200/channels/ServerChannel/RestartMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    }
+  ],
+  "Message": ""
+}
+8/2/2020 04:30:41::::Info::::ServerChannel::::Method GetAllMethods::::{
+  "Success": true,
+  "Output": [
+    {
+      "HandlerId": "b513433d-47a4-4f61-9748-e9f7873bea6c",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetAllMethods/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "9c4e563b-5a59-4170-952e-8653d5523893",
+      "Url": "http://localhost:4200/channels/PluginsChannel/PluginsInitStatus/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "402306aa-c5c6-4574-a474-34d7db817246",
+      "Url": "http://localhost:4200/channels/PluginsChannel/InitPlugins/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "4ddccd6d-0868-4e6f-bf1e-180fabc9288e",
+      "Url": "http://localhost:4200/channels/ServerChannel/StopMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "7bbc4c76-e121-4699-a8c9-063c23349c70",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetMethodsByState/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "a6e5a0e8-7008-446f-b76e-90fc00a7a5ee",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetHandlerHistory/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "dd465401-25d1-40fa-86f9-ca1edef35a53",
+      "Url": "http://localhost:4200/channels/ServerChannel/StartMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "f34fa195-a317-4c25-868a-9ef3750e53be",
+      "Url": "http://localhost:4200/channels/ServerChannel/RestartMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    }
+  ],
+  "Message": ""
+}
+8/2/2020 04:30:41::::Info::::ServerChannel::::Method GetAllMethods::::{
+  "Success": true,
+  "Output": [
+    {
+      "HandlerId": "b513433d-47a4-4f61-9748-e9f7873bea6c",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetAllMethods/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "9c4e563b-5a59-4170-952e-8653d5523893",
+      "Url": "http://localhost:4200/channels/PluginsChannel/PluginsInitStatus/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "402306aa-c5c6-4574-a474-34d7db817246",
+      "Url": "http://localhost:4200/channels/PluginsChannel/InitPlugins/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "4ddccd6d-0868-4e6f-bf1e-180fabc9288e",
+      "Url": "http://localhost:4200/channels/ServerChannel/StopMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "7bbc4c76-e121-4699-a8c9-063c23349c70",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetMethodsByState/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "a6e5a0e8-7008-446f-b76e-90fc00a7a5ee",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetHandlerHistory/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "dd465401-25d1-40fa-86f9-ca1edef35a53",
+      "Url": "http://localhost:4200/channels/ServerChannel/StartMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "f34fa195-a317-4c25-868a-9ef3750e53be",
+      "Url": "http://localhost:4200/channels/ServerChannel/RestartMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    }
+  ],
+  "Message": ""
+}
+8/2/2020 04:30:41::::Info::::ServerChannel::::Method GetAllMethods::::{
+  "Success": true,
+  "Output": [
+    {
+      "HandlerId": "b513433d-47a4-4f61-9748-e9f7873bea6c",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetAllMethods/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "9c4e563b-5a59-4170-952e-8653d5523893",
+      "Url": "http://localhost:4200/channels/PluginsChannel/PluginsInitStatus/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "402306aa-c5c6-4574-a474-34d7db817246",
+      "Url": "http://localhost:4200/channels/PluginsChannel/InitPlugins/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "4ddccd6d-0868-4e6f-bf1e-180fabc9288e",
+      "Url": "http://localhost:4200/channels/ServerChannel/StopMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "7bbc4c76-e121-4699-a8c9-063c23349c70",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetMethodsByState/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "a6e5a0e8-7008-446f-b76e-90fc00a7a5ee",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetHandlerHistory/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "dd465401-25d1-40fa-86f9-ca1edef35a53",
+      "Url": "http://localhost:4200/channels/ServerChannel/StartMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "f34fa195-a317-4c25-868a-9ef3750e53be",
+      "Url": "http://localhost:4200/channels/ServerChannel/RestartMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    }
+  ],
+  "Message": ""
+}
+8/2/2020 04:30:41::::Info::::ServerChannel::::Method GetAllMethods::::{
+  "Success": true,
+  "Output": [
+    {
+      "HandlerId": "b513433d-47a4-4f61-9748-e9f7873bea6c",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetAllMethods/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "9c4e563b-5a59-4170-952e-8653d5523893",
+      "Url": "http://localhost:4200/channels/PluginsChannel/PluginsInitStatus/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "402306aa-c5c6-4574-a474-34d7db817246",
+      "Url": "http://localhost:4200/channels/PluginsChannel/InitPlugins/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "4ddccd6d-0868-4e6f-bf1e-180fabc9288e",
+      "Url": "http://localhost:4200/channels/ServerChannel/StopMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "7bbc4c76-e121-4699-a8c9-063c23349c70",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetMethodsByState/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "a6e5a0e8-7008-446f-b76e-90fc00a7a5ee",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetHandlerHistory/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "dd465401-25d1-40fa-86f9-ca1edef35a53",
+      "Url": "http://localhost:4200/channels/ServerChannel/StartMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "f34fa195-a317-4c25-868a-9ef3750e53be",
+      "Url": "http://localhost:4200/channels/ServerChannel/RestartMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    }
+  ],
+  "Message": ""
+}
+8/2/2020 04:30:41::::Info::::ServerChannel::::Method GetAllMethods::::{
+  "Success": true,
+  "Output": [
+    {
+      "HandlerId": "b513433d-47a4-4f61-9748-e9f7873bea6c",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetAllMethods/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "9c4e563b-5a59-4170-952e-8653d5523893",
+      "Url": "http://localhost:4200/channels/PluginsChannel/PluginsInitStatus/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "402306aa-c5c6-4574-a474-34d7db817246",
+      "Url": "http://localhost:4200/channels/PluginsChannel/InitPlugins/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "4ddccd6d-0868-4e6f-bf1e-180fabc9288e",
+      "Url": "http://localhost:4200/channels/ServerChannel/StopMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "7bbc4c76-e121-4699-a8c9-063c23349c70",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetMethodsByState/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "a6e5a0e8-7008-446f-b76e-90fc00a7a5ee",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetHandlerHistory/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "dd465401-25d1-40fa-86f9-ca1edef35a53",
+      "Url": "http://localhost:4200/channels/ServerChannel/StartMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "f34fa195-a317-4c25-868a-9ef3750e53be",
+      "Url": "http://localhost:4200/channels/ServerChannel/RestartMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    }
+  ],
+  "Message": ""
+}
+8/2/2020 04:31:06::::Info::::ServerChannel::::Method GetMethodsByState::::{
+  "Success": true,
+  "Output": [],
+  "Message": ""
+}
+8/2/2020 04:31:06::::Info::::ServerChannel::::Method GetMethodsByState::::{
+  "Success": true,
+  "Output": [],
+  "Message": ""
+}
+8/2/2020 04:31:06::::Info::::ServerChannel::::Method GetMethodsByState::::{
+  "Success": true,
+  "Output": [],
+  "Message": ""
+}
+8/2/2020 04:31:06::::Info::::ServerChannel::::Method GetMethodsByState::::{
+  "Success": true,
+  "Output": [],
+  "Message": ""
+}
+8/2/2020 04:31:06::::Info::::ServerChannel::::Method GetMethodsByState::::{
+  "Success": true,
+  "Output": [],
+  "Message": ""
+}
+8/2/2020 04:31:10::::Info::::ServerChannel::::Method GetMethodsByState::::{
+  "Success": true,
+  "Output": [
+    {
+      "HandlerId": "b513433d-47a4-4f61-9748-e9f7873bea6c",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetAllMethods/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "9c4e563b-5a59-4170-952e-8653d5523893",
+      "Url": "http://localhost:4200/channels/PluginsChannel/PluginsInitStatus/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "402306aa-c5c6-4574-a474-34d7db817246",
+      "Url": "http://localhost:4200/channels/PluginsChannel/InitPlugins/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "4ddccd6d-0868-4e6f-bf1e-180fabc9288e",
+      "Url": "http://localhost:4200/channels/ServerChannel/StopMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "7bbc4c76-e121-4699-a8c9-063c23349c70",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetMethodsByState/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "a6e5a0e8-7008-446f-b76e-90fc00a7a5ee",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetHandlerHistory/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "dd465401-25d1-40fa-86f9-ca1edef35a53",
+      "Url": "http://localhost:4200/channels/ServerChannel/StartMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "f34fa195-a317-4c25-868a-9ef3750e53be",
+      "Url": "http://localhost:4200/channels/ServerChannel/RestartMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    }
+  ],
+  "Message": ""
+}
+8/2/2020 04:31:10::::Info::::ServerChannel::::Method GetMethodsByState::::{
+  "Success": true,
+  "Output": [
+    {
+      "HandlerId": "b513433d-47a4-4f61-9748-e9f7873bea6c",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetAllMethods/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "9c4e563b-5a59-4170-952e-8653d5523893",
+      "Url": "http://localhost:4200/channels/PluginsChannel/PluginsInitStatus/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "402306aa-c5c6-4574-a474-34d7db817246",
+      "Url": "http://localhost:4200/channels/PluginsChannel/InitPlugins/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "4ddccd6d-0868-4e6f-bf1e-180fabc9288e",
+      "Url": "http://localhost:4200/channels/ServerChannel/StopMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "7bbc4c76-e121-4699-a8c9-063c23349c70",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetMethodsByState/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "a6e5a0e8-7008-446f-b76e-90fc00a7a5ee",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetHandlerHistory/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "dd465401-25d1-40fa-86f9-ca1edef35a53",
+      "Url": "http://localhost:4200/channels/ServerChannel/StartMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "f34fa195-a317-4c25-868a-9ef3750e53be",
+      "Url": "http://localhost:4200/channels/ServerChannel/RestartMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    }
+  ],
+  "Message": ""
+}
+8/2/2020 04:31:10::::Info::::ServerChannel::::Method GetMethodsByState::::{
+  "Success": true,
+  "Output": [
+    {
+      "HandlerId": "b513433d-47a4-4f61-9748-e9f7873bea6c",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetAllMethods/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "9c4e563b-5a59-4170-952e-8653d5523893",
+      "Url": "http://localhost:4200/channels/PluginsChannel/PluginsInitStatus/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "402306aa-c5c6-4574-a474-34d7db817246",
+      "Url": "http://localhost:4200/channels/PluginsChannel/InitPlugins/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "4ddccd6d-0868-4e6f-bf1e-180fabc9288e",
+      "Url": "http://localhost:4200/channels/ServerChannel/StopMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "7bbc4c76-e121-4699-a8c9-063c23349c70",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetMethodsByState/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "a6e5a0e8-7008-446f-b76e-90fc00a7a5ee",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetHandlerHistory/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "dd465401-25d1-40fa-86f9-ca1edef35a53",
+      "Url": "http://localhost:4200/channels/ServerChannel/StartMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "f34fa195-a317-4c25-868a-9ef3750e53be",
+      "Url": "http://localhost:4200/channels/ServerChannel/RestartMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    }
+  ],
+  "Message": ""
+}
+8/2/2020 04:31:10::::Info::::ServerChannel::::Method GetMethodsByState::::{
+  "Success": true,
+  "Output": [
+    {
+      "HandlerId": "b513433d-47a4-4f61-9748-e9f7873bea6c",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetAllMethods/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "9c4e563b-5a59-4170-952e-8653d5523893",
+      "Url": "http://localhost:4200/channels/PluginsChannel/PluginsInitStatus/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "402306aa-c5c6-4574-a474-34d7db817246",
+      "Url": "http://localhost:4200/channels/PluginsChannel/InitPlugins/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "4ddccd6d-0868-4e6f-bf1e-180fabc9288e",
+      "Url": "http://localhost:4200/channels/ServerChannel/StopMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "7bbc4c76-e121-4699-a8c9-063c23349c70",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetMethodsByState/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "a6e5a0e8-7008-446f-b76e-90fc00a7a5ee",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetHandlerHistory/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "dd465401-25d1-40fa-86f9-ca1edef35a53",
+      "Url": "http://localhost:4200/channels/ServerChannel/StartMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "f34fa195-a317-4c25-868a-9ef3750e53be",
+      "Url": "http://localhost:4200/channels/ServerChannel/RestartMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    }
+  ],
+  "Message": ""
+}
+8/2/2020 04:31:10::::Info::::ServerChannel::::Method GetMethodsByState::::{
+  "Success": true,
+  "Output": [
+    {
+      "HandlerId": "b513433d-47a4-4f61-9748-e9f7873bea6c",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetAllMethods/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "9c4e563b-5a59-4170-952e-8653d5523893",
+      "Url": "http://localhost:4200/channels/PluginsChannel/PluginsInitStatus/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "402306aa-c5c6-4574-a474-34d7db817246",
+      "Url": "http://localhost:4200/channels/PluginsChannel/InitPlugins/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "4ddccd6d-0868-4e6f-bf1e-180fabc9288e",
+      "Url": "http://localhost:4200/channels/ServerChannel/StopMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "7bbc4c76-e121-4699-a8c9-063c23349c70",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetMethodsByState/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "a6e5a0e8-7008-446f-b76e-90fc00a7a5ee",
+      "Url": "http://localhost:4200/channels/ServerChannel/GetHandlerHistory/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "dd465401-25d1-40fa-86f9-ca1edef35a53",
+      "Url": "http://localhost:4200/channels/ServerChannel/StartMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    },
+    {
+      "HandlerId": "f34fa195-a317-4c25-868a-9ef3750e53be",
+      "Url": "http://localhost:4200/channels/ServerChannel/RestartMethod/",
+      "State": "Running",
+      "Protected": true,
+      "History": []
+    }
+  ],
+  "Message": ""
+}

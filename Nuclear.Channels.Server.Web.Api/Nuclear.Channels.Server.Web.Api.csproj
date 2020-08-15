@@ -9,4 +9,8 @@
     <ProjectReference Include="..\Nuclear.Channels.Server.Web\Nuclear.Channels.Server.Web.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ServerLogs\" />
+  </ItemGroup>
+
 </Project>

@@ -1,4 +1,6 @@
-﻿using Nuclear.ExportLocator;
+﻿using Nuclear.Channels.Authentication.Extensions;
+using Nuclear.Channels.Server.Web.Authentication;
+using Nuclear.ExportLocator;
 using System;
 using System.Collections.Generic;
 
@@ -28,7 +30,9 @@ namespace Nuclear.Channels.Server.Web
         public static IChannelWebServer Build(Action<IChannelServer> serverAction)
         {
             var locator = ServiceLocatorBuilder.CreateServiceLocator(KnownExportAssemblies);
+            var authenticationService = ServiceFactory.GetExportedService<IAuthenticationService>();
             var server = ChannelServerBuilder.CreateServer();
+            server.AddBasicAuthentication(authenticationService.AuthenticateUser);
             serverAction(server);
 
             return new ChannelWebServer(locator, server);

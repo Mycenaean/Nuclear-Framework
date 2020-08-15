@@ -78,3 +78,7 @@
 7/26/2020 09:43:26::::Info::::Method Start::::HttpMethod:GET
 7/26/2020 09:43:26::::Debug::::Method Start::::Request finished...
 7/26/2020 09:43:26::::Debug::::Method Start::::Closing the response
+7/26/2020 09:47:09::::Info::::Method Start::::Request coming to ServerChannel.GetAllMethods
+7/26/2020 09:47:09::::Info::::Method Start::::HttpMethod:GET
+7/26/2020 09:47:10::::Debug::::Method Start::::Request finished...
+7/26/2020 09:47:10::::Debug::::Method Start::::Closing the response

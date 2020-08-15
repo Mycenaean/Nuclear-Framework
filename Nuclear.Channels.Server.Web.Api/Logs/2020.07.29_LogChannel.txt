@@ -1,0 +1,22 @@
+7/29/2020 20:29:41::::Info::::Method Start::::Request coming to ServerChannel.GetAllMethods
+7/29/2020 20:29:41::::Info::::Method Start::::HttpMethod:GET
+7/29/2020 20:29:43::::Debug::::Method Start::::Request finished...
+7/29/2020 20:29:43::::Debug::::Method Start::::Closing the response
+7/29/2020 20:32:16::::Info::::Method Start::::Request coming to ServerChannel.GetAllMethods
+7/29/2020 20:32:16::::Info::::Method Start::::HttpMethod:GET
+7/29/2020 20:32:17::::Debug::::Method Start::::Request finished...
+7/29/2020 20:32:17::::Debug::::Method Start::::Closing the response
+7/29/2020 20:33:58::::Info::::Method Start::::Request coming to ServerChannel.GetAllMethods
+7/29/2020 20:33:58::::Info::::Method Start::::HttpMethod:GET
+7/29/2020 20:35:06::::Info::::Method Start::::Request coming to ServerChannel.GetAllMethods
+7/29/2020 20:35:06::::Info::::Method Start::::HttpMethod:GET
+7/29/2020 20:35:07::::Debug::::Method Start::::Request finished...
+7/29/2020 20:35:07::::Debug::::Method Start::::Closing the response
+7/29/2020 20:35:07::::Info::::Method Start::::Request coming to ServerChannel.GetAllMethods
+7/29/2020 20:35:07::::Info::::Method Start::::HttpMethod:GET
+7/29/2020 20:35:07::::Debug::::Method Start::::Request finished...
+7/29/2020 20:35:07::::Debug::::Method Start::::Closing the response
+7/29/2020 20:41:42::::Info::::Method Start::::Request coming to ServerChannel.GetAllMethods
+7/29/2020 20:41:42::::Info::::Method Start::::HttpMethod:GET
+7/29/2020 20:41:44::::Debug::::Method Start::::Request finished...
+7/29/2020 20:41:44::::Debug::::Method Start::::Closing the response
