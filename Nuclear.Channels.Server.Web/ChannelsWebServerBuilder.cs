@@ -1,4 +1,8 @@
-﻿using Nuclear.Channels.Authentication.Extensions;
+﻿// Copyright © Nikola Milinkovic 
+// Licensed under the MIT License (MIT).
+// See License.md in the repository root for more information.
+
+using Nuclear.Channels.Authentication.Extensions;
 using Nuclear.Channels.Server.Web.Authentication;
 using Nuclear.ExportLocator;
 using System;

@@ -10,10 +10,9 @@ using Nuclear.Channels.Server.Web.Commands.Plugins;
 using Nuclear.Channels.Server.Web.Abstractions;
 using Nuclear.Channels.Server.Web.Decorators;
 using Nuclear.Channels.Server.Web.Queries.PluginsInitState;
-using System.Threading.Channels;
 using System.Threading.Tasks;
 
-namespace Nuclear.Channels.Server
+namespace Nuclear.Channels.Server.Web.Api
 {
     /// <summary>
     /// Plugins Command and Control Center

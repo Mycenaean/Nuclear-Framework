@@ -1,8 +1,12 @@
-﻿using System;
+﻿// Copyright © Nikola Milinkovic 
+// Licensed under the MIT License (MIT).
+// See License.md in the repository root for more information.
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Nuclear.Channels.Server.Web.Blazor.Endpoints
+namespace Nuclear.Channels.Server.Web.AspNetCoreExtensions
 {
     public class ChannelEndpointProvider : IChannelEndpointProvider
     {
@@ -19,14 +23,16 @@ namespace Nuclear.Channels.Server.Web.Blazor.Endpoints
         public string GetEndpointUrl(string baseUrl, string methodName)
         {
             string endpoint = string.Empty;
+            Func<string, bool> methodCompare = x => x.Equals(methodName, StringComparison.OrdinalIgnoreCase);
 
             if (baseUrl.Contains("ServerChannel"))
             {
-                endpoint = _serverEndpoints.FirstOrDefault(endpoint => endpoint.Equals(methodName, StringComparison.OrdinalIgnoreCase));
+                
+                endpoint = _serverEndpoints.FirstOrDefault(methodCompare);
             }
             else if (baseUrl.Contains("PluginsChannel"))
             {
-                endpoint = _pluginsEndpoints.FirstOrDefault(endpoint => endpoint.Equals(methodName, StringComparison.OrdinalIgnoreCase));
+                endpoint = _pluginsEndpoints.FirstOrDefault(methodCompare);
             }
 
             if (String.IsNullOrEmpty(endpoint))

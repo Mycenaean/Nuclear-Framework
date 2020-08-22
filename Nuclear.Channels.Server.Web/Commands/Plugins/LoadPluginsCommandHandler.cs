@@ -1,4 +1,8 @@
-﻿using Nuclear.Channels.Server.Web.Common;
+﻿// Copyright © Nikola Milinkovic 
+// Licensed under the MIT License (MIT).
+// See License.md in the repository root for more information.
+
+using Nuclear.Channels.Server.Web.Common;
 using Nuclear.Channels.Server.Web.Abstractions;
 using Nuclear.ExportLocator.Decorators;
 using Nuclear.ExportLocator.Enumerations;
