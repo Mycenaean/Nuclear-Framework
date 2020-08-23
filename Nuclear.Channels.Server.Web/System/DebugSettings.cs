@@ -10,6 +10,6 @@ namespace Nuclear.Channels.Server.Web.System
 {
     public class DebugSettings : ISystemSettings
     {
-        public string BaseDirectory => (new FileInfo(Assembly.GetCallingAssembly().FullName)).Directory.Parent.Parent.Parent.FullName;
+        public string BaseDirectory => (new FileInfo(AppDomain.CurrentDomain.BaseDirectory)).Directory.Parent.Parent.Parent.FullName;
     }
 }
