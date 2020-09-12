@@ -71,8 +71,12 @@ namespace Nuclear.Channels
             return this;
         }
 
-        private void OneTimeSetup()
+        private void OneTimeSetup(IServiceLocator services)
         {
+            Debug.Assert(services != null);
+            Debug.Assert(HttpListener.IsSupported);
+
+            _services = services;
             _channelLocator = _services.Get<IChannelLocator>();
             _methodHandlers = _services.Get<IChannelMethodHandlerCollection>();
             _channelHandlers = _services.Get<IChannelHandlerCollection>();
@@ -83,14 +87,23 @@ namespace Nuclear.Channels
                 logsDirectory.Create();
         }
 
+        public void Execute(List<string> lookupAssemblies, IServiceLocator services, AuthenticationSettings settings, string baseURL = null)
+        {
+            OneTimeSetup(services);
+            List<Type> channels = _channelLocator.RegisteredChannels(lookupAssemblies);
+            Execute(settings, channels, baseURL);
+        }
+
         public void Execute(AppDomain domain, IServiceLocator _Services, AuthenticationSettings settings, string baseURL = null)
         {
-            _settings = settings;
-            _services = _Services;
-            Debug.Assert(HttpListener.IsSupported);
-            Debug.Assert(_Services != null);
+            OneTimeSetup(_Services);
+            List<Type> channels = _channelLocator.RegisteredChannels(domain);
+            Execute(settings, channels, baseURL);
+        }
 
-            OneTimeSetup();
+        public void Execute(AuthenticationSettings settings, List<Type> channelAssemblies, string baseURL = null)
+        {
+            _settings = settings;
 
             if (!HttpListener.IsSupported)
             {
@@ -101,11 +114,8 @@ namespace Nuclear.Channels
             if (baseURL != null)
                 _baseURL = baseURL;
 
-            List<Type> channels = new List<Type>();
-            channels = _channelLocator.RegisteredChannels(domain);
-
             //Initialization part
-            foreach (Type channel in channels)
+            foreach (Type channel in channelAssemblies)
             {
                 CancellationTokenSource cts = new CancellationTokenSource();
                 CancellationToken token = cts.Token;

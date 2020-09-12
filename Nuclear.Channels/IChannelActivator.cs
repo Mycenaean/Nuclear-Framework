@@ -6,6 +6,7 @@ using Nuclear.Channels.Authentication;
 using Nuclear.Channels.Base.Exceptions;
 using Nuclear.ExportLocator.Services;
 using System;
+using System.Collections.Generic;
 
 namespace Nuclear.Channels
 {
@@ -22,6 +23,8 @@ namespace Nuclear.Channels
         /// <param name="baseURL">Base URL to be exposed for channels</param>
         /// <exception cref="HttpListenerNotSupportedException"></exception>
         void Execute(AppDomain currentDomain, IServiceLocator Services, AuthenticationSettings settings, string baseURL = null);
+
+        void Execute(List<string> lookupAssemblies, IServiceLocator services, AuthenticationSettings settings, string baseURL = null);
 
         /// <summary>
         /// Returns Raw Executor instance used in ChannelServer

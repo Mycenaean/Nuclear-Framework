@@ -7,6 +7,7 @@ using Nuclear.ExportLocator;
 using Nuclear.ExportLocator.Services;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
@@ -19,10 +20,11 @@ namespace Nuclear.Channels
     internal class ChannelHost : IChannelServer
     {
         private AppDomain _domain;
-        private IServiceLocator _services;
-        private IChannelActivator _activator;
+        private readonly IServiceLocator _services;
+        private readonly IChannelActivator _activator;
         private static ChannelHost _host;
-        private static object _lock = new object();
+        private static readonly object _lock = new object();
+        private List<string> _lookupAssemblies = null;
 
         public AuthenticationSettings AuthenticationSettings { get; set; }
 
@@ -110,7 +112,11 @@ namespace Nuclear.Channels
         /// </summary>
         public void StartHosting(string baseURL)
         {
-            _activator.Execute(_domain, _services, AuthenticationSettings, baseURL);
+            if (_lookupAssemblies != null)
+                _activator.Execute(_lookupAssemblies, _services, AuthenticationSettings, baseURL);
+            else
+                _activator.Execute(_domain, _services, AuthenticationSettings, baseURL);
+
             Task.WaitAll();
         }
 
@@ -127,6 +133,12 @@ namespace Nuclear.Channels
         public void AuthenticationOptions(Func<string, string, bool> basicAuthenticationMethod)
         {
             _activator.AuthenticationOptions(basicAuthenticationMethod);
+        }
+
+        public void RegisterChannels(List<string> assemblieContainingChannels)
+        {
+            if (assemblieContainingChannels != null && assemblieContainingChannels.Any())
+                _lookupAssemblies = assemblieContainingChannels;                
         }
     }
 }

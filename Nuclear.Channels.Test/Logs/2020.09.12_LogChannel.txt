@@ -1,0 +1,8 @@
+9/12/2020 00:26:56::::Info::::Method Start::::Request coming to TestChannel.DictionaryTest
+9/12/2020 00:26:56::::Info::::Method Start::::HttpMethod:GET
+9/12/2020 00:27:14::::Debug::::Method Start::::Request finished...
+9/12/2020 00:27:14::::Debug::::Method Start::::Closing the response
+9/12/2020 21:57:27::::Info::::Method Start::::Request coming to TestChannel.HelloWorld
+9/12/2020 21:57:27::::Info::::Method Start::::HttpMethod:GET
+9/12/2020 21:57:28::::Debug::::Method Start::::Request finished...
+9/12/2020 21:57:28::::Debug::::Method Start::::Closing the response

@@ -19,5 +19,12 @@ namespace Nuclear.Channels.Base.Contracts
         /// <param name="domain">Domain with all assemblies</param>
         /// <returns>List of classes that are decorated with ChannelAttribute</returns>
         List<Type> RegisteredChannels(AppDomain domain);
+
+        /// <summary>
+        /// Method that get all Channels
+        /// </summary>
+        /// <param name="lookupAssemblies">List of lookup assemblies</param>
+        /// <returns>List of classes that are decorated with ChannelAttribute</returns>
+        List<Type> RegisteredChannels(List<string> lookupAssemblies);
     }
 }

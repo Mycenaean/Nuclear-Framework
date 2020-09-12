@@ -6,6 +6,7 @@ using Nuclear.Channels.Authentication;
 using Nuclear.Channels.Base.Exceptions;
 using Nuclear.Channels.Heuristics.CacheCleaner;
 using System;
+using System.Collections.Generic;
 using System.Security.Claims;
 
 namespace Nuclear.Channels
@@ -48,5 +49,11 @@ namespace Nuclear.Channels
         /// <param name="baseURL">Base url to be provided , if not base url will be http://localhost:4200 </param>
         /// <exception cref="HttpListenerNotSupportedException"></exception>
         void StartHosting(string baseURL);
+
+        /// <summary>
+        /// Registers assemblies used for Channel lookups
+        /// </summary>
+        /// <param name="assemblieContainingChannels">Assemblies containing Channels</param>
+        void RegisterChannels(List<string> assemblieContainingChannels);
     }
 }

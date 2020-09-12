@@ -16,9 +16,9 @@ namespace Nuclear.Channels
 {
     internal class ChannelAuthenticationInspector
     {
-        private Func<string, string, bool> _basicAuthenticationMethod;
-        private Func<string, bool> _tokenAuthenticationMethod;
-        private AuthenticationSettings _settings;
+        private readonly Func<string, string, bool> _basicAuthenticationMethod;
+        private readonly Func<string, bool> _tokenAuthenticationMethod;
+        private readonly AuthenticationSettings _settings;
         private readonly IChannelAuthenticationService _authenticationService;
         private readonly IChannelMessageService _msgService;
         private readonly ISessionService _session;

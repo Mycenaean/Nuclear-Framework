@@ -7,6 +7,7 @@ using Nuclear.ExportLocator.Decorators;
 using System;
 using Nuclear.Channels.Authentication;
 using Nuclear.Channels.Heuristics;
+using System.Collections.Generic;
 
 namespace ConsoleApp1
 {
@@ -49,6 +50,23 @@ namespace ConsoleApp1
             {
                 Message = string.Empty,
                 Output = new TestClass() { Id = id, Name = name },
+                Success = true
+            };
+
+            ChannelMessageWriter.Write(msg, Context.Response);
+        }
+
+        [ChannelMethod]
+        public void DictionaryTest()
+        {
+            var testDictionary = new Dictionary<string, string>();
+            testDictionary.Add("TestKey", "TestValue");
+            testDictionary.Add("TestKey1", "TestValue2");
+
+            var msg = new ChannelMessage
+            {
+                Message = string.Empty,
+                Output = testDictionary,
                 Success = true
             };
 
