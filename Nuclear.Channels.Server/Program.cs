@@ -3,7 +3,7 @@
 // See License.md in the repository root for more information.
 
 using Nuclear.Channels.Server.Manager;
-using System;
+using System.Collections.Generic;
 
 namespace Nuclear.Channels.Server
 {
@@ -13,7 +13,7 @@ namespace Nuclear.Channels.Server
         {
             var serverManager = ChannelServerManagerBuilder.Build(server => 
             {
-                server.LoadAssemblies(AppDomain.CurrentDomain, null);
+                server.RegisterChannels(new List<string> { "Nuclear.Channels.Server" });
                 server.IsServerManaged(true);
             });
 
