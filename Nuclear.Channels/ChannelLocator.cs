@@ -18,10 +18,10 @@ namespace Nuclear.Channels
     /// <summary>
     /// Service that contains all Channels
     /// </summary>
-    [Export(typeof(IChannelLocator), ExportLifetime.Transient)]
+    [Export(typeof(IChannelLocator), ExportLifetime.Singleton)]
     internal class ChannelLocator : IChannelLocator
     {
-        private List<Type> Channels = new List<Type>();
+        private List<Type> _channels = new List<Type>();
 
         /// <summary>
         /// Method that get all Channels
@@ -69,10 +69,10 @@ namespace Nuclear.Channels
                 {
                     Attribute channel = type.GetCustomAttribute<ChannelAttribute>();
                     if (channel != null)
-                        Channels.Add(type);
+                        _channels.Add(type);
                 }
             }
-            return Channels;
+            return _channels;
         }
     }
 }
