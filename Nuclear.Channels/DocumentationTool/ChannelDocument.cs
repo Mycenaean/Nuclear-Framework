@@ -16,6 +16,5 @@ namespace Nuclear.Channels.DocumentationTool
         public string Description { get; set; }
         public List<ChannelMethodDocument> AvailableEndpoints { get; set; }
 
-
     }
 }

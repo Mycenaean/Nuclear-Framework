@@ -6,9 +6,6 @@ using Nuclear.Channels.Authentication;
 using Nuclear.Channels.Base.Contracts;
 using Nuclear.Channels.Base.Enums;
 using Nuclear.Channels.Decorators;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Nuclear.Channels
 {

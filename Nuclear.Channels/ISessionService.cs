@@ -12,5 +12,4 @@ namespace Nuclear.Channels
         void Remove(Cookie cookie);
         bool Exists(Cookie cookie);
     }
-
 }

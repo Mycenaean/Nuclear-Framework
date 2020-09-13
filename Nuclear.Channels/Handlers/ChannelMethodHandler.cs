@@ -17,8 +17,6 @@ using System.Collections.Generic;
 using System.Net;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading;
 
 namespace Nuclear.Channels.Handlers
 {

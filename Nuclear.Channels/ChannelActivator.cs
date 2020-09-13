@@ -16,11 +16,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -115,13 +113,14 @@ namespace Nuclear.Channels
                 _baseURL = baseURL;
 
             //Initialization part
-            foreach (Type channel in channelAssemblies)
+
+            channelAssemblies.ForEach(channel =>
             {
                 CancellationTokenSource cts = new CancellationTokenSource();
                 CancellationToken token = cts.Token;
                 Task task = new Task(() => MethodExecute(channel, token), token);
                 task.Start();
-            }
+            });
         }
 
         public void MethodExecute(Type channel, CancellationToken cancellationToken)

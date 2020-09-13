@@ -8,7 +8,6 @@ using Nuclear.Channels.Messaging;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Security.Claims;
 
@@ -137,8 +136,5 @@ namespace Nuclear.Channels
 
             return failed;
         }
-
-
     }
-
 }

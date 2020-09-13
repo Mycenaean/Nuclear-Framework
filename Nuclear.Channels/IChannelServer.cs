@@ -7,7 +7,6 @@ using Nuclear.Channels.Base.Exceptions;
 using Nuclear.Channels.Heuristics.CacheCleaner;
 using System;
 using System.Collections.Generic;
-using System.Security.Claims;
 
 namespace Nuclear.Channels
 {
