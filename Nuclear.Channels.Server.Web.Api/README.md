@@ -4,7 +4,7 @@
 
 ## For this to work you must first Initialize your Channel plugins by sending physical path of your plugins directory to a web server api endpoint /PluginsChannel/InitPlugins/?serverPluginsPath= . You can check the status on /PluginsChannel/PluginsInitStatus/ web server api endpoint.
 
-##List of Web Server Api Endpoints
+## List of Web Server Api Endpoints
 
 #### /PluginsChannel/InitPlugins/?serverPluginsPath=
 #### /PluginsChannel/PluginsInitStatus/
