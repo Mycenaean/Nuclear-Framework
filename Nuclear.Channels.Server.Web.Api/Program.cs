@@ -5,6 +5,7 @@
 using Nuclear.Channels.Server.Web.Common;
 using Nuclear.ExportLocator;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 
@@ -19,7 +20,7 @@ namespace Nuclear.Channels.Server.Web.Api
 
             var server = ChannelsWebServerBuilder.Build(options =>
             {
-                options.LoadAssemblies(AppDomain.CurrentDomain);
+                options.RegisterChannels(new List<string> { "Nuclear.Channels.Server.Web" });
                 options.IsServerManaged(true);
             });
 
