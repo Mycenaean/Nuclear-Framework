@@ -1,6 +1,20 @@
 # Nuclear Framework
 Nuclear framework provides alternative way to build lightweight API endpoints using custom Attributes. Even tought this framework is intended to be used as a whole , ExportLocator ClassLibrary can be used as a standalone Service registration tool.
 
+# NOTE
+
+Nuclear.Channels has been moved to a monolithic solution on [Nuclear.Channels.Monolithic](https://github.com/Mycenaean/Nuclear-Channels-Monolithic) . Dlls which are merged into a monolithic solutions are
+
+### Nuclear.Channels
+### Nuclear.Channels.Authentication
+### Nuclear.Channels.Base
+### Nuclear.Channels.Data
+### Nuclear.Channels.Generators
+### Nuclear.Channels.Heuristics
+### Nuclear.Channels.InvokerServices
+### Nuclear.Channels.Messaging
+### Nuclear.ExportLocator
+
 ## [Nuclear.Channels](https://github.com/Mycenaean/Nuclear-Framework/tree/master/Nuclear.Channels)
  Class Library that contains all the logic neccessary for the initialization of channel endpoints. To install it with Package Manager:
  ```
