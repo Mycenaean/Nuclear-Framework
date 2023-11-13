@@ -44,7 +44,7 @@ Nuclear.Channels has been moved to a monolithic solution on [Nuclear.Channels.Mo
  Class Library containing all neccessary logic for CLI management of the Channels
 
 # Authors
- Nikola Milinkovic - *initial work and maintainer* - [Mycenaean](https://github.com/Mycenaean)
+ Nikola M - *initial work and maintainer* - [Mycenaean](https://github.com/Mycenaean)
 
 # License
  All Class Libraries under this solution are MIT Licensed. Check [License](https://github.com/Mycenaean/Nuclear-Framework/blob/master/LICENSE.txt).
